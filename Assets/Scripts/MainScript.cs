@@ -6,27 +6,57 @@ using UnityEngine;
 public class MainScript : MonoBehaviour
 {
     [SerializeField] private GameObject brick;
+    [SerializeField] private GameObject[] waypoints;
 
-    private BoxCollider2D _brick1;
+    private Brick _brick1;
     
     private void Start()
     {
-        _brick1 = Instantiate(brick, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<BoxCollider2D>();
+        _brick1 = new Brick(Instantiate(brick, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<BoxCollider2D>());
+        
     }
     
     void Update()
     {
         if (Input.touchCount > 0)
         {
-            Debug.Log("Тач");
             Touch touch = Input.GetTouch(0);
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
             touchPosition.z = 0f;
 
-            if (_brick1 == Physics2D.OverlapPoint(touchPosition))
+            if (_brick1.Collider == Physics2D.OverlapPoint(touchPosition))
             {
-                Debug.Log("В яблочко");
+                _brick1.IsTouch = true;
             }
+        }
+        
+        if (_brick1.IsTouch)
+        {
+            moveBrickOnWaypoint();
+        }
+    }
+
+    private void moveBrickOnWaypoint()
+    {
+        if (Vector2.Distance(waypoints[0].transform.position, _brick1.Collider.transform.position) < .1f)
+        {
+            _brick1.IsTouch = false;
+        }
+        _brick1.Collider.transform.position = Vector2.MoveTowards(
+            _brick1.Collider.transform.position,
+            waypoints[0].transform.position,
+            Time.deltaTime * 5f);
+    }
+
+    private class Brick
+    {
+        public BoxCollider2D Collider { get; set; }
+
+        public bool IsTouch { get; set; }
+
+        public Brick(BoxCollider2D boxCollider2D)
+        {
+            Collider = boxCollider2D;
         }
     }
 }
