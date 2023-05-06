@@ -11,6 +11,10 @@ public class MainScript : MonoBehaviour
     {
         // Create one brick
         Instantiate(brickPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(brickPrefab, new Vector3(-1, 0, 0), Quaternion.identity);
+        Instantiate(brickPrefab, new Vector3(-2, 0, 0), Quaternion.identity);
+        Instantiate(brickPrefab, new Vector3(1, 0, 0), Quaternion.identity);
+        Instantiate(brickPrefab, new Vector3(2, 0, 0), Quaternion.identity);
     }
     
     void Update()
