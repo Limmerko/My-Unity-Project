@@ -5,34 +5,46 @@ using static Statics;
 
 public class BrickScript : MonoBehaviour
 {
-    [SerializeField] private GameObject waypointsPrefab;
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private GameObject waypointsPrefab; // Prefab. Список всех waypoint'ов
+    [SerializeField] private float speed = 5f; // Prefab. Скорость движения
 
-    private BoxCollider2D _collider;
-    private bool _isTouch;
-    private Transform[] _waypoints;
+    private BoxCollider2D _collider; // Коллайдер для опредения области
+    private Transform[] _waypoints; // Список всех waypoint'ов
+    private bool _isTouch; // Было нажатие на этот кирпич
+    private bool _isFinish; // Закончил движение
+    private int _targetWaypoint; // "Целевой" waypoint
     
     void Start()
     {
         _collider = GetComponent<BoxCollider2D>();
         _waypoints = waypointsPrefab.GetComponentsInChildren<Transform>();
-        for (int i=0; i < _waypoints.Length;  i++)
-        {
-            Debug.Log(i + " " + _waypoints[i].position);
-        }
     }
     
     void Update()
     {
+        // Если закончил движение, то больше нельзя нажать на него 
+        if (_isFinish)
+        {
+            return;
+        }
+        
+        // Если было нажатие на экран
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-            touchPosition.z = 0f;
 
-            if (_collider == Physics2D.OverlapPoint(touchPosition))
+            // Если нажатие было на сам кирпич
+            if (_collider == Physics2D.OverlapPoint(touchPosition) && !_isTouch)
             {
                 _isTouch = true;
+                _targetWaypoint = CurrentWaypoint;
+                CurrentWaypoint++;
+                if (CurrentWaypoint >= _waypoints.Length)
+                {
+                    // TODO Временно. Потом будет проигрыш
+                    CurrentWaypoint = 1;
+                }
             }
         }
         
@@ -42,25 +54,19 @@ public class BrickScript : MonoBehaviour
         }
     }
     
-    
+    /**
+     * Движение кирпичика до waypoint'a
+     */
     private void moveBrickOnWaypoint()
     {
-        // нужна общая переменная на все скрипты (static?)
-        if (Vector2.Distance(_waypoints[CurrentWaypoint].transform.position, _collider.transform.position) == 0)
+        // Если закончил движение
+        if (Vector2.Distance(_waypoints[_targetWaypoint].transform.position, _collider.transform.position) == 0)
         {
-            Debug.Log("go to " + CurrentWaypoint);
-            _isTouch = false;
-            CurrentWaypoint++;
-            if (CurrentWaypoint >= _waypoints.Length)
-            {
-                // TODO Временно
-                CurrentWaypoint = 0;
-            }
-            Debug.Log(CurrentWaypoint);
+            _isFinish = true;
         }
         _collider.transform.position = Vector2.MoveTowards(
             _collider.transform.position,
-            _waypoints[CurrentWaypoint].transform.position,
+            _waypoints[_targetWaypoint].transform.position,
             Time.deltaTime * speed);
     }
 }
