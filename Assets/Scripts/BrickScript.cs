@@ -8,22 +8,22 @@ public class BrickScript : MonoBehaviour
     [SerializeField] private GameObject waypointsPrefab; // Prefab. Список всех waypoint'ов
     [SerializeField] private float speed = 5f; // Prefab. Скорость движения
 
-    private BoxCollider2D _collider; // Коллайдер для опредения области
     private Transform[] _waypoints; // Список всех waypoint'ов
-    private bool _isTouch; // Было нажатие на этот кирпич
-    private bool _isFinish; // Закончил движение
     private int _targetWaypoint; // "Целевой" waypoint
+
+    private Brick _brick;
     
     void Start()
     {
-        _collider = GetComponent<BoxCollider2D>();
+        _brick = new Brick(GetComponent<BoxCollider2D>());
+        Bricks.Add(_brick);
         _waypoints = waypointsPrefab.GetComponentsInChildren<Transform>();
     }
     
     void Update()
     {
         // Если закончил движение, то больше нельзя нажать на него 
-        if (_isFinish)
+        if (_brick.IsFinish)
         {
             return;
         }
@@ -35,9 +35,9 @@ public class BrickScript : MonoBehaviour
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
             // Если нажатие было на сам кирпич
-            if (_collider == Physics2D.OverlapPoint(touchPosition) && !_isTouch)
+            if (_brick.Collider == Physics2D.OverlapPoint(touchPosition) && !_brick.IsTouch)
             {
-                _isTouch = true;
+                _brick.IsTouch = true;
                 _targetWaypoint = CurrentWaypoint;
                 CurrentWaypoint++;
                 if (CurrentWaypoint >= _waypoints.Length)
@@ -48,7 +48,7 @@ public class BrickScript : MonoBehaviour
             }
         }
         
-        if (_isTouch)
+        if (_brick.IsTouch)
         {
             moveBrickOnWaypoint();
         }
@@ -60,12 +60,12 @@ public class BrickScript : MonoBehaviour
     private void moveBrickOnWaypoint()
     {
         // Если закончил движение
-        if (Vector2.Distance(_waypoints[_targetWaypoint].transform.position, _collider.transform.position) == 0)
+        if (Vector2.Distance(_waypoints[_targetWaypoint].transform.position, _brick.Collider.transform.position) == 0)
         {
-            _isFinish = true;
+            _brick.IsFinish = true;
         }
-        _collider.transform.position = Vector2.MoveTowards(
-            _collider.transform.position,
+        _brick.Collider.transform.position = Vector2.MoveTowards(
+            _brick.Collider.transform.position,
             _waypoints[_targetWaypoint].transform.position,
             Time.deltaTime * speed);
     }
