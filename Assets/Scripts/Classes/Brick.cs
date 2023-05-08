@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Brick
 {
-    public BoxCollider2D Collider { get; set; }  // Коллайдер для опредения области
+    public GameObject GameObject { get; set; }  // Сам объект
 
     public bool IsTouch { get; set; } // Было нажатие на этот кирпич
 
     public bool IsFinish { get; set; } // Закончил движение
 
-    public Brick(BoxCollider2D collider)
+    public Brick(GameObject gameObject)
     {
-        Collider = collider;
+        GameObject = gameObject;
         IsTouch = false;
         IsFinish = false;
     }

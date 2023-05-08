@@ -5,21 +5,21 @@ using static Statics;
 
 public class BrickScript : MonoBehaviour
 {
-    [SerializeField] private GameObject waypointsPrefab; // Prefab. Список всех waypoint'ов
+    [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
     [SerializeField] private float speed = 5f; // Prefab. Скорость движения
-
-    private Transform[] _waypoints; // Список всех waypoint'ов
+    
+    private Collider2D _collider; // Коллейдер для определения нажатия
     private int _targetWaypoint; // "Целевой" waypoint
 
     private Brick _brick;
-    
+
     void Start()
     {
-        _brick = new Brick(GetComponent<BoxCollider2D>());
+        _brick = new Brick(gameObject);
+        _collider = _brick.GameObject.GetComponent<Collider2D>();
         Bricks.Add(_brick);
-        _waypoints = waypointsPrefab.GetComponentsInChildren<Transform>();
     }
-    
+
     void Update()
     {
         // Если закончил движение, то больше нельзя нажать на него 
@@ -27,7 +27,7 @@ public class BrickScript : MonoBehaviour
         {
             return;
         }
-        
+
         // Если было нажатие на экран
         if (Input.touchCount > 0)
         {
@@ -35,38 +35,33 @@ public class BrickScript : MonoBehaviour
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
 
             // Если нажатие было на сам кирпич
-            if (_brick.Collider == Physics2D.OverlapPoint(touchPosition) && !_brick.IsTouch)
+            if (_collider == Physics2D.OverlapPoint(touchPosition) && !_brick.IsTouch)
             {
                 _brick.IsTouch = true;
                 _targetWaypoint = CurrentWaypoint;
-                CurrentWaypoint++;
-                if (CurrentWaypoint >= _waypoints.Length)
-                {
-                    // TODO Временно. Потом будет проигрыш
-                    CurrentWaypoint = 1;
-                }
             }
         }
-        
+
         if (_brick.IsTouch)
         {
             moveBrickOnWaypoint();
         }
     }
-    
+
     /**
      * Движение кирпичика до waypoint'a
      */
     private void moveBrickOnWaypoint()
     {
         // Если закончил движение
-        if (Vector2.Distance(_waypoints[_targetWaypoint].transform.position, _brick.Collider.transform.position) == 0)
+        if (Vector2.Distance(waypointsPrefabs[_targetWaypoint].transform.position, _collider.transform.position) == 0)
         {
             _brick.IsFinish = true;
         }
-        _brick.Collider.transform.position = Vector2.MoveTowards(
-            _brick.Collider.transform.position,
-            _waypoints[_targetWaypoint].transform.position,
+
+        _collider.transform.position = Vector2.MoveTowards(
+            _collider.transform.position,
+            waypointsPrefabs[_targetWaypoint].transform.position,
             Time.deltaTime * speed);
     }
 }

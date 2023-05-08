@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,20 +18,28 @@ public class MainScript : MonoBehaviour
         Instantiate(brickPrefab, new Vector3(2, 0, 0), Quaternion.identity).GetComponent<BoxCollider2D>();
     }
     
-    void Update()
+    private void Update()
     {
-        int isFinish = 0;
-        foreach (var brick in Statics.Bricks)
-        {
-            if (brick.IsFinish)
-            {
-                isFinish++;
-            }
-        }
+        ClearBrick();
+    }
 
-        if (isFinish == 3)
+    private void ClearBrick()
+    {
+        List<Brick> isFinishList = Statics.Bricks.Where(brick => brick.IsFinish).ToList();
+
+        if (isFinishList.Count == 3)
         {
             Debug.Log("3 кирпичика доехали");
+            isFinishList.ForEach(brick =>
+            {
+                Destroy(brick.GameObject);
+                Statics.Bricks.Remove(brick);
+            });
+            
         }
+
+        Statics.CurrentWaypoint = Statics.Bricks.Count(brick => brick.IsTouch);
+        
+        // TODO осталось сделать, чтобы уже приехавшие кирпичики тоже передвигались в самое начало
     }
 }
