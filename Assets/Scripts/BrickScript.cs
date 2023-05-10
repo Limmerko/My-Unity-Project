@@ -9,7 +9,6 @@ public class BrickScript : MonoBehaviour
     [SerializeField] private float speed = 5f; // Prefab. Скорость движения
     
     private Collider2D _collider; // Коллейдер для определения нажатия
-    private int _targetWaypoint; // "Целевой" waypoint
 
     private Brick _brick;
 
@@ -22,14 +21,8 @@ public class BrickScript : MonoBehaviour
 
     void Update()
     {
-        // Если закончил движение, то больше нельзя нажать на него 
-        if (_brick.IsFinish)
-        {
-            return;
-        }
-
-        // Если было нажатие на экран
-        if (Input.touchCount > 0)
+        // Если было нажатие на экран и кирпич не приехал
+        if (Input.touchCount > 0 && !_brick.IsTouch)
         {
             Touch touch = Input.GetTouch(0);
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
@@ -38,7 +31,7 @@ public class BrickScript : MonoBehaviour
             if (_collider == Physics2D.OverlapPoint(touchPosition) && !_brick.IsTouch)
             {
                 _brick.IsTouch = true;
-                _targetWaypoint = CurrentWaypoint;
+                _brick.TargetWaypoint = CurrentWaypoint;
             }
         }
 
@@ -53,15 +46,14 @@ public class BrickScript : MonoBehaviour
      */
     private void moveBrickOnWaypoint()
     {
+        Vector2 target = waypointsPrefabs[_brick.TargetWaypoint].transform.position;
+        
         // Если закончил движение
-        if (Vector2.Distance(waypointsPrefabs[_targetWaypoint].transform.position, _collider.transform.position) == 0)
+        if (Vector2.Distance(target, _collider.transform.position) == 0)
         {
             _brick.IsFinish = true;
         }
 
-        _collider.transform.position = Vector2.MoveTowards(
-            _collider.transform.position,
-            waypointsPrefabs[_targetWaypoint].transform.position,
-            Time.deltaTime * speed);
+        MoveToWaypoint(target, _collider, speed);
     }
 }

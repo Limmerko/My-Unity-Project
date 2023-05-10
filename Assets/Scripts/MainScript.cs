@@ -21,25 +21,38 @@ public class MainScript : MonoBehaviour
     private void Update()
     {
         ClearBrick();
+        PositionUpdating();
     }
 
+    /**
+     * Очистка кирпичиков
+     */
     private void ClearBrick()
     {
-        List<Brick> isFinishList = Statics.Bricks.Where(brick => brick.IsFinish).ToList();
+        List<Brick> finishBricks = Statics.FinishList();
 
-        if (isFinishList.Count == 3)
+        if (finishBricks.Count == 3)
         {
-            Debug.Log("3 кирпичика доехали");
-            isFinishList.ForEach(brick =>
+            finishBricks.ForEach(brick =>
             {
                 Destroy(brick.GameObject);
                 Statics.Bricks.Remove(brick);
             });
-            
         }
+    }
 
-        Statics.CurrentWaypoint = Statics.Bricks.Count(brick => brick.IsTouch);
+    /**
+     * Актуализация положения кирпичиков
+     */
+    private void PositionUpdating()
+    {
+        List<Brick> finishBricks = Statics.FinishList();
         
-        // TODO осталось сделать, чтобы уже приехавшие кирпичики тоже передвигались в самое начало
+        for (int i = 0; i < finishBricks.Count; i++)
+        {
+            finishBricks.ElementAt(i).TargetWaypoint = i;
+        }
+        
+        Statics.CurrentWaypoint = Statics.Bricks.Count(brick => brick.IsTouch);
     }
 }

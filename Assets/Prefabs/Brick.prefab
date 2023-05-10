@@ -132,4 +132,4 @@ MonoBehaviour:
   - {fileID: 3077636696269743160, guid: e518e4527889fbf4fa3208b005f6b90b, type: 3}
   - {fileID: 1739504681675207509, guid: e0a72459fc673724c849f415749bae1b, type: 3}
   - {fileID: 2480845413543963116, guid: e18912553a5cfb94a9fec4b8f817928e, type: 3}
-  speed: 5
+  speed: 10
