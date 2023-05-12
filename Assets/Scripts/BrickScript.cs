@@ -1,22 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Statics;
 
 public class BrickScript : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
-    [SerializeField] private float speed = 5f; // Prefab. Скорость движения
+    [SerializeField] private float speed = 10f; // Prefab. Скорость движения
     
     private Collider2D _collider; // Коллейдер для определения нажатия
 
     private Brick _brick;
-
-    void Start()
+    
+    public void SetBrick(Brick brick)
     {
-        _brick = new Brick(gameObject);
+        _brick = brick;
         _collider = _brick.GameObject.GetComponent<Collider2D>();
-        Bricks.Add(_brick);
+        SpriteRenderer spriteRenderer = _brick.GameObject.GetComponent<SpriteRenderer>();
+        switch (_brick.Type)
+        {
+            case BrickType.Red:
+                spriteRenderer.color = Color.red;
+                break;
+            case BrickType.Blue:
+                spriteRenderer.color = Color.blue;
+                break;
+            case BrickType.Yellow:
+                spriteRenderer.color = Color.yellow;
+                break;
+                
+        }
+
+        Statics.AllBricks.Add(_brick);
     }
 
     void Update()
@@ -30,8 +44,9 @@ public class BrickScript : MonoBehaviour
             // Если нажатие было на сам кирпич
             if (_collider == Physics2D.OverlapPoint(touchPosition) && !_brick.IsTouch)
             {
+                _brick.TargetWaypoint = Statics.FindCurrentWaypoint(_brick.Type);
                 _brick.IsTouch = true;
-                _brick.TargetWaypoint = CurrentWaypoint;
+                Statics.UpdateBricksPosition();
             }
         }
 
@@ -49,11 +64,11 @@ public class BrickScript : MonoBehaviour
         Vector2 target = waypointsPrefabs[_brick.TargetWaypoint].transform.position;
         
         // Если закончил движение
-        if (Vector2.Distance(target, _collider.transform.position) == 0)
+        if (Vector2.Distance(target, _collider.transform.position) == 0 && !_brick.IsFinish)
         {
             _brick.IsFinish = true;
         }
 
-        MoveToWaypoint(target, _collider, speed);
+        Statics.MoveToWaypoint(target, _collider, speed);
     }
 }

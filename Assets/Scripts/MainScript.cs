@@ -10,49 +10,46 @@ public class MainScript : MonoBehaviour
     
     private void Start()
     {
-        // Create one brick
-        Instantiate(brickPrefab, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<BoxCollider2D>();
-        Instantiate(brickPrefab, new Vector3(-1, 0, 0), Quaternion.identity).GetComponent<BoxCollider2D>();
-        Instantiate(brickPrefab, new Vector3(-2, 0, 0), Quaternion.identity).GetComponent<BoxCollider2D>();
-        Instantiate(brickPrefab, new Vector3(1, 0, 0), Quaternion.identity).GetComponent<BoxCollider2D>();
-        Instantiate(brickPrefab, new Vector3(2, 0, 0), Quaternion.identity).GetComponent<BoxCollider2D>();
+        // Инициализация поля
+        InitializeBrick(new Vector3(-1.5f, 0, 0), BrickType.Yellow);
+        InitializeBrick(new Vector3(-1, 0, 0), BrickType.Red);
+        InitializeBrick(new Vector3(-0.5f, 0, 0), BrickType.Blue);
+        InitializeBrick(new Vector3(0, 0, 0), BrickType.Red);
+        InitializeBrick(new Vector3(0.5f, 0, 0), BrickType.Blue);
+        InitializeBrick(new Vector3(1, 0, 0), BrickType.Yellow);
+        InitializeBrick(new Vector3(1.5f, 0, 0), BrickType.Red);
     }
     
     private void Update()
     {
-        ClearBrick();
-        PositionUpdating();
+        // ClearBrick();
     }
 
+    /**
+     * Инициализация кирпичика
+     */
+    private void InitializeBrick(Vector3 vector3, BrickType type)
+    {
+        GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
+        Brick brick = new Brick(brickGameObject, type);
+        brickGameObject.GetComponent<BrickScript>().SetBrick(brick);
+    }
+    
     /**
      * Очистка кирпичиков
      */
     private void ClearBrick()
     {
-        List<Brick> finishBricks = Statics.FinishList();
+        // TODO сделать удаление по типам
+        List<Brick> finishBricks = Statics.FinishBricks();
 
         if (finishBricks.Count == 3)
         {
             finishBricks.ForEach(brick =>
             {
                 Destroy(brick.GameObject);
-                Statics.Bricks.Remove(brick);
+                Statics.AllBricks.Remove(brick);
             });
         }
-    }
-
-    /**
-     * Актуализация положения кирпичиков
-     */
-    private void PositionUpdating()
-    {
-        List<Brick> finishBricks = Statics.FinishList();
-        
-        for (int i = 0; i < finishBricks.Count; i++)
-        {
-            finishBricks.ElementAt(i).TargetWaypoint = i;
-        }
-        
-        Statics.CurrentWaypoint = Statics.Bricks.Count(brick => brick.IsTouch);
     }
 }
