@@ -10,10 +10,10 @@ public class MainUtils
      * @param сам объект
      * @param скорость
      */
-    public static void MoveToWaypoint(Vector2 to, Collider2D collider, float speed)
+    public static void MoveToWaypoint(Vector2 to, GameObject gameObject, float speed)
     {
-        collider.transform.position = Vector2.MoveTowards(
-            collider.transform.position,
+        gameObject.transform.position = Vector2.MoveTowards(
+            gameObject.transform.position,
             to,
             Time.deltaTime * speed);
     }

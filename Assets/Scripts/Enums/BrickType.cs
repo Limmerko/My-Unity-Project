@@ -3,5 +3,8 @@ public enum BrickType {
 
     Red,
     Blue,
-    Yellow
+    Yellow,
+    Green,
+    Black,
+    White
 }
