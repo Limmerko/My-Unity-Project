@@ -44,9 +44,9 @@ public class BrickScript : MonoBehaviour
             // Если нажатие было на сам кирпич
             if (_collider == Physics2D.OverlapPoint(touchPosition) && !_brick.IsTouch)
             {
-                _brick.TargetWaypoint = Statics.FindCurrentWaypoint(_brick.Type);
+                _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
                 _brick.IsTouch = true;
-                Statics.UpdateBricksPosition();
+                BrickUtils.UpdateBricksPosition();
             }
         }
 
@@ -69,6 +69,6 @@ public class BrickScript : MonoBehaviour
             _brick.IsFinish = true;
         }
 
-        Statics.MoveToWaypoint(target, _collider, speed);
+        MainUtils.MoveToWaypoint(target, _collider, speed);
     }
 }

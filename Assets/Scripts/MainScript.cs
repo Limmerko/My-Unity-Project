@@ -18,11 +18,25 @@ public class MainScript : MonoBehaviour
         InitializeBrick(new Vector3(0.5f, 0, 0), BrickType.Blue);
         InitializeBrick(new Vector3(1, 0, 0), BrickType.Yellow);
         InitializeBrick(new Vector3(1.5f, 0, 0), BrickType.Red);
+        InitializeBrick(new Vector3(-1.5f, 0.5f, 0), BrickType.Red);
+        InitializeBrick(new Vector3(-1, 0.5f, 0), BrickType.Blue);
+        InitializeBrick(new Vector3(-0.5f, 0.5f, 0), BrickType.Blue);
+        InitializeBrick(new Vector3(0, 0.5f, 0), BrickType.Yellow);
+        InitializeBrick(new Vector3(0.5f, 0.5f, 0), BrickType.Blue);
+        InitializeBrick(new Vector3(1, 0.5f, 0), BrickType.Yellow);
+        InitializeBrick(new Vector3(1.5f, 0.5f, 0), BrickType.Blue);
+        InitializeBrick(new Vector3(-1.5f, -0.5f, 0), BrickType.Blue);
+        InitializeBrick(new Vector3(-1, -0.5f, 0), BrickType.Red);
+        InitializeBrick(new Vector3(-0.5f, -0.5f, 0), BrickType.Yellow);
+        InitializeBrick(new Vector3(0, -0.5f, 0), BrickType.Red);
+        InitializeBrick(new Vector3(0.5f, -0.5f, 0), BrickType.Red);
+        InitializeBrick(new Vector3(1, -0.5f, 0), BrickType.Yellow);
+        InitializeBrick(new Vector3(1.5f, -0.5f, 0), BrickType.Blue);
     }
     
     private void Update()
     {
-        // ClearBrick();
+        ClearFinishBricks();
     }
 
     /**
@@ -38,18 +52,37 @@ public class MainScript : MonoBehaviour
     /**
      * Очистка кирпичиков
      */
-    private void ClearBrick()
+    private void ClearFinishBricks()
     {
-        // TODO сделать удаление по типам
-        List<Brick> finishBricks = Statics.FinishBricks();
+        List<Brick> allFinishBricks = BrickUtils.AllFinishBricks();
 
-        if (finishBricks.Count == 3)
+        if (allFinishBricks.Count >= 3)
         {
-            finishBricks.ForEach(brick =>
+            List<List<Brick>> finishBricksByType = allFinishBricks
+                .GroupBy(brick => brick.Type)
+                .Select(group => group.ToList())
+                .ToList();
+
+            finishBricksByType.ForEach(typeBricks =>
             {
-                Destroy(brick.GameObject);
-                Statics.AllBricks.Remove(brick);
+                if (typeBricks.Count == 3)
+                {
+                    typeBricks.ForEach(brick =>
+                    {
+                        DestroyBrick(brick);
+                    });
+                    BrickUtils.UpdateBricksPosition();
+                }
             });
         }
+    }
+
+    /**
+     * Удаление одного кирпичика
+     */
+    private void DestroyBrick(Brick brick)
+    {
+        Destroy(brick.GameObject);
+        Statics.AllBricks.Remove(brick);
     }
 }
