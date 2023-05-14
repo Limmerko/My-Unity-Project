@@ -17,8 +17,14 @@ public class MainScript : MonoBehaviour
         InitializeBrick(new Vector3(0.5f, 0, 0), BrickType.Green);
         InitializeBrick(new Vector3(1, 0, 0), BrickType.Yellow);
         InitializeBrick(new Vector3(1.5f, 0, 0), BrickType.Red);
-        InitializeBrick(new Vector3(-1.5f, 0.5f, 0), BrickType.Red);
+        InitializeBrick(new Vector3(-0.5f, 0, 0), BrickType.Green);
+        InitializeBrick(new Vector3(-1, 0, 0), BrickType.Yellow);
+        InitializeBrick(new Vector3(-1.5f, 0, 0), BrickType.Red);
+        InitializeBrick(new Vector3(-1.5f, 0.5f, 0), BrickType.White);
+        InitializeBrick(new Vector3(-1f, 0.5f, 0), BrickType.Green);
+        InitializeBrick(new Vector3(-0.5f, 0.5f, 0), BrickType.Black);
         InitializeBrick(new Vector3(0, 0.5f, 0), BrickType.Yellow);
+        InitializeBrick(new Vector3(0.5f, 0.5f, 0), BrickType.Green);
         InitializeBrick(new Vector3(1, 0.5f, 0), BrickType.Yellow);
         InitializeBrick(new Vector3(1.5f, 0.5f, 0), BrickType.Blue);
         InitializeBrick(new Vector3(-1.5f, -0.5f, 0), BrickType.Black);
@@ -71,14 +77,21 @@ public class MainScript : MonoBehaviour
             {
                 if (typeBricks.Count == 3)
                 {
-                    typeBricks.ForEach(brick =>
-                    {
-                        DestroyBrick(brick);
-                    });
-                    BrickUtils.UpdateBricksPosition();
+                    StartCoroutine(ClearBricks(typeBricks));
                 }
             });
         }
+    }
+
+    private IEnumerator ClearBricks(List<Brick> bricks)
+    {
+        yield return new WaitForSeconds(0.1f);
+        bricks.ForEach(brick =>
+        {
+            Destroy(brick.GameObject);
+            Statics.AllBricks.Remove(brick);
+        });
+        BrickUtils.UpdateBricksPosition();
     }
 
     /**
@@ -92,24 +105,16 @@ public class MainScript : MonoBehaviour
         {
             Debug.Log("Конец игры");
             Statics.AllBricks = new List<Brick>();
-            RestartLevel();
+            StartCoroutine(RestartLevel());
         }
-    }
-
-    /**
-     * Удаление одного кирпичика
-     */
-    private void DestroyBrick(Brick brick)
-    {
-        Destroy(brick.GameObject);
-        Statics.AllBricks.Remove(brick);
     }
     
     /**
      * Перезапуск сцены
      */
-    private void RestartLevel()
+    private IEnumerator RestartLevel()
     {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -20,7 +20,7 @@ public class BrickUtils
     {
         return  Statics.AllBricks.Where(brick => brick.IsTouch)
             .OrderBy(brick => brick.TargetWaypoint)
-            .ToList();;
+            .ToList();
     }
 
     /**

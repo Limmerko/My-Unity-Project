@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,7 +15,30 @@ public class BrickScript : MonoBehaviour
     public void SetBrick(Brick brick)
     {
         _brick = brick;
+        SetTypeBrick();
+        Statics.AllBricks.Add(_brick);
+    }
 
+    void Update()
+    {
+        if (_brick.IsTouch)
+        {
+            moveBrickOnWaypoint();
+        }
+    }
+
+    public void TouchOnBrick()
+    {
+        if (!_brick.IsTouch)
+        {
+            _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
+            _brick.IsTouch = true;
+            BrickUtils.UpdateBricksPosition();
+        }
+    }
+
+    private void SetTypeBrick()
+    {
         Image image = _brick.GameObject.GetComponent<Image>();
         switch (_brick.Type)
         {
@@ -36,26 +60,6 @@ public class BrickScript : MonoBehaviour
             case BrickType.White:
                 image.color = Color.white;
                 break;
-        }
-
-        Statics.AllBricks.Add(_brick);
-    }
-
-    void Update()
-    {
-        if (_brick.IsTouch)
-        {
-            moveBrickOnWaypoint();
-        }
-    }
-
-    public void TouchOnBrick()
-    {
-        if (!_brick.IsTouch)
-        {
-            _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
-            _brick.IsTouch = true;
-            BrickUtils.UpdateBricksPosition();
         }
     }
 
