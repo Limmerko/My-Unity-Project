@@ -45,7 +45,7 @@ public class MainScript : MonoBehaviour
     
     private void Update()
     {
-        ClearFinishBricks();
+        CheckFinishBricks();
         CheckGameOver();
     }
 
@@ -60,9 +60,9 @@ public class MainScript : MonoBehaviour
     }
     
     /**
-     * Очистка кирпичиков
+     * Проверка очистки кирпичиков
      */
-    private void ClearFinishBricks()
+    private void CheckFinishBricks()
     {
         List<Brick> allFinishBricks = BrickUtils.AllFinishBricks();
         
@@ -77,13 +77,16 @@ public class MainScript : MonoBehaviour
             {
                 if (typeBricks.Count == 3)
                 {
-                    StartCoroutine(ClearBricks(typeBricks));
+                    StartCoroutine(DestroyBricks(typeBricks));
                 }
             });
         }
     }
 
-    private IEnumerator ClearBricks(List<Brick> bricks)
+    /**
+     * Удаление кирпичиков
+     */
+    private IEnumerator DestroyBricks(List<Brick> bricks)
     {
         yield return new WaitForSeconds(0.1f);
         bricks.ForEach(brick =>
@@ -106,6 +109,7 @@ public class MainScript : MonoBehaviour
             Debug.Log("Конец игры");
             Statics.AllBricks = new List<Brick>();
             StartCoroutine(RestartLevel());
+            Statics.IsGameOver = true;
         }
     }
     
@@ -116,5 +120,6 @@ public class MainScript : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Statics.IsGameOver = false;
     }
 }

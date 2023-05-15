@@ -27,9 +27,12 @@ public class BrickScript : MonoBehaviour
         }
     }
 
-    public void TouchOnBrick()
+    /**
+     * Нажатие на кирпичик
+     */
+    public void ClickUpOnBrick()
     {
-        if (!_brick.IsTouch)
+        if (!_brick.IsTouch && !Statics.IsGameOver)
         {
             _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             _brick.IsTouch = true;
@@ -37,6 +40,14 @@ public class BrickScript : MonoBehaviour
         }
     }
 
+    public void ClickDownOnBrick()
+    {
+        Debug.Log("Нажал");
+    }
+
+    /**
+     * Установка спрайта кирпичика по типу
+     */
     private void SetTypeBrick()
     {
         Image image = _brick.GameObject.GetComponent<Image>();

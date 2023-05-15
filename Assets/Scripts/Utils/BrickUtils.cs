@@ -16,7 +16,7 @@ public class BrickUtils
             .ToList();;
     }
     
-    public static List<Brick> TouchBricks()
+    public static List<Brick> AllTouchBricks()
     {
         return  Statics.AllBricks.Where(brick => brick.IsTouch)
             .OrderBy(brick => brick.TargetWaypoint)
@@ -29,7 +29,7 @@ public class BrickUtils
     public static int FindCurrentWaypoint(BrickType type)
     {
         int result = 0;
-        List<Brick> touchBricks = TouchBricks();
+        List<Brick> touchBricks = AllTouchBricks();
         // Если уже есть нажатый кирпичик такого типа
         if (touchBricks.Count(brick => brick.Type.Equals(type)) > 0)
         {
@@ -50,7 +50,7 @@ public class BrickUtils
      */
     public static void UpdateBricksPosition()
     {
-        List<Brick> finishBricks = TouchBricks();
+        List<Brick> finishBricks = AllTouchBricks();
         
         for (int i = 0; i < finishBricks.Count; i++)
         {

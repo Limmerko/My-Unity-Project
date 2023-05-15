@@ -5,4 +5,6 @@ using UnityEngine;
 public static class Statics
 {
     public static List<Brick> AllBricks = new List<Brick>(); // Все кирпичики на сцене
+
+    public static bool IsGameOver = false;
 }
