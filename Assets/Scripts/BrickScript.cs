@@ -11,10 +11,12 @@ public class BrickScript : MonoBehaviour
     [SerializeField] private float speed = 10f; // Prefab. Скорость движения
 
     private Brick _brick;
-    
+    private Transform _transform;
+
     public void SetBrick(Brick brick)
     {
         _brick = brick;
+        _transform = GetComponent<Transform>();
         SetTypeBrick();
         Statics.AllBricks.Add(_brick);
     }
@@ -36,13 +38,22 @@ public class BrickScript : MonoBehaviour
         {
             _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             _brick.IsTouch = true;
+            _transform.localScale = new Vector3(1.2f, 1.2f, 1);
             BrickUtils.UpdateBricksPosition();
         }
     }
 
     public void ClickDownOnBrick()
     {
-        Debug.Log("Нажал");
+        _transform.localScale = new Vector3(0.9f, 0.9f, 1);
+    }
+
+    public void ClickExitFromBrick()
+    {
+        if (!_brick.IsTouch)
+        {
+            _transform.localScale = new Vector3(1f, 1f, 1);
+        }
     }
 
     /**

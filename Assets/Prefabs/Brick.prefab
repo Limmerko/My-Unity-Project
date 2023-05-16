@@ -155,7 +155,7 @@ MonoBehaviour:
   - {fileID: 3077636696269743160, guid: e518e4527889fbf4fa3208b005f6b90b, type: 3}
   - {fileID: 1739504681675207509, guid: e0a72459fc673724c849f415749bae1b, type: 3}
   - {fileID: 2480845413543963116, guid: e18912553a5cfb94a9fec4b8f817928e, type: 3}
-  speed: 15
+  speed: 20
 --- !u!114 &2710070704860359851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +176,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1476433790410377284}
           m_TargetAssemblyTypeName: BrickScript, Assembly-CSharp
           m_MethodName: ClickDownOnBrick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1476433790410377284}
+          m_TargetAssemblyTypeName: BrickScript, Assembly-CSharp
+          m_MethodName: ClickExitFromBrick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
