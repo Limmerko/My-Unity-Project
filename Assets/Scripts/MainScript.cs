@@ -46,7 +46,6 @@ public class MainScript : MonoBehaviour
     private void Update()
     {
         CheckFinishBricks();
-        CheckGameOver();
     }
 
     /**
@@ -70,16 +69,21 @@ public class MainScript : MonoBehaviour
         {
             List<List<Brick>> finishBricksByType = allFinishBricks
                 .GroupBy(brick => brick.Type)
+                .Where(bricks => bricks.Count() == 3)
                 .Select(group => group.ToList())
                 .ToList();
 
-            finishBricksByType.ForEach(typeBricks =>
+            if (finishBricksByType.Count > 0)
             {
-                if (typeBricks.Count == 3)
+                finishBricksByType.ForEach(typeBricks => { StartCoroutine(DestroyBricks(typeBricks)); });
+            }
+            else
+            {
+                if (allFinishBricks.Count == 7)
                 {
-                    StartCoroutine(DestroyBricks(typeBricks));
+                    GameOver();
                 }
-            });
+            }
         }
     }
 
@@ -98,19 +102,14 @@ public class MainScript : MonoBehaviour
     }
 
     /**
-     * Проверка окончания игры
+     *  Конец игры
      */
-    private void CheckGameOver()
+    private void GameOver()
     {
-        List<Brick> allFinishBricks = BrickUtils.AllFinishBricks();
-
-        if (allFinishBricks.Count == 7)
-        {
-            Debug.Log("Конец игры");
-            Statics.AllBricks = new List<Brick>();
-            StartCoroutine(RestartLevel());
-            Statics.IsGameOver = true;
-        }
+        Debug.Log("Конец игры");
+        Statics.AllBricks = new List<Brick>();
+        StartCoroutine(RestartLevel());
+        Statics.IsGameOver = true;
     }
     
     /**

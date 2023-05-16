@@ -32,7 +32,7 @@ public class BrickScript : MonoBehaviour
      */
     public void ClickUpOnBrick()
     {
-        if (!_brick.IsTouch && !Statics.IsGameOver)
+        if (!_brick.IsTouch && !Statics.IsGameOver && BrickUtils.AllTouchBricks().Count < 7)
         {
             _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             _brick.IsTouch = true;
