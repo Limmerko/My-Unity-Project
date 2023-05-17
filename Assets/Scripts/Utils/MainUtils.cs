@@ -10,9 +10,9 @@ public class MainUtils
      * @param сам объект
      * @param скорость
      */
-    public static void MoveToWaypoint(Vector2 to, GameObject gameObject, float speed)
+    public static void MoveToWaypoint(Vector3 to, GameObject gameObject, float speed)
     {
-        gameObject.transform.position = Vector2.MoveTowards(
+        gameObject.transform.position = Vector3.MoveTowards(
             gameObject.transform.position,
             to,
             Time.deltaTime * speed);

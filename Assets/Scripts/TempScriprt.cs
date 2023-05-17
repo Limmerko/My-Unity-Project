@@ -1,15 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class TempScriprt : MonoBehaviour
+public class TempScriprt : MonoBehaviour, IPointerClickHandler, IPointerDownHandler
 {
-    public void temp1()
+    private void Start()
     {
-        Debug.Log("1");
+        Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
     }
-    public void temp2()
+
+    public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("2");
+        Debug.Log("клик");
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("Нажал");
     }
 }

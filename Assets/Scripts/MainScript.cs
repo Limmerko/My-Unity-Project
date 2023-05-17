@@ -8,8 +8,7 @@ using UnityEngine.SceneManagement;
 public class MainScript : MonoBehaviour
 {
     [SerializeField] private GameObject brickPrefab;
-    [SerializeField] private Canvas canvas;
-    
+
     private void Start()
     {
         // Инициализация поля
@@ -53,7 +52,7 @@ public class MainScript : MonoBehaviour
      */
     private void InitializeBrick(Vector3 vector3, BrickType type)
     {
-        GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity, canvas.transform);
+        GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
         Brick brick = new Brick(brickGameObject, type);
         brickGameObject.GetComponent<BrickScript>().SetBrick(brick);
     }
@@ -92,7 +91,7 @@ public class MainScript : MonoBehaviour
      */
     private IEnumerator DestroyBricks(List<Brick> bricks)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         bricks.ForEach(brick =>
         {
             Destroy(brick.GameObject);

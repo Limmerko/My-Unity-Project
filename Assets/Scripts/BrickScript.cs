@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BrickScript : MonoBehaviour
+public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
 {
     [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
-    [SerializeField] private float speed = 10f; // Prefab. Скорость движения
+    [SerializeField] private float speed = 20f; // Prefab. Скорость движения
 
     private Brick _brick;
     private Transform _transform;
@@ -28,31 +29,40 @@ public class BrickScript : MonoBehaviour
             moveBrickOnWaypoint();
         }
     }
-
+    
     /**
-     * Нажатие на кирпичик
+     * Клик на кирпичик
      */
-    public void ClickUpOnBrick()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (!_brick.IsTouch && !Statics.IsGameOver && BrickUtils.AllTouchBricks().Count < 7)
         {
             _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             _brick.IsTouch = true;
-            _transform.localScale = new Vector3(1.2f, 1.2f, 1);
+            _transform.localScale = new Vector3(0.55f, 0.55f, 1);
             BrickUtils.UpdateBricksPosition();
         }
     }
 
-    public void ClickDownOnBrick()
-    {
-        _transform.localScale = new Vector3(0.9f, 0.9f, 1);
-    }
-
-    public void ClickExitFromBrick()
+    /**
+     * Нажатие на кирпичик
+     */
+    public void OnPointerDown(PointerEventData eventData)
     {
         if (!_brick.IsTouch)
         {
-            _transform.localScale = new Vector3(1f, 1f, 1);
+            _transform.localScale = new Vector3(0.45f, 0.45f, 1);
+        }
+    }
+    
+    /**
+     * После нажатия курсор уходит от кирпичика
+     */
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (!_brick.IsTouch)
+        {
+            _transform.localScale = new Vector3(0.5f, 0.5f, 1);
         }
     }
 
@@ -61,26 +71,26 @@ public class BrickScript : MonoBehaviour
      */
     private void SetTypeBrick()
     {
-        Image image = _brick.GameObject.GetComponent<Image>();
+        SpriteRenderer sprite = _brick.GameObject.GetComponent<SpriteRenderer>();
         switch (_brick.Type)
         {
             case BrickType.Red:
-                image.color = Color.red;
+                sprite.color = Color.red;
                 break;
             case BrickType.Blue:
-                image.color = Color.blue;
+                sprite.color = Color.blue;
                 break;
             case BrickType.Yellow:
-                image.color = Color.yellow;
+                sprite.color = Color.yellow;
                 break;
             case BrickType.Green:
-                image.color = Color.green;
+                sprite.color = Color.green;
                 break;
             case BrickType.Black:
-                image.color = Color.black;
+                sprite.color = Color.black;
                 break;
             case BrickType.White:
-                image.color = Color.white;
+                sprite.color = Color.white;
                 break;
         }
     }
@@ -92,10 +102,10 @@ public class BrickScript : MonoBehaviour
     {
         if (_brick.TargetWaypoint < waypointsPrefabs.Length)
         {
-            Vector2 target = waypointsPrefabs[_brick.TargetWaypoint].transform.position;
+            Vector3 target = waypointsPrefabs[_brick.TargetWaypoint].transform.position;
 
             // Если закончил движение
-            if (Vector2.Distance(target, _brick.GameObject.transform.position) <= 0.0001f && !_brick.IsFinish)
+            if (Vector3.Distance(target, _brick.GameObject.transform.position) <= 0.0001f && !_brick.IsFinish)
             {
                 _brick.IsFinish = true;
             }
