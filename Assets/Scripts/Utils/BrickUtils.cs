@@ -22,6 +22,12 @@ public class BrickUtils
             .OrderBy(brick => brick.TargetWaypoint)
             .ToList();
     }
+    
+    public static List<Brick> AllNotTouchBricks()
+    {
+        return  Statics.AllBricks.Where(brick => !brick.IsTouch)
+            .ToList();
+    }
 
     /**
      * Определение правильной цели для движение кирпичика 
@@ -56,5 +62,17 @@ public class BrickUtils
         {
             finishBricks.ElementAt(i).TargetWaypoint = i;
         }
+    }
+
+    public static void UpdateBricksState()
+    {
+        List<Brick> bricks = AllNotTouchBricks();
+        
+        bricks.ForEach(brick =>
+        {
+            brick.GameObject.GetComponent<SpriteRenderer>().sortingOrder = brick.Layer;
+        });
+        
+        // TODO теперь здесь надо делать кирпичики которые лежат под другим кирпичиком затемнеными (просто меняя цвет) и некликабельными
     }
 }

@@ -8,8 +8,14 @@ using UnityEngine.UI;
 
 public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
 {
-    [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
     [SerializeField] private float speed = 20f; // Prefab. Скорость движения
+    [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
+    [SerializeField] private Sprite red;
+    [SerializeField] private Sprite blue;
+    [SerializeField] private Sprite yellow;
+    [SerializeField] private Sprite green;
+    [SerializeField] private Sprite black;
+    [SerializeField] private Sprite white;
 
     private Brick _brick;
     private Transform _transform;
@@ -29,7 +35,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             moveBrickOnWaypoint();
         }
     }
-    
+
     /**
      * Клик на кирпичик
      */
@@ -39,7 +45,9 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         {
             _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             _brick.IsTouch = true;
-            _transform.localScale = new Vector3(0.55f, 0.55f, 1);
+            _transform.localScale = new Vector3(0.6f, 0.6f, 1);
+            _brick.Layer = 10;
+            BrickUtils.UpdateBricksState();
             BrickUtils.UpdateBricksPosition();
         }
     }
@@ -71,26 +79,26 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
      */
     private void SetTypeBrick()
     {
-        SpriteRenderer sprite = _brick.GameObject.GetComponent<SpriteRenderer>();
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>(); 
         switch (_brick.Type)
         {
             case BrickType.Red:
-                sprite.color = Color.red;
+                sprite.sprite = red;
                 break;
             case BrickType.Blue:
-                sprite.color = Color.blue;
+                sprite.sprite = blue;
                 break;
             case BrickType.Yellow:
-                sprite.color = Color.yellow;
+                sprite.sprite = yellow;
                 break;
             case BrickType.Green:
-                sprite.color = Color.green;
+                sprite.sprite = green;
                 break;
             case BrickType.Black:
-                sprite.color = Color.black;
+                sprite.sprite = black;
                 break;
             case BrickType.White:
-                sprite.color = Color.white;
+                sprite.sprite = white;
                 break;
         }
     }

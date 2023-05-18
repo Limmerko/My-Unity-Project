@@ -13,12 +13,15 @@ public class Brick
     public int TargetWaypoint { get; set; } // Точка на которой находится кирпич
     
     public BrickType Type { get; } // Тип кирпичика
+    
+    public int Layer { get; set; } // Слой для отображения слайдов
 
-    public Brick(GameObject gameObject, BrickType type)
+    public Brick(GameObject gameObject, BrickType type, int layer)
     {
         GameObject = gameObject;
         Type = type;
         IsTouch = false;
         IsFinish = false;
+        Layer = layer;
     }
 }
