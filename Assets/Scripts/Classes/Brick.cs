@@ -10,6 +10,8 @@ public class Brick
 
     public bool IsFinish { get; set; } // Закончил движение
     
+    public bool IsClickable { get; set; } // Доступен для нажатия
+    
     public int TargetWaypoint { get; set; } // Точка на которой находится кирпич
     
     public BrickType Type { get; } // Тип кирпичика
@@ -22,6 +24,7 @@ public class Brick
         Type = type;
         IsTouch = false;
         IsFinish = false;
+        IsClickable = true;
         Layer = layer;
     }
 }

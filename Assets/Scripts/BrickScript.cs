@@ -27,8 +27,8 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         SetTypeBrick();
         Statics.AllBricks.Add(_brick);
     }
-
-    void Update()
+    
+    private void FixedUpdate()
     {
         if (_brick.IsTouch)
         {
@@ -41,12 +41,12 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
      */
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!_brick.IsTouch && !Statics.IsGameOver && BrickUtils.AllTouchBricks().Count < 7)
+        if (!_brick.IsTouch && _brick.IsClickable && !Statics.IsGameOver && BrickUtils.AllTouchBricks().Count < 7)
         {
-            _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             _brick.IsTouch = true;
-            _transform.localScale = new Vector3(0.6f, 0.6f, 1);
             _brick.Layer = 10;
+            _transform.localScale = new Vector3(0.6f, 0.6f, 1);
+            _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             BrickUtils.UpdateBricksState();
             BrickUtils.UpdateBricksPosition();
         }
@@ -57,7 +57,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
      */
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!_brick.IsTouch)
+        if (!_brick.IsTouch && _brick.IsClickable)
         {
             _transform.localScale = new Vector3(0.45f, 0.45f, 1);
         }

@@ -27,7 +27,7 @@ public class MainScript : MonoBehaviour
         InitializeBrick(new Vector3(1, 0.5f, 0), BrickType.Yellow, 0);
         InitializeBrick(new Vector3(1.5f, 0.5f, 0), BrickType.Blue, 0);
         InitializeBrick(new Vector3(-1.5f, -0.5f, 0), BrickType.Black, 0);
-        InitializeBrick(new Vector3(-1, -0.5f, 0), BrickType.Red, 0);
+        InitializeBrick(new Vector3(-1, -0.5f, 0), BrickType.Yellow, 0);
         InitializeBrick(new Vector3(-0.5f, -0.5f, 0), BrickType.White, 0);
         InitializeBrick(new Vector3(0, -0.5f, 0), BrickType.Red, 0);
         InitializeBrick(new Vector3(0.5f, -0.5f, 0), BrickType.White, 0);
@@ -40,7 +40,20 @@ public class MainScript : MonoBehaviour
         InitializeBrick(new Vector3(0.5f, -1, 0), BrickType.Red, 0);
         InitializeBrick(new Vector3(1, -1, 0), BrickType.Yellow, 0);
         InitializeBrick(new Vector3(1.5f, -1, 0), BrickType.White, 0);
+        
+        InitializeBrick(new Vector3(-1.25f, -0.75f, 0), BrickType.Black, 1);
+        InitializeBrick(new Vector3(-0.75f, -0.75f, 0), BrickType.Yellow, 1);
+        InitializeBrick(new Vector3(-0.25f, -0.75f, 0), BrickType.Blue, 1);
         InitializeBrick(new Vector3(0.25f, -0.75f, 0), BrickType.Green, 1);
+        InitializeBrick(new Vector3(0.75f, -0.75f, 0), BrickType.White, 1);
+        InitializeBrick(new Vector3(1.25f, -0.75f, 0), BrickType.Black, 1);
+        
+        InitializeBrick(new Vector3(-1.25f, 0.25f, 0), BrickType.White, 1);
+        InitializeBrick(new Vector3(-0.75f, 0.25f, 0), BrickType.Red, 1);
+        InitializeBrick(new Vector3(-0.25f, 0.25f, 0), BrickType.Green, 1);
+        InitializeBrick(new Vector3(0.25f, 0.25f, 0), BrickType.Yellow, 1);
+        InitializeBrick(new Vector3(0.75f, 0.25f, 0), BrickType.Blue, 1);
+        InitializeBrick(new Vector3(1.25f, 0.25f, 0), BrickType.White, 1);
         BrickUtils.UpdateBricksState();
     }
     

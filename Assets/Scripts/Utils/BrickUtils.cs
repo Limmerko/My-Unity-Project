@@ -64,6 +64,9 @@ public class BrickUtils
         }
     }
 
+    /**
+     * Актуализация состояника кирпичика
+     */
     public static void UpdateBricksState()
     {
         List<Brick> bricks = AllNotTouchBricks();
@@ -72,7 +75,36 @@ public class BrickUtils
         {
             brick.GameObject.GetComponent<SpriteRenderer>().sortingOrder = brick.Layer;
         });
-        
+
+        bricks = bricks.OrderBy(brick => brick.Layer).ToList();
+
+        bricks.ForEach(brick =>
+        {
+            bool isClickable = true;
+            Vector3 brickPos = brick.GameObject.transform.position;
+            foreach (var it in bricks.Where(it => it.Layer > brick.Layer))
+            {
+                Vector3 itPos = it.GameObject.transform.position;
+                if ((itPos.x - brickPos.x == 0.25f || itPos.x - brickPos.x == -0.25f) &&
+                    (itPos.y - brickPos.y == 0.25f || itPos.y - brickPos.y == -0.25f))
+                {
+                    isClickable = false;
+                    break;
+                }
+            }
+
+            if (isClickable)
+            {
+                brick.GameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                brick.IsClickable = true;
+            }
+            else
+            {
+                brick.GameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+                brick.IsClickable = false;
+            }
+        });
+
         // TODO теперь здесь надо делать кирпичики которые лежат под другим кирпичиком затемнеными (просто меняя цвет) и некликабельными
     }
 }
