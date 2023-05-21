@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,16 +82,17 @@ public class BrickUtils
         });
 
         bricks = bricks.OrderBy(brick => brick.Layer).ToList();
-
+        
         bricks.ForEach(brick =>
         {
+            float brickRadius = brick.Size / 2;
             bool isClickable = true;
             Vector3 brickPos = brick.GameObject.transform.position;
             foreach (var it in bricks.Where(it => it.Layer > brick.Layer))
             {
                 Vector3 itPos = it.GameObject.transform.position;
-                if ((itPos.x - brickPos.x == 0.25f || itPos.x - brickPos.x == -0.25f) &&
-                    (itPos.y - brickPos.y == 0.25f || itPos.y - brickPos.y == -0.25f))
+                if (Math.Abs(itPos.x - brickPos.x) - brickRadius < 0.01f &&
+                    Math.Abs(itPos.y - brickPos.y) - brickRadius < 0.01f)
                 {
                     isClickable = false;
                     break;
