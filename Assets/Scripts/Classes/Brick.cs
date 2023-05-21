@@ -17,8 +17,10 @@ public class Brick
     public BrickType Type { get; } // Тип кирпичика
     
     public int Layer { get; set; } // Слой для отображения слайдов
+    
+    public float Size { get; set; }
 
-    public Brick(GameObject gameObject, BrickType type, int layer)
+    public Brick(GameObject gameObject, BrickType type, int layer, float size)
     {
         GameObject = gameObject;
         Type = type;
@@ -26,5 +28,6 @@ public class Brick
         IsFinish = false;
         IsClickable = true;
         Layer = layer;
+        Size = size;
     }
 }

@@ -26,6 +26,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         _transform = GetComponent<Transform>();
         SetTypeBrick();
         Statics.AllBricks.Add(_brick);
+        SetPositionWaypoints(_brick.Size);
     }
     
     private void FixedUpdate()
@@ -43,12 +44,15 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     {
         if (!_brick.IsTouch && _brick.IsClickable && !Statics.IsGameOver && BrickUtils.AllTouchBricks().Count < 7)
         {
-            _brick.IsTouch = true;
-            _brick.Layer = 10;
-            _transform.localScale = new Vector3(0.6f, 0.6f, 1);
+            // Изменение положения
             _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
-            BrickUtils.UpdateBricksState();
+            _brick.IsTouch = true;
             BrickUtils.UpdateBricksPosition();
+            // Изменение состояния
+            _brick.Layer = 10;
+            BrickUtils.UpdateBricksState();
+            // Изменение размера
+            _transform.localScale = new Vector3(_brick.Size * 1.2f, _brick.Size * 1.2f, 1);
         }
     }
 
@@ -59,7 +63,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     {
         if (!_brick.IsTouch && _brick.IsClickable)
         {
-            _transform.localScale = new Vector3(0.45f, 0.45f, 1);
+            _transform.localScale = new Vector3(_brick.Size * 0.9f, _brick.Size * 0.9f, 1);
         }
     }
     
@@ -70,7 +74,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     {
         if (!_brick.IsTouch)
         {
-            _transform.localScale = new Vector3(0.5f, 0.5f, 1);
+            _transform.localScale = new Vector3(_brick.Size, _brick.Size, 1);
         }
     }
 
@@ -101,6 +105,17 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
                 sprite.sprite = white;
                 break;
         }
+    }
+
+    private void SetPositionWaypoints(float size)
+    {
+        waypointsPrefabs[0].transform.position = new Vector3(-3 * (size / 2) * 1.2f, waypointsPrefabs[0].transform.position.y, 0);
+        waypointsPrefabs[1].transform.position = new Vector3(-2 * (size / 2) * 1.2f, waypointsPrefabs[1].transform.position.y, 0);
+        waypointsPrefabs[2].transform.position = new Vector3(-1 * (size / 2) * 1.2f, waypointsPrefabs[2].transform.position.y, 0);
+        waypointsPrefabs[3].transform.position = new Vector3(0, waypointsPrefabs[3].transform.position.y, 0);
+        waypointsPrefabs[4].transform.position = new Vector3(1 * (size / 2) * 1.2f, waypointsPrefabs[4].transform.position.y, 0);
+        waypointsPrefabs[5].transform.position = new Vector3(2 * (size / 2) * 1.2f, waypointsPrefabs[5].transform.position.y, 0);
+        waypointsPrefabs[6].transform.position = new Vector3(3 * (size / 2) * 1.2f, waypointsPrefabs[6].transform.position.y, 0);
     }
 
     /**

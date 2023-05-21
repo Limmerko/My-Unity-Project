@@ -36,6 +36,10 @@ public class BrickUtils
     {
         int result = 0;
         List<Brick> touchBricks = AllTouchBricks();
+        foreach (var touchBrick in touchBricks)
+        {
+            Debug.Log(touchBrick.TargetWaypoint + " " + touchBrick.Type);
+        }
         // Если уже есть нажатый кирпичик такого типа
         if (touchBricks.Count(brick => brick.Type.Equals(type)) > 0)
         {
@@ -47,7 +51,7 @@ public class BrickUtils
         {
             result = touchBricks.Count;
         }
-
+        Debug.Log(result);
         return result;
     }
     
@@ -104,7 +108,5 @@ public class BrickUtils
                 brick.IsClickable = false;
             }
         });
-
-        // TODO теперь здесь надо делать кирпичики которые лежат под другим кирпичиком затемнеными (просто меняя цвет) и некликабельными
     }
 }
