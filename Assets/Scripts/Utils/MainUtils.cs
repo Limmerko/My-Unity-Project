@@ -17,4 +17,12 @@ public class MainUtils
             to,
             Time.deltaTime * speed);
     }
+
+    public static void ChangeSize(Vector3 to, GameObject gameObject, float speed)
+    {
+        gameObject.transform.localScale = Vector3.MoveTowards(
+            gameObject.transform.localScale,
+            to,
+            Time.deltaTime * speed);
+    }
 }

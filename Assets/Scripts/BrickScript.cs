@@ -7,8 +7,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
-{
-    [SerializeField] private float speed = 20f; // Prefab. Скорость движения
+{ 
+    [SerializeField] private float moveSpeed = 10f; // Prefab. Скорость движения
+    [SerializeField] private float sizeSpeed = 5f; // Prefab. Скорость изменения размера
     [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
     [SerializeField] private Sprite red;
     [SerializeField] private Sprite blue;
@@ -16,17 +17,20 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private Sprite green;
     [SerializeField] private Sprite black;
     [SerializeField] private Sprite white;
-
+    
     private Brick _brick;
     private Transform _transform;
+    private float _sizeFinishBrick;
 
     public void SetBrick(Brick brick)
     {
         _brick = brick;
         _transform = GetComponent<Transform>();
+        _sizeFinishBrick = BrickUtils.BrickSize(7);
+        
         SetTypeBrick();
         Statics.AllBricks.Add(_brick);
-        SetPositionWaypoints(_brick.Size);
+        SetPositionWaypoints();
     }
     
     private void FixedUpdate()
@@ -34,6 +38,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         if (_brick.IsTouch)
         {
             moveBrickOnWaypoint();
+            ChangeSizeBrick();
         }
     }
 
@@ -51,8 +56,6 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             // Изменение состояния
             _brick.Layer = 10;
             BrickUtils.UpdateBricksState();
-            // Изменение размера
-            _transform.localScale = new Vector3(_brick.Size * 1.2f, _brick.Size * 1.2f, 1);
         }
     }
 
@@ -107,15 +110,16 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         }
     }
 
-    private void SetPositionWaypoints(float size)
+    private void SetPositionWaypoints()
     {
-        waypointsPrefabs[0].transform.position = new Vector3(-3 * (size / 2) * 1.2f, waypointsPrefabs[0].transform.position.y, 0);
-        waypointsPrefabs[1].transform.position = new Vector3(-2 * (size / 2) * 1.2f, waypointsPrefabs[1].transform.position.y, 0);
-        waypointsPrefabs[2].transform.position = new Vector3(-1 * (size / 2) * 1.2f, waypointsPrefabs[2].transform.position.y, 0);
+        float sizeAdd = _sizeFinishBrick / 2;
+        waypointsPrefabs[0].transform.position = new Vector3(-3 * sizeAdd, waypointsPrefabs[0].transform.position.y, 0);
+        waypointsPrefabs[1].transform.position = new Vector3(-2 * sizeAdd, waypointsPrefabs[1].transform.position.y, 0);
+        waypointsPrefabs[2].transform.position = new Vector3(-1 * sizeAdd, waypointsPrefabs[2].transform.position.y, 0);
         waypointsPrefabs[3].transform.position = new Vector3(0, waypointsPrefabs[3].transform.position.y, 0);
-        waypointsPrefabs[4].transform.position = new Vector3(1 * (size / 2) * 1.2f, waypointsPrefabs[4].transform.position.y, 0);
-        waypointsPrefabs[5].transform.position = new Vector3(2 * (size / 2) * 1.2f, waypointsPrefabs[5].transform.position.y, 0);
-        waypointsPrefabs[6].transform.position = new Vector3(3 * (size / 2) * 1.2f, waypointsPrefabs[6].transform.position.y, 0);
+        waypointsPrefabs[4].transform.position = new Vector3(1 * sizeAdd, waypointsPrefabs[4].transform.position.y, 0);
+        waypointsPrefabs[5].transform.position = new Vector3(2 * sizeAdd, waypointsPrefabs[5].transform.position.y, 0);
+        waypointsPrefabs[6].transform.position = new Vector3(3 * sizeAdd, waypointsPrefabs[6].transform.position.y, 0);
     }
 
     /**
@@ -126,16 +130,26 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         if (_brick.TargetWaypoint < waypointsPrefabs.Length)
         {
             Vector3 target = waypointsPrefabs[_brick.TargetWaypoint].transform.position;
-
+            float distance = Vector3.Distance(target, _brick.GameObject.transform.position);
             // Если закончил движение
-            if (Vector3.Distance(target, _brick.GameObject.transform.position) <= 0.0001f && !_brick.IsFinish)
+            if (distance <= 0.001f && !_brick.IsFinish)
             {
                 _brick.IsFinish = true;
             }
             else
             {
+                float speed = distance >= 0.01f ? distance * moveSpeed : moveSpeed / 10f;
                 MainUtils.MoveToWaypoint(target, _brick.GameObject, speed); 
             }
+        }
+    }
+
+    private void ChangeSizeBrick()
+    {
+        Vector3 target = new Vector3(_sizeFinishBrick, _sizeFinishBrick, 0);
+        if (Vector3.Distance(target, _brick.GameObject.transform.localScale) >= 0.001f)
+        {
+            MainUtils.ChangeSize(target, _brick.GameObject, sizeSpeed);
         }
     }
 }

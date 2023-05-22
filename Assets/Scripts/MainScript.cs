@@ -10,50 +10,52 @@ public class MainScript : MonoBehaviour
 {
     [SerializeField] private GameObject brickPrefab;
 
+    private float _brickSize; 
+        
     private void Start()
     {
         int countBrickWidth = 7;
-        float size = (float) Screen.width / Screen.height * 15f / countBrickWidth;
-        Debug.Log("Установлен размер кирпичика: " + size);
+        _brickSize = BrickUtils.BrickSize(countBrickWidth);
+        Debug.Log("Установлен размер кирпичика: " + _brickSize);
         
         // Инициализация поля
-        InitializeBrick(0, 0, BrickType.Red, 0, size);
-        InitializeBrick(1, 0, BrickType.Green, 0, size);
-        InitializeBrick(2, 0, BrickType.Yellow, 0, size);
-        InitializeBrick(3, 0, BrickType.Black, 0, size);
-        InitializeBrick(-1, 0, BrickType.Blue, 0, size);
-        InitializeBrick(-2, 0, BrickType.Red, 0, size);
-        InitializeBrick(-3, 0, BrickType.Yellow, 0, size);
+        InitializeBrick(0, 0, BrickType.Red, 0);
+        InitializeBrick(1, 0, BrickType.Green, 0);
+        InitializeBrick(2, 0, BrickType.Yellow, 0);
+        InitializeBrick(3, 0, BrickType.Black, 0);
+        InitializeBrick(-1, 0, BrickType.Blue, 0);
+        InitializeBrick(-2, 0, BrickType.Red, 0);
+        InitializeBrick(-3, 0, BrickType.Yellow, 0);
 
-        InitializeBrick(0, 1, BrickType.Green, 0, size);
-        InitializeBrick(1, 1, BrickType.White, 0, size);
-        InitializeBrick(2, 1, BrickType.Red, 0, size);
-        InitializeBrick(3, 1, BrickType.Blue, 0, size);
-        InitializeBrick(-1, 1, BrickType.White, 0, size);
-        InitializeBrick(-2, 1, BrickType.Yellow, 0, size);
-        InitializeBrick(-3, 1, BrickType.Red, 0, size);
+        InitializeBrick(0, 1, BrickType.Green, 0);
+        InitializeBrick(1, 1, BrickType.White, 0);
+        InitializeBrick(2, 1, BrickType.Red, 0);
+        InitializeBrick(3, 1, BrickType.Blue, 0);
+        InitializeBrick(-1, 1, BrickType.White, 0);
+        InitializeBrick(-2, 1, BrickType.Yellow, 0);
+        InitializeBrick(-3, 1, BrickType.Red, 0);
 
-        InitializeBrick(0, -1, BrickType.Yellow, 0, size);
-        InitializeBrick(1, -1, BrickType.Red, 0, size);
-        InitializeBrick(2, -1, BrickType.Blue, 0, size);
-        InitializeBrick(3, -1, BrickType.Green, 0, size);
-        InitializeBrick(-1, -1, BrickType.Red, 0, size);
-        InitializeBrick(-2, -1, BrickType.Blue, 0, size);
-        InitializeBrick(-3, -1, BrickType.Black, 0, size);
+        InitializeBrick(0, -1, BrickType.Yellow, 0);
+        InitializeBrick(1, -1, BrickType.Red, 0);
+        InitializeBrick(2, -1, BrickType.Blue, 0);
+        InitializeBrick(3, -1, BrickType.Green, 0);
+        InitializeBrick(-1, -1, BrickType.Red, 0);
+        InitializeBrick(-2, -1, BrickType.Blue, 0);
+        InitializeBrick(-3, -1, BrickType.Black, 0);
 
-        InitializeBrick(0, 0, BrickType.Blue, 1, size);
-        InitializeBrick(1, 0, BrickType.White, 1, size);
-        InitializeBrick(2, 0, BrickType.Yellow, 1, size);
-        InitializeBrick(-1, 0, BrickType.Red, 1, size);
-        InitializeBrick(-2, 0, BrickType.Black, 1, size);
-        InitializeBrick(-3, 0, BrickType.Green, 1, size);
+        InitializeBrick(0, 0, BrickType.Blue, 1);
+        InitializeBrick(1, 0, BrickType.White, 1);
+        InitializeBrick(2, 0, BrickType.Yellow, 1);
+        InitializeBrick(-1, 0, BrickType.Red, 1);
+        InitializeBrick(-2, 0, BrickType.Black, 1);
+        InitializeBrick(-3, 0, BrickType.Green, 1);
 
-        InitializeBrick(0, -1, BrickType.Yellow, 1, size);
-        InitializeBrick(1, -1, BrickType.Black, 1, size);
-        InitializeBrick(2, -1, BrickType.Blue, 1, size);
-        InitializeBrick(-1, -1, BrickType.Yellow, 1, size);
-        InitializeBrick(-2, -1, BrickType.Green, 1, size);
-        InitializeBrick(-3, -1, BrickType.Red, 1, size);
+        InitializeBrick(0, -1, BrickType.Yellow, 1);
+        InitializeBrick(1, -1, BrickType.Black, 1);
+        InitializeBrick(2, -1, BrickType.Blue, 1);
+        InitializeBrick(-1, -1, BrickType.Yellow, 1);
+        InitializeBrick(-2, -1, BrickType.Green, 1);
+        InitializeBrick(-3, -1, BrickType.Red, 1);
 
         BrickUtils.UpdateBricksState();
     }
@@ -66,15 +68,15 @@ public class MainScript : MonoBehaviour
     /**
      * Инициализация кирпичика
      */
-    private void InitializeBrick(int x, int y, BrickType type, int layer, float size)
+    private void InitializeBrick(int x, int y, BrickType type, int layer)
     {
-        float sizeAdd = size / 2;
+        float sizeAdd = _brickSize / 2;
         float layerAdd = layer % 2 == 0 ? 0 : sizeAdd / 2;
         float xPos = x * sizeAdd + layerAdd;
         float yPos = y * sizeAdd + layerAdd;
         Vector3 vector3 = new Vector3(xPos, yPos, 0);
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
-        Brick brick = new Brick(brickGameObject, type, layer, size);
+        Brick brick = new Brick(brickGameObject, type, layer, _brickSize);
         brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
         brickGameObject.GetComponent<BrickScript>().SetBrick(brick);
     }
@@ -113,7 +115,7 @@ public class MainScript : MonoBehaviour
      */
     private IEnumerator DestroyBricks(List<Brick> bricks)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         bricks.ForEach(brick =>
         {
             Destroy(brick.GameObject);

@@ -37,10 +37,7 @@ public class BrickUtils
     {
         int result = 0;
         List<Brick> touchBricks = AllTouchBricks();
-        foreach (var touchBrick in touchBricks)
-        {
-            Debug.Log(touchBrick.TargetWaypoint + " " + touchBrick.Type);
-        }
+
         // Если уже есть нажатый кирпичик такого типа
         if (touchBricks.Count(brick => brick.Type.Equals(type)) > 0)
         {
@@ -52,7 +49,7 @@ public class BrickUtils
         {
             result = touchBricks.Count;
         }
-        Debug.Log(result);
+
         return result;
     }
     
@@ -111,4 +108,9 @@ public class BrickUtils
             }
         });
     }
+
+    public static float BrickSize(int countBrickWidth)
+    {
+        return (float) Screen.width / Screen.height * 15f / countBrickWidth;
+    } 
 }
