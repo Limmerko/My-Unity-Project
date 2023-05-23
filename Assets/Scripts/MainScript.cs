@@ -115,7 +115,15 @@ public class MainScript : MonoBehaviour
      */
     private IEnumerator DestroyBricks(List<Brick> bricks)
     {
-        yield return new WaitForSeconds(0.1f);
+        float timeAnim = 0f;
+        bricks.ForEach(brick =>
+        {
+            BrickScript brickScript = brick.GameObject.GetComponent<BrickScript>();
+            timeAnim = brickScript.LengthClearAnim();
+            brickScript.PlayClearAnim();
+        });
+        
+        yield return new WaitForSeconds(timeAnim);
         bricks.ForEach(brick =>
         {
             Destroy(brick.GameObject);

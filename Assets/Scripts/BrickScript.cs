@@ -17,10 +17,12 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private Sprite green;
     [SerializeField] private Sprite black;
     [SerializeField] private Sprite white;
+    [SerializeField] private Animation anim;
     
     private Brick _brick;
     private Transform _transform;
     private float _sizeFinishBrick;
+    private bool _isDown = false;
 
     public void SetBrick(Brick brick)
     {
@@ -38,7 +40,18 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         if (_brick.IsTouch)
         {
             moveBrickOnWaypoint();
-            ChangeSizeBrick();
+            ChangeSizeBrick(_sizeFinishBrick);
+        }
+        else
+        {
+            if (_isDown)
+            {
+                ChangeSizeBrick(_brick.Size * 0.8f);
+            }
+            else
+            {
+                ChangeSizeBrick(_brick.Size);
+            }
         }
     }
 
@@ -66,7 +79,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     {
         if (!_brick.IsTouch && _brick.IsClickable)
         {
-            _transform.localScale = new Vector3(_brick.Size * 0.9f, _brick.Size * 0.9f, 1);
+            _isDown = true;
         }
     }
     
@@ -77,7 +90,8 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     {
         if (!_brick.IsTouch)
         {
-            _transform.localScale = new Vector3(_brick.Size, _brick.Size, 1);
+
+            _isDown = false;
         }
     }
 
@@ -138,18 +152,28 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             }
             else
             {
-                float speed = distance >= 0.01f ? distance * moveSpeed : moveSpeed / 10f;
-                MainUtils.MoveToWaypoint(target, _brick.GameObject, speed); 
+                float speed = distance >= 0.1f ? distance / 2 * moveSpeed : moveSpeed / 10f; // Замедление в конце
+                MainUtils.MoveToWaypoint(target, _brick.GameObject, speed > moveSpeed ? moveSpeed : speed); 
             }
         }
     }
 
-    private void ChangeSizeBrick()
+    private void ChangeSizeBrick(float size)
     {
-        Vector3 target = new Vector3(_sizeFinishBrick, _sizeFinishBrick, 0);
+        Vector3 target = new Vector3(size, size, 0);
         if (Vector3.Distance(target, _brick.GameObject.transform.localScale) >= 0.001f)
         {
             MainUtils.ChangeSize(target, _brick.GameObject, sizeSpeed);
         }
+    }
+
+    public float LengthClearAnim()
+    {
+        return anim["BrickClear"].length;
+    }
+
+    public void PlayClearAnim()
+    {
+        anim.Play("BrickClear");
     }
 }

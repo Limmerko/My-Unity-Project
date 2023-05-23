@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5150580503333714022}
   - component: {fileID: 6809063108433812539}
   - component: {fileID: 1729622395729310495}
+  - component: {fileID: 3153343701767512400}
   m_Layer: 0
   m_Name: Brick
   m_TagString: Untagged
@@ -124,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd2f126420179b47941cf563068ad13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 15
   sizeSpeed: 5
   waypointsPrefabs:
   - {fileID: 7196228537728288824, guid: 7e6bc9e619570634ea10bb26c431d18c, type: 3}
@@ -140,3 +141,20 @@ MonoBehaviour:
   green: {fileID: 21300000, guid: a9b53f07495846146a988f35d4dc49cd, type: 3}
   black: {fileID: 21300000, guid: 4ca0be141dbe64247bbb111d4595414a, type: 3}
   white: {fileID: 21300000, guid: 38b34d1627ea10b4d8e4888e97cd6288, type: 3}
+  anim: {fileID: 3153343701767512400}
+--- !u!111 &3153343701767512400
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5150580503333714020}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ce22f174596c12b4d8f1dd29c56810a9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ce22f174596c12b4d8f1dd29c56810a9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
