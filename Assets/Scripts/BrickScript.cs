@@ -46,7 +46,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         {
             if (_isDown)
             {
-                ChangeSizeBrick(_brick.Size * 0.8f);
+                ChangeSizeBrick(_brick.Size * 0.9f);
             }
             else
             {

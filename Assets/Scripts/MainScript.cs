@@ -16,49 +16,8 @@ public class MainScript : MonoBehaviour
     {
         int countBrickWidth = 7;
         _brickSize = BrickUtils.BrickSize(countBrickWidth);
-        Debug.Log("Установлен размер кирпичика: " + _brickSize);
-        
-        // Инициализация поля
-        /*InitializeBrick(0, 0, BrickType.Red, 0);
-        InitializeBrick(1, 0, BrickType.Green, 0);
-        InitializeBrick(2, 0, BrickType.Yellow, 0);
-        InitializeBrick(3, 0, BrickType.Black, 0);
-        InitializeBrick(-1, 0, BrickType.Blue, 0);
-        InitializeBrick(-2, 0, BrickType.Red, 0);
-        InitializeBrick(-3, 0, BrickType.Yellow, 0);
-
-        InitializeBrick(0, 1, BrickType.Green, 0);
-        InitializeBrick(1, 1, BrickType.White, 0);
-        InitializeBrick(2, 1, BrickType.Red, 0);
-        InitializeBrick(3, 1, BrickType.Blue, 0);
-        InitializeBrick(-1, 1, BrickType.White, 0);
-        InitializeBrick(-2, 1, BrickType.Yellow, 0);
-        InitializeBrick(-3, 1, BrickType.Red, 0);
-
-        InitializeBrick(0, -1, BrickType.Yellow, 0);
-        InitializeBrick(1, -1, BrickType.Red, 0);
-        InitializeBrick(2, -1, BrickType.Blue, 0);
-        InitializeBrick(3, -1, BrickType.Green, 0);
-        InitializeBrick(-1, -1, BrickType.Red, 0);
-        InitializeBrick(-2, -1, BrickType.Blue, 0);
-        InitializeBrick(-3, -1, BrickType.Black, 0);
-
-        InitializeBrick(0, 0, BrickType.Blue, 1);
-        InitializeBrick(1, 0, BrickType.White, 1);
-        InitializeBrick(2, 0, BrickType.Yellow, 1);
-        InitializeBrick(-1, 0, BrickType.Red, 1);
-        InitializeBrick(-2, 0, BrickType.Black, 1);
-        InitializeBrick(-3, 0, BrickType.Green, 1);
-
-        InitializeBrick(0, -1, BrickType.Yellow, 1);
-        InitializeBrick(1, -1, BrickType.Black, 1);
-        InitializeBrick(2, -1, BrickType.Blue, 1);
-        InitializeBrick(-1, -1, BrickType.Yellow, 1);
-        InitializeBrick(-2, -1, BrickType.Green, 1);
-        InitializeBrick(-3, -1, BrickType.Red, 1);*/
 
         InitializedBricks();
-        
         BrickUtils.UpdateBricksState();
     }
     
@@ -111,13 +70,19 @@ public class MainScript : MonoBehaviour
         
         MainUtils.MixList(bricks);
 
-        List<BrickType> types = Enum.GetValues(typeof(BrickType)).Cast<BrickType>().ToList();
-        
+        List<BrickType> types = new List<BrickType>();
+
         System.Random random = new System.Random();
         
         for (int i = 2; i < bricks.Count; i += 3)
         {
+            if (types.Count == 0)
+            {
+                types = Enum.GetValues(typeof(BrickType)).Cast<BrickType>().ToList();
+            }
             BrickType type = types[random.Next(types.Count)];
+            types.Remove(type);
+            
             InitializeBrick(bricks[i - 2], type);
             InitializeBrick(bricks[i - 1], type);
             InitializeBrick(bricks[i], type);
