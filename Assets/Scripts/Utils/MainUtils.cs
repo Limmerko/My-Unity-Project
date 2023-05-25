@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MainUtils
@@ -24,5 +25,19 @@ public class MainUtils
             gameObject.transform.localScale,
             to,
             Time.deltaTime * speed);
+    }
+
+    public static void MixList<T>(IList<T> list)
+    {
+        System.Random random = new System.Random();
+        int n = list.Count;
+        
+        while (n > 1)
+        {
+            n--;
+            int k = random.Next(n + 1);
+            (list[k], list[n]) = (list[n], list[k]);
+        }
+
     }
 }
