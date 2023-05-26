@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
 { 
-    [SerializeField] private float moveSpeed = 10f; // Prefab. Скорость движения
+    [SerializeField] private float moveSpeed = 20f; // Prefab. Скорость движения
     [SerializeField] private float sizeSpeed = 5f; // Prefab. Скорость изменения размера
     [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
     [SerializeField] private Sprite red;
@@ -69,6 +69,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             // Изменение состояния
             _brick.Layer = 10;
             BrickUtils.UpdateBricksState();
+            Vibration.VibrateAndroid(1); // TODO хз как на IOS будет
         }
     }
 

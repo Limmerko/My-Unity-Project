@@ -14,6 +14,8 @@ public class MainScript : MonoBehaviour
         
     private void Start()
     {
+        Vibration.Init();
+        
         int countBrickWidth = 7;
         _brickSize = BrickUtils.BrickSize(countBrickWidth);
 

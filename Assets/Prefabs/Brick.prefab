@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd2f126420179b47941cf563068ad13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 20
   sizeSpeed: 5
   waypointsPrefabs:
   - {fileID: 7196228537728288824, guid: 7e6bc9e619570634ea10bb26c431d18c, type: 3}
