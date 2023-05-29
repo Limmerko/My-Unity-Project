@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 38b34d1627ea10b4d8e4888e97cd6288, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 695c3f4eb6bc6364eb5a4b4ad784a3c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,7 +105,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.5, y: 0.5}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.5, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -135,12 +135,14 @@ MonoBehaviour:
   - {fileID: 3077636696269743160, guid: e518e4527889fbf4fa3208b005f6b90b, type: 3}
   - {fileID: 1739504681675207509, guid: e0a72459fc673724c849f415749bae1b, type: 3}
   - {fileID: 2480845413543963116, guid: e18912553a5cfb94a9fec4b8f817928e, type: 3}
-  red: {fileID: 21300000, guid: ef355fe76ea118d4d9e7819242346fb9, type: 3}
-  blue: {fileID: 21300000, guid: 4a5a895a112d83f47a9b290a6e05a022, type: 3}
-  yellow: {fileID: 21300000, guid: e0959c0b738640e4a962f838b9cf9f07, type: 3}
-  green: {fileID: 21300000, guid: a9b53f07495846146a988f35d4dc49cd, type: 3}
-  black: {fileID: 21300000, guid: 4ca0be141dbe64247bbb111d4595414a, type: 3}
-  white: {fileID: 21300000, guid: 38b34d1627ea10b4d8e4888e97cd6288, type: 3}
+  red: {fileID: 21300000, guid: 695c3f4eb6bc6364eb5a4b4ad784a3c7, type: 3}
+  blue: {fileID: 21300000, guid: b5cde0df9904ccc4894e4ad6070449f6, type: 3}
+  yellow: {fileID: 21300000, guid: 87c1e5549a3a35546b20721b9f0cf881, type: 3}
+  green: {fileID: 21300000, guid: 2e55e691cae808846a194df6565d17dc, type: 3}
+  black: {fileID: 21300000, guid: 46ec8be58066f724db1e22c0a9a70bdb, type: 3}
+  white: {fileID: 21300000, guid: b4ed3164d9910d5438e012cf098775db, type: 3}
+  orange: {fileID: 21300000, guid: d86b16fa1e2cb674d804a93398d4eef9, type: 3}
+  pink: {fileID: 21300000, guid: c39d3c70437551c45ae67e5def065d61, type: 3}
   anim: {fileID: 3153343701767512400}
 --- !u!111 &3153343701767512400
 Animation:

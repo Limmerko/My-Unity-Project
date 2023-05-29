@@ -17,6 +17,8 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private Sprite green;
     [SerializeField] private Sprite black;
     [SerializeField] private Sprite white;
+    [SerializeField] private Sprite orange;
+    [SerializeField] private Sprite pink;
     [SerializeField] private Animation anim;
     
     private Brick _brick;
@@ -121,6 +123,12 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
                 break;
             case BrickType.White:
                 sprite.sprite = white;
+                break;
+            case BrickType.Orange:
+                sprite.sprite = orange;
+                break;
+            case BrickType.Pink:
+                sprite.sprite = pink;
                 break;
         }
     }

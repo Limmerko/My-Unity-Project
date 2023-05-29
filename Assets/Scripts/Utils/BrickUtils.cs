@@ -111,6 +111,6 @@ public class BrickUtils
 
     public static float BrickSize(int countBrickWidth)
     {
-        return (float) Screen.width / Screen.height * 15f / countBrickWidth;
+        return (float) Screen.width / Screen.height * 15f / (countBrickWidth - 1);
     } 
 }
