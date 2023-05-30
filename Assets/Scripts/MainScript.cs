@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = System.Random;
 
 public class MainScript : MonoBehaviour
 {
@@ -70,13 +71,13 @@ public class MainScript : MonoBehaviour
         bricks.Add(new InitialBrick(-2, -1, 1));
         bricks.Add(new InitialBrick(-3, -1, 1));
         
-        MainUtils.MixList(bricks);
+        MainUtils.MixList(bricks); // Перемешивание плиток
 
         List<BrickType> types = new List<BrickType>();
 
-        System.Random random = new System.Random();
-        
-        for (int i = 2; i < bricks.Count; i += 3)
+        Random random = new Random();
+
+        for (int i = 2; i < bricks.Count; i += 3) // Случайное выставление типов
         {
             if (types.Count == 0)
             {
@@ -84,25 +85,36 @@ public class MainScript : MonoBehaviour
             }
             BrickType type = types[random.Next(types.Count)];
             types.Remove(type);
-            
-            InitializeBrick(bricks[i - 2], type);
-            InitializeBrick(bricks[i - 1], type);
-            InitializeBrick(bricks[i], type);
+
+            bricks[i - 2].Type = type;
+            bricks[i - 1].Type = type;
+            bricks[i].Type = type;
+        }
+        
+        // Сортировка по слоям и расположению
+        bricks = bricks.OrderBy(b => b.Layer)
+            .ThenByDescending(b => b.Y)
+            .ThenBy(b => b.X)
+            .ToList();
+
+        for (int i = 0; i < bricks.Count; i++)
+        {
+            InitializeBrick(bricks[i], i / -10000f);
         }
     }
 
     /**
      * Инициализация кирпичика
      */
-    private void InitializeBrick(InitialBrick initialBrick, BrickType type)
+    private void InitializeBrick(InitialBrick initialBrick, float z)
     {
         float sizeAdd = _brickSize / 2;
-        float layerAdd = initialBrick.Layer % 2 == 0 ? 0 : sizeAdd / 2;
+        float layerAdd = initialBrick.Layer % 2 == 0 ? 0 : sizeAdd / 2; // Смещение для слоев
         float xPos = initialBrick.X * sizeAdd + layerAdd;
         float yPos = initialBrick.Y * sizeAdd + layerAdd;
-        Vector3 vector3 = new Vector3(xPos, yPos, 0);
+        Vector3 vector3 = new Vector3(xPos, yPos, z); // Z нужен для корректного отображаения спрайтов, иначе они будут накладываться друг на друга
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
-        Brick brick = new Brick(brickGameObject, type, initialBrick.Layer, _brickSize);
+        Brick brick = new Brick(brickGameObject, initialBrick.Type, initialBrick.Layer, _brickSize);
         brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
         brickGameObject.GetComponent<BrickScript>().SetBrick(brick);
     }
@@ -141,12 +153,19 @@ public class MainScript : MonoBehaviour
      */
     private IEnumerator DestroyBricks(List<Brick> bricks)
     {
+        yield return new WaitForSeconds(0.1f);
         float timeAnim = 0f;
         bricks.ForEach(brick =>
         {
-            BrickScript brickScript = brick.GameObject.GetComponent<BrickScript>();
-            timeAnim = brickScript.LengthClearAnim();
-            brickScript.PlayClearAnim();
+            if (!brick.GameObject.IsDestroyed())
+            {
+                BrickScript brickScript = brick.GameObject.GetComponent<BrickScript>();
+                if (timeAnim == 0f)
+                {
+                    timeAnim = brickScript.LengthClearAnim();
+                }
+                brickScript.PlayClearAnim();
+            }
         });
         
         yield return new WaitForSeconds(timeAnim);

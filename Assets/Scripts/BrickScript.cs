@@ -67,9 +67,9 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             // Изменение положения
             _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             _brick.IsTouch = true;
+            _brick.Layer = 100;
             BrickUtils.UpdateBricksPosition();
             // Изменение состояния
-            _brick.Layer = 10;
             BrickUtils.UpdateBricksState();
             Vibration.VibrateAndroid(1); // TODO хз как на IOS будет
         }
@@ -153,7 +153,9 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         if (_brick.TargetWaypoint < waypointsPrefabs.Length)
         {
             Vector3 target = waypointsPrefabs[_brick.TargetWaypoint].transform.position;
-            float distance = Vector3.Distance(target, _brick.GameObject.transform.position);
+            Vector3 brickPosition = _brick.GameObject.transform.position;
+            float distance = Vector3.Distance(target, brickPosition);
+            target.z = brickPosition.z;
             // Если закончил движение
             if (distance <= 0.001f && !_brick.IsFinish)
             {
@@ -161,8 +163,10 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             }
             else
             {
+                float minSpeed = 3f;
                 float speed = distance >= 0.1f ? distance / 2 * moveSpeed : moveSpeed / 10f; // Замедление в конце
-                MainUtils.MoveToWaypoint(target, _brick.GameObject, speed > moveSpeed ? moveSpeed : speed); 
+                speed = speed > moveSpeed ? moveSpeed : speed < minSpeed ? minSpeed : speed; // Ограничение максимальной и минимальной скорости
+                MainUtils.MoveToWaypoint(target, _brick.GameObject, speed); 
             }
         }
     }

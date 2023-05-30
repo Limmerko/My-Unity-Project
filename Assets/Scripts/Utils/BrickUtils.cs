@@ -62,10 +62,15 @@ public class BrickUtils
         
         for (int i = 0; i < finishBricks.Count; i++)
         {
-            finishBricks.ElementAt(i).TargetWaypoint = i;
+            Brick brick = finishBricks[i];
+            brick.TargetWaypoint = i;
+            brick.GameObject.GetComponent<SpriteRenderer>().sortingOrder = brick.Layer;
+            Transform transform = brick.GameObject.transform;
+            Vector3 position = transform.position;
+            transform.position = new Vector3(position.x, position.y, i / -10000f);
         }
     }
-
+    
     /**
      * Актуализация состояника кирпичика
      */
