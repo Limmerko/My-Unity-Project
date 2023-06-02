@@ -81,7 +81,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.55859375, y: 0.55859375}
+  m_Size: {x: 5.69, y: 5.69}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -104,8 +104,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.55859375, y: 0.55859375}
-    newSize: {x: 0.55859375, y: 0.55859375}
+    oldSize: {x: 0.55566406, y: 0.55566406}
+    newSize: {x: 5.69, y: 5.69}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   white: {fileID: 21300000, guid: b4ed3164d9910d5438e012cf098775db, type: 3}
   orange: {fileID: 21300000, guid: d86b16fa1e2cb674d804a93398d4eef9, type: 3}
   pink: {fileID: 21300000, guid: c39d3c70437551c45ae67e5def065d61, type: 3}
+  pizza: {fileID: 21300000, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
   anim: {fileID: 3153343701767512400}
 --- !u!111 &3153343701767512400
 Animation:
