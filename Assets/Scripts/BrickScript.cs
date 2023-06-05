@@ -11,34 +11,32 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private float moveSpeed = 20f; // Prefab. Скорость движения
     [SerializeField] private float sizeSpeed = 5f; // Prefab. Скорость изменения размера
     [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
-    [SerializeField] private Sprite red;
-    [SerializeField] private Sprite blue;
-    [SerializeField] private Sprite yellow;
-    [SerializeField] private Sprite green;
-    [SerializeField] private Sprite black;
-    [SerializeField] private Sprite white;
-    [SerializeField] private Sprite iceCream;
-    [SerializeField] private Sprite pizza;
-    [SerializeField] private Sprite burger;
-    [SerializeField] private Sprite escimo;
+    [SerializeField] private Sprite[] red;
+    [SerializeField] private Sprite[] blue;
+    [SerializeField] private Sprite[] yellow;
+    [SerializeField] private Sprite[] green;
+    [SerializeField] private Sprite[] white;
+    [SerializeField] private Sprite[] iceCream;
+    [SerializeField] private Sprite[] pizza;
+    [SerializeField] private Sprite[] burger;
+    [SerializeField] private Sprite[] escimo;
     [SerializeField] private Animation anim;
     
     private Brick _brick;
-    private Transform _transform;
+    private SpriteRenderer _sprite;
     private float _sizeFinishBrick;
-    private bool _isDown = false;
 
     public void SetBrick(Brick brick)
     {
         _brick = brick;
-        _transform = GetComponent<Transform>();
+        _sprite = GetComponent<SpriteRenderer>(); 
         _sizeFinishBrick = BrickUtils.BrickSize(7);
         
-        SetTypeBrick();
+        SetSpriteBrick();
         Statics.AllBricks.Add(_brick);
         SetPositionWaypoints();
     }
-    
+
     private void FixedUpdate()
     {
         if (_brick.IsTouch)
@@ -48,15 +46,12 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         }
         else
         {
-            if (_isDown)
-            {
-                ChangeSizeBrick(_brick.Size * 0.9f);
-            }
-            else
+            if (!_brick.IsDown)
             {
                 ChangeSizeBrick(_brick.Size);
             }
         }
+        SetSpriteBrick();
     }
 
     /**
@@ -69,6 +64,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             // Изменение положения
             _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             _brick.IsTouch = true;
+            _brick.IsDown = false;
             _brick.Layer = 100;
             BrickUtils.UpdateBricksPosition();
             // Изменение состояния
@@ -84,7 +80,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     {
         if (!_brick.IsTouch && _brick.IsClickable)
         {
-            _isDown = true;
+            _brick.IsDown = true;
         }
     }
     
@@ -95,46 +91,50 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     {
         if (!_brick.IsTouch)
         {
-
-            _isDown = false;
+            _brick.IsDown = false;
         }
     }
 
     /**
      * Установка спрайта кирпичика по типу
      */
-    private void SetTypeBrick()
+    private void SetSpriteBrick()
     {
-        SpriteRenderer sprite = GetComponent<SpriteRenderer>(); 
+        Sprite setType = null;
         switch (_brick.Type)
         {
             case BrickType.Red:
-                sprite.sprite = red;
+                setType = red[_brick.IsDown ? 1 : 0];
                 break;
             case BrickType.Blue:
-                sprite.sprite = blue;
+                setType = blue[_brick.IsDown ? 1 : 0];
                 break;
             case BrickType.Yellow:
-                sprite.sprite = yellow;
+                setType = yellow[_brick.IsDown ? 1 : 0];
                 break;
             case BrickType.Green:
-                sprite.sprite = green;
+                setType = green[_brick.IsDown ? 1 : 0];
                 break;
             case BrickType.White:
-                sprite.sprite = white;
+                setType = white[_brick.IsDown ? 1 : 0];
                 break;
             case BrickType.IceCream:
-                sprite.sprite = iceCream;
+                setType = iceCream[_brick.IsDown ? 1 : 0];
                 break;
             case BrickType.Pizza:
-                sprite.sprite = pizza;
+                setType = pizza[_brick.IsDown ? 1 : 0];
                 break;
             case BrickType.Burger:
-                sprite.sprite = burger;
+                setType = burger[_brick.IsDown ? 1 : 0];
                 break;
             case BrickType.Escimo:
-                sprite.sprite = escimo;
+                setType = escimo[_brick.IsDown ? 1 : 0];
                 break;
+        }
+
+        if (!_sprite.sprite.Equals(setType))
+        {
+            _sprite.sprite = setType;
         }
     }
 

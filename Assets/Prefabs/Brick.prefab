@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
+  m_Sprite: {fileID: -1532540225, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.86, y: 2.86}
+  m_Size: {x: 0.56640625, y: 0.5566406}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -104,8 +104,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.55859375, y: 0.55859375}
-    newSize: {x: 2.86, y: 2.86}
+    oldSize: {x: 0.56640625, y: 0.5566406}
+    newSize: {x: 0.56640625, y: 0.5566406}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -135,16 +135,33 @@ MonoBehaviour:
   - {fileID: 3077636696269743160, guid: e518e4527889fbf4fa3208b005f6b90b, type: 3}
   - {fileID: 1739504681675207509, guid: e0a72459fc673724c849f415749bae1b, type: 3}
   - {fileID: 2480845413543963116, guid: e18912553a5cfb94a9fec4b8f817928e, type: 3}
-  red: {fileID: 21300000, guid: 5a769aeed4a5b0249a537975dbf4005d, type: 3}
-  blue: {fileID: 21300000, guid: b5cde0df9904ccc4894e4ad6070449f6, type: 3}
-  yellow: {fileID: 21300000, guid: 87c1e5549a3a35546b20721b9f0cf881, type: 3}
-  green: {fileID: 21300000, guid: 2e55e691cae808846a194df6565d17dc, type: 3}
-  black: {fileID: 21300000, guid: 46ec8be58066f724db1e22c0a9a70bdb, type: 3}
-  white: {fileID: 21300000, guid: b4ed3164d9910d5438e012cf098775db, type: 3}
-  iceCream: {fileID: -1001921908, guid: 240631097ece46e46be5c1adb50de645, type: 3}
-  pizza: {fileID: 21300000, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
-  burger: {fileID: 21300000, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
-  escimo: {fileID: 21300000, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
+  red:
+  - {fileID: -437916059, guid: 5a769aeed4a5b0249a537975dbf4005d, type: 3}
+  - {fileID: -374225886, guid: 5a769aeed4a5b0249a537975dbf4005d, type: 3}
+  blue:
+  - {fileID: 651320541, guid: b5cde0df9904ccc4894e4ad6070449f6, type: 3}
+  - {fileID: 1282702217, guid: b5cde0df9904ccc4894e4ad6070449f6, type: 3}
+  yellow:
+  - {fileID: 2660904, guid: 87c1e5549a3a35546b20721b9f0cf881, type: 3}
+  - {fileID: 1904685677, guid: 87c1e5549a3a35546b20721b9f0cf881, type: 3}
+  green:
+  - {fileID: 775438174, guid: 2e55e691cae808846a194df6565d17dc, type: 3}
+  - {fileID: -208015404, guid: 2e55e691cae808846a194df6565d17dc, type: 3}
+  white:
+  - {fileID: 95236395, guid: b4ed3164d9910d5438e012cf098775db, type: 3}
+  - {fileID: 1437272203, guid: b4ed3164d9910d5438e012cf098775db, type: 3}
+  iceCream:
+  - {fileID: -1974131188, guid: 65a878f2d92f3e64caf3d0094d6dcfdf, type: 3}
+  - {fileID: 602798392, guid: 65a878f2d92f3e64caf3d0094d6dcfdf, type: 3}
+  pizza:
+  - {fileID: -1532540225, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
+  - {fileID: 2138902420, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
+  burger:
+  - {fileID: 1163885282, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
+  - {fileID: 37098662, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
+  escimo:
+  - {fileID: -1538907840, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
+  - {fileID: 1886923622, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
   anim: {fileID: 3153343701767512400}
 --- !u!111 &3153343701767512400
 Animation:

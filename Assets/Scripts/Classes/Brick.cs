@@ -10,6 +10,8 @@ public class Brick
 
     public bool IsFinish { get; set; } // Закончил движение
     
+    public bool IsDown { get; set; } // Состояние нажатия на этот кирпич
+    
     public bool IsClickable { get; set; } // Доступен для нажатия
     
     public int TargetWaypoint { get; set; } // Точка на которой находится кирпич
