@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5a769aeed4a5b0249a537975dbf4005d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.69, y: 5.69}
+  m_Size: {x: 2.86, y: 2.86}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -104,8 +104,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.55566406, y: 0.55566406}
-    newSize: {x: 5.69, y: 5.69}
+    oldSize: {x: 0.55859375, y: 0.55859375}
+    newSize: {x: 2.86, y: 2.86}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -141,9 +141,10 @@ MonoBehaviour:
   green: {fileID: 21300000, guid: 2e55e691cae808846a194df6565d17dc, type: 3}
   black: {fileID: 21300000, guid: 46ec8be58066f724db1e22c0a9a70bdb, type: 3}
   white: {fileID: 21300000, guid: b4ed3164d9910d5438e012cf098775db, type: 3}
-  orange: {fileID: 21300000, guid: d86b16fa1e2cb674d804a93398d4eef9, type: 3}
-  pink: {fileID: 21300000, guid: c39d3c70437551c45ae67e5def065d61, type: 3}
+  iceCream: {fileID: -1001921908, guid: 240631097ece46e46be5c1adb50de645, type: 3}
   pizza: {fileID: 21300000, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
+  burger: {fileID: 21300000, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
+  escimo: {fileID: 21300000, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
   anim: {fileID: 3153343701767512400}
 --- !u!111 &3153343701767512400
 Animation:

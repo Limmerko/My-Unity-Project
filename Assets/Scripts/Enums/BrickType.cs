@@ -5,8 +5,9 @@ public enum BrickType {
     Blue,
     Yellow,
     Green,
-    Black,
     White,
-    Pink,
-    Pizza
+    IceCream,
+    Pizza,
+    Burger,
+    Escimo
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aba2b1b1c70491b45a4bc352dfcc8c2f
+guid: 240631097ece46e46be5c1adb50de645
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,7 +115,51 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "\u0422\u0435\u0441\u0442 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438
+        \u043D\u0430\u0436\u0430\u0442\u0438\u044F_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 285
+        height: 285
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb187e0da5f03db408694e7cce064d17
+      internalID: 875849857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0422\u0435\u0441\u0442 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438
+        \u043D\u0430\u0436\u0430\u0442\u0438\u044F_3"
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 0
+        width: 285
+        height: 285
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93dd990033009634691a9f514aff4f3c
+      internalID: -1001921908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +170,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "\u0422\u0435\u0441\u0442 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 \u043D\u0430\u0436\u0430\u0442\u0438\u044F_0": 875849857
+      "\u0422\u0435\u0441\u0442 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 \u043D\u0430\u0436\u0430\u0442\u0438\u044F_1": -1276521337
+      "\u0422\u0435\u0441\u0442 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 \u043D\u0430\u0436\u0430\u0442\u0438\u044F_2": 1309071886
+      "\u0422\u0435\u0441\u0442 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 \u043D\u0430\u0436\u0430\u0442\u0438\u044F_3": -1001921908
+      "\u0422\u0435\u0441\u0442 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 \u043D\u0430\u0436\u0430\u0442\u0438\u044F_4": 1391431862
+      "\u0422\u0435\u0441\u0442 \u0430\u043D\u0438\u043C\u0430\u0446\u0438\u0438 \u043D\u0430\u0436\u0430\u0442\u0438\u044F_5": -173253759
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
