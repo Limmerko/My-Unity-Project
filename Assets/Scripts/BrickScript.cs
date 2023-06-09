@@ -11,17 +11,18 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private float moveSpeed = 20f; // Prefab. Скорость движения
     [SerializeField] private float sizeSpeed = 5f; // Prefab. Скорость изменения размера
     [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
-    [SerializeField] private Sprite[] red;
-    [SerializeField] private Sprite[] blue;
-    [SerializeField] private Sprite[] yellow;
-    [SerializeField] private Sprite[] green;
-    [SerializeField] private Sprite[] white;
+    [SerializeField] private Animation anim; // Анимация исчезнование
+    
     [SerializeField] private Sprite[] iceCream;
     [SerializeField] private Sprite[] pizza;
     [SerializeField] private Sprite[] burger;
-    [SerializeField] private Sprite[] escimo;
-    [SerializeField] private Animation anim;
-    
+    [SerializeField] private Sprite[] escimo; 
+    [SerializeField] private Sprite[] watermelon;
+    [SerializeField] private Sprite[] peach;
+    [SerializeField] private Sprite[] cherry;
+    [SerializeField] private Sprite[] apple;
+    [SerializeField] private Sprite[] avocado;
+
     private Brick _brick;
     private SpriteRenderer _sprite;
     private float _sizeFinishBrick;
@@ -103,21 +104,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         Sprite setType = null;
         switch (_brick.Type)
         {
-            case BrickType.Red:
-                setType = red[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Blue:
-                setType = blue[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Yellow:
-                setType = yellow[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Green:
-                setType = green[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.White:
-                setType = white[_brick.IsDown ? 1 : 0];
-                break;
+            // TODO порефакторить
             case BrickType.IceCream:
                 setType = iceCream[_brick.IsDown ? 1 : 0];
                 break;
@@ -130,6 +117,21 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             case BrickType.Escimo:
                 setType = escimo[_brick.IsDown ? 1 : 0];
                 break;
+            case BrickType.Watermelon:
+                setType = watermelon[_brick.IsDown ? 1 : 0];
+                break;
+            case BrickType.Peach:
+                setType = peach[_brick.IsDown ? 1 : 0];
+                break;
+            case BrickType.Cherry:
+                setType = cherry[_brick.IsDown ? 1 : 0];
+                break;
+            case BrickType.Apple:
+                setType = apple[_brick.IsDown ? 1 : 0];
+                break;
+            case BrickType.Avocado:
+                setType = avocado[_brick.IsDown ? 1 : 0];
+                break; 
         }
 
         if (!_sprite.sprite.Equals(setType))
