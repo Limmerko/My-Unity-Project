@@ -38,6 +38,5 @@ public class MainUtils
             int k = random.Next(n + 1);
             (list[k], list[n]) = (list[n], list[k]);
         }
-
     }
 }

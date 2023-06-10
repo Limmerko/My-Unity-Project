@@ -31,52 +31,14 @@ public class MainScript : MonoBehaviour
 
     private void InitializedBricks()
     {
-        List<InitialBrick> bricks = new List<InitialBrick>();
-        
-        bricks.Add(new InitialBrick(0, 0, 0));
-        bricks.Add(new InitialBrick(1, 0, 0));
-        bricks.Add(new InitialBrick(2, 0, 0));
-        bricks.Add(new InitialBrick(3, 0,0));
-        bricks.Add(new InitialBrick(-1, 0, 0));
-        bricks.Add(new InitialBrick(-2, 0, 0));
-        bricks.Add(new InitialBrick(-3, 0, 0));
+        Random random = new Random();
 
-        bricks.Add(new InitialBrick(0, 1, 0));
-        bricks.Add(new InitialBrick(1, 1, 0));
-        bricks.Add(new InitialBrick(2, 1, 0));
-        bricks.Add(new InitialBrick(3, 1, 0));
-        bricks.Add(new InitialBrick(-1, 1, 0));
-        bricks.Add(new InitialBrick(-2, 1, 0));
-        bricks.Add(new InitialBrick(-3, 1, 0));
+        List<InitialBrick> bricks = Statics.AllLevels[random.Next(Statics.AllLevels.Count)];
 
-        bricks.Add(new InitialBrick(0, -1, 0));
-        bricks.Add(new InitialBrick(1, -1, 0));
-        bricks.Add(new InitialBrick(2, -1, 0));
-        bricks.Add(new InitialBrick(3, -1, 0));
-        bricks.Add(new InitialBrick(-1, -1, 0));
-        bricks.Add(new InitialBrick(-2, -1, 0));
-        bricks.Add(new InitialBrick(-3, -1, 0));
-
-        bricks.Add(new InitialBrick(0, 0, 1));
-        bricks.Add(new InitialBrick(1, 0, 1));
-        bricks.Add(new InitialBrick(2, 0, 1));
-        bricks.Add(new InitialBrick(-1, 0, 1));
-        bricks.Add(new InitialBrick(-2, 0, 1));
-        bricks.Add(new InitialBrick(-3, 0, 1));
-
-        bricks.Add(new InitialBrick(0, -1, 1));
-        bricks.Add(new InitialBrick(1, -1, 1));
-        bricks.Add(new InitialBrick(2, -1, 1));
-        bricks.Add(new InitialBrick(-1, -1, 1));
-        bricks.Add(new InitialBrick(-2, -1, 1));
-        bricks.Add(new InitialBrick(-3, -1, 1));
-        
         MainUtils.MixList(bricks); // Перемешивание плиток
 
         List<BrickType> types = new List<BrickType>();
-
-        Random random = new Random();
-
+        
         for (int i = 2; i < bricks.Count; i += 3) // Случайное выставление типов
         {
             if (types.Count == 0)
