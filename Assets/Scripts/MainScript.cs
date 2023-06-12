@@ -6,21 +6,29 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
+using System.Linq;
 
 public class MainScript : MonoBehaviour
 {
     [SerializeField] private GameObject brickPrefab;
 
     private float _brickSize; 
+    private Random _random = new Random();
         
     private void Start()
     {
         Vibration.Init();
         
-        int countBrickWidth = 7;
-        _brickSize = BrickUtils.BrickSize(countBrickWidth);
+        List<InitialBrick> level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
+        int maxX = level.Aggregate((max, next) => next.X > max.X ? next : max).X;
+        int minX = level.Aggregate((min, next) => next.X < min.X ? next : min).X;
 
-        InitializedBricks();
+        int countBrickWidth = maxX - minX + 1;
+        Debug.Log("Ширина: " + countBrickWidth);
+        _brickSize = BrickUtils.BrickSize(countBrickWidth);
+        
+        InitializedBricks(level);
+        
         BrickUtils.UpdateBricksState();
     }
     
@@ -29,11 +37,9 @@ public class MainScript : MonoBehaviour
         CheckFinishBricks();
     }
 
-    private void InitializedBricks()
+    private void InitializedBricks(List<InitialBrick> level)
     {
-        Random random = new Random();
-
-        List<InitialBrick> bricks = Statics.AllLevels[random.Next(Statics.AllLevels.Count)];
+        List<InitialBrick> bricks = level;
 
         MainUtils.MixList(bricks); // Перемешивание плиток
 
@@ -45,7 +51,7 @@ public class MainScript : MonoBehaviour
             {
                 types = Enum.GetValues(typeof(BrickType)).Cast<BrickType>().ToList();
             }
-            BrickType type = types[random.Next(types.Count)];
+            BrickType type = types[_random.Next(types.Count)];
             types.Remove(type);
 
             bricks[i - 2].Type = type;

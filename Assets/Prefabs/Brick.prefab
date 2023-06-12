@@ -161,8 +161,8 @@ MonoBehaviour:
   - {fileID: -1580563647, guid: 9922c2fd42bfed6428f9d33d42a3daaa, type: 3}
   - {fileID: 252846808, guid: 9922c2fd42bfed6428f9d33d42a3daaa, type: 3}
   avocado:
-  - {fileID: -1074592167, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
-  - {fileID: 939179356, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
+  - {fileID: -1330225529, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
+  - {fileID: 702283786, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
 --- !u!111 &3153343701767512400
 Animation:
   m_ObjectHideFlags: 0

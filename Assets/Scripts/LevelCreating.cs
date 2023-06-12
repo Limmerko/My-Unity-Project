@@ -17,7 +17,7 @@ public class LevelCreating : MonoBehaviour
             float xPos = brick.transform.position.x - layerAdd;
             float yPos = brick.transform.position.y - layerAdd;
             
-            result += "new InitialBrick(" + xPos + ", " + yPos + ", " + brick.GetComponent<SpriteRenderer>().sortingOrder + "),\n";
+            result += "new InitialBrick(" + xPos + ", " + (yPos + 1) + ", " + brick.GetComponent<SpriteRenderer>().sortingOrder + "),\n";
         }
         
         Debug.Log(result);
