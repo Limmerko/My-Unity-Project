@@ -17,6 +17,7 @@ public class LevelCreating : MonoBehaviour
             float xPos = brick.transform.position.x - layerAdd;
             float yPos = brick.transform.position.y - layerAdd;
             
+            //  (yPos + 1) чтобы сам уровень был чуть выше центра
             result += "new InitialBrick(" + xPos + ", " + (yPos + 1) + ", " + brick.GetComponent<SpriteRenderer>().sortingOrder + "),\n";
         }
         
