@@ -11,6 +11,7 @@ public static class Statics
     public static readonly List<List<InitialBrick>> AllLevels = new() // Список всех уровней
     {
         Levels.Level1,
-        Levels.Level2
+        Levels.Level2,
+        Levels.Level3
     };
 }

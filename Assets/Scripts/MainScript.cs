@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 public class MainScript : MonoBehaviour
 {
@@ -22,9 +23,10 @@ public class MainScript : MonoBehaviour
         List<InitialBrick> level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
         int maxX = level.Aggregate((max, next) => next.X > max.X ? next : max).X;
         int minX = level.Aggregate((min, next) => next.X < min.X ? next : min).X;
-
-        int countBrickWidth = maxX - minX + 1;
+        int countBrickWidth = maxX - minX;
+        countBrickWidth = countBrickWidth % 2 == 0 ? ++countBrickWidth : countBrickWidth;
         Debug.Log("Ширина: " + countBrickWidth);
+        
         _brickSize = BrickUtils.BrickSize(countBrickWidth);
         
         InitializedBricks(level);
@@ -44,6 +46,11 @@ public class MainScript : MonoBehaviour
         MainUtils.MixList(bricks); // Перемешивание плиток
 
         List<BrickType> types = new List<BrickType>();
+        
+        if (bricks.Count % 3 != 0)
+        {
+            throw new ArgumentException("ОШИБКА!!! Кол-во плиток в уровне не кратно 3. (ЛОХ) " + bricks.Count);
+        }
         
         for (int i = 2; i < bricks.Count; i += 3) // Случайное выставление типов
         {

@@ -11,6 +11,12 @@ public class LevelCreating : MonoBehaviour
         GameObject[] bricks =GameObject.FindGameObjectsWithTag("BrickEmpty");
         String result = null;
         
+        if (bricks.Length % 3 != 0)
+        {
+            throw new ArgumentException("ОШИБКА!!! Кол-во плиток в уровне не кратно 3. (ЛОХ) " + bricks.Length);
+        }
+
+        
         foreach (var brick in bricks)
         {
             float layerAdd = brick.GetComponent<SpriteRenderer>().sortingOrder % 2 == 0 ? 0 : 0.5f;

@@ -116,6 +116,7 @@ public class BrickUtils
 
     public static float BrickSize(int countBrickWidth)
     {
-        return (float) Screen.width / Screen.height * 15f / (countBrickWidth - 1);
+        // 18 получено опытным путем. При нем во всех разрешениях и соотношениях остается по бокам ровно по половине плитки
+        return (float) Screen.width / Screen.height * 18f / countBrickWidth;
     } 
 }
