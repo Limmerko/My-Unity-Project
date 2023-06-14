@@ -163,6 +163,9 @@ MonoBehaviour:
   avocado:
   - {fileID: -1330225529, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
   - {fileID: 702283786, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
+  strawberry:
+  - {fileID: -1338657264, guid: f4e5d39df891d2b4bbd45b08c1fa410d, type: 3}
+  - {fileID: 973644547, guid: f4e5d39df891d2b4bbd45b08c1fa410d, type: 3}
 --- !u!111 &3153343701767512400
 Animation:
   m_ObjectHideFlags: 0

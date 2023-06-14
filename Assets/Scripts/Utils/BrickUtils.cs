@@ -93,8 +93,8 @@ public class BrickUtils
             foreach (var it in bricks.Where(it => it.Layer > brick.Layer))
             {
                 Vector3 itPos = it.GameObject.transform.position;
-                if (Math.Abs(itPos.x - brickPos.x) - brickRadius < 0.01f &&
-                    Math.Abs(itPos.y - brickPos.y) - brickRadius < 0.01f)
+                if (Math.Abs(itPos.x - brickPos.x) - brickRadius < 0 &&
+                    Math.Abs(itPos.y - brickPos.y) - brickRadius < 0)
                 {
                     isClickable = false;
                     break;
