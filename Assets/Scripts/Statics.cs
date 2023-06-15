@@ -15,6 +15,7 @@ public static class Statics
         Levels.Level3,
         Levels.Level4,
         Levels.Level5,
-        Levels.Level6
+        Levels.Level6,
+        Levels.Level7,
     };
 }

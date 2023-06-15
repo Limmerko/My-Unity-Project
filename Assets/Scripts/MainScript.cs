@@ -21,10 +21,9 @@ public class MainScript : MonoBehaviour
         Vibration.Init();
         
         List<InitialBrick> level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
-        int maxX = level.Aggregate((max, next) => next.X > max.X ? next : max).X;
-        int minX = level.Aggregate((min, next) => next.X < min.X ? next : min).X;
-        int countBrickWidth = maxX - minX;
-        countBrickWidth = countBrickWidth % 2 == 0 ? ++countBrickWidth : countBrickWidth;
+        float maxX = level.Aggregate((max, next) => next.X > max.X ? next : max).X;
+        float minX = level.Aggregate((min, next) => next.X < min.X ? next : min).X;
+        int countBrickWidth = (int) (maxX - minX) + 1;
         Debug.Log("Ширина: " + countBrickWidth);
         
         _brickSize = BrickUtils.BrickSize(countBrickWidth);
@@ -84,9 +83,8 @@ public class MainScript : MonoBehaviour
     private void InitializeBrick(InitialBrick initialBrick, float z)
     {
         float sizeAdd = _brickSize / 2;
-        float layerAdd = initialBrick.Layer % 2 == 0 ? 0 : sizeAdd / 2; // Смещение для слоев
-        float xPos = initialBrick.X * sizeAdd + layerAdd;
-        float yPos = initialBrick.Y * sizeAdd + layerAdd;
+        float xPos = initialBrick.X * sizeAdd;
+        float yPos = initialBrick.Y * sizeAdd;
         Vector3 vector3 = new Vector3(xPos, yPos, z); // Z нужен для корректного отображаения спрайтов, иначе они будут накладываться друг на друга
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
         Brick brick = new Brick(brickGameObject, initialBrick.Type, initialBrick.Layer, _brickSize);

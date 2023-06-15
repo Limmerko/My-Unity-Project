@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class InitialBrick
 {
-    public int X { get; set; }
+    public float X { get; set; }
     
-    public int Y { get; set; }
+    public float Y { get; set; }
     
     public int Layer { get; set; }
     
     public BrickType Type { get; set; }
 
-    public InitialBrick(int x, int y, int layer)
+    public InitialBrick(float x, float y, int layer)
     {
         X = x;
         Y = y;

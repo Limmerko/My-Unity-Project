@@ -164,8 +164,14 @@ MonoBehaviour:
   - {fileID: -1330225529, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
   - {fileID: 702283786, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
   strawberry:
-  - {fileID: -1338657264, guid: f4e5d39df891d2b4bbd45b08c1fa410d, type: 3}
-  - {fileID: 973644547, guid: f4e5d39df891d2b4bbd45b08c1fa410d, type: 3}
+  - {fileID: -1912506442, guid: f4e5d39df891d2b4bbd45b08c1fa410d, type: 3}
+  - {fileID: -2029877480, guid: f4e5d39df891d2b4bbd45b08c1fa410d, type: 3}
+  lollipop:
+  - {fileID: 798125605, guid: 55a7866b616b4e24595920cac44e15ff, type: 3}
+  - {fileID: -128138094, guid: 55a7866b616b4e24595920cac44e15ff, type: 3}
+  lollipopCandy:
+  - {fileID: -1212331587, guid: 2331ec76c866d5544818810cfbf4a2c3, type: 3}
+  - {fileID: 1044894699, guid: 2331ec76c866d5544818810cfbf4a2c3, type: 3}
 --- !u!111 &3153343701767512400
 Animation:
   m_ObjectHideFlags: 0

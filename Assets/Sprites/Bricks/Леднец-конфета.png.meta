@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f4e5d39df891d2b4bbd45b08c1fa410d
+guid: 2331ec76c866d5544818810cfbf4a2c3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0430_0"
+      name: "\u041B\u0435\u0434\u043D\u0435\u0446-\u043A\u043E\u043D\u0444\u0435\u0442\u0430_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -125,20 +125,20 @@ TextureImporter:
         width: 285
         height: 285
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bbff8323d109d346ad7b4741f66b650
-      internalID: -1912506442
+      spriteID: 43ce7aa3aa1d0d743a9ac6c9c22ddd0a
+      internalID: -1212331587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0430_1"
+      name: "\u041B\u0435\u0434\u043D\u0435\u0446-\u043A\u043E\u043D\u0444\u0435\u0442\u0430_1"
       rect:
         serializedVersion: 2
         x: 295
@@ -146,14 +146,14 @@ TextureImporter:
         width: 285
         height: 285
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16af68be54e911a45b93ce3a1010f058
-      internalID: -2029877480
+      spriteID: 07c5c50845091204fa33451949f6b4dc
+      internalID: 1044894699
       vertices: []
       indices: 
       edges: []
@@ -169,8 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0430_0": -1912506442
-      "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0430_1": -2029877480
+      "\u041B\u0435\u0434\u043D\u0435\u0446-\u043A\u043E\u043D\u0444\u0435\u0442\u0430_0": -1212331587
+      "\u041B\u0435\u0434\u043D\u0435\u0446-\u043A\u043E\u043D\u0444\u0435\u0442\u0430_1": 1044894699
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
