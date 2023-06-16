@@ -87,7 +87,7 @@ public class BrickUtils
         
         bricks.ForEach(brick =>
         {
-            float brickRadius = brick.Size / 2;
+            float brickRadius = brick.Size / 2.1f;
             bool isClickable = true;
             Vector3 brickPos = brick.GameObject.transform.position;
             foreach (var it in bricks.Where(it => it.Layer > brick.Layer))
