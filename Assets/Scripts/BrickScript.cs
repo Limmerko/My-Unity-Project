@@ -25,7 +25,9 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private Sprite[] strawberry;
     [SerializeField] private Sprite[] lollipop;
     [SerializeField] private Sprite[] lollipopCandy;
- 
+    [SerializeField] private Sprite[] donut;
+    [SerializeField] private Sprite[] fries;
+
     private Brick _brick;
     private SpriteRenderer _sprite;
     private float _sizeFinishBrick;
@@ -143,6 +145,12 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
                 break; 
             case BrickType.LollipopCandy:
                 setType = lollipopCandy[_brick.IsDown ? 1 : 0];
+                break; 
+            case BrickType.Donut:
+                setType = donut[_brick.IsDown ? 1 : 0];
+                break; 
+            case BrickType.Fries:
+                setType = fries[_brick.IsDown ? 1 : 0];
                 break; 
         }
 

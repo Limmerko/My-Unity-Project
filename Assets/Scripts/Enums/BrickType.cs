@@ -12,5 +12,7 @@ public enum BrickType {
     Avocado,
     Strawberry,
     Lollipop,
-    LollipopCandy
+    LollipopCandy,
+    Donut,
+    Fries
 }
