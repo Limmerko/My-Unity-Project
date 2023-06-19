@@ -48,7 +48,7 @@ public class MainScript : MonoBehaviour
         
         if (bricks.Count % 3 != 0)
         {
-            throw new ArgumentException("ОШИБКА!!! Кол-во плиток в уровне не кратно 3. (ЛОХ) " + bricks.Count);
+            throw new ArgumentException("ОШИБКА!!! Кол-во плиток в уровне не кратно 3. " + bricks.Count);
         }
         
         for (int i = 2; i < bricks.Count; i += 3) // Случайное выставление типов
@@ -103,13 +103,13 @@ public class MainScript : MonoBehaviour
         {
             List<List<Brick>> finishBricksByType = allFinishBricks
                 .GroupBy(brick => brick.Type)
-                .Where(bricks => bricks.Count() == 3)
+                .Where(bricks => bricks.Count() >= 3)
                 .Select(group => group.ToList())
                 .ToList();
 
             if (finishBricksByType.Count > 0)
             {
-                finishBricksByType.ForEach(typeBricks => { StartCoroutine(DestroyBricks(typeBricks)); });
+                finishBricksByType.ForEach(typeBricks => { StartCoroutine(DestroyBricks(typeBricks.Take(3).ToList())); });
             }
             else
             {

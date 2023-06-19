@@ -34,7 +34,7 @@ public class LevelCreating : MonoBehaviour
             string xPos = x.ToString().Replace(",", ".") + "f";
             string yPos = y.ToString().Replace(",", ".") + "f";
             
-            result += "new InitialBrick(" + xPos + ", " + yPos + ", " + brick.GetComponent<SpriteRenderer>().sortingOrder + "),\n";
+            result += "new InitialBrick(" + xPos + ", " +  yPos + ", " + brick.GetComponent<SpriteRenderer>().sortingOrder + "),\n";
         }
         
         Debug.Log(result);

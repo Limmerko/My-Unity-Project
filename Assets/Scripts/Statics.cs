@@ -22,6 +22,12 @@ public static class Statics
         Levels.Level10,
         Levels.Level11,
         Levels.Level12,
-        Levels.Level13
+        Levels.Level13,
+        Levels.Level14,
+        Levels.Level15,
+        Levels.Level16,
+        Levels.Level17,
+        Levels.Level18,
+        Levels.Level19
     };
 }
