@@ -32,11 +32,11 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     private SpriteRenderer _sprite;
     private float _sizeFinishBrick;
 
-    public void SetBrick(Brick brick)
+    public void SetBrick(Brick brick, float sizeFinishBrick)
     {
         _brick = brick;
         _sprite = GetComponent<SpriteRenderer>(); 
-        _sizeFinishBrick = BrickUtils.BrickSize(7);
+        _sizeFinishBrick = sizeFinishBrick;
         
         SetSpriteBrick();
         Statics.AllBricks.Add(_brick);

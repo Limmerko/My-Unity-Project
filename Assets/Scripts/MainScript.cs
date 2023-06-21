@@ -12,8 +12,10 @@ using System.Runtime.InteropServices;
 public class MainScript : MonoBehaviour
 {
     [SerializeField] private GameObject brickPrefab;
+    [SerializeField] private GameObject finishPlacePrefab;
 
     private float _brickSize; 
+    private float _sizeFinishBrick; 
     private Random _random = new Random();
         
     private void Start()
@@ -27,7 +29,9 @@ public class MainScript : MonoBehaviour
         Debug.Log("Ширина: " + countBrickWidth);
         
         _brickSize = BrickUtils.BrickSize(countBrickWidth);
+        _sizeFinishBrick = BrickUtils.BrickSize(8);
         
+        InitializeFinishPlace();
         InitializedBricks(level);
         
         BrickUtils.UpdateBricksState();
@@ -89,7 +93,16 @@ public class MainScript : MonoBehaviour
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
         Brick brick = new Brick(brickGameObject, initialBrick.Type, initialBrick.Layer, _brickSize);
         brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
-        brickGameObject.GetComponent<BrickScript>().SetBrick(brick);
+        brickGameObject.GetComponent<BrickScript>().SetBrick(brick, _sizeFinishBrick);
+    }
+
+    /**
+     * Инициализация места для приземления
+     */
+    private void InitializeFinishPlace()
+    {
+        finishPlacePrefab.transform.localScale = new Vector3(_sizeFinishBrick, _sizeFinishBrick, 1);
+        Instantiate(finishPlacePrefab, finishPlacePrefab.transform.position, Quaternion.identity);
     }
     
     /**

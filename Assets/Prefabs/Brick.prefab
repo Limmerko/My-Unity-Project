@@ -143,8 +143,8 @@ MonoBehaviour:
   - {fileID: -1480394933, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
   - {fileID: 1107044883, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
   burger:
-  - {fileID: -1834689494, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
-  - {fileID: -1466158872, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
+  - {fileID: 1901561964, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
+  - {fileID: 24803419, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
   escimo:
   - {fileID: -1538907840, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
   - {fileID: 1886923622, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
