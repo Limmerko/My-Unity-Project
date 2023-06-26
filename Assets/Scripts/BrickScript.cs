@@ -75,7 +75,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             BrickUtils.UpdateBricksPosition();
             // Изменение состояния
             BrickUtils.UpdateBricksState();
-            Vibration.VibrateAndroid(1); // TODO хз как на IOS будет
+            Vibration.VibrateAndroid(1); // TODO хз как на IOS будет (есть метод VibrateIOS)
         }
     }
 

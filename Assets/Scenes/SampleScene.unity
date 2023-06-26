@@ -292,6 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brickPrefab: {fileID: 5150580503333714020, guid: 5299e519416d38249a84e7f199f23ba8, type: 3}
   finishPlacePrefab: {fileID: 4943774237852610970, guid: 8deedaa521a71fc4898522b0f6a53f8c, type: 3}
+  waypointPrefab: {fileID: 7196228537728288824, guid: 7e6bc9e619570634ea10bb26c431d18c, type: 3}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0

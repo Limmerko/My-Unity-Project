@@ -20,7 +20,9 @@ public class Brick
     
     public int Layer { get; set; } // Слой для отображения слайдов
     
-    public float Size { get; set; }
+    public float Size { get; set; } // Размер
+    
+    public bool IsToDestroy { get; set; } // Помечен ли на уничтожение 
 
     public Brick(GameObject gameObject, BrickType type, int layer, float size)
     {
@@ -31,5 +33,6 @@ public class Brick
         IsClickable = true;
         Layer = layer;
         Size = size;
+        IsToDestroy = false;
     }
 }

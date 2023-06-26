@@ -12,7 +12,7 @@ public class BrickUtils
      */
     public static List<Brick> AllFinishBricks()
     {
-        return Statics.AllBricks.Where(brick => brick.IsFinish)
+        return Statics.AllBricks.Where(brick => brick.IsFinish && !brick.IsToDestroy)
             .OrderBy(brick => brick.TargetWaypoint)
             .ToList();;
     }

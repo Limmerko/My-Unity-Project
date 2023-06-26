@@ -11,8 +11,9 @@ using System.Runtime.InteropServices;
 
 public class MainScript : MonoBehaviour
 {
-    [SerializeField] private GameObject brickPrefab;
-    [SerializeField] private GameObject finishPlacePrefab;
+    [SerializeField] private GameObject brickPrefab; // Плитка
+    [SerializeField] private GameObject finishPlacePrefab; // Верхняя и нижняя часть места для приземления 
+    [SerializeField] private GameObject waypointPrefab; // Одна из точек приземления
 
     private float _brickSize; 
     private float _sizeFinishBrick; 
@@ -102,6 +103,8 @@ public class MainScript : MonoBehaviour
     private void InitializeFinishPlace()
     {
         finishPlacePrefab.transform.localScale = new Vector3(_sizeFinishBrick, _sizeFinishBrick, 1);
+        float y = waypointPrefab.transform.position.y + _sizeFinishBrick / 18f;
+        finishPlacePrefab.transform.position = new Vector3(0, y, 0);
         Instantiate(finishPlacePrefab, finishPlacePrefab.transform.position, Quaternion.identity);
     }
     
@@ -139,6 +142,7 @@ public class MainScript : MonoBehaviour
      */
     private IEnumerator DestroyBricks(List<Brick> bricks)
     {
+        bricks.ForEach(brick => brick.IsToDestroy = true);
         yield return new WaitForSeconds(0.1f);
         float timeAnim = 0f;
         bricks.ForEach(brick =>
