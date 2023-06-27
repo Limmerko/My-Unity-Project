@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelCreating : MonoBehaviour
@@ -11,6 +12,7 @@ public class LevelCreating : MonoBehaviour
     {
         CreateLevel();
         // InitializeField();
+        // CheckAllLevelsForDouble();
     }
 
     /**
@@ -61,5 +63,29 @@ public class LevelCreating : MonoBehaviour
         }
         
         Debug.Log(result);
+    }
+
+    private void CheckAllLevelsForDouble()
+    {
+        int i = 0;
+        Statics.AllLevels.ForEach(level =>
+        {
+            i++;
+            List<InitialBrick> bricks = level.GroupBy(brick => new
+                {
+                    brick.X,
+                    brick.Y,
+                    brick.Layer
+                })
+                .Where(g => g.Count() > 1)
+                .Select(g => new InitialBrick(g.Key.X, g.Key.Y, g.Key.Layer))
+                .ToList();
+            if (bricks.Count() > 0)
+            {
+                Debug.Log("В уровне " + i + " есть дубликаты: ");
+                Debug.Log(bricks[0].X + " " + bricks[0].Y + " " + bricks[0].Layer);
+                
+            }
+        });
     }
 }
