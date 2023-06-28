@@ -23,16 +23,19 @@ public class Brick
     public float Size { get; set; } // Размер
     
     public bool IsToDestroy { get; set; } // Помечен ли на уничтожение 
+    
+    public Vector3 TargetPosition { get; set; } // 
 
-    public Brick(GameObject gameObject, BrickType type, int layer, float size)
+    public Brick(GameObject gameObject, BrickType type, int layer, float size, Vector3 targetPosition)
     {
         GameObject = gameObject;
         Type = type;
         IsTouch = false;
         IsFinish = false;
-        IsClickable = true;
+        IsClickable = false;
         Layer = layer;
         Size = size;
         IsToDestroy = false;
+        TargetPosition = targetPosition;
     }
 }

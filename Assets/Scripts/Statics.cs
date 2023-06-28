@@ -8,6 +8,10 @@ public static class Statics
 
     public static bool IsGameOver = false;
 
+    public static Color IsClickableColor = Color.white;
+    
+    public static Color IsNotClickableColor = Color.gray;
+
     public static readonly List<List<InitialBrick>> AllLevels = new() // Список всех уровней
     {
         Levels.Level1,

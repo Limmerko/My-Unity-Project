@@ -16,7 +16,8 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject waypointPrefab; // Одна из точек приземления
 
     private float _brickSize; 
-    private float _sizeFinishBrick; 
+    private float _sizeFinishBrick;
+    private bool _levelStart = false; // Уровень начат или нет
     private Random _random = new Random();
         
     private void Start()
@@ -34,13 +35,22 @@ public class MainScript : MonoBehaviour
         
         InitializeFinishPlace();
         InitializedBricks(level);
-        
-        BrickUtils.UpdateBricksState();
+
+        StartLevel();
     }
     
     private void Update()
     {
         CheckFinishBricks();
+        NextLevel();
+    }
+
+    public void FixedUpdate()
+    {
+        if (!_levelStart)
+        {
+            MoveAllWaypointsOnTargetPosition();
+        }
     }
 
     private void InitializedBricks(List<InitialBrick> level)
@@ -92,9 +102,10 @@ public class MainScript : MonoBehaviour
         float yPos = initialBrick.Y * sizeAdd;
         Vector3 vector3 = new Vector3(xPos, yPos, z); // Z нужен для корректного отображаения спрайтов, иначе они будут накладываться друг на друга
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
-        Brick brick = new Brick(brickGameObject, initialBrick.Type, initialBrick.Layer, _brickSize);
+        Brick brick = new Brick(brickGameObject, initialBrick.Type, initialBrick.Layer, _brickSize, vector3);
         brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
         brickGameObject.GetComponent<BrickScript>().SetBrick(brick, _sizeFinishBrick);
+        brickGameObject.SetActive(false);
     }
 
     /**
@@ -134,6 +145,18 @@ public class MainScript : MonoBehaviour
                     GameOver();
                 }
             }
+        }
+    }
+
+    /**
+     * Переход на следующий уровень
+     */
+    private void NextLevel()
+    {
+        if (BrickUtils.AllNotTouchBricks().Count == 0)
+        {
+            Statics.AllBricks = new List<Brick>();
+            StartCoroutine(RestartLevel());
         }
     }
 
@@ -186,5 +209,86 @@ public class MainScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Statics.IsGameOver = false;
+    }
+
+    /**
+     * Подготовка всех кирпичиков к старту уровня
+     */
+    private void StartLevel()
+    {
+        var groupAllBricks = Statics.AllBricks.GroupBy(brick => brick.Layer)
+            .OrderBy(bricksByLayer => bricksByLayer.Key)
+            .Select(group => group.ToList())
+            .ToList();
+        
+        // Случайное определение места появления слоев 
+        bool isXEven = _random.Next(2) == 1; // (слева или справа)
+        bool isYEven = _random.Next(2) == 1; // (сверху или снизу)
+        groupAllBricks.ForEach(bricks =>
+        {
+            bricks.ForEach(brick =>
+            {
+                var newPosition = new Vector3();
+                if (brick.Layer % 2 == 0)
+                {
+                    newPosition = new Vector3(brick.TargetPosition.x + (isXEven ? 10 : -10), 
+                        brick.TargetPosition.y,
+                        brick.TargetPosition.z);
+                }
+                else
+                {
+                    newPosition = new Vector3(brick.TargetPosition.x, 
+                        brick.TargetPosition.y + (isYEven ? 10 : -10),
+                        brick.TargetPosition.z);
+                }
+                
+                brick.GameObject.transform.position = newPosition;
+                brick.GameObject.GetComponent<SpriteRenderer>().color = Statics.IsNotClickableColor;
+                brick.GameObject.SetActive(true);
+            });
+            // Смена места появления
+            if (bricks[0].Layer % 2 == 0)
+            {
+                isXEven = !isXEven;
+                isYEven = !isYEven;
+            }
+        });
+    }
+
+    /**
+     * Движение кирпичиков на место при старте уровня
+     */
+    private void MoveAllWaypointsOnTargetPosition()
+    {
+        int currentLayer = 0; // Слой, который уже приехал на место
+        
+        var groupAllBricks = Statics.AllBricks.GroupBy(brick => brick.Layer)
+            .OrderBy(bricksByLayer => bricksByLayer.Key)
+            .Select(group => group.ToList())
+            .ToList();
+        
+        groupAllBricks.ForEach(bricks =>
+        {
+            bricks.ForEach(brick =>
+            {
+                if (brick.Layer <= currentLayer)
+                {
+                    MainUtils.MoveToWaypoint(brick.TargetPosition, brick.GameObject, 15f);
+                }
+            });
+            
+            // Если слой почти приехал на место
+            if (bricks.Count(brick => !brick.GameObject.transform.position.Equals(brick.TargetPosition)) <= (bricks.Count / 100 * 30))
+            {
+                currentLayer++;
+            }
+        });
+
+        if (Statics.AllBricks.Count(brick => !brick.GameObject.transform.position.Equals(brick.TargetPosition)) == 0)
+        {
+            Debug.Log("Уровень начат !!!");
+            _levelStart = true;
+            BrickUtils.UpdateBricksState();
+        }
     }
 }

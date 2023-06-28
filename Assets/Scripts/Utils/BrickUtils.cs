@@ -90,6 +90,8 @@ public class BrickUtils
             float brickRadius = brick.Size / 2.1f;
             bool isClickable = true;
             Vector3 brickPos = brick.GameObject.transform.position;
+            SpriteRenderer sprite = brick.GameObject.GetComponent<SpriteRenderer>();
+                
             foreach (var it in bricks.Where(it => it.Layer > brick.Layer))
             {
                 Vector3 itPos = it.GameObject.transform.position;
@@ -103,12 +105,12 @@ public class BrickUtils
 
             if (isClickable)
             {
-                brick.GameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                sprite.color = Statics.IsClickableColor;
                 brick.IsClickable = true;
             }
             else
             {
-                brick.GameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+                sprite.color = Statics.IsNotClickableColor;
                 brick.IsClickable = false;
             }
         });
