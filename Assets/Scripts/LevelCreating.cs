@@ -47,7 +47,7 @@ public class LevelCreating : MonoBehaviour
      */
     private void InitializeField()
     {
-        List<InitialBrick> bricks = Levels.Level7;
+        /*List<InitialBrick> bricks = Levels.Level1_0.Bricks;
         String result = null;
         
         foreach (var brick in bricks)
@@ -62,7 +62,7 @@ public class LevelCreating : MonoBehaviour
             brickGameObject.GetComponent<SpriteRenderer>().sortingOrder = brick.Layer;
         }
         
-        Debug.Log(result);
+        Debug.Log(result);*/
     }
 
     private void CheckAllLevelsForDouble()
@@ -71,7 +71,7 @@ public class LevelCreating : MonoBehaviour
         Statics.AllLevels.ForEach(level =>
         {
             i++;
-            List<InitialBrick> bricks = level.GroupBy(brick => new
+            List<InitialBrick> bricks = level.Bricks.GroupBy(brick => new
                 {
                     brick.X,
                     brick.Y,

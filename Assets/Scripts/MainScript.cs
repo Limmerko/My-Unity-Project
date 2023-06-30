@@ -15,26 +15,29 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject finishPlacePrefab; // Верхняя и нижняя часть места для приземления 
     [SerializeField] private GameObject waypointPrefab; // Одна из точек приземления
 
+    private Level _level;
     private float _brickSize; 
     private float _sizeFinishBrick;
     private bool _levelStart = false; // Уровень начат или нет
     private Random _random = new Random();
-        
+
     private void Start()
     {
         Vibration.Init();
         
-        List<InitialBrick> level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
-        float maxX = level.Aggregate((max, next) => next.X > max.X ? next : max).X;
-        float minX = level.Aggregate((min, next) => next.X < min.X ? next : min).X;
+        _level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
+        float maxX = _level.Bricks.Aggregate((max, next) => next.X > max.X ? next : max).X;
+        float minX = _level.Bricks.Aggregate((min, next) => next.X < min.X ? next : min).X;
         int countBrickWidth = (int) (maxX - minX) + 1;
         Debug.Log("Ширина: " + countBrickWidth);
+        
+        Debug.Log("Всего уровней : " + Statics.AllLevels.Count);
         
         _brickSize = BrickUtils.BrickSize(countBrickWidth);
         _sizeFinishBrick = BrickUtils.BrickSize(8);
         
         InitializeFinishPlace();
-        InitializedBricks(level);
+        InitializedBricks();
 
         StartLevel();
     }
@@ -53,14 +56,23 @@ public class MainScript : MonoBehaviour
         }
     }
 
-    private void InitializedBricks(List<InitialBrick> level)
+    private void InitializedBricks()
     {
-        List<InitialBrick> bricks = level;
+        List<InitialBrick> bricks = _level.Bricks;
+        Debug.Log("Кол-во кирпичиков : " + bricks.Count());
+
 
         MainUtils.MixList(bricks); // Перемешивание плиток
 
-        List<BrickType> types = new List<BrickType>();
+        List<BrickType> limitedTypes = Enum.GetValues(typeof(BrickType)).Cast<BrickType>()
+            .OrderBy(x => _random.Next())
+            .Take(_level.CountTypes)
+            .ToList();
+
+        Debug.Log("Кол-во типов : " + limitedTypes.Count());
         
+        List<BrickType> types = new List<BrickType>(limitedTypes);
+       
         if (bricks.Count % 3 != 0)
         {
             throw new ArgumentException("ОШИБКА!!! Кол-во плиток в уровне не кратно 3. " + bricks.Count);
@@ -70,7 +82,7 @@ public class MainScript : MonoBehaviour
         {
             if (types.Count == 0)
             {
-                types = Enum.GetValues(typeof(BrickType)).Cast<BrickType>().ToList();
+                types = new List<BrickType>(limitedTypes);
             }
             BrickType type = types[_random.Next(types.Count)];
             types.Remove(type);
@@ -153,7 +165,7 @@ public class MainScript : MonoBehaviour
      */
     private void NextLevel()
     {
-        if (BrickUtils.AllNotTouchBricks().Count == 0)
+        if (Statics.AllBricks.Count == 0)
         {
             Statics.AllBricks = new List<Brick>();
             StartCoroutine(RestartLevel());
