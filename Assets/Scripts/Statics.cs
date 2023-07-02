@@ -49,6 +49,11 @@ public static class Statics
         new Level(Levels.Level17, 14),
         new Level(Levels.Level18, 10),
         new Level(Levels.Level19, 11),
-        new Level(Levels.Level19, 16)
+        new Level(Levels.Level19, 16),
+        new Level(Levels.Level20, 10),
+        new Level(Levels.Level21, 10),
+        new Level(Levels.Level21, 16),
+        new Level(Levels.Level22, 8),
+        new Level(Levels.Level22, 16),
     };
 }
