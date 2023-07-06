@@ -16,5 +16,8 @@ public enum BrickType {
     Donut,
     Fries,
     Muffin,
-    Cake
+    Cake,
+    Cookie,
+    Coffee,
+    SandwichWithEggs
 }

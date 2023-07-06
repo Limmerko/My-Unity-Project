@@ -14,7 +14,7 @@ public static class Statics
 
     public static readonly List<Level> AllLevels = new() // Список всех уровней
     {
-        new Level(Levels.Level1, 4),
+        new Level(Levels.Level1, 5),
         new Level(Levels.Level1, 11),
         new Level(Levels.Level2, 8),
         new Level(Levels.Level2, 15), 
@@ -55,5 +55,7 @@ public static class Statics
         new Level(Levels.Level21, 16),
         new Level(Levels.Level22, 8),
         new Level(Levels.Level22, 16),
+        new Level(Levels.Level23, 8),
+        new Level(Levels.Level23, 12),
     };
 }
