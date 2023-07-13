@@ -48,7 +48,7 @@ public class MainScript : MonoBehaviour
         NextLevel();
     }
 
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
         if (!_levelStart)
         {

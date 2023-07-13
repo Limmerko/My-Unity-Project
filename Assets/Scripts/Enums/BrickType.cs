@@ -19,5 +19,6 @@ public enum BrickType {
     Cake,
     Cookie,
     Coffee,
-    SandwichWithEggs
+    SandwichWithEggs,
+    CupOfCoffee
 }

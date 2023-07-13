@@ -32,6 +32,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private Sprite[] cookie;
     [SerializeField] private Sprite[] coffee;
     [SerializeField] private Sprite[] sandwichWithEggs;
+    [SerializeField] private Sprite[] cupOfCoffee;
 
     private Brick _brick;
     private SpriteRenderer _sprite;
@@ -96,7 +97,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     }
     
     /**
-     * После нажатия курсор уходит от кирпичика
+     * Курсор уходит от кирпичика
      */
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -171,6 +172,9 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
                 break;
             case BrickType.SandwichWithEggs:
                 setType = sandwichWithEggs[_brick.IsDown ? 1 : 0];
+                break;
+            case BrickType.CupOfCoffee:
+                setType = cupOfCoffee[_brick.IsDown ? 1 : 0];
                 break;
         }
 

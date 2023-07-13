@@ -193,6 +193,9 @@ MonoBehaviour:
   sandwichWithEggs:
   - {fileID: 927745894, guid: 93a54a95a452ceb4d97e7944ec178b45, type: 3}
   - {fileID: -1302805916, guid: 93a54a95a452ceb4d97e7944ec178b45, type: 3}
+  cupOfCoffee:
+  - {fileID: -693735180, guid: eec9902a0fd59784bb07f791a8150778, type: 3}
+  - {fileID: 1536778187, guid: eec9902a0fd59784bb07f791a8150778, type: 3}
 --- !u!111 &3153343701767512400
 Animation:
   m_ObjectHideFlags: 0
