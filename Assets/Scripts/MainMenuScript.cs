@@ -7,21 +7,22 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ButtonRandomLevel : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
+public class MainMenuScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
 {
-    [SerializeField] private Sprite[] sprites;
+    [SerializeField] private GameObject buttonPrefab;
+    [SerializeField] private Sprite[] sprites; // Спрайты (0 - ненажатый, 1 - нажатый)
     [SerializeField] private TextMeshProUGUI textMeshUp; // Текст при ненажатой кнопки
     [SerializeField] private TextMeshProUGUI textMeshDown; // Текст при нажатой кнопки (Используется только его позиция)
     
-    private Image _image;
-    private Transform _textTransform;
+    private Image _image; // Компонент для смены спрайтов
+    private Transform _textTransform; // Позиция текста
     
-    private Vector3 _upPosition; // Позиция текста когда кнопка не нажата 
-    private Vector3 _downPosition; // Позиция текста когда кнопка нажата
+    private Vector3 _upPosition; // Позиция текста, когда кнопка не нажата 
+    private Vector3 _downPosition; // Позиция текста, когда кнопка нажата
 
     private void Start()
     {
-        _image = gameObject.GetComponent<Image>();
+        _image = buttonPrefab.GetComponent<Image>();
         _textTransform = textMeshUp.transform;
         _upPosition = _textTransform.localPosition;
         _downPosition = textMeshDown.transform.localPosition;
