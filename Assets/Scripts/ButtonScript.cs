@@ -7,12 +7,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
+public class ButtonScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
 {
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private Sprite[] sprites; // Спрайты (0 - ненажатый, 1 - нажатый)
     [SerializeField] private TextMeshProUGUI textMeshUp; // Текст при ненажатой кнопки
     [SerializeField] private TextMeshProUGUI textMeshDown; // Текст при нажатой кнопки (Используется только его позиция)
+    [SerializeField] private String methodOnClick; // Название метода, который должен вызваться при нажатии на кнопку
+    [SerializeField] private GameObject pausePanel;
     
     private Image _image; // Компонент для смены спрайтов
     private Transform _textTransform; // Позиция текста
@@ -26,6 +28,7 @@ public class MainMenuScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
         _textTransform = textMeshUp.transform;
         _upPosition = _textTransform.localPosition;
         _downPosition = textMeshDown.transform.localPosition;
+        pausePanel.SetActive(false);
     }
 
     /**
@@ -35,7 +38,8 @@ public class MainMenuScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
     {
         _textTransform.localPosition = new Vector3(_upPosition.x, _upPosition.y, 0);
         _image.sprite = sprites[0];
-        StartCoroutine(RunRandomLevel());
+        // StartCoroutine(RunRandomLevel());
+        StartCoroutine(methodOnClick);
     }
 
     /**
@@ -63,5 +67,24 @@ public class MainMenuScript : MonoBehaviour, IPointerClickHandler, IPointerDownH
     {
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    /**
+     * Нажатие на кнопку "Пауза"
+     */
+    private void Pause()
+    {
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+        
+    }
+    
+    /**
+     * Нажатие на кнопку "Продолжить" в меню паузы
+     */
+    private void Continue()
+    {
+        Time.timeScale = 1;
+        pausePanel.SetActive(false);
     }
 }

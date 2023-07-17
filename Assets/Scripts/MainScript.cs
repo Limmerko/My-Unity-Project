@@ -14,6 +14,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject brickPrefab; // Плитка
     [SerializeField] private GameObject finishPlacePrefab; // Верхняя и нижняя часть места для приземления 
     [SerializeField] private GameObject waypointPrefab; // Одна из точек приземления
+    [SerializeField] private Canvas canvas;
 
     private Level _level;
     private float _brickSize; 
@@ -114,6 +115,7 @@ public class MainScript : MonoBehaviour
         float yPos = initialBrick.Y * sizeAdd;
         Vector3 vector3 = new Vector3(xPos, yPos, z); // Z нужен для корректного отображаения спрайтов, иначе они будут накладываться друг на друга
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
+        // brickGameObject.transform.SetParent(canvas.transform);
         Brick brick = new Brick(brickGameObject, initialBrick.Type, initialBrick.Layer, _brickSize, vector3);
         brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
         brickGameObject.GetComponent<BrickScript>().SetBrick(brick, _sizeFinishBrick);
