@@ -22,9 +22,11 @@ public class MainScript : MonoBehaviour
     private bool _levelStart = false; // Уровень начат или нет
     private Random _random = new Random();
 
-    private void Start()
+    private void Start()    
     {
         Vibration.Init();
+        Time.timeScale = 1;
+        Statics.AllBricks = new List<Brick>();
         
         _level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
         float maxX = _level.Bricks.Aggregate((max, next) => next.X > max.X ? next : max).X;
