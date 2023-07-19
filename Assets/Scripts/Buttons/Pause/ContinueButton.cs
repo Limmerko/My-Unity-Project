@@ -1,14 +1,14 @@
 using UnityEngine;
 
-namespace Buttons
+namespace Buttons.Pause
 {
     /**
     * Кнопка "Продолжить" в меню паузы
     */
     public class ContinueButton : CommonButton
     {
-        [SerializeField] private GameObject pausePanel; // Панель паузы
-
+        [SerializeField] protected GameObject pausePanel; // Панель паузы
+        
         protected override void StartProcess()
         {
             // empty

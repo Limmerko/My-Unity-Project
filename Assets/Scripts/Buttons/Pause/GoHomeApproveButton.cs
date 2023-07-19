@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Buttons
+namespace Buttons.Pause
 {
     /**
-     * Кнопка "Возвращение на главный экран"
+     * Кнопка "Выйти" на экране подтверждения закрытия уровня
      */
-    public class GoHomeButton : CommonButton
+    public class GoHomeApproveButton : CommonButton
     {
         protected override void StartProcess()
         {
             // empty
         }
-    
+        
         /**
-        * Возвращение на главный экран
+        * Подтвержение возвращения на главный экран
         */
         protected override void Process()
         {

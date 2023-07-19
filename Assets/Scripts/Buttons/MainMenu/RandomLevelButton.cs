@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Buttons
+namespace Buttons.MainMenu
 {
     /*
     * Кнопка "Случайный" на главном экране
