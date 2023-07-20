@@ -7,10 +7,10 @@ namespace Buttons.Pause
     */
     public class PauseButton : CommonButton
     {
-        [SerializeField] private GameObject pausePanel; // Панель паузы
-        [SerializeField] private GameObject forkPausePanel; // Панель паузы
+        [SerializeField] private GameObject pausePanel; // Основная панель паузы
+        [SerializeField] private GameObject forkPausePanel; // Внутрення панель паузы
         [SerializeField] private GameObject goHomePanel; // Панель "Покинуть уровень"
-        
+
         protected override void StartProcess()
         {
             pausePanel.SetActive(false);

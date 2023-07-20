@@ -14,7 +14,8 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject brickPrefab; // Плитка
     [SerializeField] private GameObject finishPlacePrefab; // Верхняя и нижняя часть места для приземления 
     [SerializeField] private GameObject waypointPrefab; // Одна из точек приземления
-    [SerializeField] private Canvas canvas;
+    [SerializeField] private GameObject gameOverPanel; // Основная панель окончания игры
+    [SerializeField] private GameObject losePanel; // Внутрення панель окончания игры
 
     private Level _level;
     private float _brickSize; 
@@ -22,12 +23,18 @@ public class MainScript : MonoBehaviour
     private bool _levelStart = false; // Уровень начат или нет
     private Random _random = new Random();
 
-    private void Start()    
+    private void Awake()
     {
         Vibration.Init();
         Time.timeScale = 1;
         Statics.AllBricks = new List<Brick>();
-        
+        gameOverPanel.SetActive(false);
+        losePanel.SetActive(false);
+        Statics.IsGameOver = false;
+    }
+
+    private void Start()    
+    {
         _level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
         float maxX = _level.Bricks.Aggregate((max, next) => next.X > max.X ? next : max).X;
         float minX = _level.Bricks.Aggregate((min, next) => next.X < min.X ? next : min).X;
@@ -213,8 +220,11 @@ public class MainScript : MonoBehaviour
     {
         Debug.Log("Конец игры");
         Statics.AllBricks = new List<Brick>();
-        StartCoroutine(RestartLevel());
+        // StartCoroutine(RestartLevel());
         Statics.IsGameOver = true;
+        Time.timeScale = 0;
+        gameOverPanel.SetActive(true);
+        losePanel.SetActive(true);
     }
     
     /**

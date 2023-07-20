@@ -9,7 +9,7 @@ namespace Buttons.Pause
     {
         [SerializeField] private GameObject forkPausePanel; // Панель паузы
         [SerializeField] private GameObject goHomePanel; // Панель "Покинуть уровень"
-        
+
         protected override void StartProcess()
         {
             // empty
