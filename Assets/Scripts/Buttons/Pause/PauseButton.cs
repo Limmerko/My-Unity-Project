@@ -10,12 +10,16 @@ namespace Buttons.Pause
         [SerializeField] private GameObject pausePanel; // Основная панель паузы
         [SerializeField] private GameObject forkPausePanel; // Внутрення панель паузы
         [SerializeField] private GameObject goHomePanel; // Панель "Покинуть уровень"
+        [SerializeField] private GameObject losePanel;
+        [SerializeField] private GameObject nextLevel;
 
         protected override void StartProcess()
         {
             pausePanel.SetActive(false);
             forkPausePanel.SetActive(false);
             goHomePanel.SetActive(false);
+            losePanel.SetActive(false);
+            nextLevel.SetActive(false);
         }
     
         /**

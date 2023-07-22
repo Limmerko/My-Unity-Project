@@ -14,9 +14,8 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject brickPrefab; // Плитка
     [SerializeField] private GameObject finishPlacePrefab; // Верхняя и нижняя часть места для приземления 
     [SerializeField] private GameObject waypointPrefab; // Одна из точек приземления
-    [SerializeField] private GameObject gameOverPanel; // Основная панель окончания игры
+    [SerializeField] private GameObject backgroundPanel; // Фон на всех панелях
     [SerializeField] private GameObject losePanel; // Внутрення панель окончания игры
-    [SerializeField] private GameObject victoryPanel; // Основная панель победы в игре
     [SerializeField] private GameObject nextLevelPanel; // Панель перехода на следующий уровень
 
     private Level _level;
@@ -30,9 +29,8 @@ public class MainScript : MonoBehaviour
         Vibration.Init();
         Time.timeScale = 1;
         Statics.AllBricks = new List<Brick>();
-        gameOverPanel.SetActive(false);
+        backgroundPanel.SetActive(false);
         losePanel.SetActive(false);
-        victoryPanel.SetActive(false);
         nextLevelPanel.SetActive(false);
         Statics.IsGameOver = false;
     }
@@ -180,12 +178,10 @@ public class MainScript : MonoBehaviour
      */
     private void NextLevel()
     {
-        if (Statics.AllBricks.Count == 0)
+        if (Statics.AllBricks.Count == 0 && !nextLevelPanel.activeSelf)
         {
-            victoryPanel.SetActive(true);
+            backgroundPanel.SetActive(true);
             nextLevelPanel.SetActive(true);
-            // Statics.AllBricks = new List<Brick>();
-            // StartCoroutine(RestartLevel());
         }
     }
 
@@ -224,23 +220,14 @@ public class MainScript : MonoBehaviour
      */
     private void GameOver()
     {
-        Debug.Log("Конец игры");
-        // Statics.AllBricks = new List<Brick>();
-        // StartCoroutine(RestartLevel());
-        Statics.IsGameOver = true;
-        Time.timeScale = 0;
-        gameOverPanel.SetActive(true);
-        losePanel.SetActive(true);
-    }
-    
-    /**
-     * Перезапуск сцены
-     */
-    private IEnumerator RestartLevel()
-    {
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Statics.IsGameOver = false;
+        if (!losePanel.activeSelf)
+        {
+            Debug.Log("Конец игры");
+            Statics.IsGameOver = true;
+            Time.timeScale = 0;
+            backgroundPanel.SetActive(true);
+            losePanel.SetActive(true);
+        }
     }
 
     /**
