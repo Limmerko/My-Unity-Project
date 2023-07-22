@@ -16,6 +16,8 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject waypointPrefab; // Одна из точек приземления
     [SerializeField] private GameObject gameOverPanel; // Основная панель окончания игры
     [SerializeField] private GameObject losePanel; // Внутрення панель окончания игры
+    [SerializeField] private GameObject victoryPanel; // Основная панель победы в игре
+    [SerializeField] private GameObject nextLevelPanel; // Панель перехода на следующий уровень
 
     private Level _level;
     private float _brickSize; 
@@ -30,6 +32,8 @@ public class MainScript : MonoBehaviour
         Statics.AllBricks = new List<Brick>();
         gameOverPanel.SetActive(false);
         losePanel.SetActive(false);
+        victoryPanel.SetActive(false);
+        nextLevelPanel.SetActive(false);
         Statics.IsGameOver = false;
     }
 
@@ -178,8 +182,10 @@ public class MainScript : MonoBehaviour
     {
         if (Statics.AllBricks.Count == 0)
         {
-            Statics.AllBricks = new List<Brick>();
-            StartCoroutine(RestartLevel());
+            victoryPanel.SetActive(true);
+            nextLevelPanel.SetActive(true);
+            // Statics.AllBricks = new List<Brick>();
+            // StartCoroutine(RestartLevel());
         }
     }
 
@@ -219,7 +225,7 @@ public class MainScript : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("Конец игры");
-        Statics.AllBricks = new List<Brick>();
+        // Statics.AllBricks = new List<Brick>();
         // StartCoroutine(RestartLevel());
         Statics.IsGameOver = true;
         Time.timeScale = 0;
