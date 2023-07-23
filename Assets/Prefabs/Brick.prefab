@@ -127,14 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 20
   sizeSpeed: 5
-  waypointsPrefabs:
-  - {fileID: 7196228537728288824, guid: 7e6bc9e619570634ea10bb26c431d18c, type: 3}
-  - {fileID: 4991787025587982864, guid: 992bbbbfe90161b47bdf0057a8fd6d47, type: 3}
-  - {fileID: 3622143869539534173, guid: 46a5ace99b82f474c9b435eeb9cb7687, type: 3}
-  - {fileID: 4564933281092899413, guid: 45e435eaf8a2e464ca389aa911ba4172, type: 3}
-  - {fileID: 3077636696269743160, guid: e518e4527889fbf4fa3208b005f6b90b, type: 3}
-  - {fileID: 1739504681675207509, guid: e0a72459fc673724c849f415749bae1b, type: 3}
-  - {fileID: 2480845413543963116, guid: e18912553a5cfb94a9fec4b8f817928e, type: 3}
+  waypointPrefab: {fileID: 2337300332848548756, guid: b77eeec17ab23a34bbc05b7ea4cc3c58, type: 3}
   anim: {fileID: 3153343701767512400}
   iceCream:
   - {fileID: -1974131188, guid: 65a878f2d92f3e64caf3d0094d6dcfdf, type: 3}

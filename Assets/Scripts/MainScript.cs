@@ -17,6 +17,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject backgroundPanel; // Фон на всех панелях
     [SerializeField] private GameObject losePanel; // Внутрення панель окончания игры
     [SerializeField] private GameObject nextLevelPanel; // Панель перехода на следующий уровень
+    [SerializeField] private GameObject canvas;
 
     private Level _level;
     private float _brickSize; 
@@ -126,7 +127,6 @@ public class MainScript : MonoBehaviour
         float yPos = initialBrick.Y * sizeAdd;
         Vector3 vector3 = new Vector3(xPos, yPos, z); // Z нужен для корректного отображаения спрайтов, иначе они будут накладываться друг на друга
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
-        // brickGameObject.transform.SetParent(canvas.transform);
         Brick brick = new Brick(brickGameObject, initialBrick.Type, initialBrick.Layer, _brickSize, vector3);
         brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
         brickGameObject.GetComponent<BrickScript>().SetBrick(brick, _sizeFinishBrick);
@@ -138,10 +138,17 @@ public class MainScript : MonoBehaviour
      */
     private void InitializeFinishPlace()
     {
-        finishPlacePrefab.transform.localScale = new Vector3(_sizeFinishBrick, _sizeFinishBrick, 1);
-        float y = waypointPrefab.transform.position.y + _sizeFinishBrick / 18f;
-        finishPlacePrefab.transform.position = new Vector3(0, y, 0);
-        Instantiate(finishPlacePrefab, finishPlacePrefab.transform.position, Quaternion.identity);
+        // float y = waypointPrefab.transform.position.y + _sizeFinishBrick / 18f;
+        float y = waypointPrefab.transform.position.y;
+        GameObject finishPlace = Instantiate(finishPlacePrefab, finishPlacePrefab.transform.position, Quaternion.identity);
+        finishPlace.transform.localScale = new Vector3(_sizeFinishBrick, _sizeFinishBrick, 1);
+        finishPlace.transform.SetParent(canvas.transform);
+        finishPlace.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, y);
+        // TODO КОСТЫЛИЩЕ !!!
+        y = y - Camera.main.ScreenToWorldPoint(waypointPrefab.GetComponent<RectTransform>().transform.position).y -
+            Camera.main.ScreenToWorldPoint(finishPlace.GetComponent<RectTransform>().transform.position).y +
+            _sizeFinishBrick;
+        finishPlace.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, y);
     }
     
     /**

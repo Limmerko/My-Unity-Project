@@ -10,7 +10,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 { 
     [SerializeField] private float moveSpeed = 20f; // Prefab. Скорость движения
     [SerializeField] private float sizeSpeed = 5f; // Prefab. Скорость изменения размера
-    [SerializeField] private GameObject[] waypointsPrefabs; // Prefab. Список всех waypoint'ов
+    [SerializeField] private GameObject waypointPrefab; // Prefab. Центральный waypoint
     [SerializeField] private Animation anim; // Анимация исчезнование
     
     [SerializeField] private Sprite[] iceCream;
@@ -37,6 +37,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     private Brick _brick;
     private SpriteRenderer _sprite;
     private float _sizeFinishBrick;
+    private List<Vector3> _waypointsPrefabs = new(); // Prefab. Список всех waypoint'ов
 
     public void SetBrick(Brick brick, float sizeFinishBrick)
     {
@@ -187,13 +188,14 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     private void SetPositionWaypoints()
     {
         float sizeAdd = _sizeFinishBrick / 2;
-        waypointsPrefabs[0].transform.position = new Vector3(-3 * sizeAdd, waypointsPrefabs[0].transform.position.y, 0);
-        waypointsPrefabs[1].transform.position = new Vector3(-2 * sizeAdd, waypointsPrefabs[1].transform.position.y, 0);
-        waypointsPrefabs[2].transform.position = new Vector3(-1 * sizeAdd, waypointsPrefabs[2].transform.position.y, 0);
-        waypointsPrefabs[3].transform.position = new Vector3(0, waypointsPrefabs[3].transform.position.y, 0);
-        waypointsPrefabs[4].transform.position = new Vector3(1 * sizeAdd, waypointsPrefabs[4].transform.position.y, 0);
-        waypointsPrefabs[5].transform.position = new Vector3(2 * sizeAdd, waypointsPrefabs[5].transform.position.y, 0);
-        waypointsPrefabs[6].transform.position = new Vector3(3 * sizeAdd, waypointsPrefabs[6].transform.position.y, 0);
+        float y = Camera.main.ScreenToWorldPoint(waypointPrefab.GetComponent<RectTransform>().transform.position).y;
+        _waypointsPrefabs.Add(new Vector3(-3 * sizeAdd, y, 0));
+        _waypointsPrefabs.Add(new Vector3(-2 * sizeAdd, y, 0));
+        _waypointsPrefabs.Add(new Vector3(-1 * sizeAdd, y, 0));
+        _waypointsPrefabs.Add(new Vector3(-0 * sizeAdd, y, 0));
+        _waypointsPrefabs.Add(new Vector3(1 * sizeAdd, y, 0));
+        _waypointsPrefabs.Add(new Vector3(2 * sizeAdd, y, 0));
+        _waypointsPrefabs.Add(new Vector3(3 * sizeAdd, y, 0));
     }
 
     /**
@@ -201,9 +203,9 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
      */
     private void moveBrickOnWaypoint()
     {
-        if (_brick.TargetWaypoint < waypointsPrefabs.Length)
+        if (_brick.TargetWaypoint < _waypointsPrefabs.Count)
         {
-            Vector3 target = waypointsPrefabs[_brick.TargetWaypoint].transform.position;
+            Vector3 target = _waypointsPrefabs[_brick.TargetWaypoint];
             Vector3 brickPosition = _brick.GameObject.transform.position;
             float distance = Vector3.Distance(target, brickPosition);
             target.z = brickPosition.z;
