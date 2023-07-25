@@ -1,30 +1,28 @@
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Buttons.MainMenu
 {
-    /*
-    * Кнопка "Случайный" на главном экране
-    */
-    public class RandomLevelButton : CommonButton
+    public class RunLevelButton : CommonButton
     {
         protected override void StartProcess()
         {
             // empty
         }
-    
+        
         protected override void Process()
         {
-            StartCoroutine(RunRandomLevel());
+            StartCoroutine(RunLevel());
         }
-    
+        
         /**
-        * Запуск случайного уровня
+        * Запуск Следующего уровня
         */
-        private IEnumerator RunRandomLevel()
+        private IEnumerator RunLevel()
         {
-            PlayerPrefs.SetString("LevelType", "Random");
+            PlayerPrefs.SetString("LevelType", "Next");
             PlayerPrefs.Save();
             
             yield return new WaitForSeconds(0.5f);

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Buttons.MainMenu
+namespace Buttons.Pause
 {
     /**
      * Кнопка "Следующий уровень"
@@ -24,6 +24,10 @@ namespace Buttons.MainMenu
         */
         private IEnumerator RunNextLevel()
         {
+            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+            PlayerPrefs.SetString("LevelType", "Next");
+            PlayerPrefs.Save();
+            
             yield return new WaitForSeconds(0.5f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

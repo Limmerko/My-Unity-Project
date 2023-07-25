@@ -38,17 +38,7 @@ public class MainScript : MonoBehaviour
 
     private void Start()    
     {
-        _level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
-        float maxX = _level.Bricks.Aggregate((max, next) => next.X > max.X ? next : max).X;
-        float minX = _level.Bricks.Aggregate((min, next) => next.X < min.X ? next : min).X;
-        int countBrickWidth = (int) (maxX - minX) + 1;
-        Debug.Log("Ширина: " + countBrickWidth);
-        
-        Debug.Log("Всего уровней : " + Statics.AllLevels.Count);
-        
-        _brickSize = BrickUtils.BrickSize(countBrickWidth);
-        _sizeFinishBrick = BrickUtils.BrickSize(8);
-        
+        DefineLevel();
         InitializeFinishPlace();
         InitializedBricks();
 
@@ -69,6 +59,37 @@ public class MainScript : MonoBehaviour
         }
     }
 
+    /**
+     * Определение уровня
+     */
+    private void DefineLevel()
+    {
+        if ("Next".Equals(PlayerPrefs.GetString("LevelType", "Random")))
+        {
+            int levelPref = PlayerPrefs.GetInt("Level", 0);
+            Debug.Log("Выбран уровень № " + levelPref);
+            _level = Statics.AllLevels[levelPref];
+        }
+        else
+        {
+            Debug.Log("Выбран случайный уровень");
+            _level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
+        }
+
+        float maxX = _level.Bricks.Aggregate((max, next) => next.X > max.X ? next : max).X;
+        float minX = _level.Bricks.Aggregate((min, next) => next.X < min.X ? next : min).X;
+        int countBrickWidth = (int) (maxX - minX) + 1;
+        Debug.Log("Ширина: " + countBrickWidth);
+        
+        Debug.Log("Всего уровней : " + Statics.AllLevels.Count);
+        
+        _brickSize = BrickUtils.BrickSize(countBrickWidth);
+        _sizeFinishBrick = BrickUtils.BrickSize(8);
+    }
+
+    /**
+     * Инициализация плиток
+     */
     private void InitializedBricks()
     {
         List<InitialBrick> bricks = _level.Bricks;
@@ -138,7 +159,6 @@ public class MainScript : MonoBehaviour
      */
     private void InitializeFinishPlace()
     {
-        // float y = waypointPrefab.transform.position.y + _sizeFinishBrick / 18f;
         float y = waypointPrefab.transform.position.y;
         GameObject finishPlace = Instantiate(finishPlacePrefab, finishPlacePrefab.transform.position, Quaternion.identity);
         finishPlace.transform.localScale = new Vector3(_sizeFinishBrick, _sizeFinishBrick, 1);
