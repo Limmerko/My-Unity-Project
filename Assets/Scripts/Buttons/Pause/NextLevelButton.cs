@@ -24,7 +24,6 @@ namespace Buttons.Pause
         */
         private IEnumerator RunNextLevel()
         {
-            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
             PlayerPrefs.SetString("LevelType", "Next");
             PlayerPrefs.Save();
             

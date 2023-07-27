@@ -207,6 +207,7 @@ public class MainScript : MonoBehaviour
     {
         if (Statics.AllBricks.Count == 0 && !nextLevelPanel.activeSelf)
         {
+            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
             backgroundPanel.SetActive(true);
             nextLevelPanel.SetActive(true);
         }
