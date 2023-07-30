@@ -8,23 +8,23 @@ namespace Buttons
     public abstract class CommonButton : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
     {
         [SerializeField] private Sprite[] sprites; // Спрайты (0 - ненажатый, 1 - нажатый)
-        [SerializeField] private TextMeshProUGUI textMeshUp; // Текст при ненажатой кнопки
+        [SerializeField] private GameObject iconUp; // Иконка или текст  при ненажатой кнопки
 
         [SerializeField]
-        private TextMeshProUGUI textMeshDown; // Текст при нажатой кнопки (Используется только его позиция)
+        private GameObject iconDown; // Иконка или текст при нажатой кнопки (Используется только его позиция)
 
         private Image _image; // Компонент для смены спрайтов
-        private Transform _textTransform; // Позиция текста
+        private Transform _iconTransform; // Позиция иконки или текста
 
-        private Vector3 _upPosition; // Позиция текста, когда кнопка не нажата 
-        private Vector3 _downPosition; // Позиция текста, когда кнопка нажата
+        private Vector3 _upPosition; // Позиция иконки или текста, когда кнопка не нажата 
+        private Vector3 _downPosition; // Позиция иконки или текста, когда кнопка нажата
 
         protected void Start()
         {
             _image = gameObject.GetComponent<Image>();
-            _textTransform = textMeshUp.transform;
-            _upPosition = _textTransform.localPosition;
-            _downPosition = textMeshDown.transform.localPosition;
+            _iconTransform = iconUp.transform;
+            _upPosition = _iconTransform.localPosition;
+            _downPosition = iconDown.transform.localPosition;
             StartProcess();
         }
 
@@ -33,7 +33,7 @@ namespace Buttons
         */
         public void OnPointerClick(PointerEventData eventData)
         {
-            _textTransform.localPosition = new Vector3(_upPosition.x, _upPosition.y, 0);
+            _iconTransform.localPosition = new Vector3(_upPosition.x, _upPosition.y, 0);
             _image.sprite = sprites[0];
             Process();
         }
@@ -43,7 +43,7 @@ namespace Buttons
         */
         public void OnPointerDown(PointerEventData eventData)
         {
-            _textTransform.localPosition = new Vector3(_downPosition.x, _downPosition.y, 0);
+            _iconTransform.localPosition = new Vector3(_downPosition.x, _downPosition.y, 0);
             _image.sprite = sprites[1];
         }
 
@@ -52,7 +52,7 @@ namespace Buttons
         */
         public void OnPointerExit(PointerEventData eventData)
         {
-            _textTransform.localPosition = new Vector3(_upPosition.x, _upPosition.y, 0);
+            _iconTransform.localPosition = new Vector3(_upPosition.x, _upPosition.y, 0);
             _image.sprite = sprites[0];
         }
 
