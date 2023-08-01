@@ -11,7 +11,7 @@ public static class Statics
     public static Color IsClickableColor = Color.white;
     
     public static Color IsNotClickableColor = Color.gray;
-
+    
     public static readonly List<Level> AllLevels = new() // Список всех уровней
     {
         new Level(Levels.Level1, 5),

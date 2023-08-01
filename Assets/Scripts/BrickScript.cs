@@ -65,6 +65,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             }
         }
         SetSpriteBrick();
+        SwipeBrick();
     }
 
     /**
@@ -225,12 +226,34 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         }
     }
 
+    /**
+     * Изменение размера кирпичика
+     */
     private void ChangeSizeBrick(float size)
     {
         Vector3 target = new Vector3(size, size, 0);
         if (Vector3.Distance(target, _brick.GameObject.transform.localScale) >= 0.001f)
         {
             MainUtils.ChangeSize(target, _brick.GameObject, sizeSpeed);
+        }
+    }
+
+    /**
+     * Изменение состояния и положение кирпичика при нажатии на подсказку "Перемешать"
+     */
+    private void SwipeBrick()
+    {
+        if (_brick.IsSwipe)
+        {
+            if (_brick.TargetPosition != _brick.GameObject.transform.position)
+            {
+                MainUtils.MoveToWaypoint(_brick.TargetPosition, _brick.GameObject, 5f);
+                _brick.GameObject.GetComponent<SpriteRenderer>().sortingOrder = _brick.Layer;
+            }
+            else
+            {
+                _brick.IsSwipe = false;
+            }
         }
     }
 

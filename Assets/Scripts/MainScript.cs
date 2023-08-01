@@ -47,8 +47,13 @@ public class MainScript : MonoBehaviour
     
     private void Update()
     {
-        CheckFinishBricks();
-        NextLevel();
+        // TODO сделать кнопки с подсказками недоступными пока уровень не начался
+        if (_levelStart)
+        {
+            CheckFinishBricks();
+            CheckNextLevel();
+            CheckBrickState();
+        }
     }
 
     private void FixedUpdate()
@@ -203,7 +208,7 @@ public class MainScript : MonoBehaviour
     /**
      * Переход на следующий уровень
      */
-    private void NextLevel()
+    private void CheckNextLevel()
     {
         if (Statics.AllBricks.Count == 0 && !nextLevelPanel.activeSelf)
         {
@@ -337,5 +342,13 @@ public class MainScript : MonoBehaviour
             _levelStart = true;
             BrickUtils.UpdateBricksState();
         }
+    }
+
+    private void CheckBrickState()
+    {
+        if (!BrickUtils.IsSwipingNow())
+        {
+            BrickUtils.UpdateBricksState();
+        };
     }
 }

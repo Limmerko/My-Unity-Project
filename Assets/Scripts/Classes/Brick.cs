@@ -24,7 +24,9 @@ public class Brick
     
     public bool IsToDestroy { get; set; } // Помечен ли на уничтожение 
     
-    public Vector3 TargetPosition { get; set; } // 
+    public Vector3 TargetPosition { get; set; } // Позиция на которой должен находиться кирпичик при старте уровня
+    
+    public bool IsSwipe { get; set; } // Флаг меняется ли сейчас кирпичик местами
 
     public Brick(GameObject gameObject, BrickType type, int layer, float size, Vector3 targetPosition)
     {
@@ -37,5 +39,6 @@ public class Brick
         Size = size;
         IsToDestroy = false;
         TargetPosition = targetPosition;
+        IsSwipe = false;
     }
 }

@@ -90,7 +90,7 @@ public class BrickUtils
             float brickRadius = brick.Size / 2.1f;
             bool isClickable = true;
             Vector3 brickPos = brick.GameObject.transform.position;
-            SpriteRenderer sprite = brick.GameObject.GetComponent<SpriteRenderer>();
+           
                 
             foreach (var it in bricks.Where(it => it.Layer > brick.Layer))
             {
@@ -103,22 +103,39 @@ public class BrickUtils
                 }
             }
 
-            if (isClickable)
-            {
-                sprite.color = Statics.IsClickableColor;
-                brick.IsClickable = true;
-            }
-            else
-            {
-                sprite.color = Statics.IsNotClickableColor;
-                brick.IsClickable = false;
-            }
+            ChangeClickable(brick, isClickable);
         });
+    }
+
+    /**
+     * Изменение возможности нажатия на кирпичик
+     */
+    public static void ChangeClickable(Brick brick, bool isClickable)
+    {
+        SpriteRenderer sprite = brick.GameObject.GetComponent<SpriteRenderer>();
+        if (isClickable)
+        {
+            sprite.color = Statics.IsClickableColor;
+            brick.IsClickable = true;
+        }
+        else
+        {
+            sprite.color = Statics.IsNotClickableColor;
+            brick.IsClickable = false;
+        }
+    }
+
+    /**
+     * Проверяет происходит ли сейчас перемешивание
+     */
+    public static bool IsSwipingNow()
+    {
+        return AllNotTouchBricks().Count(brick => brick.IsSwipe) != 0;
     }
 
     public static float BrickSize(int countBrickWidth)
     {
         // 18 получено опытным путем. При нем во всех разрешениях и соотношениях остается по бокам ровно по половине плитки
         return (float) Screen.width / Screen.height * 18f / countBrickWidth;
-    } 
+    }
 }
