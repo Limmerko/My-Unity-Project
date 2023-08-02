@@ -9,9 +9,7 @@ namespace Buttons
     {
         [SerializeField] private Sprite[] sprites; // Спрайты (0 - ненажатый, 1 - нажатый)
         [SerializeField] private GameObject iconUp; // Иконка или текст  при ненажатой кнопки
-
-        [SerializeField]
-        private GameObject iconDown; // Иконка или текст при нажатой кнопки (Используется только его позиция)
+        [SerializeField] private GameObject iconDown; // Иконка или текст при нажатой кнопки (Используется только его позиция)
 
         private Image _image; // Компонент для смены спрайтов
         private Transform _iconTransform; // Позиция иконки или текста

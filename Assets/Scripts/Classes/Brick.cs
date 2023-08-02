@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Brick
+public class Brick : ICloneable
 {
     public GameObject GameObject { get; }  // Сам объект
 
@@ -27,6 +28,10 @@ public class Brick
     public Vector3 TargetPosition { get; set; } // Позиция на которой должен находиться кирпичик при старте уровня
     
     public bool IsSwipe { get; set; } // Флаг меняется ли сейчас кирпичик местами
+    
+    public Brick LastMoveState { get; set; } // Информация о плитке если она является последним шагом 
+    
+    public bool IsLastMove { get; set; } // Флаг является ли сейчас плитка последним ходом
 
     public Brick(GameObject gameObject, BrickType type, int layer, float size, Vector3 targetPosition)
     {
@@ -40,5 +45,10 @@ public class Brick
         IsToDestroy = false;
         TargetPosition = targetPosition;
         IsSwipe = false;
+    }
+
+    public object Clone()
+    {
+        return this.MemberwiseClone();
     }
 }

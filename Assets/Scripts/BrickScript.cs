@@ -66,6 +66,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         }
         SetSpriteBrick();
         SwipeBrick();
+        CancelLastMove();
     }
 
     /**
@@ -75,14 +76,21 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     {
         if (!_brick.IsTouch && _brick.IsClickable && !Statics.IsGameOver && BrickUtils.AllTouchBricks().Count < 7)
         {
+            // Добавление плитки в список последний ходов
+            _brick.LastMoveState = (Brick) _brick.Clone();
+            Statics.LastMoves.Add(_brick);
+            
             // Изменение положения
             _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
             _brick.IsTouch = true;
             _brick.IsDown = false;
             _brick.Layer = 100;
             BrickUtils.UpdateBricksPosition();
+            
             // Изменение состояния
             BrickUtils.UpdateBricksState();
+            
+            // Вибрация
             Vibration.VibrateAndroid(1); // TODO хз как на IOS будет (есть метод VibrateIOS)
             // Vibration.VibrateIOS(ImpactFeedbackStyle.Soft); // TODO не дает установить на IPhone
         }
@@ -218,9 +226,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             }
             else
             {
-                float minSpeed = 3f;
-                float speed = distance >= 0.1f ? distance / 2 * moveSpeed : moveSpeed / 10f; // Замедление в конце
-                speed = speed > moveSpeed ? moveSpeed : speed < minSpeed ? minSpeed : speed; // Ограничение максимальной и минимальной скорости
+                float speed = CountSpeed(target, brickPosition);
                 MainUtils.MoveToWaypoint(target, _brick.GameObject, speed); 
             }
         }
@@ -239,7 +245,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     }
 
     /**
-     * Изменение состояния и положение кирпичика при нажатии на подсказку "Перемешать"
+     * Изменение состояния и положения кирпичика при нажатии на подсказку "Перемешать"
      */
     private void SwipeBrick()
     {
@@ -256,6 +262,27 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             }
         }
     }
+    
+    /**
+     * Изменение состояния и положения кирпичика при нажатии на подсказку "Отменить последний ход"
+     */
+    private void CancelLastMove()
+    {
+        if (_brick.IsLastMove)
+        {
+            if (_brick.TargetPosition != _brick.GameObject.transform.position)
+            {
+                Vector3 target = _brick.TargetPosition;
+                Vector3 brickPosition = _brick.GameObject.transform.position;
+                float speed = CountSpeed(target, brickPosition);
+                MainUtils.MoveToWaypoint(target, _brick.GameObject, speed); 
+            }
+            else
+            {
+                _brick.IsLastMove = false;
+            }
+        }
+    }
 
     public float LengthClearAnim()
     {
@@ -265,5 +292,16 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     public void PlayClearAnim()
     {
         anim.Play("BrickClear");
+    }
+
+    /**
+     * Расчет скорости
+     */
+    private float CountSpeed(Vector3 target, Vector3 brickPosition)
+    {
+        float minSpeed = 3f;
+        float distance = Vector3.Distance(target, brickPosition);
+        float speed = distance >= 0.1f ? distance / 2 * moveSpeed : moveSpeed / 10f; // Замедление в конце
+        return speed > moveSpeed ? moveSpeed : speed < minSpeed ? minSpeed : speed; // Ограничение максимальной и минимальной скорости
     }
 }

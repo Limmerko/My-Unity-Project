@@ -22,7 +22,6 @@ public class MainScript : MonoBehaviour
     private Level _level;
     private float _brickSize; 
     private float _sizeFinishBrick;
-    private bool _levelStart = false; // Уровень начат или нет
     private Random _random = new Random();
 
     private void Awake()
@@ -30,10 +29,12 @@ public class MainScript : MonoBehaviour
         Vibration.Init();
         Time.timeScale = 1;
         Statics.AllBricks = new List<Brick>();
+        Statics.LastMoves = new List<Brick>();
         backgroundPanel.SetActive(false);
         losePanel.SetActive(false);
         nextLevelPanel.SetActive(false);
         Statics.IsGameOver = false;
+        Statics.LevelStart = false;
     }
 
     private void Start()    
@@ -47,8 +48,7 @@ public class MainScript : MonoBehaviour
     
     private void Update()
     {
-        // TODO сделать кнопки с подсказками недоступными пока уровень не начался
-        if (_levelStart)
+        if (Statics.LevelStart)
         {
             CheckFinishBricks();
             CheckNextLevel();
@@ -58,7 +58,7 @@ public class MainScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_levelStart)
+        if (!Statics.LevelStart)
         {
             MoveAllWaypointsOnTargetPosition();
         }
@@ -212,9 +212,17 @@ public class MainScript : MonoBehaviour
     {
         if (Statics.AllBricks.Count == 0 && !nextLevelPanel.activeSelf)
         {
-            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+            int nextlevel = PlayerPrefs.GetInt("Level");
+            if (nextlevel >= Statics.AllLevels.Count) // TODO убрать потом
+            {
+                PlayerPrefs.SetInt("Level", 0);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+            }
             backgroundPanel.SetActive(true);
-            nextLevelPanel.SetActive(true);
+            nextLevelPanel.SetActive(true); 
         }
     }
 
@@ -339,7 +347,7 @@ public class MainScript : MonoBehaviour
         if (Statics.AllBricks.Count(brick => !brick.GameObject.transform.position.Equals(brick.TargetPosition)) == 0)
         {
             Debug.Log("Уровень начат !!!");
-            _levelStart = true;
+            Statics.LevelStart = true;
             BrickUtils.UpdateBricksState();
         }
     }

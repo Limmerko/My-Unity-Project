@@ -385,6 +385,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7311996571597059408, guid: 32988d957e7511f448cfb04c18ed2b6c, type: 3}
   m_PrefabInstance: {fileID: 158400620}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &145168953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7311996571606986558, guid: 32988d957e7511f448cfb04c18ed2b6c, type: 3}
+  m_PrefabInstance: {fileID: 2143979093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &158400620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3165,6 +3170,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477950992}
   m_CullTransparentMesh: 1
+--- !u!1 &1484548773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7311996571597059409, guid: 32988d957e7511f448cfb04c18ed2b6c, type: 3}
+  m_PrefabInstance: {fileID: 2143979093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1501483605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7311996572734527856, guid: 32988d957e7511f448cfb04c18ed2b6c, type: 3}
+  m_PrefabInstance: {fileID: 2143979093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1503411081
 GameObject:
   m_ObjectHideFlags: 0
@@ -4964,7 +4979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7311996571597059409, guid: 32988d957e7511f448cfb04c18ed2b6c, type: 3}
       propertyPath: m_Name
-      value: HelpButton2
+      value: CancelLastMoveButton
       objectReference: {fileID: 0}
     - target: {fileID: 7311996571597059409, guid: 32988d957e7511f448cfb04c18ed2b6c, type: 3}
       propertyPath: m_IsActive
@@ -5030,3 +5045,20 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7311996571597059408, guid: 32988d957e7511f448cfb04c18ed2b6c, type: 3}
   m_PrefabInstance: {fileID: 2143979093}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2143979098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484548773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e71beec1b23b4a9db1fc0ba722e951e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 1475380320, guid: 8628b34eb5b8db54cb1f3f4c4cc8010b, type: 3}
+  - {fileID: -564480272, guid: 8628b34eb5b8db54cb1f3f4c4cc8010b, type: 3}
+  iconUp: {fileID: 145168953}
+  iconDown: {fileID: 1501483605}

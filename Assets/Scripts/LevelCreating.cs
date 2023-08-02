@@ -11,7 +11,7 @@ public class LevelCreating : MonoBehaviour
     void Start()
     {
         CreateLevel();
-        // InitializeField();
+        InitializeField();
         // CheckAllLevelsForDouble();
     }
 
@@ -47,7 +47,7 @@ public class LevelCreating : MonoBehaviour
      */
     private void InitializeField()
     {
-        /*List<InitialBrick> bricks = Levels.Level1_0.Bricks;
+        List<InitialBrick> bricks = Levels.Level23;
         String result = null;
         
         foreach (var brick in bricks)
@@ -62,7 +62,7 @@ public class LevelCreating : MonoBehaviour
             brickGameObject.GetComponent<SpriteRenderer>().sortingOrder = brick.Layer;
         }
         
-        Debug.Log(result);*/
+        Debug.Log(result);
     }
 
     private void CheckAllLevelsForDouble()

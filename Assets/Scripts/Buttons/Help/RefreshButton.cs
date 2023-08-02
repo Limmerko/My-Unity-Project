@@ -18,7 +18,7 @@ namespace Buttons.Help
          */
         protected override void Process()
         {
-            if (BrickUtils.IsSwipingNow()) return;
+            if (BrickUtils.IsSwipingNow() || !Statics.LevelStart) return;
             
             Debug.Log("Перемешать");
             List<Brick> notTouchBrick = BrickUtils.AllNotTouchBricks();

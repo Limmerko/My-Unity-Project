@@ -12,6 +12,10 @@ public static class Statics
     
     public static Color IsNotClickableColor = Color.gray;
     
+    public static bool LevelStart = false; // Уровень начат или нет
+
+    public static List<Brick> LastMoves = new List<Brick>(); // Список ходов
+    
     public static readonly List<Level> AllLevels = new() // Список всех уровней
     {
         new Level(Levels.Level1, 5),
