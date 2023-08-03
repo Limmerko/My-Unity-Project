@@ -17,6 +17,9 @@ public class BrickUtils
             .ToList();;
     }
     
+    /**
+     * Список кирпичиков, которые были нажаты
+     */
     public static List<Brick> AllTouchBricks()
     {
         return  Statics.AllBricks.Where(brick => brick.IsTouch)
@@ -24,9 +27,21 @@ public class BrickUtils
             .ToList();
     }
     
+    /**
+     * Список кирпичиков, которые не были нажаты
+     */
     public static List<Brick> AllNotTouchBricks()
     {
         return  Statics.AllBricks.Where(brick => !brick.IsTouch)
+            .ToList();
+    }
+
+    /**
+     * Список кирпичиков, доступных для нажатия
+     */
+    public static List<Brick> AllClickableBricks()
+    {
+        return  Statics.AllBricks.Where(brick => !brick.IsTouch && brick.IsClickable)
             .ToList();
     }
 
