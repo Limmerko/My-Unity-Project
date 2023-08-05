@@ -16,7 +16,9 @@ namespace Buttons.Hint
     
         protected override void Process()
         {
-            if (BrickUtils.IsSwipingNow() || !Statics.LevelStart) return;
+            if (BrickUtils.IsSwipingNow() || 
+                !Statics.LevelStart || 
+                BrickUtils.AllTouchAndNotFinishBricks().Count > 0) return;
             
             Debug.Log("Подсказка");
             

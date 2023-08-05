@@ -46,6 +46,15 @@ public class BrickUtils
     }
 
     /**
+     * Список кирпичиков, которые нажаты, но ещё не финишировали
+     */
+    public static List<Brick> AllTouchAndNotFinishBricks()
+    {
+        return  Statics.AllBricks.Where(brick => brick.IsTouch && !brick.IsFinish)
+            .ToList();
+    }
+    
+    /**
      * Определение правильной цели для движение кирпичика 
      */
     public static int FindCurrentWaypoint(BrickType type)

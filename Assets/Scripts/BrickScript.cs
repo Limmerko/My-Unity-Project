@@ -74,25 +74,27 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
      */
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!_brick.IsTouch && _brick.IsClickable && !Statics.IsGameOver && BrickUtils.AllTouchBricks().Count < 7)
-        {
-            // Добавление плитки в список последний ходов
-            _brick.LastMoveState = (Brick) _brick.Clone();
-            Statics.LastMoves.Add(_brick);
+        if (_brick.IsTouch || 
+            !_brick.IsClickable || 
+            Statics.IsGameOver ||
+            BrickUtils.AllTouchBricks().Count >= 7) return;
+        
+        // Добавление плитки в список последний ходов
+        _brick.LastMoveState = (Brick) _brick.Clone();
+        Statics.LastMoves.Add(_brick);
             
-            // Изменение положения
-            _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
-            _brick.IsTouch = true;
-            _brick.IsDown = false;
-            _brick.Layer = 100;
-            BrickUtils.UpdateBricksPosition();
+        // Изменение положения
+        _brick.TargetWaypoint = BrickUtils.FindCurrentWaypoint(_brick.Type);
+        _brick.IsTouch = true;
+        _brick.IsDown = false;
+        _brick.Layer = 100;
+        BrickUtils.UpdateBricksPosition();
             
-            // Изменение состояния
-            BrickUtils.UpdateBricksState();
+        // Изменение состояния
+        BrickUtils.UpdateBricksState();
             
-            // Вибрация
-            MainUtils.Vibrate();
-        }
+        // Вибрация
+        MainUtils.Vibrate();
     }
 
     /**
