@@ -21,6 +21,7 @@ namespace Buttons.Hint
             if (BrickUtils.IsSwipingNow() || !Statics.LevelStart) return;
             
             Debug.Log("Перемешать");
+            
             List<Brick> notTouchBrick = BrickUtils.AllNotTouchBricks();
             notTouchBrick.ForEach(brick => BrickUtils.ChangeClickable(brick, false));
             

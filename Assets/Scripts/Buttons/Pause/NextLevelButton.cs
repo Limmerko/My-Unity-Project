@@ -26,7 +26,7 @@ namespace Buttons.Pause
         {
             PlayerPrefs.SetString("LevelType", "Next");
             PlayerPrefs.Save();
-            
+
             yield return new WaitForSeconds(0.5f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

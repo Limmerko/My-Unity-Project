@@ -21,7 +21,7 @@ namespace Buttons.Hint
             if (BrickUtils.IsSwipingNow() || !Statics.LevelStart || Statics.LastMoves.Count == 0) return;
             
             Debug.Log("Отменить");
-
+            
             Brick brick = Statics.LastMoves.FindLast(b => b != null && !b.GameObject.IsDestroyed() && !b.IsToDestroy);
             if (brick != null)
             {

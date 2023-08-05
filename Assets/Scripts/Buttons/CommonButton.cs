@@ -34,6 +34,7 @@ namespace Buttons
             _iconTransform.localPosition = new Vector3(_upPosition.x, _upPosition.y, 0);
             _image.sprite = sprites[0];
             Process();
+            MainUtils.Vibrate();
         }
 
         /**
