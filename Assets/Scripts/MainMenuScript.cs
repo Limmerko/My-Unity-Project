@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuScriprt : MonoBehaviour
+public class MainMenuScript : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
+        Vibration.Init();
+        
         if (!PlayerPrefs.HasKey("Level"))
         {
             PlayerPrefs.SetInt("Level", 0);
