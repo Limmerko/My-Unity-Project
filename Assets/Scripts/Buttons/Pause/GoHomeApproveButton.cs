@@ -18,7 +18,8 @@ namespace Buttons.Pause
         */
         protected override void Process()
         {
-            Time.timeScale = 1;
+            // Time.timeScale = 1;
+            Statics.TimeScale = 1;
             SceneManager.LoadScene(0);
         }
     }

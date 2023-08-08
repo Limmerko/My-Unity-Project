@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Buttons.Pause
@@ -7,16 +8,22 @@ namespace Buttons.Pause
     */
     public class PauseButton : CommonButton
     {
-        [SerializeField] private GameObject pausePanel; // Основная панель паузы
+        [SerializeField] private GameObject backgroundPanel; // Основная панель паузы
         [SerializeField] private GameObject forkPausePanel; // Внутрення панель паузы
         [SerializeField] private GameObject goHomePanel; // Панель "Покинуть уровень"
-        [SerializeField] private GameObject losePanel;
-        [SerializeField] private GameObject nextLevel;
+        [SerializeField] private GameObject losePanel; // Панель проигрыша
+        [SerializeField] private GameObject nextLevel; // Панель следующего уровня
+        
 
+        private Animation _backgroundPanelUpriseAnim; // Анимация фона паузы
+        private Animation _forkPausePanelAnim; // Анимация внутренней панели паузы
+        
         protected override void StartProcess()
         {
-            pausePanel.SetActive(false);
+            backgroundPanel.SetActive(false);
+            _backgroundPanelUpriseAnim = backgroundPanel.GetComponent<Animation>();
             forkPausePanel.SetActive(false);
+            _forkPausePanelAnim = forkPausePanel.GetComponent<Animation>();
             goHomePanel.SetActive(false);
             losePanel.SetActive(false);
             nextLevel.SetActive(false);
@@ -27,10 +34,12 @@ namespace Buttons.Pause
          */
         protected override void Process()
         {
-            Time.timeScale = 0;
-            pausePanel.SetActive(true);
+            Statics.TimeScale = 0;
+            backgroundPanel.SetActive(true);
             forkPausePanel.SetActive(true);
             goHomePanel.SetActive(false);
+            _backgroundPanelUpriseAnim.Play("BackgroundPanelUprise");
+            _forkPausePanelAnim.Play("PanelUprise");
         }
     }
 }

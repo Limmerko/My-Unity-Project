@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Buttons.Pause
@@ -8,11 +9,14 @@ namespace Buttons.Pause
     public class GoHomeButton : CommonButton
     {
         [SerializeField] private GameObject forkPausePanel; // Панель паузы
+        private Animation _forkPausePanelAnim; // Анимация внутренней панели паузы
         [SerializeField] private GameObject goHomePanel; // Панель "Покинуть уровень"
+        private Animation _goHomePanelAnim; // Анимация появления внутренней панели паузы
         
         protected override void StartProcess()
         {
-            // empty
+            _forkPausePanelAnim = forkPausePanel.GetComponent<Animation>();
+            _goHomePanelAnim = goHomePanel.GetComponent<Animation>();
         }
     
         /**
@@ -20,8 +24,16 @@ namespace Buttons.Pause
         */
         protected override void Process()
         {
-           forkPausePanel.SetActive(false);
-           goHomePanel.SetActive(true);
+            StartCoroutine(ChangePanel());
+        }
+
+        private IEnumerator ChangePanel()
+        {
+            _forkPausePanelAnim.Play("PanelDying");
+            yield return new WaitForSeconds(_forkPausePanelAnim["PanelDying"].length);
+            forkPausePanel.SetActive(false);
+            goHomePanel.SetActive(true);
+            _goHomePanelAnim.Play("PanelUprise");
         }
     }
 }

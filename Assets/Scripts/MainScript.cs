@@ -27,7 +27,8 @@ public class MainScript : MonoBehaviour
     private void Awake()
     {
         Vibration.Init();
-        Time.timeScale = 1;
+        // Time.timeScale = 1;
+        Statics.TimeScale = 1;
         Statics.AllBricks = new List<Brick>();
         Statics.LastMoves = new List<Brick>();
         backgroundPanel.SetActive(false);
@@ -58,7 +59,7 @@ public class MainScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!Statics.LevelStart)
+        if (!Statics.LevelStart && Statics.TimeScale == 1)
         {
             MoveAllWaypointsOnTargetPosition();
         }
@@ -265,7 +266,8 @@ public class MainScript : MonoBehaviour
         {
             Debug.Log("Конец игры");
             Statics.IsGameOver = true;
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
+            Statics.TimeScale = 1;
             backgroundPanel.SetActive(true);
             losePanel.SetActive(true);
         }

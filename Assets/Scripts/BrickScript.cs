@@ -52,6 +52,8 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 
     private void FixedUpdate()
     {
+        if (Statics.TimeScale == 0) return;
+        
         if (_brick.IsTouch)
         {
             moveBrickOnWaypoint();

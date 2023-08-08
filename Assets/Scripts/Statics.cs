@@ -15,6 +15,8 @@ public static class Statics
     public static bool LevelStart = false; // Уровень начат или нет
 
     public static List<Brick> LastMoves = new List<Brick>(); // Список ходов
+
+    public static int TimeScale = 1;
     
     public static readonly List<Level> AllLevels = new() // Список всех уровней
     {

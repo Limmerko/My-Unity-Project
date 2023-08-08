@@ -16,7 +16,7 @@ namespace Buttons.Pause
     
         protected override void Process()
         {
-            Time.timeScale = 1;
+            Statics.TimeScale = 1;
             pausePanel.SetActive(false);
         }
     }
