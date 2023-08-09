@@ -18,7 +18,11 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject losePanel; // Внутрення панель окончания игры
     [SerializeField] private GameObject nextLevelPanel; // Панель перехода на следующий уровень
     [SerializeField] private GameObject canvas;
-
+    
+    private Animation _backgroundPanelAnim; // Анимация фона паузы
+    private Animation _losePanelAnim; // Анимация панели окончания игры
+    private Animation _nextLevelPanelAnim; // Анимация панели перехода на следующий уровень
+    
     private Level _level;
     private float _brickSize; 
     private float _sizeFinishBrick;
@@ -27,7 +31,6 @@ public class MainScript : MonoBehaviour
     private void Awake()
     {
         Vibration.Init();
-        // Time.timeScale = 1;
         Statics.TimeScale = 1;
         Statics.AllBricks = new List<Brick>();
         Statics.LastMoves = new List<Brick>();
@@ -36,6 +39,10 @@ public class MainScript : MonoBehaviour
         nextLevelPanel.SetActive(false);
         Statics.IsGameOver = false;
         Statics.LevelStart = false;
+        
+        _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
+        _losePanelAnim = losePanel.GetComponent<Animation>();
+        _nextLevelPanelAnim = nextLevelPanel.GetComponent<Animation>();
     }
 
     private void Start()    
@@ -223,7 +230,9 @@ public class MainScript : MonoBehaviour
                 PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
             }
             backgroundPanel.SetActive(true);
-            nextLevelPanel.SetActive(true); 
+            nextLevelPanel.SetActive(true);
+            _backgroundPanelAnim.Play("BackgroundPanelUprise");
+            _nextLevelPanelAnim.Play("PanelUprise");
         }
     }
 
@@ -266,10 +275,11 @@ public class MainScript : MonoBehaviour
         {
             Debug.Log("Конец игры");
             Statics.IsGameOver = true;
-            // Time.timeScale = 0;
             Statics.TimeScale = 1;
             backgroundPanel.SetActive(true);
             losePanel.SetActive(true);
+            _backgroundPanelAnim.Play("BackgroundPanelUprise");
+            _losePanelAnim.Play("PanelUprise");
         }
     }
 

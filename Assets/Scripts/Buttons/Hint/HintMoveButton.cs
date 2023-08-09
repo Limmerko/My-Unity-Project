@@ -93,7 +93,6 @@ namespace Buttons.Hint
                     {
                         foreach (var brick in clickableBricksByType.Take(3))
                         {
-                            Debug.Log("НАШЕЛ " + brick.Type + "  " + brick.GameObject.transform.position);
                             MoveBrick(brick);
                         }
 

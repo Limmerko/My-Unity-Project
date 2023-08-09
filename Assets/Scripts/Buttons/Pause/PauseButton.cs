@@ -15,13 +15,13 @@ namespace Buttons.Pause
         [SerializeField] private GameObject nextLevel; // Панель следующего уровня
         
 
-        private Animation _backgroundPanelUpriseAnim; // Анимация фона паузы
+        private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _forkPausePanelAnim; // Анимация внутренней панели паузы
         
         protected override void StartProcess()
         {
             backgroundPanel.SetActive(false);
-            _backgroundPanelUpriseAnim = backgroundPanel.GetComponent<Animation>();
+            _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
             forkPausePanel.SetActive(false);
             _forkPausePanelAnim = forkPausePanel.GetComponent<Animation>();
             goHomePanel.SetActive(false);
@@ -38,7 +38,7 @@ namespace Buttons.Pause
             backgroundPanel.SetActive(true);
             forkPausePanel.SetActive(true);
             goHomePanel.SetActive(false);
-            _backgroundPanelUpriseAnim.Play("BackgroundPanelUprise");
+            _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _forkPausePanelAnim.Play("PanelUprise");
         }
     }

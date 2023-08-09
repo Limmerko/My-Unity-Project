@@ -9,8 +9,9 @@ namespace Buttons.Pause
     public class GoHomeButton : CommonButton
     {
         [SerializeField] private GameObject forkPausePanel; // Панель паузы
-        private Animation _forkPausePanelAnim; // Анимация внутренней панели паузы
         [SerializeField] private GameObject goHomePanel; // Панель "Покинуть уровень"
+
+        private Animation _forkPausePanelAnim; // Анимация внутренней панели паузы
         private Animation _goHomePanelAnim; // Анимация появления внутренней панели паузы
         
         protected override void StartProcess()
@@ -24,10 +25,10 @@ namespace Buttons.Pause
         */
         protected override void Process()
         {
-            StartCoroutine(ChangePanel());
+            StartCoroutine(CoroutineProcess());
         }
 
-        private IEnumerator ChangePanel()
+        private IEnumerator CoroutineProcess()
         {
             _forkPausePanelAnim.Play("PanelDying");
             yield return new WaitForSeconds(_forkPausePanelAnim["PanelDying"].length);

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,9 +9,13 @@ namespace Buttons.Pause
      */
     public class GoHomeApproveButton : CommonButton
     {
+        
+        [SerializeField] private GameObject goHomePanel; // Панель "Покинуть уровень"
+        private Animation _goHomePanelAnim; // Анимация появления внутренней панели паузы
+        
         protected override void StartProcess()
         {
-            // empty
+            _goHomePanelAnim = goHomePanel.GetComponent<Animation>();
         }
         
         /**
@@ -18,7 +23,13 @@ namespace Buttons.Pause
         */
         protected override void Process()
         {
-            // Time.timeScale = 1;
+            StartCoroutine(CoroutineProcess());
+        }
+        
+        private IEnumerator CoroutineProcess()
+        {
+            _goHomePanelAnim.Play("PanelDying");
+            yield return new WaitForSeconds(_goHomePanelAnim["PanelDying"].length);
             Statics.TimeScale = 1;
             SceneManager.LoadScene(0);
         }

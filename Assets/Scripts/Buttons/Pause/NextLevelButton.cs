@@ -9,9 +9,16 @@ namespace Buttons.Pause
      */
     public class NextLevelButton : CommonButton
     {
+        [SerializeField] protected GameObject backgroundPanel; // Панель паузы
+        [SerializeField] private GameObject nextLevelPanel; // Панель перехода на следующий уровень
+        
+        private Animation _backgroundPanelAnim; // Анимация фона паузы
+        private Animation _nextLevelPanelAnim; // Анимация панели перехода на следующий уровень
+        
         protected override void StartProcess()
         {
-            // empty
+            _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
+            _nextLevelPanelAnim = nextLevelPanel.GetComponent<Animation>();
         }
         
         protected override void Process()
@@ -26,8 +33,9 @@ namespace Buttons.Pause
         {
             PlayerPrefs.SetString("LevelType", "Next");
             PlayerPrefs.Save();
-
-            yield return new WaitForSeconds(0.5f);
+            _backgroundPanelAnim.Play("BackgroundPanelDying");
+            _nextLevelPanelAnim.Play("PanelDying");
+            yield return new WaitForSeconds(_nextLevelPanelAnim["PanelDying"].length);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
