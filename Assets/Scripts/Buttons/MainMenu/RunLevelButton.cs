@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,9 @@ namespace Buttons.MainMenu
     {
         protected override void StartProcess()
         {
-            // empty
+            string text = "Уровень " + PlayerPrefs.GetInt("Level");
+            iconUp.GetComponent<TextMeshProUGUI>().text = text;
+            iconDown.GetComponent<TextMeshProUGUI>().text = text;
         }
         
         protected override void Process()

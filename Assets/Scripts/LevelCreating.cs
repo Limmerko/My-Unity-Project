@@ -10,9 +10,10 @@ public class LevelCreating : MonoBehaviour
     
     void Start()
     {
-        CreateLevel();
-        InitializeField();
+        // CreateLevel();
+        // InitializeField();
         // CheckAllLevelsForDouble();
+        SortLevelsByComplexity();
     }
 
     /**
@@ -65,6 +66,9 @@ public class LevelCreating : MonoBehaviour
         Debug.Log(result);
     }
 
+    /**
+     * Проверка уровня на дубликаты
+     */
     private void CheckAllLevelsForDouble()
     {
         int i = 0;
@@ -87,5 +91,29 @@ public class LevelCreating : MonoBehaviour
                 
             }
         });
+    }
+
+    /**
+     * Сортировка уровней по сложности
+     */
+    private void SortLevelsByComplexity()
+    {
+        List<Level> levels = Statics.AllLevels;
+        foreach (var level in levels)
+        {
+            int complexity = 0;
+            complexity += level.Bricks.Count * level.CountTypes;
+            level.Complexity = complexity;
+        }
+        
+        levels = levels.OrderBy(l => l.Complexity).ToList();
+        
+        String result = null;
+        
+        foreach (var level in levels)
+        {
+            result += "new Level(" + "\"" + level.Name + "\", "+ "Levels." + level.Name + ", " + level.CountTypes + ", " + level.Complexity + "),\n";
+        }
+        Debug.Log(result);
     }
 }

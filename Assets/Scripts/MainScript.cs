@@ -345,7 +345,7 @@ public class MainScript : MonoBehaviour
             {
                 if (brick.Layer <= currentLayer)
                 {
-                    MainUtils.MoveToWaypoint(brick.TargetPosition, brick.GameObject, 15f);
+                    MainUtils.MoveToWaypoint(brick.TargetPosition, brick.GameObject, 18f);
                 }
             });
             
