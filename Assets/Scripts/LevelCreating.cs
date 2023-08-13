@@ -3,17 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 
 public class LevelCreating : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
+
+    private String _method = null;
+    
+    private List<Level> _levels = new List<Level>();
+    private int _level = 0;
+    private int _lastLevel = -1;
     
     void Start()
     {
         // CreateLevel();
-        // InitializeField();
+        InitializeField(new Level("Level7", Levels.Level7, 10, 960));
         // CheckAllLevelsForDouble();
-        SortLevelsByComplexity();
+        // _levels = SortLevelsByComplexity();
+    }
+
+    private void Update()
+    {
+        if ("SortLevelsByComplexity".Equals(_method))
+        {
+            if (_level != _lastLevel)
+            {
+                StartCoroutine(InitLevel(_levels[_level]));
+            }
+        }
+    }
+
+    private IEnumerator InitLevel(Level level)
+    {
+        _lastLevel = _level;
+        yield return new WaitForSeconds(3f);
+        InitializeField(level);
+        _level++;
     }
 
     /**
@@ -46,9 +72,13 @@ public class LevelCreating : MonoBehaviour
     /**
      * Инициализирует уровень на сцене.
      */
-    private void InitializeField()
+    private void InitializeField(Level level)
     {
-        List<InitialBrick> bricks = Levels.Level23;
+        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("BrickEmpty")) {
+            Destroy(obj);
+        }
+        
+        List<InitialBrick> bricks = level == null ? Levels.Level23 : level.Bricks;
         String result = null;
         
         foreach (var brick in bricks)
@@ -96,24 +126,42 @@ public class LevelCreating : MonoBehaviour
     /**
      * Сортировка уровней по сложности
      */
-    private void SortLevelsByComplexity()
+    private List<Level>  SortLevelsByComplexity()
     {
+        _method = "SortLevelsByComplexity";
+        
         List<Level> levels = Statics.AllLevels;
+        // Установка сложность каждого уровня
         foreach (var level in levels)
         {
-            int complexity = 0;
-            complexity += level.Bricks.Count * level.CountTypes;
+            int layers = level.Bricks.GroupBy(l => l.Layer).Count();
+            int complexity = (level.Bricks.Count / 5) * (level.CountTypes / 3) * layers;
             level.Complexity = complexity;
         }
         
+        // Сортировка по сложности
         levels = levels.OrderBy(l => l.Complexity).ToList();
+
+        // Корректировка кривой сложности
+        for (int i = 0; i < levels.Count - 5; i += 5)
+        {
+            (levels[i + 3], levels[i + 5]) = (levels[i + 5], levels[i + 3]);
+            (levels[i + 4], levels[i + 6]) = (levels[i + 4], levels[i + 6]);
+        }
         
         String result = null;
+        String difficultyCurve = null;
         
+        // Вывод результата
         foreach (var level in levels)
         {
             result += "new Level(" + "\"" + level.Name + "\", "+ "Levels." + level.Name + ", " + level.CountTypes + ", " + level.Complexity + "),\n";
+            difficultyCurve += level.Complexity + "\n ";
         }
         Debug.Log(result);
+        
+        Debug.Log("Кривая сложности " + difficultyCurve);
+        
+        return levels;
     }
 }
