@@ -18,8 +18,8 @@ public class LevelCreating : MonoBehaviour
     void Start()
     {
         // CreateLevel();
-        InitializeField(new Level("Level7", Levels.Level7, 10, 960));
-        // CheckAllLevelsForDouble();
+        InitializeField(new Level("Level23", Levels.Level23, 12, 200));
+        CheckAllLevelsForDouble();
         // _levels = SortLevelsByComplexity();
     }
 
@@ -81,6 +81,11 @@ public class LevelCreating : MonoBehaviour
         List<InitialBrick> bricks = level == null ? Levels.Level23 : level.Bricks;
         String result = null;
         
+        if (bricks.Count % 3 != 0)
+        {
+            Debug.Log("ОШИБКА!!! Кол-во плиток в уровне не кратно 3. " + bricks.Count);
+        }
+        
         foreach (var brick in bricks)
         {
             string xPos = brick.X.ToString().Replace(",", ".") + "f";
@@ -116,7 +121,7 @@ public class LevelCreating : MonoBehaviour
                 .ToList();
             if (bricks.Count() > 0)
             {
-                Debug.Log("В уровне " + i + " есть дубликаты: ");
+                Debug.Log("В уровне " + level.Name + " есть дубликаты: ");
                 Debug.Log(bricks[0].X + " " + bricks[0].Y + " " + bricks[0].Layer);
                 
             }
