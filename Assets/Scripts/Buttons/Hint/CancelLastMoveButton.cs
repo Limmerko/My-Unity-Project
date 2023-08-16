@@ -6,11 +6,12 @@ namespace Buttons.Hint
     /**
     * Кнопка "Отменить последних ход" в подсказках
     */
-    public class CancelLastMoveButton : CommonButton
+    public class CancelLastMoveButton : CommonHintButton
     {
         protected override void StartProcess()
         {
-            // empty
+            PrefCount = "CountCancelLastMove";
+            base.StartProcess();
         }
 
         /**
@@ -36,6 +37,8 @@ namespace Buttons.Hint
                 Statics.LastMoves.Remove(brick);
                 BrickUtils.UpdateBricksPosition();
             }
+            
+            CheckCount();
         }
     }
 }

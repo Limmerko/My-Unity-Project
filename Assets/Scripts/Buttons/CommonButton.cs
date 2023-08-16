@@ -29,7 +29,7 @@ namespace Buttons
         /**
          * Клик на кнопку
         */
-        public void OnPointerClick(PointerEventData eventData)
+        public virtual void OnPointerClick(PointerEventData eventData)
         {
             _iconTransform.localPosition = new Vector3(_upPosition.x, _upPosition.y, 0);
             _image.sprite = sprites[0];
@@ -40,7 +40,7 @@ namespace Buttons
         /**
         * Нажатие на кнопку
         */
-        public void OnPointerDown(PointerEventData eventData)
+        public virtual void OnPointerDown(PointerEventData eventData)
         {
             _iconTransform.localPosition = new Vector3(_downPosition.x, _downPosition.y, 0);
             _image.sprite = sprites[1];
@@ -49,7 +49,7 @@ namespace Buttons
         /**
         * Курсор уходит от кнопки
         */
-        public void OnPointerExit(PointerEventData eventData)
+        public virtual void OnPointerExit(PointerEventData eventData)
         {
             _iconTransform.localPosition = new Vector3(_upPosition.x, _upPosition.y, 0);
             _image.sprite = sprites[0];

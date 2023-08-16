@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Buttons.Hint
@@ -6,13 +8,14 @@ namespace Buttons.Hint
     /**
     * Кнопка "Перемешать" в подсказках
     */
-    public class RefreshButton : CommonButton
+    public class RefreshButton : CommonHintButton
     {
         protected override void StartProcess()
         {
-            // empty
+            PrefCount = "CountRefresh";
+            base.StartProcess();
         }
-        
+
         /**
          * Перемешивание всех ненажатых кирпичиков на поле
          */
@@ -20,8 +23,9 @@ namespace Buttons.Hint
         {
             if (BrickUtils.IsSwipingNow() || 
                 !Statics.LevelStart ||
-                BrickUtils.AllTouchAndNotFinishBricks().Count > 0) return;
-            
+                BrickUtils.AllTouchAndNotFinishBricks().Count > 0 ||
+                PlayerPrefs.GetInt(PrefCount) == 0) return;
+
             Debug.Log("Перемешать");
             
             List<Brick> notTouchBrick = BrickUtils.AllNotTouchBricks();
@@ -32,7 +36,10 @@ namespace Buttons.Hint
             {
                 SwipeBricks(notTouchBrick[i], notTouchBrick[i + 1]);
             }
+
+            CheckCount();
         }
+        
 
         private void SwipeBricks(Brick first, Brick second)
         {

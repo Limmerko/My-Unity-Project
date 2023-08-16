@@ -10,7 +10,7 @@ namespace Buttons.MainMenu
     {
         protected override void StartProcess()
         {
-            string text = "Уровень " + PlayerPrefs.GetInt("Level");
+            string text = "Уровень " + (PlayerPrefs.GetInt("Level") + 1)  ;
             iconUp.GetComponent<TextMeshProUGUI>().text = text;
             iconDown.GetComponent<TextMeshProUGUI>().text = text;
         }

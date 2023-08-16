@@ -7,11 +7,12 @@ namespace Buttons.Hint
     /**
     * Кнопка "Подсказка хода" в подсказках
     */
-    public class HintMoveButton : CommonButton
+    public class HintMoveButton : CommonHintButton
     {
         protected override void StartProcess()
         {
-            // empty
+            PrefCount = "CountHintMove";
+            base.StartProcess();
         }
     
         protected override void Process()
@@ -104,6 +105,7 @@ namespace Buttons.Hint
             Debug.Log("Нет доступных ходов");
             
             Exit:
+                CheckCount();
                 return;
         }
 
