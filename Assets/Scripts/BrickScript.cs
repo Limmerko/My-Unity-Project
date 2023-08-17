@@ -229,7 +229,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             }
             else
             {
-                float speed = CountSpeed(target, brickPosition);
+                float speed = MainUtils.CountSpeed(target, brickPosition, moveSpeed);
                 MainUtils.MoveToWaypoint(target, _brick.GameObject, speed); 
             }
         }
@@ -277,7 +277,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             {
                 Vector3 target = _brick.TargetPosition;
                 Vector3 brickPosition = _brick.GameObject.transform.position;
-                float speed = CountSpeed(target, brickPosition);
+                float speed = MainUtils.CountSpeed(target, brickPosition, moveSpeed);
                 MainUtils.MoveToWaypoint(target, _brick.GameObject, speed); 
             }
             else
@@ -295,16 +295,5 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     public void PlayClearAnim()
     {
         anim.Play("BrickClear");
-    }
-
-    /**
-     * Расчет скорости
-     */
-    private float CountSpeed(Vector3 target, Vector3 brickPosition)
-    {
-        float minSpeed = 3f;
-        float distance = Vector3.Distance(target, brickPosition);
-        float speed = distance >= 0.1f ? distance / 2 * moveSpeed : moveSpeed / 10f; // Замедление в конце
-        return speed > moveSpeed ? moveSpeed : speed < minSpeed ? minSpeed : speed; // Ограничение максимальной и минимальной скорости
     }
 }

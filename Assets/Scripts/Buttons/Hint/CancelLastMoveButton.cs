@@ -22,7 +22,8 @@ namespace Buttons.Hint
             if (BrickUtils.IsSwipingNow() || 
                 !Statics.LevelStart || 
                 Statics.LastMoves.Count == 0 || 
-                BrickUtils.AllTouchAndNotFinishBricks().Count > 0) return;
+                BrickUtils.AllTouchAndNotFinishBricks().Count > 0 ||
+                PlayerPrefs.GetInt(PrefCount) == 0) return;
             
             Debug.Log("Отменить");
             

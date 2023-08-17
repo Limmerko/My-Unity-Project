@@ -45,4 +45,15 @@ public class MainUtils
         Vibration.VibrateAndroid(1); // TODO хз как на IOS будет (есть метод VibrateIOS)
         // Vibration.VibrateIOS(ImpactFeedbackStyle.Soft); // TODO не дает установить на IPhone
     }
+    
+    /**
+     * Расчет скорости
+     */
+    public static float CountSpeed(Vector3 target, Vector3 brickPosition, float moveSpeed)
+    {
+        float minSpeed = 3f;
+        float distance = Vector3.Distance(target, brickPosition);
+        float speed = distance >= 0.1f ? distance / 2 * moveSpeed : moveSpeed / 10f; // Замедление в конце
+        return speed > moveSpeed ? moveSpeed : speed < minSpeed ? minSpeed : speed; // Ограничение максимальной и минимальной скорости
+    }
 }

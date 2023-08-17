@@ -8,12 +8,16 @@ using UnityEngine.SceneManagement;
 using Random = System.Random;
 using System.Linq;
 using System.Runtime.InteropServices;
+using TMPro;
 
 public class MainScript : MonoBehaviour
 {
     [SerializeField] private GameObject brickPrefab; // Плитка
     [SerializeField] private GameObject finishPlacePrefab; // Верхняя и нижняя часть места для приземления 
     [SerializeField] private GameObject waypointPrefab; // Одна из точек приземления
+    [SerializeField] private GameObject coinPrefab; // Монета
+    [SerializeField] private GameObject coinsPlace; // Место расположения всех монет
+    [SerializeField] private TextMeshProUGUI coinsText; // Текст с кол-вом монет
     [SerializeField] private GameObject backgroundPanel; // Фон на всех панелях
     [SerializeField] private GameObject losePanel; // Внутрення панель окончания игры
     [SerializeField] private GameObject nextLevelPanel; // Панель перехода на следующий уровень
@@ -28,6 +32,8 @@ public class MainScript : MonoBehaviour
     private float _sizeFinishBrick;
     private Random _random = new Random();
 
+    private const String CoinsPref = "Coins";
+    
     private void Awake()
     {
         Vibration.Init();
@@ -39,6 +45,7 @@ public class MainScript : MonoBehaviour
         nextLevelPanel.SetActive(false);
         Statics.IsGameOver = false;
         Statics.LevelStart = false;
+        coinsText.text = PlayerPrefs.GetInt(CoinsPref).ToString();
         
         _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
         _losePanelAnim = losePanel.GetComponent<Animation>();
@@ -183,6 +190,17 @@ public class MainScript : MonoBehaviour
             _sizeFinishBrick;
         finishPlace.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, y);
     }
+
+    /**
+     * Инициализация монеты
+     */
+    private void InitializeCoin(Brick brick)
+    {
+        Vector3 initPosition = brick.GameObject.transform.position;
+        GameObject coinGameObject = Instantiate(coinPrefab, initPosition, Quaternion.identity);
+        coinGameObject.GetComponent<CoinScript>().setCoin(coinsPlace.transform.position, coinsText);
+        coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas 
+    }
     
     /**
      * Проверка очистки кирпичиков
@@ -242,6 +260,8 @@ public class MainScript : MonoBehaviour
     private IEnumerator DestroyBricks(List<Brick> bricks)
     {
         bricks.ForEach(brick => brick.IsToDestroy = true);
+        PlayerPrefs.SetInt(CoinsPref, PlayerPrefs.GetInt(CoinsPref) + 3);
+        PlayerPrefs.Save();
         yield return new WaitForSeconds(0.1f);
         float timeAnim = 0f;
         bricks.ForEach(brick =>
@@ -254,6 +274,7 @@ public class MainScript : MonoBehaviour
                     timeAnim = brickScript.LengthClearAnim();
                 }
                 brickScript.PlayClearAnim();
+                InitializeCoin(brick);
             }
         });
         

@@ -17,5 +17,10 @@ public class MainMenuScript : MonoBehaviour
         {
             PlayerPrefs.SetString("LevelType", "Random");
         }
+
+        if (!PlayerPrefs.HasKey("Coins"))
+        {
+            PlayerPrefs.SetInt("Coins", 0);
+        }
     }
 }
