@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,6 +12,11 @@ namespace Buttons.Hint
         [SerializeField] private GameObject count; // Кол-во доступных подсказок
         [SerializeField] protected GameObject countDown;  // Иконка при нажатой кнопки (Используется только его позиция)
         [SerializeField] private Sprite[] countSprites; // Спрайты для кол-ва подсказок
+        [SerializeField] protected GameObject backgroundPanel; // Панель паузы
+        [SerializeField] protected GameObject buyHintPanel; // Панель покупки подсказки
+        
+        private Animation _backgroundPanelAnim; // Анимация фона паузы
+        private Animation _buyHintPanelAnim; // Анимация панель покупки подсказки
         
         private Image _countImage; // Компонент для смены спрайтов
         private TextMeshProUGUI _countText; // Текст кол-ва подсказок
@@ -39,14 +45,24 @@ namespace Buttons.Hint
             _countDownPosition = countDown.transform.localPosition;
             _countText = count.GetComponentInChildren<TextMeshProUGUI>();
             _countText.text = PlayerPrefs.GetInt(PrefCount).ToString();
-
+            _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
+            buyHintPanel.SetActive(false);
+            _buyHintPanelAnim = buyHintPanel.GetComponent<Animation>();
+            
             CheckCountSprite();
         }
 
         public override void OnPointerClick(PointerEventData eventData)
         {
-            base.OnPointerClick(eventData);
-            _countTransform.localPosition = _countUpPosition;
+            if (PlayerPrefs.GetInt(PrefCount) == 0)
+            {
+                OpenBuyHintPanel();
+            }
+            else
+            {
+                base.OnPointerClick(eventData);
+                _countTransform.localPosition = _countUpPosition;
+            }
         }
 
         public override void OnPointerDown(PointerEventData eventData)
@@ -80,6 +96,15 @@ namespace Buttons.Hint
         private void CheckCountSprite()
         {
             _countImage.sprite = PlayerPrefs.GetInt(PrefCount) > 0 ? countSprites[0] : countSprites[1];
+        }
+
+        private void OpenBuyHintPanel()
+        {
+            Statics.TimeScale = 0;
+            backgroundPanel.SetActive(true);
+            buyHintPanel.SetActive(true);
+            _backgroundPanelAnim.Play("BackgroundPanelUprise");
+            _buyHintPanelAnim.Play("PanelUprise");
         }
     }
 }
