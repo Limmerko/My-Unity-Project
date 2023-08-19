@@ -198,7 +198,8 @@ public class MainScript : MonoBehaviour
     {
         Vector3 initPosition = brick.GameObject.transform.position;
         GameObject coinGameObject = Instantiate(coinPrefab, initPosition, Quaternion.identity);
-        coinGameObject.GetComponent<CoinScript>().setCoin(coinsPlace.transform.position, coinsText);
+        coinGameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+        coinGameObject.GetComponent<CoinScript>().SetCoin(coinsPlace.transform.position, coinsText);
         coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas 
     }
     

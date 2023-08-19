@@ -783,6 +783,7 @@ GameObject:
   - component: {fileID: 233742768}
   - component: {fileID: 233742767}
   - component: {fileID: 233742766}
+  - component: {fileID: 233742770}
   m_Layer: 5
   m_Name: ButHintForCoinsButton
   m_TagString: Untagged
@@ -888,6 +889,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233742763}
   m_CullTransparentMesh: 1
+--- !u!114 &233742770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233742763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c0b7276e6a58f4f91391fc826bf0cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -99682849, guid: f6235bff342f4b748bfb0a151a528e3e, type: 3}
+  - {fileID: 931019378, guid: f6235bff342f4b748bfb0a151a528e3e, type: 3}
+  iconUp: {fileID: 726685147}
+  iconDown: {fileID: 1831886962}
+  backgroundPanel: {fileID: 1477950992}
+  buyHintPanel: {fileID: 519895699}
+  coinsText: {fileID: 1817206576}
 --- !u!1 &259749857
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,7 +2096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &519895700
 RectTransform:
   m_ObjectHideFlags: 0

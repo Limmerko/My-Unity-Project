@@ -14,7 +14,7 @@ namespace Buttons.Hint
         [SerializeField] private Sprite[] countSprites; // Спрайты для кол-ва подсказок
         [SerializeField] protected GameObject backgroundPanel; // Панель паузы
         [SerializeField] protected GameObject buyHintPanel; // Панель покупки подсказки
-        
+
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _buyHintPanelAnim; // Анимация панель покупки подсказки
         
@@ -49,6 +49,7 @@ namespace Buttons.Hint
             buyHintPanel.SetActive(false);
             _buyHintPanelAnim = buyHintPanel.GetComponent<Animation>();
             
+            CountSymbol();
             CheckCountSprite();
         }
 
@@ -77,6 +78,12 @@ namespace Buttons.Hint
             _countTransform.localPosition = _countUpPosition;
         }
 
+        private void Update()
+        {
+            CountSymbol();
+            CheckCountSprite();
+        }
+
         /**
          * Актуализация кол-ва подсказок
          */
@@ -86,8 +93,15 @@ namespace Buttons.Hint
             PlayerPrefs.SetInt(PrefCount, countInt);
             _countText.text = countInt > 0 ? countInt.ToString() : "+";
             PlayerPrefs.Save();
-
+            
+            CountSymbol();
             CheckCountSprite();
+        }
+
+        private void CountSymbol()
+        {
+            int countInt = PlayerPrefs.GetInt(PrefCount);
+            _countText.text = countInt > 0 ? countInt.ToString() : "+";
         }
 
         /**
@@ -105,6 +119,9 @@ namespace Buttons.Hint
             buyHintPanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _buyHintPanelAnim.Play("PanelUprise");
+            
+            PlayerPrefs.SetString("LastHint", PrefCount);
+            PlayerPrefs.Save();
         }
     }
 }

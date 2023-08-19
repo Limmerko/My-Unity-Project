@@ -56,7 +56,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         
         if (_brick.IsTouch)
         {
-            moveBrickOnWaypoint();
+            MoveBrickOnWaypoint();
             ChangeSizeBrick(_sizeFinishBrick);
         }
         else
@@ -214,7 +214,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     /**
      * Движение кирпичика до waypoint'a
      */
-    private void moveBrickOnWaypoint()
+    private void MoveBrickOnWaypoint()
     {
         if (_brick.TargetWaypoint < _waypointsPrefabs.Count)
         {
