@@ -26,7 +26,14 @@ namespace Buttons.Hint
                 PlayerPrefs.GetInt(PrefCount) == 0) return;
             
             Debug.Log("Отменить");
+
+            CancelLastMove();
             
+            CheckCount();
+        }
+
+        public void CancelLastMove()
+        {
             Brick brick = Statics.LastMoves.FindLast(b => b != null && !b.GameObject.IsDestroyed() && !b.IsToDestroy);
             if (brick != null)
             {
@@ -38,8 +45,6 @@ namespace Buttons.Hint
                 Statics.LastMoves.Remove(brick);
                 BrickUtils.UpdateBricksPosition();
             }
-            
-            CheckCount();
         }
     }
 }

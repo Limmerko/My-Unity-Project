@@ -14,7 +14,7 @@ namespace Buttons.Hint
         [SerializeField] private TextMeshProUGUI coinsText; // Текст с кол-вом монет
         
         private Animation _backgroundPanelAnim; // Анимация фона паузы
-        private Animation _buyHintPanelAnim; // Анимация панель покупки подсказки
+        private Animation _buyHintPanelAnim; // Анимация панели покупки подсказки
         
         protected override void StartProcess()
         {
@@ -45,7 +45,8 @@ namespace Buttons.Hint
             _buyHintPanelAnim.Play("PanelDying");
             yield return new WaitForSeconds(_buyHintPanelAnim["PanelDying"].length);
             Statics.TimeScale = 1;
-            backgroundPanel.SetActive(false);
+            backgroundPanel.SetActive(false); 
+            buyHintPanel.SetActive(false);
         }
     }
 }
