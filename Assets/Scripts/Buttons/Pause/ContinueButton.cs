@@ -32,6 +32,7 @@ namespace Buttons.Pause
             yield return new WaitForSeconds(_forkPausePanelAnim["PanelDying"].length);
             Statics.TimeScale = 1;
             backgroundPanel.SetActive(false);
+            forkPausePanel.SetActive(false);
         }
     }
 }

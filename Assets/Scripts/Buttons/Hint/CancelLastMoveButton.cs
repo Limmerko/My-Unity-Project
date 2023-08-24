@@ -27,7 +27,7 @@ namespace Buttons.Hint
             
             Debug.Log("Отменить");
 
-            CancelLastMove();
+            CancelLastMove(); // TODO может что-то выводить если нет последних ходов?
             
             CheckCount();
         }

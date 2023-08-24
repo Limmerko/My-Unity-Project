@@ -103,7 +103,8 @@ namespace Buttons.Hint
                 }
             }
 
-            Debug.Log("Нет доступных ходов");
+            Debug.Log("Нет доступных ходов"); // TODO может что-то выводить если нет доступных ходов?
+            return; 
             
             Exit:
                 CheckCount();
