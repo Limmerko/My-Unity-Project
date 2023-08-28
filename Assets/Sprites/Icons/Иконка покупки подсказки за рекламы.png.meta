@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eec9902a0fd59784bb07f791a8150778
+guid: d8022e4f2216bc940af3b85ab39ef694
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 512
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -127,49 +127,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: "\u0427\u0430\u0448\u043A\u0430 \u043A\u043E\u0444\u0435_0"
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 285
-        height: 285
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6a01a190c6ec1f4f8f30abd359bf08d
-      internalID: -693735180
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u0427\u0430\u0448\u043A\u0430 \u043A\u043E\u0444\u0435_1"
-      rect:
-        serializedVersion: 2
-        x: 295
-        y: 0
-        width: 285
-        height: 285
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ecffd69e5e89d9444a020201c7eb2aee
-      internalID: 1536778187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -180,9 +138,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      "\u0427\u0430\u0448\u043A\u0430 \u043A\u043E\u0444\u0435_0": -693735180
-      "\u0427\u0430\u0448\u043A\u0430 \u043A\u043E\u0444\u0435_1": 1536778187
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
