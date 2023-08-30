@@ -28,6 +28,16 @@ public class BrickUtils
     }
     
     /**
+     * Список кирпичиков, которые были нажатыи не помечены на удаление
+     */
+    public static List<Brick> AllTouchAndIsNotToDestroyBricks()
+    {
+        return  Statics.AllBricks.Where(brick => brick.IsTouch && !brick.IsToDestroy)
+            .OrderBy(brick => brick.TargetWaypoint)
+            .ToList();
+    }
+    
+    /**
      * Список кирпичиков, которые не были нажаты
      */
     public static List<Brick> AllNotTouchBricks()

@@ -79,7 +79,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         if (_brick.IsTouch || 
             !_brick.IsClickable || 
             Statics.IsGameOver ||
-            BrickUtils.AllTouchBricks().Count >= 7) return;
+            BrickUtils.AllTouchAndIsNotToDestroyBricks().Count >= 7) return;
         
         // Добавление плитки в список последний ходов
         _brick.LastMoveState = (Brick) _brick.Clone();
