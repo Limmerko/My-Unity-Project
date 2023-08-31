@@ -1,3 +1,5 @@
+using System;
+using Buttons.Pause;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,6 +26,11 @@ namespace Buttons
             _upPosition = _iconTransform.localPosition;
             _downPosition = iconDown.transform.localPosition;
             StartProcess();
+        }
+
+        protected void Update()
+        {
+            EscapeButtonClick();
         }
 
         /**
@@ -64,5 +71,20 @@ namespace Buttons
          * Выполнение действий при старте
         */
         protected abstract void StartProcess();
+
+        /**
+         * Нажатие на кнопку "Назад" на телефоне
+         */
+        private void EscapeButtonClick()
+        {
+            if (this.GetType() == typeof(ContinueButton) ||
+                this.GetType() == typeof(GoBackPauseButton))
+            {
+                if (Input.GetKey(KeyCode.Escape))
+                {
+                    Process();
+                }
+            }
+        }
     }
 }

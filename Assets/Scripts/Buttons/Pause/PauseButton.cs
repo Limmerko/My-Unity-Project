@@ -30,7 +30,7 @@ namespace Buttons.Pause
             nextLevel.SetActive(false);
             buyHintPanel.SetActive(false);
         }
-    
+
         /**
          * Открытие меню паузы
          */
