@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,7 +15,8 @@ namespace Buttons.Hint
         [SerializeField] private Sprite[] countSprites; // Спрайты для кол-ва подсказок
         [SerializeField] protected GameObject backgroundPanel; // Панель паузы
         [SerializeField] protected GameObject buyHintPanel; // Панель покупки подсказки
-
+        [SerializeField] protected Sprite hintSprite; // Инока подсказки для покупки
+        
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _buyHintPanelAnim; // Анимация панель покупки подсказки
         
@@ -23,7 +25,7 @@ namespace Buttons.Hint
         private Transform _countTransform;
         private Vector3 _countUpPosition; // Позиция иконки, когда кнопка не нажата 
         private Vector3 _countDownPosition; // Позиция иконки, когда кнопка нажата
-        
+
         protected String PrefCount { get; set; }
         
         protected override void StartProcess()
@@ -49,7 +51,7 @@ namespace Buttons.Hint
             _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
             buyHintPanel.SetActive(false);
             _buyHintPanelAnim = buyHintPanel.GetComponent<Animation>();
-            
+
             CountSymbol();
             CheckCountSprite();
         }
@@ -120,7 +122,22 @@ namespace Buttons.Hint
             buyHintPanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _buyHintPanelAnim.Play("PanelUprise");
-            
+
+            // Установка иноки какая именно подска покупается
+            GameObject hintSpriteObj = GameObject.Find("HintSprite");
+            hintSpriteObj.GetComponent<Image>().sprite = hintSprite;
+            if ("CountCancelLastMove".Equals(PrefCount))
+            {
+                hintSpriteObj.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 200);
+            }
+            else
+            {
+                hintSpriteObj.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
+            }
+
+            TextMeshProUGUI hintCountText = GameObject.Find("HintCount").GetComponent<TextMeshProUGUI>();
+            hintCountText.text = "1";
+
             PlayerPrefs.SetString("LastHint", PrefCount);
             PlayerPrefs.Save();
         }

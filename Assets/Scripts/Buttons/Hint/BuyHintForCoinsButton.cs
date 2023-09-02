@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Buttons.Hint
         [SerializeField] protected GameObject backgroundPanel; // Панель паузы
         [SerializeField] protected GameObject buyHintPanel; // Панель покупки подсказки
         [SerializeField] private TextMeshProUGUI coinsText; // Текст с кол-вом монет
+        [SerializeField] private TextMeshProUGUI hintCount; // Кол-во подсказок для покупки
         
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _buyHintPanelAnim; // Анимация панели покупки подсказки
@@ -25,13 +27,17 @@ namespace Buttons.Hint
         protected override void Process()
         {
             int coinsCount = PlayerPrefs.GetInt("Coins");
-            if (coinsCount < 100)
+            int hintCountInt = Int32.Parse(hintCount.text);
+            int price = 100 * hintCountInt;
+
+            if (coinsCount < price)
             {
+                // TODO наверно надо цвет кнопки менять если монеток не хватает
                 return;
             }
 
-            PlayerPrefs.SetInt("Coins", coinsCount - 100);
-            PlayerPrefs.SetInt(PlayerPrefs.GetString("LastHint"), 1);
+            PlayerPrefs.SetInt("Coins", coinsCount - price);
+            PlayerPrefs.SetInt(PlayerPrefs.GetString("LastHint"), hintCountInt);
             PlayerPrefs.Save();
             
             coinsText.text = PlayerPrefs.GetInt("Coins").ToString();
