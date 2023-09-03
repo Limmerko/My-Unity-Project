@@ -10,6 +10,7 @@ namespace Buttons.Hint
     public class HintPlusButton : CommonButton
     {
         [SerializeField] private TextMeshProUGUI hintCount;
+        [SerializeField] private TextMeshProUGUI coinsPrice;
         
         protected override void StartProcess()
         {
@@ -23,7 +24,9 @@ namespace Buttons.Hint
             {
                 return;
             }
-            hintCount.text = (hintCountInt + 1).ToString();
+            int newHintCount = hintCountInt + 1;
+            hintCount.text = newHintCount.ToString();
+            coinsPrice.text = (newHintCount * 100).ToString();
         }
     }
 }

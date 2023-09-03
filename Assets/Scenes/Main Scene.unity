@@ -755,6 +755,7 @@ MonoBehaviour:
   iconUp: {fileID: 1353243453}
   iconDown: {fileID: 1489272566}
   hintCount: {fileID: 1059508948}
+  coinsPrice: {fileID: 2121483589}
 --- !u!1 &227343940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,7 +1956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &461932912
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1974,7 +1975,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -5, y: 5}
-  m_SizeDelta: {x: 40, y: 50}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &461932913
 MonoBehaviour:
@@ -1989,14 +1990,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e988a2e8a4b85dd4abcd4ccce01a4956, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 562eb6c8f7d9aa54d9f07f9e8d1064ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2151,6 +2152,7 @@ MonoBehaviour:
   iconUp: {fileID: 461932911}
   iconDown: {fileID: 880384917}
   hintCount: {fileID: 1059508948}
+  coinsPrice: {fileID: 2121483589}
 --- !u!1 &483892795
 GameObject:
   m_ObjectHideFlags: 0
@@ -5217,7 +5219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1353243454
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5236,7 +5238,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -5, y: 5}
-  m_SizeDelta: {x: 40, y: 50}
+  m_SizeDelta: {x: 50, y: 7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353243455
 MonoBehaviour:
@@ -5258,7 +5260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a27543dcfb3ebd04080947576ffea840, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3e1cd15266285c4eaabfd74f943ef0a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8471,7 +8473,7 @@ GameObject:
   - component: {fileID: 2121483590}
   - component: {fileID: 2121483589}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CoinsPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
