@@ -138,6 +138,10 @@ namespace Buttons.Hint
             TextMeshProUGUI hintCountText = GameObject.Find("HintCount").GetComponent<TextMeshProUGUI>();
             hintCountText.text = "1";
 
+            TextMeshProUGUI coinsPriceText = GameObject.Find("CoinsPrice").GetComponent<TextMeshProUGUI>();
+            coinsPriceText.text = "100";
+
+            
             PlayerPrefs.SetString("LastHint", PrefCount);
             PlayerPrefs.Save();
         }
