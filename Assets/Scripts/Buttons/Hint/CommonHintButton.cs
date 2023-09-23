@@ -130,6 +130,10 @@ namespace Buttons.Hint
             {
                 hintSpriteObj.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 200);
             }
+            else if ("CountHintMove".Equals(PrefCount))
+            {
+                hintSpriteObj.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 264);
+            }
             else
             {
                 hintSpriteObj.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
