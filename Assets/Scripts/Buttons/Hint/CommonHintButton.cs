@@ -15,7 +15,9 @@ namespace Buttons.Hint
         [SerializeField] private Sprite[] countSprites; // Спрайты для кол-ва подсказок
         [SerializeField] protected GameObject backgroundPanel; // Панель паузы
         [SerializeField] protected GameObject buyHintPanel; // Панель покупки подсказки
-        [SerializeField] protected Sprite hintSprite; // Инока подсказки для покупки
+        [SerializeField] protected GameObject refreshSprite; // Инока подсказки для покупки "Перемешивания"
+        [SerializeField] protected GameObject cancelLastMoveSprite; // Инока подсказки для покупки "Отмены хода" 
+        [SerializeField] protected GameObject hintMoveSprite; // Инока подсказки для покупки "Подсказки хода"
         
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _buyHintPanelAnim; // Анимация панель покупки подсказки
@@ -123,20 +125,24 @@ namespace Buttons.Hint
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _buyHintPanelAnim.Play("PanelUprise");
 
-            // Установка иноки какая именно подска покупается
-            GameObject hintSpriteObj = GameObject.Find("HintSprite");
-            hintSpriteObj.GetComponent<Image>().sprite = hintSprite;
+            // Установка иконки какая именно подска покупается
             if ("CountCancelLastMove".Equals(PrefCount))
             {
-                hintSpriteObj.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 200);
+                cancelLastMoveSprite.SetActive(true);
+                refreshSprite.SetActive(false);
+                hintMoveSprite.SetActive(false);
             }
             else if ("CountHintMove".Equals(PrefCount))
             {
-                hintSpriteObj.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 264);
+                cancelLastMoveSprite.SetActive(false);
+                refreshSprite.SetActive(false);
+                hintMoveSprite.SetActive(true);
             }
             else
             {
-                hintSpriteObj.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
+                cancelLastMoveSprite.SetActive(false);
+                refreshSprite.SetActive(true);
+                hintMoveSprite.SetActive(false);
             }
 
             TextMeshProUGUI hintCountText = GameObject.Find("HintCount").GetComponent<TextMeshProUGUI>();
