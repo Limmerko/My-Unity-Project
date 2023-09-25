@@ -23,6 +23,7 @@ namespace Buttons.Hint
                 !Statics.LevelStart || 
                 Statics.LastMoves.Count == 0 || 
                 BrickUtils.AllTouchAndNotFinishBricks().Count > 0 ||
+                BrickUtils.AllFinishBricks().Count == 0 ||
                 PlayerPrefs.GetInt(PrefCount) == 0) return;
             
             Debug.Log("Отменить");
