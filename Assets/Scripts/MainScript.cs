@@ -198,7 +198,7 @@ public class MainScript : MonoBehaviour
     {
         Vector3 initPosition = brick.GameObject.transform.position;
         GameObject coinGameObject = Instantiate(coinPrefab, initPosition, Quaternion.identity);
-        coinGameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+        coinGameObject.transform.localScale = new Vector3(0.3f, 0.3f, 3f);
         coinGameObject.GetComponent<CoinScript>().SetCoin(coinsPlace.transform.position, coinsText);
         coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas 
     }
@@ -261,7 +261,7 @@ public class MainScript : MonoBehaviour
     private IEnumerator DestroyBricks(List<Brick> bricks)
     {
         bricks.ForEach(brick => brick.IsToDestroy = true);
-        PlayerPrefs.SetInt(CoinsPref, PlayerPrefs.GetInt(CoinsPref) + 3);
+        PlayerPrefs.SetInt(CoinsPref, PlayerPrefs.GetInt(CoinsPref) + 1);
         PlayerPrefs.Save();
         yield return new WaitForSeconds(0.1f);
         float timeAnim = 0f;
@@ -275,9 +275,10 @@ public class MainScript : MonoBehaviour
                     timeAnim = brickScript.LengthClearAnim();
                 }
                 brickScript.PlayClearAnim();
-                InitializeCoin(brick);
             }
         });
+        
+        InitializeCoin(bricks[1]);
         
         yield return new WaitForSeconds(timeAnim);
         bricks.ForEach(brick =>

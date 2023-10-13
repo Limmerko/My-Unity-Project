@@ -39,9 +39,9 @@ namespace Buttons.Hint
             }
             else // TODO временно, убрать потом
             {
-                PlayerPrefs.SetInt(PrefCount, 3);
+                /* PlayerPrefs.SetInt(PrefCount, 3);
                 PlayerPrefs.SetInt("Coins", 1000);
-                PlayerPrefs.Save();
+                PlayerPrefs.Save(); */
             }
             
             _countImage = count.gameObject.GetComponent<Image>();

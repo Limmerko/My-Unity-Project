@@ -7,40 +7,45 @@ public class CoinScript : MonoBehaviour
 {
     private Vector3 _targetPosition; // Место расположения всех монет
     private TextMeshProUGUI _text; // Текст с кол-вом монет
+    private Vector3 _startPosition; 
 
     public void SetCoin(Vector3 target, TextMeshProUGUI text)
     {
         _targetPosition = target;
         _text = text;
+        _startPosition = gameObject.transform.position;
     }
 
     void Update()
     {
-        MoveToCoins();
-        ChangeSize(0.8f);
-    }
-
-    private void MoveToCoins()
-    {
         Vector3 position = gameObject.transform.position;
         float distance = Vector3.Distance(_targetPosition, position);
+        MoveToCoins(position, distance);
+        var targetSize = (float)Screen.width / Screen.height * 1.25f; // Просто такой размер подходит и равен монете в приземлении
+        ChangeSize(targetSize, distance);
+    }
+
+    private void MoveToCoins(Vector3 position, float distance)
+    {
         _targetPosition.z = position.z;
         // Если закончил движение
-        if (distance <= 0.001f)
+        if (distance <= 0.005f)
         {
             _text.text = PlayerPrefs.GetInt("Coins").ToString();
             Destroy(gameObject);
         }
         else
         {
-            float speed = MainUtils.CountSpeed(_targetPosition, position, 15f);
+            float distanceFromStart = Vector3.Distance(_startPosition, position); // Растояние от места появления
+            float speed = distanceFromStart <= 0.1f ? distanceFromStart + 0.7f : distance / 0.1f; // Замедление в самом начале
+            speed = speed >= 15f ? 15f : speed;
             MainUtils.MoveToWaypoint(_targetPosition, gameObject, speed); 
         }
     }
 
-    private void ChangeSize(float size)
+    private void ChangeSize(float size, float distance)
     {
         Vector3 target = new Vector3(size, size, 0);
-        MainUtils.ChangeSize(target, gameObject, 5f);
+        MainUtils.ChangeSize(target, gameObject, distance / 0.1f);
     }
 }
