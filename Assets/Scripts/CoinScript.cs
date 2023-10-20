@@ -20,12 +20,13 @@ public class CoinScript : MonoBehaviour
     {
         Vector3 position = gameObject.transform.position;
         float distance = Vector3.Distance(_targetPosition, position);
-        MoveToCoins(position, distance);
+        float distanceFromStart = Vector3.Distance(_startPosition, position); // Растояние от места появления
+        MoveToCoins(position, distance, distanceFromStart);
         var targetSize = (float)Screen.width / Screen.height * 1.25f; // Просто такой размер подходит и равен монете в приземлении
-        ChangeSize(targetSize, distance);
+        ChangeSize(targetSize, distance, distanceFromStart);
     }
 
-    private void MoveToCoins(Vector3 position, float distance)
+    private void MoveToCoins(Vector3 position, float distance, float distanceFromStart)
     {
         _targetPosition.z = position.z;
         // Если закончил движение
@@ -36,16 +37,16 @@ public class CoinScript : MonoBehaviour
         }
         else
         {
-            float distanceFromStart = Vector3.Distance(_startPosition, position); // Растояние от места появления
             float speed = distanceFromStart <= 0.1f ? distanceFromStart + 0.7f : distance / 0.1f; // Замедление в самом начале
             speed = speed >= 15f ? 15f : speed;
             MainUtils.MoveToWaypoint(_targetPosition, gameObject, speed); 
         }
     }
 
-    private void ChangeSize(float size, float distance)
+    private void ChangeSize(float size, float distance, float distanceFromStart)
     {
         Vector3 target = new Vector3(size, size, 0);
-        MainUtils.ChangeSize(target, gameObject, distance / 0.1f);
+        var speed = distanceFromStart <= 0.1f ? 15f : distance / 0.1f;
+        MainUtils.ChangeSize(target, gameObject, speed);
     }
 }
