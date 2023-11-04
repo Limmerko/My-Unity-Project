@@ -9,6 +9,7 @@ using Random = System.Random;
 using System.Linq;
 using System.Runtime.InteropServices;
 using TMPro;
+using Utils;
 
 public class MainScript : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject losePanel; // Внутрення панель окончания игры
     [SerializeField] private GameObject nextLevelPanel; // Панель перехода на следующий уровень
     [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject background; // Фон 
+    [SerializeField] private List<Sprite> allBackgroundSprites; // Все возможное картинки для фонаПри
     
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -31,6 +34,8 @@ public class MainScript : MonoBehaviour
     private float _brickSize; 
     private float _sizeFinishBrick;
     private Random _random = new Random();
+    private List<SpriteRenderer> _backIcons = new(); // Икноки на фоне
+    private List<BrickType> _limitedTypes = new();
 
     private const String CoinsPref = "Coins";
     
@@ -50,13 +55,18 @@ public class MainScript : MonoBehaviour
         _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
         _losePanelAnim = losePanel.GetComponent<Animation>();
         _nextLevelPanelAnim = nextLevelPanel.GetComponent<Animation>();
+        _backIcons = background.GetComponentsInChildren<SpriteRenderer>()
+            .Where(icon => "Background".Equals(icon.tag))
+            .ToList();
     }
 
     private void Start()    
     {
         DefineLevel();
         InitializeFinishPlace();
+        InitializedTypes();
         InitializedBricks();
+        InitializeBackGround();
 
         StartLevel();
     }
@@ -107,6 +117,15 @@ public class MainScript : MonoBehaviour
         _sizeFinishBrick = BrickUtils.BrickSize(8);
     }
 
+    private void InitializedTypes()
+    {
+        _limitedTypes = Enum.GetValues(typeof(BrickType)).Cast<BrickType>()
+            .OrderBy(x => _random.Next())
+            .Take(_level.CountTypes)
+            .ToList();
+        Debug.Log("Кол-во типов : " + _limitedTypes.Count());
+    }
+    
     /**
      * Инициализация плиток
      */
@@ -114,18 +133,10 @@ public class MainScript : MonoBehaviour
     {
         List<InitialBrick> bricks = _level.Bricks;
         Debug.Log("Кол-во кирпичиков : " + bricks.Count());
-
-
-        MainUtils.MixList(bricks); // Перемешивание плиток
-
-        List<BrickType> limitedTypes = Enum.GetValues(typeof(BrickType)).Cast<BrickType>()
-            .OrderBy(x => _random.Next())
-            .Take(_level.CountTypes)
-            .ToList();
-
-        Debug.Log("Кол-во типов : " + limitedTypes.Count());
         
-        List<BrickType> types = new List<BrickType>(limitedTypes);
+        MainUtils.MixList(bricks); // Перемешивание плиток
+        
+        List<BrickType> types = new List<BrickType>(_limitedTypes);
        
         if (bricks.Count % 3 != 0)
         {
@@ -136,7 +147,7 @@ public class MainScript : MonoBehaviour
         {
             if (types.Count == 0)
             {
-                types = new List<BrickType>(limitedTypes);
+                types = new List<BrickType>(_limitedTypes);
             }
             BrickType type = types[_random.Next(types.Count)];
             types.Remove(type);
@@ -202,7 +213,29 @@ public class MainScript : MonoBehaviour
         coinGameObject.GetComponent<CoinScript>().SetCoin(coinsPlace.transform.position, coinsText);
         coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas 
     }
-    
+
+    /**
+     * Инициализация динамического фона
+     */
+    private void InitializeBackGround()
+    {
+        // TODO сейчас на фоне только те картинки, что есть на самом уровне
+        List<BrickType> types = new List<BrickType>(_limitedTypes);
+
+        _backIcons.ForEach(icon =>
+        {
+            if (types.Count == 0)
+            {
+                types = new List<BrickType>(_limitedTypes);
+            }
+            BrickType type = types[_random.Next(types.Count)];
+            Sprite spriteByType = allBackgroundSprites.First(sprite => sprite.name.Equals(type.ToString()));
+
+            icon.sprite = spriteByType;
+            types.Remove(type);
+        });
+    }
+
     /**
      * Проверка очистки кирпичиков
      */
