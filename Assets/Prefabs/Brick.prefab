@@ -189,6 +189,12 @@ MonoBehaviour:
   cupOfCoffee:
   - {fileID: -693735180, guid: eec9902a0fd59784bb07f791a8150778, type: 3}
   - {fileID: 1536778187, guid: eec9902a0fd59784bb07f791a8150778, type: 3}
+  onigiri:
+  - {fileID: -1616602849, guid: f8c0e6131003354458ce3f3dfcdc9d5e, type: 3}
+  - {fileID: 247021327, guid: f8c0e6131003354458ce3f3dfcdc9d5e, type: 3}
+  sushiRoll:
+  - {fileID: -1232917651, guid: d7ff755be2376504a8dacc4c1c67cedd, type: 3}
+  - {fileID: -898072782, guid: d7ff755be2376504a8dacc4c1c67cedd, type: 3}
 --- !u!111 &3153343701767512400
 Animation:
   m_ObjectHideFlags: 0
