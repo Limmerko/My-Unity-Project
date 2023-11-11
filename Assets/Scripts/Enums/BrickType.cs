@@ -22,5 +22,8 @@ public enum BrickType {
     SandwichWithEggs,
     CupOfCoffee,
     Onigiri,
-    SushiRoll
+    SushiRoll,
+    Narutomaki,
+    Ramen,
+    Mochi
 }

@@ -195,6 +195,15 @@ MonoBehaviour:
   sushiRoll:
   - {fileID: -1232917651, guid: d7ff755be2376504a8dacc4c1c67cedd, type: 3}
   - {fileID: -898072782, guid: d7ff755be2376504a8dacc4c1c67cedd, type: 3}
+  narutomaki:
+  - {fileID: 1860482313, guid: 06b19840e64efa84ca8793fb9a90c6f8, type: 3}
+  - {fileID: 1487468861, guid: 06b19840e64efa84ca8793fb9a90c6f8, type: 3}
+  ramen:
+  - {fileID: 1657677270, guid: dca2c18dc4a4915459b7778b4c85ac0b, type: 3}
+  - {fileID: 1799113976, guid: dca2c18dc4a4915459b7778b4c85ac0b, type: 3}
+  mochi:
+  - {fileID: 1875877601, guid: 48f9443889b9a3042892a333728e181b, type: 3}
+  - {fileID: 404317050, guid: 48f9443889b9a3042892a333728e181b, type: 3}
 --- !u!111 &3153343701767512400
 Animation:
   m_ObjectHideFlags: 0
