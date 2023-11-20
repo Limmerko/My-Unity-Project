@@ -38,6 +38,9 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private Sprite[] narutomaki;
     [SerializeField] private Sprite[] ramen;
     [SerializeField] private Sprite[] mochi;
+    [SerializeField] private Sprite[] pancakes;
+    [SerializeField] private Sprite[] wafer;
+    [SerializeField] private Sprite[] croissant;
 
     private Brick _brick;
     private SpriteRenderer _sprite;
@@ -209,6 +212,15 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
                 break;
             case BrickType.Mochi:
                 setType = mochi[_brick.IsDown ? 1 : 0];
+                break;
+            case BrickType.Pancakes:
+                setType = pancakes[_brick.IsDown ? 1 : 0];
+                break;
+            case BrickType.Wafer:
+                setType = wafer[_brick.IsDown ? 1 : 0];
+                break;
+            case BrickType.Croissant:
+                setType = croissant[_brick.IsDown ? 1 : 0];
                 break;
         }
 

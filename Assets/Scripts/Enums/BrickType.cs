@@ -25,5 +25,8 @@ public enum BrickType {
     SushiRoll,
     Narutomaki,
     Ramen,
-    Mochi
+    Mochi,
+    Pancakes,
+    Wafer,
+    Croissant
 }
