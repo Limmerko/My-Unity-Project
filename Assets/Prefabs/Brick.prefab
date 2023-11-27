@@ -211,8 +211,14 @@ MonoBehaviour:
   - {fileID: 493817845, guid: a7891aa4b1c12c74298843492cbecdba, type: 3}
   - {fileID: -1758384906, guid: a7891aa4b1c12c74298843492cbecdba, type: 3}
   croissant:
-  - {fileID: 1113650583, guid: f107501ceb07e9643a81cb9b00385888, type: 3}
-  - {fileID: -1010803565, guid: f107501ceb07e9643a81cb9b00385888, type: 3}
+  - {fileID: 1333672758, guid: f107501ceb07e9643a81cb9b00385888, type: 3}
+  - {fileID: -1116357532, guid: f107501ceb07e9643a81cb9b00385888, type: 3}
+  bentoCake:
+  - {fileID: 1693607049, guid: 0987235399b45074cba3d06eba3ff824, type: 3}
+  - {fileID: 634646674, guid: 0987235399b45074cba3d06eba3ff824, type: 3}
+  jam:
+  - {fileID: 506522297, guid: fbca6a641fadafa4dad581c4f46961dc, type: 3}
+  - {fileID: 100989380, guid: fbca6a641fadafa4dad581c4f46961dc, type: 3}
 --- !u!111 &3153343701767512400
 Animation:
   m_ObjectHideFlags: 0

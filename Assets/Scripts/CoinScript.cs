@@ -22,7 +22,7 @@ public class CoinScript : MonoBehaviour
         float distance = Vector3.Distance(_targetPosition, position);
         float distanceFromStart = Vector3.Distance(_startPosition, position); // Растояние от места появления
         MoveToCoins(position, distance, distanceFromStart);
-        var targetSize = (float)Screen.width / Screen.height * 1.25f; // Просто такой размер подходит и равен монете в приземлении
+        var targetSize = (float)Screen.width / Screen.height * 1.4f; // Просто такой размер подходит и равен монете в приземлении
         ChangeSize(targetSize, distance, distanceFromStart);
     }
 
@@ -46,7 +46,7 @@ public class CoinScript : MonoBehaviour
     private void ChangeSize(float size, float distance, float distanceFromStart)
     {
         Vector3 target = new Vector3(size, size, 0);
-        var speed = distanceFromStart <= 0.1f ? 15f : distance / 0.1f;
+        var speed = distanceFromStart <= 0.1f ? 15f : distance / 0.09f;
         MainUtils.ChangeSize(target, gameObject, speed);
     }
 }

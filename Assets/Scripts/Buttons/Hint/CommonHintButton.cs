@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Diagnostics;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace Buttons.Hint
         [SerializeField] protected GameObject refreshSprite; // Инока подсказки для покупки "Перемешивания"
         [SerializeField] protected GameObject cancelLastMoveSprite; // Инока подсказки для покупки "Отмены хода" 
         [SerializeField] protected GameObject hintMoveSprite; // Инока подсказки для покупки "Подсказки хода"
+        [SerializeField] private GameObject buyHintForCoinsButtonIsDisabled; // Изменение цвета кнопки "купить подсказку" в случае её недоступности
         
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _buyHintPanelAnim; // Анимация панель покупки подсказки
@@ -27,7 +29,8 @@ namespace Buttons.Hint
         private Transform _countTransform;
         private Vector3 _countUpPosition; // Позиция иконки, когда кнопка не нажата 
         private Vector3 _countDownPosition; // Позиция иконки, когда кнопка нажата
-
+        private int _hintPrice;
+        
         protected String PrefCount { get; set; }
         
         protected override void StartProcess()
@@ -37,13 +40,7 @@ namespace Buttons.Hint
                 PlayerPrefs.SetInt(PrefCount, 3);
                 PlayerPrefs.Save();
             }
-            else // TODO временно, убрать потом
-            {
-                /* PlayerPrefs.SetInt(PrefCount, 3);
-                PlayerPrefs.SetInt("Coins", 1000);
-                PlayerPrefs.Save(); */
-            }
-            
+
             _countImage = count.gameObject.GetComponent<Image>();
             _countTransform = count.transform;
             _countUpPosition = _countTransform.localPosition;
@@ -110,7 +107,7 @@ namespace Buttons.Hint
         }
 
         /**
-         * Установка нужного спрайта
+         * Установка нужного спрайта кол-во доступных подсказок
          */
         private void CheckCountSprite()
         {
@@ -124,35 +121,41 @@ namespace Buttons.Hint
             buyHintPanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _buyHintPanelAnim.Play("PanelUprise");
-
+            int _hintPrice = 0; 
+            
             // Установка иконки какая именно подска покупается
-            if ("CountCancelLastMove".Equals(PrefCount))
+            switch (PrefCount)
             {
-                cancelLastMoveSprite.SetActive(true);
-                refreshSprite.SetActive(false);
-                hintMoveSprite.SetActive(false);
-            }
-            else if ("CountHintMove".Equals(PrefCount))
-            {
-                cancelLastMoveSprite.SetActive(false);
-                refreshSprite.SetActive(false);
-                hintMoveSprite.SetActive(true);
-            }
-            else
-            {
-                cancelLastMoveSprite.SetActive(false);
-                refreshSprite.SetActive(true);
-                hintMoveSprite.SetActive(false);
+                case "CountCancelLastMove":
+                    cancelLastMoveSprite.SetActive(true);
+                    refreshSprite.SetActive(false);
+                    hintMoveSprite.SetActive(false);
+                    _hintPrice = 50;
+                    break;
+                case "CountRefresh":
+                    cancelLastMoveSprite.SetActive(false);
+                    refreshSprite.SetActive(true);
+                    hintMoveSprite.SetActive(false);
+                    _hintPrice = 75;
+                    break;
+                case "CountHintMove":
+                    cancelLastMoveSprite.SetActive(false);
+                    refreshSprite.SetActive(false);
+                    hintMoveSprite.SetActive(true);
+                    _hintPrice = 100;
+                    break;
             }
 
             TextMeshProUGUI hintCountText = GameObject.Find("HintCount").GetComponent<TextMeshProUGUI>();
-            hintCountText.text = "1";
-
             TextMeshProUGUI coinsPriceText = GameObject.Find("CoinsPrice").GetComponent<TextMeshProUGUI>();
-            coinsPriceText.text = "100";
 
-            
+            hintCountText.text = "1";
+            coinsPriceText.text = _hintPrice.ToString();
+
+            buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < _hintPrice);
+
             PlayerPrefs.SetString("LastHint", PrefCount);
+            PlayerPrefs.SetInt("HintPrice", _hintPrice);
             PlayerPrefs.Save();
         }
     }

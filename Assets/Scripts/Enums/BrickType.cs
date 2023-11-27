@@ -28,5 +28,7 @@ public enum BrickType {
     Mochi,
     Pancakes,
     Wafer,
-    Croissant
+    Croissant,
+    BentoCake,
+    Jam
 }

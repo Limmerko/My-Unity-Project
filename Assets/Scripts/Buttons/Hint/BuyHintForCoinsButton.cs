@@ -14,7 +14,7 @@ namespace Buttons.Hint
         [SerializeField] protected GameObject buyHintPanel; // Панель покупки подсказки
         [SerializeField] private TextMeshProUGUI coinsText; // Текст с кол-вом монет
         [SerializeField] private TextMeshProUGUI hintCount; // Кол-во подсказок для покупки
-        
+
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _buyHintPanelAnim; // Анимация панели покупки подсказки
         
@@ -28,11 +28,11 @@ namespace Buttons.Hint
         {
             int coinsCount = PlayerPrefs.GetInt("Coins");
             int hintCountInt = Int32.Parse(hintCount.text);
-            int price = 100 * hintCountInt;
+            int hintPrice = PlayerPrefs.GetInt("HintPrice");
+            int price = hintPrice * hintCountInt;
 
             if (coinsCount < price)
             {
-                // TODO наверно надо цвет кнопки менять если монеток не хватает
                 return;
             }
 
