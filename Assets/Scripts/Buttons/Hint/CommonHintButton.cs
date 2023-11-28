@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 namespace Buttons.Hint
 {
@@ -20,6 +21,8 @@ namespace Buttons.Hint
         [SerializeField] protected GameObject cancelLastMoveSprite; // Инока подсказки для покупки "Отмены хода" 
         [SerializeField] protected GameObject hintMoveSprite; // Инока подсказки для покупки "Подсказки хода"
         [SerializeField] private GameObject buyHintForCoinsButtonIsDisabled; // Изменение цвета кнопки "купить подсказку" в случае её недоступности
+        [SerializeField] private GameObject hintMinusButtonIsDisabled; // Изменение цвета кнопки "-" в случае её недоступности
+        [SerializeField] private GameObject hintPlusButtonIsDisabled; // Изменение цвета кнопки "+" в случае её недоступности
         
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _buyHintPanelAnim; // Анимация панель покупки подсказки
@@ -151,8 +154,10 @@ namespace Buttons.Hint
 
             hintCountText.text = "1";
             coinsPriceText.text = _hintPrice.ToString();
-
+            
             buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < _hintPrice);
+            hintMinusButtonIsDisabled.SetActive(true);
+            hintPlusButtonIsDisabled.SetActive(false);
 
             PlayerPrefs.SetString("LastHint", PrefCount);
             PlayerPrefs.SetInt("HintPrice", _hintPrice);
