@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Classes;
+using Enums;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Utils;
 
 public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
 { 
@@ -266,6 +269,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             if (distance <= 0.001f && !_brick.IsFinish)
             {
                 _brick.IsFinish = true;
+                MainUtils.SaveProgress();
             }
             else
             {

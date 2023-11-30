@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 using Random = System.Random;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Classes;
+using Enums;
+using Newtonsoft.Json;
 using TMPro;
 using Utils;
 
@@ -36,6 +39,7 @@ public class MainScript : MonoBehaviour
     private Random _random = new Random();
     private List<SpriteRenderer> _backIcons = new(); // Икноки на фоне
     private List<BrickType> _limitedTypes = new();
+    private bool _isStartSavedlevel = false;
 
     private const String CoinsPref = "Coins";
     
@@ -123,13 +127,49 @@ public class MainScript : MonoBehaviour
             .OrderBy(x => _random.Next())
             .Take(_level.CountTypes)
             .ToList();
-        Debug.Log("Кол-во типов : " + _limitedTypes.Count());
+        Debug.Log("Кол-во типов : " + _limitedTypes.Count);
     }
     
     /**
      * Инициализация плиток
      */
     private void InitializedBricks()
+    {
+        if (PlayerPrefs.HasKey("LevelProgress"))
+        {
+            Debug.Log("Загрузка сохраненого уровня");
+            _isStartSavedlevel = true;
+            string savedJson = PlayerPrefs.GetString("LevelProgress");
+            Debug.Log(savedJson);
+            List<SavedBrick> savedBricks = JsonConvert.DeserializeObject<List<SavedBrick>>(savedJson);
+            // Сортировка по слоям и расположению
+            savedBricks = savedBricks
+                .OrderBy(b => b.TargetWaypoint)
+                .ToList();
+            
+           foreach (var savedBrick in savedBricks.Where(b => b.IsFinish))
+           {
+               Debug.Log(savedBrick);
+           }
+           for (int i = 0; i < savedBricks.Count; i++)
+            {
+                InitializeBrick(savedBricks[i]);
+            }
+        }
+        else
+        {
+            List<InitialBrick> bricks = GetBricksNewLevel();
+            for (int i = 0; i < bricks.Count; i++)
+            {
+                InitializeBrick(bricks[i], i / -10000f);
+            }
+        }
+    }
+
+    /**
+     * Получение кирпичиков для старта нового уровня
+     */
+    private List<InitialBrick> GetBricksNewLevel()
     {
         List<InitialBrick> bricks = _level.Bricks;
         Debug.Log("Кол-во кирпичиков : " + bricks.Count());
@@ -162,11 +202,8 @@ public class MainScript : MonoBehaviour
             .ThenByDescending(b => b.Y)
             .ThenBy(b => b.X)
             .ToList();
-
-        for (int i = 0; i < bricks.Count; i++)
-        {
-            InitializeBrick(bricks[i], i / -10000f);
-        }
+        
+        return bricks;
     }
 
     /**
@@ -180,6 +217,19 @@ public class MainScript : MonoBehaviour
         Vector3 vector3 = new Vector3(xPos, yPos, z); // Z нужен для корректного отображаения спрайтов, иначе они будут накладываться друг на друга
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
         Brick brick = new Brick(brickGameObject, initialBrick.Type, initialBrick.Layer, _brickSize, vector3);
+        brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
+        brickGameObject.GetComponent<BrickScript>().SetBrick(brick, _sizeFinishBrick);
+        brickGameObject.SetActive(false);
+    }
+
+    /**
+     * Инициализация кирпичика
+     */
+    private void InitializeBrick(SavedBrick savedBrick)
+    {
+        Vector3 vector3 = new Vector3(savedBrick.TargetPositionX, savedBrick.TargetPositionY, savedBrick.TargetPositionZ);
+        GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
+        Brick brick = new Brick(brickGameObject, savedBrick);
         brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
         brickGameObject.GetComponent<BrickScript>().SetBrick(brick, _sizeFinishBrick);
         brickGameObject.SetActive(false);
@@ -285,6 +335,8 @@ public class MainScript : MonoBehaviour
             nextLevelPanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _nextLevelPanelAnim.Play("PanelUprise");
+
+            MainUtils.ClearProgress();
         }
     }
 
@@ -320,6 +372,7 @@ public class MainScript : MonoBehaviour
             Statics.AllBricks.Remove(brick);
         });
         BrickUtils.UpdateBricksPosition();
+        MainUtils.SaveProgress();
     }
 
     /**
@@ -336,6 +389,7 @@ public class MainScript : MonoBehaviour
             losePanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _losePanelAnim.Play("PanelUprise");
+            MainUtils.ClearProgress();
         }
     }
 
@@ -344,6 +398,16 @@ public class MainScript : MonoBehaviour
      */
     private void StartLevel()
     {
+        if (_isStartSavedlevel)
+        {
+            Statics.AllBricks.ForEach(brick =>
+            {
+                brick.GameObject.SetActive(true);
+            });
+            BrickUtils.UpdateBricksState();
+            return;
+        }
+        
         var groupAllBricks = Statics.AllBricks.GroupBy(brick => brick.Layer)
             .OrderBy(bricksByLayer => bricksByLayer.Key)
             .Select(group => group.ToList())
@@ -381,6 +445,8 @@ public class MainScript : MonoBehaviour
                 isYEven = !isYEven;
             }
         });
+        
+        BrickUtils.UpdateBricksState();
     }
 
     /**

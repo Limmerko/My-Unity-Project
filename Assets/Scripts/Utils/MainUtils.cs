@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Classes;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class MainUtils
@@ -55,5 +57,24 @@ public class MainUtils
         float distance = Vector3.Distance(target, brickPosition);
         float speed = distance >= 0.1f ? distance / 2 * moveSpeed : moveSpeed / 10f; // Замедление в конце
         return speed > moveSpeed ? moveSpeed : speed < minSpeed ? minSpeed : speed; // Ограничение максимальной и минимальной скорости
+    }
+    
+    /**
+    * Сохранение прогресса прохождения уровня
+    */
+    public static void SaveProgress()
+    {
+        Debug.Log("Сохранение прогресса");
+        List<SavedBrick> savedBricks = new List<SavedBrick>();
+        Statics.AllBricks.ForEach(brick => savedBricks.Add(new SavedBrick(brick)));
+        string savedJson = JsonConvert.SerializeObject(savedBricks);
+
+        PlayerPrefs.SetString("LevelProgress", savedJson);
+        PlayerPrefs.Save();
+    }
+
+    public static void ClearProgress()
+    {
+        PlayerPrefs.DeleteKey("LevelProgress");
     }
 }

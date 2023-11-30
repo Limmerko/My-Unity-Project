@@ -31,6 +31,7 @@ namespace Buttons.Pause
             _forkPausePanelAnim.Play("PanelDying");
             yield return new WaitForSeconds(_forkPausePanelAnim["PanelDying"].length);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            MainUtils.ClearProgress();
         }
     }
 }

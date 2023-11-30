@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Classes;
 using TMPro;
 using UnityEngine;
+using Utils;
 
 namespace Buttons.Hint
 {
