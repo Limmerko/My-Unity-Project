@@ -31,8 +31,6 @@ namespace Buttons.Pause
         */
         private IEnumerator RunNextLevel()
         {
-            PlayerPrefs.SetString("LevelType", "Next");
-            PlayerPrefs.Save();
             _backgroundPanelAnim.Play("BackgroundPanelDying");
             _nextLevelPanelAnim.Play("PanelDying");
             yield return new WaitForSeconds(_nextLevelPanelAnim["PanelDying"].length);

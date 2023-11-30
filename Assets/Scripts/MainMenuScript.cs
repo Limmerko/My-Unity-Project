@@ -13,11 +13,6 @@ public class MainMenuScript : MonoBehaviour
             PlayerPrefs.SetInt("Level", 0);
         }
         
-        if (!PlayerPrefs.HasKey("LevelType"))
-        {
-            PlayerPrefs.SetString("LevelType", "Random");
-        }
-
         if (!PlayerPrefs.HasKey("Coins"))
         {
             PlayerPrefs.SetInt("Coins", 0);

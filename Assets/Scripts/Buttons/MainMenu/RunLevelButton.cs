@@ -25,9 +25,6 @@ namespace Buttons.MainMenu
         */
         private IEnumerator RunLevel()
         {
-            PlayerPrefs.SetString("LevelType", "Next");
-            PlayerPrefs.Save();
-            
             yield return new WaitForSeconds(0.5f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

@@ -107,6 +107,8 @@ namespace Utils
                 Vector3 position = transform.position;
                 transform.position = new Vector3(position.x, position.y, i / -10000f);
             }
+            
+            MainUtils.SaveProgress();
         }
 
         /**
@@ -140,6 +142,7 @@ namespace Utils
 
                 ChangeClickable(brick, isClickable);
             });
+            MainUtils.SaveProgress();
         }
 
         /**

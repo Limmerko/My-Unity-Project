@@ -2,17 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using Random = System.Random;
-using System.Linq;
-using System.Runtime.InteropServices;
 using Classes;
 using Enums;
 using Newtonsoft.Json;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 using Utils;
+using Random = System.Random;
 
 public class MainScript : MonoBehaviour
 {
@@ -98,17 +95,9 @@ public class MainScript : MonoBehaviour
      */
     private void DefineLevel()
     {
-        if ("Next".Equals(PlayerPrefs.GetString("LevelType", "Random")))
-        {
-            int levelPref = PlayerPrefs.GetInt("Level", 0);
-            Debug.Log("Выбран уровень № " + levelPref);
-            _level = Statics.AllLevels[levelPref];
-        }
-        else
-        {
-            Debug.Log("Выбран случайный уровень");
-            _level = Statics.AllLevels[_random.Next(Statics.AllLevels.Count)];
-        }
+        int levelPref = PlayerPrefs.GetInt("Level", 0);
+        Debug.Log("Выбран уровень № " + levelPref);
+        _level = Statics.AllLevels[levelPref];
 
         float maxX = _level.Bricks.Aggregate((max, next) => next.X > max.X ? next : max).X;
         float minX = _level.Bricks.Aggregate((min, next) => next.X < min.X ? next : min).X;
