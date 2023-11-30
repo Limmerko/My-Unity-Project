@@ -144,6 +144,7 @@ public class MainScript : MonoBehaviour
             {
                 InitializeBrick(savedBricks[i]);
             }
+            Statics.LevelStart = true;
         }
         else
         {
@@ -361,7 +362,6 @@ public class MainScript : MonoBehaviour
             Statics.AllBricks.Remove(brick);
         });
         BrickUtils.UpdateBricksPosition();
-        MainUtils.SaveProgress();
     }
 
     /**
@@ -434,8 +434,6 @@ public class MainScript : MonoBehaviour
                 isYEven = !isYEven;
             }
         });
-        
-        BrickUtils.UpdateBricksState();
     }
 
     /**
@@ -466,7 +464,7 @@ public class MainScript : MonoBehaviour
                 currentLayer++;
             }
         });
-
+        
         if (Statics.AllBricks.Count(brick => !brick.GameObject.transform.position.Equals(brick.TargetPosition)) == 0)
         {
             Debug.Log("Уровень начат !!!");
@@ -477,7 +475,7 @@ public class MainScript : MonoBehaviour
 
     private void CheckBrickState()
     {
-        if (!BrickUtils.IsSwipingNow())
+        if (!Statics.IsGameOver && !BrickUtils.IsSwipingNow() && Statics.TimeScale == 1)
         {
             BrickUtils.UpdateBricksState();
         };

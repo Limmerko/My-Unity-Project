@@ -35,6 +35,7 @@ namespace Buttons.Pause
             _nextLevelPanelAnim.Play("PanelDying");
             yield return new WaitForSeconds(_nextLevelPanelAnim["PanelDying"].length);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            MainUtils.ClearProgress();
         }
     }
 }

@@ -30,10 +30,6 @@ namespace Classes
         public float TargetPositionZ { get; set; } // Позиция на которой должен находиться кирпичик при старте уровня (Z)
     
         public bool IsSwipe { get; set; } // Флаг меняется ли сейчас кирпичик местами
-    
-        // public Brick LastMoveState { get; set; } // Информация о плитке если она является последним шагом 
-    
-        // public bool IsLastMove { get; set; } // Флаг является ли сейчас плитка последним ходом
 
         public SavedBrick()
         {
@@ -56,8 +52,6 @@ namespace Classes
             this.TargetPositionY = targetPosition.y;
             this.TargetPositionZ = targetPosition.z;
             this.IsSwipe = brick.IsSwipe;
-            // this.LastMoveState = brick.LastMoveState;
-            // this.IsLastMove = brick.IsLastMove;
         }
 
         public override string ToString()
