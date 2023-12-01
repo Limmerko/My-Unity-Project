@@ -28,14 +28,21 @@ namespace Classes
         public float TargetPositionX { get; set; } // Позиция на которой должен находиться кирпичик при старте уровня (X)
         public float TargetPositionY { get; set; } // Позиция на которой должен находиться кирпичик при старте уровня (Y)
         public float TargetPositionZ { get; set; } // Позиция на которой должен находиться кирпичик при старте уровня (Z)
-    
+        
+        public float PositionX { get; set; } // Позиция на находится кирпичик (X)
+        public float PositionY { get; set; } // Позиция на находится кирпичик (Y)
+        public float PositionZ { get; set; } // Позиция на находится кирпичик (Z)
+        
         public bool IsSwipe { get; set; } // Флаг меняется ли сейчас кирпичик местами
+        
 
+        public SavedBrick LastMoveState { get; set; } // Информация о плитке если она является последним шагом 
+        
         public SavedBrick()
         {
             
         }
-        
+
         public SavedBrick(Brick brick)
         {
             this.IsTouch = brick.IsTouch;
@@ -44,14 +51,29 @@ namespace Classes
             this.IsClickable = brick.IsClickable;
             this.TargetWaypoint = brick.TargetWaypoint;
             this.Type = brick.Type.ToString();
-            this.Layer = brick.Layer;
             this.Size = brick.Size;
+            this.Layer = brick.Layer;
             this.IsToDestroy = brick.IsToDestroy;
-            Vector3 targetPosition = brick.GameObject.transform.position;
+            this.IsSwipe = brick.IsSwipe;
+            Vector3 targetPosition = brick.TargetPosition;
             this.TargetPositionX = targetPosition.x;
             this.TargetPositionY = targetPosition.y;
             this.TargetPositionZ = targetPosition.z;
-            this.IsSwipe = brick.IsSwipe;
+
+            if (brick.LastMoveState != null)
+            {
+                this.LastMoveState = new SavedBrick(brick.LastMoveState);
+            }
+            if (brick.IsFinish)
+            {
+                this.Size = brick.GameObject.transform.localScale.x;
+            }
+            if (brick.GameObject != null) {
+                Vector3 transformPosition = brick.GameObject.transform.position;
+                this.PositionX = transformPosition.x;
+                this.PositionY = transformPosition.y;
+                this.PositionZ = transformPosition.z;
+            }
         }
 
         public override string ToString()

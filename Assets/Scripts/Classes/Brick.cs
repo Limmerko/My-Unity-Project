@@ -65,6 +65,10 @@ namespace Classes
             this.Size = savedBrick.Size;
             this.IsToDestroy = savedBrick.IsToDestroy;
             this.IsSwipe = savedBrick.IsSwipe;
+            if (savedBrick.LastMoveState != null)
+            {
+                this.LastMoveState = new Brick(null, savedBrick.LastMoveState);
+            }
         }
 
         public object Clone()

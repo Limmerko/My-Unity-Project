@@ -129,17 +129,12 @@ public class MainScript : MonoBehaviour
             Debug.Log("Загрузка сохраненого уровня");
             _isStartSavedlevel = true;
             string savedJson = PlayerPrefs.GetString("LevelProgress");
-            Debug.Log(savedJson);
             List<SavedBrick> savedBricks = JsonConvert.DeserializeObject<List<SavedBrick>>(savedJson);
             // Сортировка по слоям и расположению
             savedBricks = savedBricks
                 .OrderBy(b => b.TargetWaypoint)
                 .ToList();
             
-           foreach (var savedBrick in savedBricks.Where(b => b.IsFinish))
-           {
-               Debug.Log(savedBrick);
-           }
            for (int i = 0; i < savedBricks.Count; i++)
             {
                 InitializeBrick(savedBricks[i]);
@@ -148,6 +143,7 @@ public class MainScript : MonoBehaviour
         }
         else
         {
+            Debug.Log("Загрузка нового уровня");
             List<InitialBrick> bricks = GetBricksNewLevel();
             for (int i = 0; i < bricks.Count; i++)
             {
@@ -221,8 +217,14 @@ public class MainScript : MonoBehaviour
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
         Brick brick = new Brick(brickGameObject, savedBrick);
         brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
+        brickGameObject.transform.position =
+            new Vector3(savedBrick.PositionX, savedBrick.PositionY, savedBrick.PositionZ);
         brickGameObject.GetComponent<BrickScript>().SetBrick(brick, _sizeFinishBrick);
         brickGameObject.SetActive(false);
+        if (savedBrick.LastMoveState != null)
+        {
+            Statics.LastMoves.Add(brick);
+        }
     }
 
     /**

@@ -45,6 +45,7 @@ namespace Buttons.Hint
                 brick.IsFinish = false;
                 brick.IsLastMove = true;
                 brick.Layer = brick.LastMoveState.Layer;
+                brick.Size = brick.LastMoveState.Size;
                 Statics.LastMoves.Remove(brick);
                 BrickUtils.UpdateBricksPosition();
             }

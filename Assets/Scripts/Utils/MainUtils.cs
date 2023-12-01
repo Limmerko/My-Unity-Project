@@ -64,7 +64,6 @@ public class MainUtils
     */
     public static void SaveProgress()
     {
-        // Debug.Log("Сохранение прогресса");
         List<SavedBrick> savedBricks = new List<SavedBrick>();
         Statics.AllBricks.ForEach(brick => savedBricks.Add(new SavedBrick(brick)));
         string savedJson = JsonConvert.SerializeObject(savedBricks);
