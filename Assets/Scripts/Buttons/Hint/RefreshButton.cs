@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Classes;
+using Enums;
 using TMPro;
 using UnityEngine;
 using Utils;
@@ -14,7 +15,7 @@ namespace Buttons.Hint
     {
         protected override void StartProcess()
         {
-            PrefCount = "CountRefresh";
+            PrefCount = HintCountType.CountRefresh.ToString();
             base.StartProcess();
         }
 

@@ -1,41 +1,45 @@
 using System;
-using System.Collections;
-using System.Diagnostics;
+using Enums;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Debug = UnityEngine.Debug;
 
 namespace Buttons.Hint
 {
     public abstract class CommonHintButton : CommonButton
     {
         [SerializeField] private GameObject count; // Кол-во доступных подсказок
-        [SerializeField] protected GameObject countDown;  // Иконка при нажатой кнопки (Используется только его позиция)
+        [SerializeField] protected GameObject countDown; // Иконка при нажатой кнопки (Используется только его позиция)
         [SerializeField] private Sprite[] countSprites; // Спрайты для кол-ва подсказок
         [SerializeField] protected GameObject backgroundPanel; // Панель паузы
         [SerializeField] protected GameObject buyHintPanel; // Панель покупки подсказки
         [SerializeField] protected GameObject refreshSprite; // Инока подсказки для покупки "Перемешивания"
         [SerializeField] protected GameObject cancelLastMoveSprite; // Инока подсказки для покупки "Отмены хода" 
         [SerializeField] protected GameObject hintMoveSprite; // Инока подсказки для покупки "Подсказки хода"
-        [SerializeField] private GameObject buyHintForCoinsButtonIsDisabled; // Изменение цвета кнопки "купить подсказку" в случае её недоступности
-        [SerializeField] private GameObject hintMinusButtonIsDisabled; // Изменение цвета кнопки "-" в случае её недоступности
-        [SerializeField] private GameObject hintPlusButtonIsDisabled; // Изменение цвета кнопки "+" в случае её недоступности
-        
+
+        [SerializeField]
+        private GameObject
+            buyHintForCoinsButtonIsDisabled; // Изменение цвета кнопки "купить подсказку" в случае её недоступности
+
+        [SerializeField]
+        private GameObject hintMinusButtonIsDisabled; // Изменение цвета кнопки "-" в случае её недоступности
+
+        [SerializeField]
+        private GameObject hintPlusButtonIsDisabled; // Изменение цвета кнопки "+" в случае её недоступности
+
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _buyHintPanelAnim; // Анимация панель покупки подсказки
-        
+
         private Image _countImage; // Компонент для смены спрайтов
         private TextMeshProUGUI _countText; // Текст кол-ва подсказок
         private Transform _countTransform;
         private Vector3 _countUpPosition; // Позиция иконки, когда кнопка не нажата 
         private Vector3 _countDownPosition; // Позиция иконки, когда кнопка нажата
         private int _hintPrice;
-        
+
         protected String PrefCount { get; set; }
-        
+
         protected override void StartProcess()
         {
             if (!PlayerPrefs.HasKey(PrefCount))
@@ -76,7 +80,7 @@ namespace Buttons.Hint
             base.OnPointerDown(eventData);
             _countTransform.localPosition = _countDownPosition;
         }
-        
+
         public override void OnPointerExit(PointerEventData eventData)
         {
             base.OnPointerExit(eventData);
@@ -98,7 +102,7 @@ namespace Buttons.Hint
             PlayerPrefs.SetInt(PrefCount, countInt);
             _countText.text = countInt > 0 ? countInt.ToString() : "+";
             PlayerPrefs.Save();
-            
+
             CountSymbol();
             CheckCountSprite();
         }
@@ -124,29 +128,29 @@ namespace Buttons.Hint
             buyHintPanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _buyHintPanelAnim.Play("PanelUprise");
-            int _hintPrice = 0; 
-            
+            int _hintPrice = 0;
+
             // Установка иконки какая именно подска покупается
-            switch (PrefCount)
+            if (PrefCount.Equals(HintCountType.CountCancelLastMove.ToString()))
             {
-                case "CountCancelLastMove":
-                    cancelLastMoveSprite.SetActive(true);
-                    refreshSprite.SetActive(false);
-                    hintMoveSprite.SetActive(false);
-                    _hintPrice = 50;
-                    break;
-                case "CountRefresh":
-                    cancelLastMoveSprite.SetActive(false);
-                    refreshSprite.SetActive(true);
-                    hintMoveSprite.SetActive(false);
-                    _hintPrice = 75;
-                    break;
-                case "CountHintMove":
-                    cancelLastMoveSprite.SetActive(false);
-                    refreshSprite.SetActive(false);
-                    hintMoveSprite.SetActive(true);
-                    _hintPrice = 100;
-                    break;
+                cancelLastMoveSprite.SetActive(true);
+                refreshSprite.SetActive(false);
+                hintMoveSprite.SetActive(false);
+                _hintPrice = Statics.CancelLastMovePrice;
+            }
+            if (PrefCount.Equals(HintCountType.CountRefresh.ToString()))
+            {
+                cancelLastMoveSprite.SetActive(false);
+                refreshSprite.SetActive(true);
+                hintMoveSprite.SetActive(false);
+                _hintPrice = Statics.HintRefreshPrice;
+            }
+            if (PrefCount.Equals(HintCountType.CountHintMove.ToString()))
+            {
+                cancelLastMoveSprite.SetActive(false);
+                refreshSprite.SetActive(false);
+                hintMoveSprite.SetActive(true);
+                _hintPrice = Statics.HintMovePrice;
             }
 
             TextMeshProUGUI hintCountText = GameObject.Find("HintCount").GetComponent<TextMeshProUGUI>();
@@ -154,7 +158,7 @@ namespace Buttons.Hint
 
             hintCountText.text = "1";
             coinsPriceText.text = _hintPrice.ToString();
-            
+
             buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < _hintPrice);
             hintMinusButtonIsDisabled.SetActive(true);
             hintPlusButtonIsDisabled.SetActive(false);

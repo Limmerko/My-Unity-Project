@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Classes;
+using Enums;
 using UnityEngine;
 using Utils;
 
@@ -13,7 +14,7 @@ namespace Buttons.Hint
     {
         protected override void StartProcess()
         {
-            PrefCount = "CountHintMove";
+            PrefCount = HintCountType.CountHintMove.ToString();
             base.StartProcess();
         }
     

@@ -1,41 +1,55 @@
-using System;
+﻿using System;
+using Enums;
 using TMPro;
 using UnityEngine;
 
-namespace Buttons.Hint
+namespace Buttons.HintsShop
 {
     /**
-     * Кнопка уменьшения кол-ва подсказок при покупке
+     * Кнопка уменьшения кол-ва подсказок при покупке в "Магазине подсказок"
      */
-    public class HintMinusButton : CommonButton
+    public class OneHintMinusButton : CommonButton
     {
         [SerializeField] private TextMeshProUGUI hintCount;
         [SerializeField] private TextMeshProUGUI coinsPrice;
         [SerializeField] private GameObject buyHintForCoinsButtonIsDisabled; // Изменение цвета кнопки "купить подсказку" в случае её недоступности
         [SerializeField] private GameObject hintMinusButtonIsDisabled; // Изменение цвета кнопки "-" в случае её недоступности
         [SerializeField] private GameObject hintPlusButtonIsDisabled; // Изменение цвета кнопки "+" в случае её недоступности
+        [SerializeField] private HintType hintType; // Тип подсказки
+        
+        private int _hintPrice; // Цена подсказки
         
         protected override void StartProcess()
         {
-            // empty
+            switch (hintType)
+            {
+                case HintType.CancelLastMove:
+                    _hintPrice = Statics.CancelLastMovePrice;
+                    break;
+                case HintType.Refresh:
+                    _hintPrice = Statics.HintRefreshPrice;
+                    break;
+                case HintType.HintMove:
+                    _hintPrice = Statics.HintMovePrice;
+                    break;
+            }
         }
         
         protected override void Process()
         {
             int hintCountInt = Int32.Parse(hintCount.text);
-            int hintPrice = PlayerPrefs.GetInt("HintPrice");
-            if (hintCountInt == 1)
+            if (hintCountInt == 0)
             {
                 return;
             }
             
             int newHintCount = hintCountInt - 1;
             hintCount.text = newHintCount.ToString();
-            int newCoinsPrice = Int32.Parse(coinsPrice.text) - hintPrice;
+            int newCoinsPrice = Int32.Parse(coinsPrice.text) - _hintPrice;
             coinsPrice.text = newCoinsPrice.ToString();
             buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < newCoinsPrice);
             
-            hintMinusButtonIsDisabled.SetActive(newHintCount.Equals(1));
+            hintMinusButtonIsDisabled.SetActive(newHintCount.Equals(0));
             hintPlusButtonIsDisabled.SetActive(false);
         }
     }

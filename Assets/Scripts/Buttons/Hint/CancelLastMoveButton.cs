@@ -1,4 +1,5 @@
 ﻿using Classes;
+using Enums;
 using Unity.VisualScripting;
 using UnityEngine;
 using Utils;
@@ -12,7 +13,7 @@ namespace Buttons.Hint
     {
         protected override void StartProcess()
         {
-            PrefCount = "CountCancelLastMove";
+            PrefCount = HintCountType.CountCancelLastMove.ToString();
             base.StartProcess();
         }
 

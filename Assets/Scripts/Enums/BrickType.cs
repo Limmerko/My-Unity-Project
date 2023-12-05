@@ -1,12 +1,11 @@
-using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Enums
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum BrickType {
-    
+    public enum BrickType
+    {
         IceCream,
         Pizza,
         Burger,
