@@ -22,16 +22,16 @@ namespace Buttons.HintsShop
             switch (hintType)
             {
                 case HintType.CancelLastMove:
-                    _hintPrice = Statics.CancelLastMovePrice;
-                    _prefCount = HintCountType.CountCancelLastMove.ToString();
+                    _hintPrice = HintPrice.CancelLastMovePrice;
+                    _prefCount = HintCountType.CountCancelLastMove;
                     break;
                 case HintType.Refresh:
-                    _hintPrice = Statics.HintRefreshPrice;
-                    _prefCount = HintCountType.CountRefresh.ToString();
+                    _hintPrice = HintPrice.HintRefreshPrice;
+                    _prefCount = HintCountType.CountRefresh;
                     break;
                 case HintType.HintMove:
-                    _hintPrice = Statics.HintMovePrice;
-                    _prefCount = HintCountType.CountHintMove.ToString();
+                    _hintPrice = HintPrice.HintMovePrice;
+                    _prefCount = HintCountType.CountHintMove;
                     break;
             }
         }

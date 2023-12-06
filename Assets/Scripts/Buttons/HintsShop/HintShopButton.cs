@@ -11,9 +11,10 @@ namespace Buttons.HintsShop
     {
         [SerializeField] protected GameObject backgroundPanel; // Панель паузы
         [SerializeField] protected GameObject buyAllHintsPanel; // Панель покупки подсказок
-        [SerializeField] protected TextMeshProUGUI countCancelLastMove;
-        [SerializeField] protected TextMeshProUGUI countRefresh;
-        [SerializeField] protected TextMeshProUGUI countHintMove;
+        [SerializeField] protected TextMeshProUGUI coinsAllPrice; // Текст с стоимостью всех подсказок
+        [SerializeField] protected TextMeshProUGUI countCancelLastMove; // Текст с кол-вом подсказок отмены хода
+        [SerializeField] protected TextMeshProUGUI countRefresh; // Текст с кол-вом подсказок перемешивания
+        [SerializeField] protected TextMeshProUGUI countHintMove; // Текст с кол-вом подсказок подсказки хода
         [SerializeField] private GameObject hintCancelLastMoveMinusButtonIsDisabled;
         [SerializeField] private GameObject hintRefreshMinusButtonIsDisabled;
         [SerializeField] private GameObject hintMoveMinusButtonIsDisabled; 
@@ -42,6 +43,7 @@ namespace Buttons.HintsShop
 
         private void SetAllCountsEqualsZero()
         {
+            coinsAllPrice.text = "0";
             countCancelLastMove.text = "0";
             countRefresh.text = "0";
             countHintMove.text = "0";

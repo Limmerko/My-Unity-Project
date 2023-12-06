@@ -1,9 +1,11 @@
 ﻿namespace Enums
 {
-    public enum HintCountType
+    public abstract class HintCountType
     {
-        CountCancelLastMove,
-        CountRefresh,
-        CountHintMove
+        public const string CountCancelLastMove = "CountCancelLastMove";
+        
+        public const string CountRefresh = "CountRefresh";
+        
+        public const string CountHintMove = "CountHintMove";
     }
 }

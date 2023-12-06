@@ -24,13 +24,13 @@ namespace Buttons.HintsShop
             switch (hintType)
             {
                 case HintType.CancelLastMove:
-                    _hintPrice = Statics.CancelLastMovePrice;
+                    _hintPrice = HintPrice.CancelLastMovePrice;
                     break;
                 case HintType.Refresh:
-                    _hintPrice = Statics.HintRefreshPrice;
+                    _hintPrice = HintPrice.HintRefreshPrice;
                     break;
                 case HintType.HintMove:
-                    _hintPrice = Statics.HintMovePrice;
+                    _hintPrice = HintPrice.HintMovePrice;
                     break;
             }
         }

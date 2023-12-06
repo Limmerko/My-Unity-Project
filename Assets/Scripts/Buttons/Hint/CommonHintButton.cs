@@ -131,26 +131,26 @@ namespace Buttons.Hint
             int _hintPrice = 0;
 
             // Установка иконки какая именно подска покупается
-            if (PrefCount.Equals(HintCountType.CountCancelLastMove.ToString()))
+            if (PrefCount.Equals(HintCountType.CountCancelLastMove))
             {
                 cancelLastMoveSprite.SetActive(true);
                 refreshSprite.SetActive(false);
                 hintMoveSprite.SetActive(false);
-                _hintPrice = Statics.CancelLastMovePrice;
+                _hintPrice = HintPrice.CancelLastMovePrice;
             }
-            if (PrefCount.Equals(HintCountType.CountRefresh.ToString()))
+            if (PrefCount.Equals(HintCountType.CountRefresh))
             {
                 cancelLastMoveSprite.SetActive(false);
                 refreshSprite.SetActive(true);
                 hintMoveSprite.SetActive(false);
-                _hintPrice = Statics.HintRefreshPrice;
+                _hintPrice = HintPrice.HintRefreshPrice;
             }
-            if (PrefCount.Equals(HintCountType.CountHintMove.ToString()))
+            if (PrefCount.Equals(HintCountType.CountHintMove))
             {
                 cancelLastMoveSprite.SetActive(false);
                 refreshSprite.SetActive(false);
                 hintMoveSprite.SetActive(true);
-                _hintPrice = Statics.HintMovePrice;
+                _hintPrice = HintPrice.HintMovePrice;
             }
 
             TextMeshProUGUI hintCountText = GameObject.Find("HintCount").GetComponent<TextMeshProUGUI>();

@@ -17,5 +17,7 @@ public class MainMenuScript : MonoBehaviour
         {
             PlayerPrefs.SetInt("Coins", 0);
         }
+        
+        PlayerPrefs.Save();
     }
 }

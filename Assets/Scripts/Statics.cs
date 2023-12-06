@@ -18,12 +18,6 @@ public static class Statics
     public static List<Brick> LastMoves = new List<Brick>(); // Список ходов
 
     public static int TimeScale = 1;
-
-    public static int CancelLastMovePrice = 50;
-    
-    public static int HintRefreshPrice = 75;
-    
-    public static int HintMovePrice = 100;
     
     public static readonly List<Level> AllLevels = new() // Список всех уровней
     {

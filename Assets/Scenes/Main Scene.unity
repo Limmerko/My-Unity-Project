@@ -4523,6 +4523,7 @@ GameObject:
   - component: {fileID: 459521855}
   - component: {fileID: 459521854}
   - component: {fileID: 459521853}
+  - component: {fileID: 459521857}
   m_Layer: 5
   m_Name: BuyHintsForCoinsButton
   m_TagString: Untagged
@@ -4646,6 +4647,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459521851}
   m_CullTransparentMesh: 1
+--- !u!114 &459521857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459521851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949382df0b42471f92bd6f45e67766bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -99682849, guid: f6235bff342f4b748bfb0a151a528e3e, type: 3}
+  - {fileID: 931019378, guid: f6235bff342f4b748bfb0a151a528e3e, type: 3}
+  iconUp: {fileID: 2020862164}
+  iconDown: {fileID: 204336090}
+  backgroundPanel: {fileID: 1477950992}
+  buyAllHintsPanel: {fileID: 1402869467}
+  countCancelLastMoveText: {fileID: 552350059}
+  countRefreshText: {fileID: 721110580}
+  countHintMoveText: {fileID: 1459574617}
+  coinsAllPriceText: {fileID: 2001170625}
+  allCoinsText: {fileID: 1817206576}
 --- !u!1 &461932911
 GameObject:
   m_ObjectHideFlags: 0
@@ -7984,7 +8009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &822284609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10440,6 +10465,7 @@ MonoBehaviour:
   iconDown: {fileID: 58936054}
   backgroundPanel: {fileID: 1477950992}
   buyAllHintsPanel: {fileID: 1402869467}
+  coinsAllPrice: {fileID: 2001170625}
   countCancelLastMove: {fileID: 552350059}
   countRefresh: {fileID: 721110580}
   countHintMove: {fileID: 1459574617}
