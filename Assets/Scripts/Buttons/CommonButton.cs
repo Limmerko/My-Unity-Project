@@ -12,6 +12,7 @@ namespace Buttons
         [SerializeField] private Sprite[] sprites; // Спрайты (0 - ненажатый, 1 - нажатый)
         [SerializeField] protected GameObject iconUp; // Иконка или текст  при ненажатой кнопки
         [SerializeField] protected GameObject iconDown; // Иконка или текст при нажатой кнопки (Используется только его позиция)
+        [SerializeField] private AudioSource soundOnClick; // Звук нажатия на кнопку
 
         private Image _image; // Компонент для смены спрайтов
         private Transform _iconTransform; // Позиция иконки или текста
@@ -51,6 +52,7 @@ namespace Buttons
         {
             _iconTransform.localPosition = new Vector3(_downPosition.x, _downPosition.y, 0);
             _image.sprite = sprites[1];
+            soundOnClick.Play();
         }
 
         /**

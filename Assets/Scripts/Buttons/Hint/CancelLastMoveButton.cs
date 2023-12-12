@@ -11,9 +11,11 @@ namespace Buttons.Hint
     */
     public class CancelLastMoveButton : CommonHintButton
     {
+        [SerializeField] private AudioSource soundMoveForPlace; // Звук движения до места
+        
         protected override void StartProcess()
         {
-            PrefCount = HintCountType.CountCancelLastMove.ToString();
+            PrefCount = HintCountType.CountCancelLastMove;
             base.StartProcess();
         }
 
@@ -49,6 +51,7 @@ namespace Buttons.Hint
                 brick.Size = brick.LastMoveState.Size;
                 Statics.LastMoves.Remove(brick);
                 BrickUtils.UpdateBricksPosition();
+                soundMoveForPlace.Play();
             }
         }
     }

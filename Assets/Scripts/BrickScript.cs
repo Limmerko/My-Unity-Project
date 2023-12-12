@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Classes;
 using Enums;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using Utils;
 
 public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerExitHandler
@@ -15,7 +11,9 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private float sizeSpeed = 5f; // Prefab. Скорость изменения размера
     [SerializeField] private GameObject waypointPrefab; // Prefab. Центральный waypoint
     [SerializeField] private Animation anim; // Анимация исчезнование
-    
+    [SerializeField] private AudioSource soundOnClick; // Звук нажатия на плитку
+    [SerializeField] private AudioSource soundMoveForFinish; // Звук движения до финиша
+
     [SerializeField] private Sprite[] iceCream;
     [SerializeField] private Sprite[] pizza;
     [SerializeField] private Sprite[] burger;
@@ -110,6 +108,8 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             
         // Вибрация
         MainUtils.Vibrate();
+        
+        soundMoveForFinish.Play();
     }
 
     /**
@@ -120,6 +120,8 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         if (!_brick.IsTouch && _brick.IsClickable)
         {
             _brick.IsDown = true;
+            // Звук нажатия
+            // soundOnClick.Play();
         }
     }
     

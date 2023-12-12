@@ -25,6 +25,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject background; // Фон 
     [SerializeField] private List<Sprite> allBackgroundSprites; // Все возможное картинки для фонаПри
+    [SerializeField] private AudioSource soundCollectThreeTiles; // Звук движения до финиша
     
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -295,6 +296,7 @@ public class MainScript : MonoBehaviour
 
             if (finishBricksByType.Count > 0)
             {
+                soundCollectThreeTiles.Play();
                 finishBricksByType.ForEach(typeBricks => { StartCoroutine(DestroyBricks(typeBricks.Take(3).ToList())); });
             }
             else
