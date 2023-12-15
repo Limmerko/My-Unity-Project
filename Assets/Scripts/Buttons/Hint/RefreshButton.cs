@@ -15,7 +15,7 @@ namespace Buttons.Hint
     {
         protected override void StartProcess()
         {
-            PrefCount = HintCountType.CountRefresh.ToString();
+            PrefCount = HintCountType.CountRefresh;
             base.StartProcess();
         }
 

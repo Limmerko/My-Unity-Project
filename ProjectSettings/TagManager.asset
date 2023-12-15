@@ -7,6 +7,8 @@ TagManager:
   - Brick
   - BrickEmpty
   - Background
+  - TextDown
+  - Music
   layers:
   - Default
   - TransparentFX

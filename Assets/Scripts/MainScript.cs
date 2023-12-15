@@ -26,6 +26,9 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject background; // Фон 
     [SerializeField] private List<Sprite> allBackgroundSprites; // Все возможное картинки для фонаПри
     [SerializeField] private AudioSource soundCollectThreeTiles; // Звук движения до финиша
+    [SerializeField] private AudioSource soundVictory; // Звук прохождения уровня
+    [SerializeField] private AudioSource soundGameOver; // Звук проигрыша
+    [SerializeField] private AudioSource soundMoveBricks; // Звук движения плиток до места  
     
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -80,6 +83,11 @@ public class MainScript : MonoBehaviour
             CheckFinishBricks();
             CheckNextLevel();
             CheckBrickState();
+        }
+        
+        if (BrickUtils.IsSwipingNow() && !soundMoveBricks.isPlaying)
+        {
+            soundMoveBricks.Play();
         }
     }
 
@@ -329,6 +337,7 @@ public class MainScript : MonoBehaviour
             nextLevelPanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _nextLevelPanelAnim.Play("PanelUprise");
+            soundVictory.Play();
 
             MainUtils.ClearProgress();
         }
@@ -382,6 +391,7 @@ public class MainScript : MonoBehaviour
             losePanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _losePanelAnim.Play("PanelUprise");
+            soundGameOver.Play();
             MainUtils.ClearProgress();
         }
     }
@@ -397,6 +407,7 @@ public class MainScript : MonoBehaviour
             {
                 brick.GameObject.SetActive(true);
             });
+            BrickUtils.UpdateBricksPosition();
             BrickUtils.UpdateBricksState();
             return;
         }
@@ -468,7 +479,7 @@ public class MainScript : MonoBehaviour
                 currentLayer++;
             }
         });
-        
+
         if (Statics.AllBricks.Count(brick => !brick.GameObject.transform.position.Equals(brick.TargetPosition)) == 0)
         {
             Debug.Log("Уровень начат !!!");

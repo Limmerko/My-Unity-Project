@@ -12,9 +12,11 @@ namespace Buttons.Hint
     */
     public class HintMoveButton : CommonHintButton
     {
+        [SerializeField] private AudioSource soundMoveBricks; // Звук движения плиток до места  
+        
         protected override void StartProcess()
         {
-            PrefCount = HintCountType.CountHintMove.ToString();
+            PrefCount = HintCountType.CountHintMove;
             base.StartProcess();
         }
     
@@ -111,6 +113,7 @@ namespace Buttons.Hint
             
             Exit:
                 CheckCount();
+                soundMoveBricks.Play();
                 return;
         }
 
