@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Classes;
+using Enums;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -44,8 +45,24 @@ public class MainUtils
 
     public static void Vibrate()
     {
-        Vibration.VibrateAndroid(1); // TODO хз как на IOS будет (есть метод VibrateIOS)
-        // Vibration.VibrateIOS(ImpactFeedbackStyle.Soft); // TODO не дает установить на IPhone
+        if (SettingIsOn(SettingsType.VibrationSettings))
+        {
+            Vibration.VibrateAndroid(1); // TODO хз как на IOS будет (есть метод VibrateIOS)
+            // Vibration.VibrateIOS(ImpactFeedbackStyle.Soft); // TODO не дает установить на IPhone
+        }
+    }
+
+    public static void PlaySound(AudioSource audioSource)
+    {
+        if (SettingIsOn(SettingsType.SoundsSettings))
+        {
+            audioSource.Play();
+        }
+    }
+
+    public static bool SettingIsOn(SettingsType settingsType)
+    {
+        return PlayerPrefs.GetInt(settingsType.ToString()).Equals(1);
     }
     
     /**

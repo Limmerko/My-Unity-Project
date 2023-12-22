@@ -29,11 +29,13 @@ public class MainScript : MonoBehaviour
     [SerializeField] private AudioSource soundVictory; // Звук прохождения уровня
     [SerializeField] private AudioSource soundGameOver; // Звук проигрыша
     [SerializeField] private AudioSource soundMoveBricks; // Звук движения плиток до места  
+    [SerializeField] private AudioSource musicSound; // Фоновая музыка (звук)
     
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
     private Animation _nextLevelPanelAnim; // Анимация панели перехода на следующий уровень
-    
+    private GameObject _music; // Сам объект для мызука
+
     private Level _level;
     private float _brickSize; 
     private float _sizeFinishBrick;
@@ -43,7 +45,7 @@ public class MainScript : MonoBehaviour
     private bool _isStartSavedlevel = false;
 
     private const String CoinsPref = "Coins";
-    
+
     private void Awake()
     {
         Vibration.Init();
@@ -56,17 +58,19 @@ public class MainScript : MonoBehaviour
         Statics.IsGameOver = false;
         Statics.LevelStart = false;
         coinsText.text = PlayerPrefs.GetInt(CoinsPref).ToString();
-        
+
         _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
         _losePanelAnim = losePanel.GetComponent<Animation>();
         _nextLevelPanelAnim = nextLevelPanel.GetComponent<Animation>();
         _backIcons = background.GetComponentsInChildren<SpriteRenderer>()
             .Where(icon => "Background".Equals(icon.tag))
             .ToList();
+        _music = GameObject.FindWithTag("Music");
     }
 
     private void Start()    
     {
+        PlayMusicOnAwake();
         DefineLevel();
         InitializeFinishPlace();
         InitializedTypes();
@@ -87,8 +91,10 @@ public class MainScript : MonoBehaviour
         
         if (BrickUtils.IsSwipingNow() && !soundMoveBricks.isPlaying)
         {
-            soundMoveBricks.Play();
+            MainUtils.PlaySound(soundMoveBricks);
         }
+
+        CheckPlayMusic();
     }
 
     private void FixedUpdate()
@@ -304,7 +310,7 @@ public class MainScript : MonoBehaviour
 
             if (finishBricksByType.Count > 0)
             {
-                soundCollectThreeTiles.Play();
+                MainUtils.PlaySound(soundCollectThreeTiles);
                 finishBricksByType.ForEach(typeBricks => { StartCoroutine(DestroyBricks(typeBricks.Take(3).ToList())); });
             }
             else
@@ -337,7 +343,7 @@ public class MainScript : MonoBehaviour
             nextLevelPanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _nextLevelPanelAnim.Play("PanelUprise");
-            soundVictory.Play();
+            MainUtils.PlaySound(soundVictory);
 
             MainUtils.ClearProgress();
         }
@@ -391,7 +397,7 @@ public class MainScript : MonoBehaviour
             losePanel.SetActive(true);
             _backgroundPanelAnim.Play("BackgroundPanelUprise");
             _losePanelAnim.Play("PanelUprise");
-            soundGameOver.Play();
+            MainUtils.PlaySound(soundGameOver);
             MainUtils.ClearProgress();
         }
     }
@@ -494,5 +500,37 @@ public class MainScript : MonoBehaviour
         {
             BrickUtils.UpdateBricksState();
         };
+    }
+
+    private void PlayMusicOnAwake()
+    {
+        if (_music == null)
+        {
+            musicSound.gameObject.tag = "Music";
+            musicSound.Play();
+            DontDestroyOnLoad(musicSound);
+            _music = musicSound.gameObject;
+            Debug.Log("_music == null");
+        }
+        else
+        {
+            musicSound = _music.GetComponent<AudioSource>();
+        }
+    }
+    
+    private void CheckPlayMusic()
+    {
+        if (_music != null)
+        {
+            if (!MainUtils.SettingIsOn(SettingsType.MusicSettings) && musicSound.isPlaying)
+            {
+                musicSound.Pause();
+            }
+
+            if (MainUtils.SettingIsOn(SettingsType.MusicSettings) && !musicSound.isPlaying)
+            {
+                musicSound.Play();
+            }
+        }
     }
 }

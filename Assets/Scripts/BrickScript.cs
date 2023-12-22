@@ -109,7 +109,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         // Вибрация
         MainUtils.Vibrate();
         
-        soundMoveForFinish.Play();
+        MainUtils.PlaySound(soundMoveForFinish);
     }
 
     /**
@@ -120,8 +120,6 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         if (!_brick.IsTouch && _brick.IsClickable)
         {
             _brick.IsDown = true;
-            // Звук нажатия
-            // soundOnClick.Play();
         }
     }
     

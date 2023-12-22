@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
 public class MainMenuScript : MonoBehaviour
@@ -10,7 +11,7 @@ public class MainMenuScript : MonoBehaviour
     private void Awake()
     {
         GameObject music = GameObject.FindWithTag("Music");
-        if (music == null)
+        if (music == null && MainUtils.SettingIsOn(SettingsType.MusicSettings))
         {
             soundMusic.gameObject.tag = "Music";
             soundMusic.Play();
@@ -30,6 +31,21 @@ public class MainMenuScript : MonoBehaviour
         if (!PlayerPrefs.HasKey("Coins"))
         {
             PlayerPrefs.SetInt("Coins", 0);
+        }
+
+        if (!PlayerPrefs.HasKey(SettingsType.MusicSettings.ToString()))
+        {
+            PlayerPrefs.SetInt(SettingsType.MusicSettings.ToString(), 1);
+        }
+        
+        if (!PlayerPrefs.HasKey(SettingsType.SoundsSettings.ToString()))
+        {
+            PlayerPrefs.SetInt(SettingsType.SoundsSettings.ToString(), 1);
+        }
+        
+        if (!PlayerPrefs.HasKey(SettingsType.VibrationSettings.ToString()))
+        {
+            PlayerPrefs.SetInt(SettingsType.VibrationSettings.ToString(), 1);
         }
         
         PlayerPrefs.Save();

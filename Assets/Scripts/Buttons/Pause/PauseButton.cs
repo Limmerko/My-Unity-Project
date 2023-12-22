@@ -12,8 +12,9 @@ namespace Buttons.Pause
         [SerializeField] private GameObject forkPausePanel; // Внутрення панель паузы
         [SerializeField] private GameObject goHomePanel; // Панель "Покинуть уровень"
         [SerializeField] private GameObject losePanel; // Панель проигрыша
-        [SerializeField] private GameObject nextLevel; // Панель следующего уровня
+        [SerializeField] private GameObject nextLevelPanel; // Панель следующего уровня
         [SerializeField] protected GameObject buyHintPanel; // Панель покупки подсказки
+        [SerializeField] protected GameObject settingsPanel; // Панель настроек
         
 
         private Animation _backgroundPanelAnim; // Анимация фона паузы
@@ -27,8 +28,9 @@ namespace Buttons.Pause
             _forkPausePanelAnim = forkPausePanel.GetComponent<Animation>();
             goHomePanel.SetActive(false);
             losePanel.SetActive(false);
-            nextLevel.SetActive(false);
+            nextLevelPanel.SetActive(false);
             buyHintPanel.SetActive(false);
+            settingsPanel.SetActive(false);
         }
 
         /**

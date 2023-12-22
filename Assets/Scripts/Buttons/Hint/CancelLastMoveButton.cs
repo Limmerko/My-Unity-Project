@@ -51,7 +51,7 @@ namespace Buttons.Hint
                 brick.Size = brick.LastMoveState.Size;
                 Statics.LastMoves.Remove(brick);
                 BrickUtils.UpdateBricksPosition();
-                soundMoveForPlace.Play();
+                MainUtils.PlaySound(soundMoveForPlace);
             }
         }
     }

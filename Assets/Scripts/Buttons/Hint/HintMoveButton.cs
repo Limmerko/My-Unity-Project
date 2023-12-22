@@ -113,7 +113,7 @@ namespace Buttons.Hint
             
             Exit:
                 CheckCount();
-                soundMoveBricks.Play();
+                MainUtils.PlaySound(soundMoveBricks);
                 return;
         }
 

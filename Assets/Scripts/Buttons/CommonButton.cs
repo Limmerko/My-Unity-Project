@@ -52,7 +52,7 @@ namespace Buttons
         {
             _iconTransform.localPosition = new Vector3(_downPosition.x, _downPosition.y, 0);
             _image.sprite = sprites[1];
-            soundOnClick.Play();
+            MainUtils.PlaySound(soundOnClick);
         }
 
         /**
