@@ -10,7 +10,6 @@ namespace Buttons.Pause
         [SerializeField] private GameObject backgroundPanel; // Основная панель паузы
         [SerializeField] protected GameObject settingsPanel; // Панель настроек
         
-
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _settingsAnim; // Анимация внутренней панели паузы
         

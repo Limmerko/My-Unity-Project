@@ -43,7 +43,7 @@ public class MainScript : MonoBehaviour
     private List<SpriteRenderer> _backIcons = new(); // Икноки на фоне
     private List<BrickType> _limitedTypes = new();
     private bool _isStartSavedlevel = false;
-
+    private int _finishedLayerOnStart = 0;
     private const String CoinsPref = "Coins";
 
     private void Awake()
@@ -483,6 +483,14 @@ public class MainScript : MonoBehaviour
             if (bricks.Count(brick => !brick.GameObject.transform.position.Equals(brick.TargetPosition)) <= (bricks.Count / 100 * 30))
             {
                 currentLayer++;
+                if (_finishedLayerOnStart < currentLayer)
+                {
+                    _finishedLayerOnStart = currentLayer;
+                    if (!soundMoveBricks.isPlaying)
+                    {
+                        MainUtils.PlaySound(soundMoveBricks);
+                    }
+                }
             }
         });
 

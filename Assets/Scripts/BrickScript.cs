@@ -11,7 +11,6 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private float sizeSpeed = 5f; // Prefab. Скорость изменения размера
     [SerializeField] private GameObject waypointPrefab; // Prefab. Центральный waypoint
     [SerializeField] private Animation anim; // Анимация исчезнование
-    [SerializeField] private AudioSource soundOnClick; // Звук нажатия на плитку
     [SerializeField] private AudioSource soundMoveForFinish; // Звук движения до финиша
 
     [SerializeField] private Sprite[] iceCream;
