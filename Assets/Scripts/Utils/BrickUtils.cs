@@ -68,6 +68,18 @@ namespace Utils
         }
 
         /**
+         * Список всех "Золотых" и плиточек 
+         */
+        public static List<Brick> AllGoldenTiles()
+        {
+            return Statics.AllBricks
+                .Where(brick => brick.GoldenStateMoves > 0 && 
+                                !brick.IsToDestroy && 
+                                brick.IsClickable)
+                .ToList();
+        }
+
+        /**
          * Определение правильной цели для движение кирпичика 
          */
         public static int FindCurrentWaypoint(BrickType type)

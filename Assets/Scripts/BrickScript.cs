@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Classes;
 using Enums;
 using UnityEngine;
@@ -12,37 +13,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private GameObject waypointPrefab; // Prefab. Центральный waypoint
     [SerializeField] private Animation anim; // Анимация исчезнование
     [SerializeField] private AudioSource soundMoveForFinish; // Звук движения до финиша
-
-    [SerializeField] private Sprite[] iceCream;
-    [SerializeField] private Sprite[] pizza;
-    [SerializeField] private Sprite[] burger;
-    [SerializeField] private Sprite[] escimo; 
-    [SerializeField] private Sprite[] watermelon;
-    [SerializeField] private Sprite[] peach;
-    [SerializeField] private Sprite[] cherry;
-    [SerializeField] private Sprite[] apple;
-    [SerializeField] private Sprite[] avocado;
-    [SerializeField] private Sprite[] strawberry;
-    [SerializeField] private Sprite[] lollipop;
-    [SerializeField] private Sprite[] lollipopCandy;
-    [SerializeField] private Sprite[] donut;
-    [SerializeField] private Sprite[] fries;
-    [SerializeField] private Sprite[] muffin;
-    [SerializeField] private Sprite[] cake;
-    [SerializeField] private Sprite[] cookie;
-    [SerializeField] private Sprite[] coffee;
-    [SerializeField] private Sprite[] sandwichWithEggs;
-    [SerializeField] private Sprite[] cupOfCoffee;
-    [SerializeField] private Sprite[] onigiri;
-    [SerializeField] private Sprite[] sushiRoll;
-    [SerializeField] private Sprite[] narutomaki;
-    [SerializeField] private Sprite[] ramen;
-    [SerializeField] private Sprite[] mochi;
-    [SerializeField] private Sprite[] pancakes;
-    [SerializeField] private Sprite[] wafer;
-    [SerializeField] private Sprite[] croissant;
-    [SerializeField] private Sprite[] bentoCake;
-    [SerializeField] private Sprite[] jam;
+    [SerializeField] private List<TileType> types; // Типы
 
     private Brick _brick;
     private SpriteRenderer _sprite;
@@ -76,7 +47,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
                 ChangeSizeBrick(_brick.Size);
             }
         }
-        SetSpriteBrick();
+        SetSpriteBrick(); // TODO наверно стоит вынести этот метод отсюда и вызывать только когда нужно
         SwipeBrick();
         CancelLastMove();
     }
@@ -138,105 +109,15 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
      */
     private void SetSpriteBrick()
     {
-        Sprite setType = null;
-        switch (_brick.Type)
-        {
-            // TODO порефакторить
-            case BrickType.IceCream:
-                setType = iceCream[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Pizza:
-                setType = pizza[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Burger:
-                setType = burger[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Escimo:
-                setType = escimo[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Watermelon:
-                setType = watermelon[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Peach:
-                setType = peach[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Cherry:
-                setType = cherry[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Apple:
-                setType = apple[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Avocado:
-                setType = avocado[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Strawberry:
-                setType = strawberry[_brick.IsDown ? 1 : 0];
-                break; 
-            case BrickType.Lollipop:
-                setType = lollipop[_brick.IsDown ? 1 : 0];
-                break; 
-            case BrickType.LollipopCandy:
-                setType = lollipopCandy[_brick.IsDown ? 1 : 0];
-                break; 
-            case BrickType.Donut:
-                setType = donut[_brick.IsDown ? 1 : 0];
-                break; 
-            case BrickType.Fries:
-                setType = fries[_brick.IsDown ? 1 : 0];
-                break; 
-            case BrickType.Muffin:
-                setType = muffin[_brick.IsDown ? 1 : 0];
-                break; 
-            case BrickType.Cake:
-                setType = cake[_brick.IsDown ? 1 : 0];
-                break; 
-            case BrickType.Cookie:
-                setType = cookie[_brick.IsDown ? 1 : 0];
-                break; 
-            case BrickType.Coffee:
-                setType = coffee[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.SandwichWithEggs:
-                setType = sandwichWithEggs[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.CupOfCoffee:
-                setType = cupOfCoffee[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Onigiri:
-                setType = onigiri[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.SushiRoll:
-                setType = sushiRoll[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Narutomaki:
-                setType = narutomaki[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Ramen:
-                setType = ramen[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Mochi:
-                setType = mochi[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Pancakes:
-                setType = pancakes[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Wafer:
-                setType = wafer[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Croissant:
-                setType = croissant[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.BentoCake:
-                setType = bentoCake[_brick.IsDown ? 1 : 0];
-                break;
-            case BrickType.Jam:
-                setType = jam[_brick.IsDown ? 1 : 0];
-                break;
-        }
+        TileType type = types.First(type => type.type.Equals(_brick.Type));
 
-        if (!_sprite.sprite.Equals(setType))
+        if (_brick.IsGolden())
         {
-            _sprite.sprite = setType;
+            _sprite.sprite = _brick.IsDown ? type.spriteGoldenDown : type.spriteGoldenUp;
+        }
+        else
+        {
+            _sprite.sprite = _brick.IsDown ? type.spriteDown : type.spriteUp;
         }
     }
 

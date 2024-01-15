@@ -168,7 +168,7 @@ public class MainScript : MonoBehaviour
     }
 
     /**
-     * Получение кирпичиков для старта нового уровня
+     * Получение плиток для старта нового уровня
      */
     private List<InitialBrick> GetBricksNewLevel()
     {
@@ -178,7 +178,8 @@ public class MainScript : MonoBehaviour
         MainUtils.MixList(bricks); // Перемешивание плиток
         
         List<BrickType> types = new List<BrickType>(_limitedTypes);
-       
+        List<BrickType> goldenTypes = new List<BrickType>();
+        
         if (bricks.Count % 3 != 0)
         {
             throw new ArgumentException("ОШИБКА!!! Кол-во плиток в уровне не кратно 3. " + bricks.Count);
@@ -192,10 +193,26 @@ public class MainScript : MonoBehaviour
             }
             BrickType type = types[_random.Next(types.Count)];
             types.Remove(type);
-
+            
             bricks[i - 2].Type = type;
             bricks[i - 1].Type = type;
             bricks[i].Type = type;
+            
+            // Определение "Золотого" состояния
+            if (!goldenTypes.Contains(type) && 
+                PlayerPrefs.GetInt("Level") > Statics.LevelStartGoldenTiles)
+            {
+                int chance = 10 + goldenTypes.Count * 2; // Шанс 10%, но уменьшается с кол-вом золотых плиток
+                int temp = _random.Next(chance);
+                bool isGoldenTile = _random.Next(chance) == 0; 
+                if (isGoldenTile)
+                {
+                    Debug.Log(type + "   " + temp);
+                    // TODO есть БАГ, что с один типом 2 золотых плитки
+                    bricks[i].IsGolden = true;
+                    goldenTypes.Add(type);
+                }
+            }
         }
         
         // Сортировка по слоям и расположению
@@ -217,7 +234,7 @@ public class MainScript : MonoBehaviour
         float yPos = initialBrick.Y * sizeAdd;
         Vector3 vector3 = new Vector3(xPos, yPos, z); // Z нужен для корректного отображаения спрайтов, иначе они будут накладываться друг на друга
         GameObject brickGameObject = Instantiate(brickPrefab, vector3, Quaternion.identity);
-        Brick brick = new Brick(brickGameObject, initialBrick.Type, initialBrick.Layer, _brickSize, vector3);
+        Brick brick = new Brick(brickGameObject, initialBrick, _brickSize, vector3);
         brickGameObject.transform.localScale = new Vector3(brick.Size, brick.Size, 1);
         brickGameObject.GetComponent<BrickScript>().SetBrick(brick, _sizeFinishBrick);
         brickGameObject.SetActive(false);
@@ -262,13 +279,18 @@ public class MainScript : MonoBehaviour
     /**
      * Инициализация монеты
      */
-    private void InitializeCoin(Brick brick)
+    private IEnumerator InitializeCoins(Brick brick, int countCoins)
     {
         Vector3 initPosition = brick.GameObject.transform.position;
-        GameObject coinGameObject = Instantiate(coinPrefab, initPosition, Quaternion.identity);
-        coinGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 3f);
-        coinGameObject.GetComponent<CoinScript>().SetCoin(coinsPlace.transform.position, coinsText);
-        coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas 
+        
+        for (int i = 0; i < countCoins; i++)
+        {
+            GameObject coinGameObject = Instantiate(coinPrefab, initPosition, Quaternion.identity);
+            coinGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 3f);
+            coinGameObject.GetComponent<CoinScript>().SetCoin(coinsPlace.transform.position, coinsText);
+            coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     /**
@@ -312,6 +334,7 @@ public class MainScript : MonoBehaviour
             {
                 MainUtils.PlaySound(soundCollectThreeTiles);
                 finishBricksByType.ForEach(typeBricks => { StartCoroutine(DestroyBricks(typeBricks.Take(3).ToList())); });
+                ReduceGoldenStateMoves();
             }
             else
             {
@@ -355,7 +378,9 @@ public class MainScript : MonoBehaviour
     private IEnumerator DestroyBricks(List<Brick> bricks)
     {
         bricks.ForEach(brick => brick.IsToDestroy = true);
-        PlayerPrefs.SetInt(CoinsPref, PlayerPrefs.GetInt(CoinsPref) + 1);
+        bool isAnyGolden = bricks.Any(b => b.IsGolden());
+        int countCoins = isAnyGolden ? 10 : 1;
+        PlayerPrefs.SetInt(CoinsPref, PlayerPrefs.GetInt(CoinsPref) + countCoins);
         PlayerPrefs.Save();
         yield return new WaitForSeconds(0.1f);
         float timeAnim = 0f;
@@ -372,7 +397,7 @@ public class MainScript : MonoBehaviour
             }
         });
         
-        InitializeCoin(bricks[1]);
+        StartCoroutine(InitializeCoins(bricks[1], countCoins));
         
         yield return new WaitForSeconds(timeAnim);
         bricks.ForEach(brick =>
@@ -383,6 +408,17 @@ public class MainScript : MonoBehaviour
         BrickUtils.UpdateBricksPosition();
     }
 
+    /**
+     * Уменьшение кол-ва ходов "Золотого" состояния кирпичиков
+     */
+    private void ReduceGoldenStateMoves()
+    {
+        BrickUtils.AllGoldenTiles().ForEach(brick =>
+        {
+            brick.GoldenStateMoves--;
+        });
+    }
+    
     /**
      *  Конец игры
      */

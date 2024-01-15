@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d28139a5d3db8a84e92fd692c1182d7d
+guid: 1ba5c5c219975a645adf4867936e201d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_0"
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 285
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5559f4cc4dff1d744a5931ed78b5ed36
+      internalID: -1145341914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_1"
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 0
+        width: 285
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcea00d43e4a70d43b21632355d5656a
+      internalID: 1163065954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +187,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_0": -1145341914
+      "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_1": 1163065954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,8 +1,10 @@
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Enums
 {
+    [Serializable]
     [JsonConverter(typeof(StringEnumConverter))]
     public enum BrickType
     {

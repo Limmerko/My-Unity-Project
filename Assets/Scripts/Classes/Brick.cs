@@ -33,19 +33,22 @@ namespace Classes
         public Brick LastMoveState { get; set; } // Информация о плитке если она является последним шагом 
     
         public bool IsLastMove { get; set; } // Флаг является ли сейчас плитка последним ходом
+        
+        public int GoldenStateMoves { get; set; } // Шагов до окончания состояния "Золотой"
 
-        public Brick(GameObject gameObject, BrickType type, int layer, float size, Vector3 targetPosition)
+        public Brick(GameObject gameObject, InitialBrick initialBrick, float size, Vector3 targetPosition)
         {
             GameObject = gameObject;
-            Type = type;
+            Type = initialBrick.Type;
             IsTouch = false;
             IsFinish = false;
             IsClickable = false;
-            Layer = layer;
+            Layer = initialBrick.Layer;
             Size = size;
             IsToDestroy = false;
             TargetPosition = targetPosition;
             IsSwipe = false;
+            GoldenStateMoves = initialBrick.IsGolden ? Statics.CountMovesGoldenState : 0;
         }
 
         public Brick(GameObject gameObject, SavedBrick savedBrick)
@@ -65,10 +68,16 @@ namespace Classes
             this.Size = savedBrick.Size;
             this.IsToDestroy = savedBrick.IsToDestroy;
             this.IsSwipe = savedBrick.IsSwipe;
+            this.GoldenStateMoves = savedBrick.GoldenStateMoves;
             if (savedBrick.LastMoveState != null)
             {
                 this.LastMoveState = new Brick(null, savedBrick.LastMoveState);
             }
+        }
+
+        public bool IsGolden()
+        {
+            return GoldenStateMoves > 0;
         }
 
         public object Clone()

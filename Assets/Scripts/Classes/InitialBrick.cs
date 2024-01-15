@@ -12,12 +12,15 @@ namespace Classes
         public int Layer { get; set; }
     
         public BrickType Type { get; set; }
+        
+        public bool IsGolden { get; set; }
 
         public InitialBrick(float x, float y, int layer)
         {
             X = x;
             Y = y;
             Layer = layer;
+            IsGolden = false;
         }
 
         public override string ToString()

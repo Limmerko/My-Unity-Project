@@ -18,6 +18,10 @@ public static class Statics
     public static List<Brick> LastMoves = new List<Brick>(); // Список ходов
 
     public static int TimeScale = 1;
+
+    public static int LevelStartGoldenTiles = 0; // Уровень с которого появляются "Золотые" плитки
+
+    public static int CountMovesGoldenState = 3;
     
     public static readonly List<Level> AllLevels = new() // Список всех уровней
     {

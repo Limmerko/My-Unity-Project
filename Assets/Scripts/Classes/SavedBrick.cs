@@ -35,6 +35,7 @@ namespace Classes
         
         public bool IsSwipe { get; set; } // Флаг меняется ли сейчас кирпичик местами
         
+        public int GoldenStateMoves { get; set; } // Шагов до окончания состояния "Золотой"
 
         public SavedBrick LastMoveState { get; set; } // Информация о плитке если она является последним шагом 
         
@@ -55,6 +56,8 @@ namespace Classes
             this.Layer = brick.Layer;
             this.IsToDestroy = brick.IsToDestroy;
             this.IsSwipe = brick.IsSwipe;
+            this.GoldenStateMoves = brick.GoldenStateMoves;
+            
             Vector3 targetPosition = brick.TargetPosition;
             this.TargetPositionX = targetPosition.x;
             this.TargetPositionY = targetPosition.y;
