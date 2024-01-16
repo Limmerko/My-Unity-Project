@@ -149,8 +149,8 @@ public class MainScript : MonoBehaviour
             savedBricks = savedBricks
                 .OrderBy(b => b.TargetWaypoint)
                 .ToList();
-            
-           for (int i = 0; i < savedBricks.Count; i++)
+
+            for (int i = 0; i < savedBricks.Count; i++)
             {
                 InitializeBrick(savedBricks[i]);
             }
@@ -164,6 +164,8 @@ public class MainScript : MonoBehaviour
             {
                 InitializeBrick(bricks[i], i / -10000f);
             }
+
+            SetGoldenState();
         }
     }
 
@@ -174,12 +176,11 @@ public class MainScript : MonoBehaviour
     {
         List<InitialBrick> bricks = _level.Bricks;
         Debug.Log("Кол-во кирпичиков : " + bricks.Count());
-        
+
         MainUtils.MixList(bricks); // Перемешивание плиток
         
         List<BrickType> types = new List<BrickType>(_limitedTypes);
-        List<BrickType> goldenTypes = new List<BrickType>();
-        
+
         if (bricks.Count % 3 != 0)
         {
             throw new ArgumentException("ОШИБКА!!! Кол-во плиток в уровне не кратно 3. " + bricks.Count);
@@ -197,22 +198,6 @@ public class MainScript : MonoBehaviour
             bricks[i - 2].Type = type;
             bricks[i - 1].Type = type;
             bricks[i].Type = type;
-            
-            // Определение "Золотого" состояния
-            if (!goldenTypes.Contains(type) && 
-                PlayerPrefs.GetInt("Level") > Statics.LevelStartGoldenTiles)
-            {
-                int chance = 10 + goldenTypes.Count * 2; // Шанс 10%, но уменьшается с кол-вом золотых плиток
-                int temp = _random.Next(chance);
-                bool isGoldenTile = _random.Next(chance) == 0; 
-                if (isGoldenTile)
-                {
-                    Debug.Log(type + "   " + temp);
-                    // TODO есть БАГ, что с один типом 2 золотых плитки
-                    bricks[i].IsGolden = true;
-                    goldenTypes.Add(type);
-                }
-            }
         }
         
         // Сортировка по слоям и расположению
@@ -222,6 +207,38 @@ public class MainScript : MonoBehaviour
             .ToList();
         
         return bricks;
+    }
+
+    /**
+     * Определение "Золотых" кирпичиков
+     */
+    private void SetGoldenState()
+    {
+        if (PlayerPrefs.GetInt("Level") < Statics.LevelStartGoldenTiles)
+        {
+            return;
+        }
+        
+        List<BrickType> goldenTypes = new List<BrickType>();
+        List<Brick> bricks = new List<Brick>(Statics.AllBricks);
+        MainUtils.MixList(bricks);
+        bricks.ForEach(brick => brick.GoldenStateMoves = 0);
+        
+        foreach (var brick in bricks)
+        {
+            if (goldenTypes.Count == Statics.MaxGoldenTiles || goldenTypes.Contains(brick.Type))
+            {
+                return;
+            }
+            
+            int chance = 20 + goldenTypes.Count * 10; // Шанс уменьшается с кол-вом золотых плиток
+            bool isGoldenTile = _random.Next(chance) == 0;
+            if (isGoldenTile)
+            {
+                brick.GoldenStateMoves = Statics.CountMovesGoldenState;
+                goldenTypes.Add(brick.Type);
+            }
+        }
     }
 
     /**

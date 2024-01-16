@@ -48,7 +48,7 @@ namespace Classes
             IsToDestroy = false;
             TargetPosition = targetPosition;
             IsSwipe = false;
-            GoldenStateMoves = initialBrick.IsGolden ? Statics.CountMovesGoldenState : 0;
+            GoldenStateMoves = 0;
         }
 
         public Brick(GameObject gameObject, SavedBrick savedBrick)
