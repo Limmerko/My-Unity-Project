@@ -113,7 +113,8 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 
         if (_brick.IsGolden())
         {
-            _sprite.sprite = _brick.IsDown ? type.spriteGoldenDown : type.spriteGoldenUp;
+            TileType.Golden golden = type.goldens[_brick.GoldenStateMoves - 1];
+            _sprite.sprite = _brick.IsDown ? golden.spriteDown : golden.spriteUp;
         }
         else
         {
