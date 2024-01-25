@@ -36,6 +36,8 @@ namespace Classes
         
         public int GoldenStateMoves { get; set; } // Шагов до окончания состояния "Золотой"
 
+        public bool IsUnknownTile { get; set; } // Флаг является ли плитка "Неизвестной"
+        
         public Brick(GameObject gameObject, InitialBrick initialBrick, float size, Vector3 targetPosition)
         {
             GameObject = gameObject;

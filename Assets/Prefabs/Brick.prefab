@@ -156,8 +156,6 @@ MonoBehaviour:
   - type: 0
     spriteUp: {fileID: -1974131188, guid: 65a878f2d92f3e64caf3d0094d6dcfdf, type: 3}
     spriteDown: {fileID: 602798392, guid: 65a878f2d92f3e64caf3d0094d6dcfdf, type: 3}
-    spriteGoldenUp: {fileID: -1464514823, guid: 6999b7e6469852a47bec8eb3cb0eb7ac, type: 3}
-    spriteGoldenDown: {fileID: 1222035273, guid: 6999b7e6469852a47bec8eb3cb0eb7ac, type: 3}
     goldens:
     - spriteUp: {fileID: 1906801861, guid: 8a93291d756a9ac438d92d12449656e3, type: 3}
       spriteDown: {fileID: 1072592048, guid: 8a93291d756a9ac438d92d12449656e3, type: 3}
@@ -168,8 +166,6 @@ MonoBehaviour:
   - type: 1
     spriteUp: {fileID: -1480394933, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
     spriteDown: {fileID: 1107044883, guid: aba2b1b1c70491b45a4bc352dfcc8c2f, type: 3}
-    spriteGoldenUp: {fileID: 17167515, guid: dc99c3567b46eb04ea004d8997e8fe38, type: 3}
-    spriteGoldenDown: {fileID: -915281304, guid: dc99c3567b46eb04ea004d8997e8fe38, type: 3}
     goldens:
     - spriteUp: {fileID: -716066530, guid: 92a04e597808dd044957f214f9e50970, type: 3}
       spriteDown: {fileID: -639975497, guid: 92a04e597808dd044957f214f9e50970, type: 3}
@@ -180,8 +176,6 @@ MonoBehaviour:
   - type: 2
     spriteUp: {fileID: 562223579, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
     spriteDown: {fileID: -1304524197, guid: 3904a35775f090f4db7ba92de3959610, type: 3}
-    spriteGoldenUp: {fileID: -211880757, guid: bacfcde876604b84c825a78a8cde4942, type: 3}
-    spriteGoldenDown: {fileID: 1877087214, guid: bacfcde876604b84c825a78a8cde4942, type: 3}
     goldens:
     - spriteUp: {fileID: 1500958407, guid: 779f4661c51f3864980c27d8fba20eac, type: 3}
       spriteDown: {fileID: -1987981583, guid: 779f4661c51f3864980c27d8fba20eac, type: 3}
@@ -192,8 +186,6 @@ MonoBehaviour:
   - type: 3
     spriteUp: {fileID: -1538907840, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
     spriteDown: {fileID: 1886923622, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
-    spriteGoldenUp: {fileID: -965244425, guid: e4eac33fe53ee7b4d8016c096c4701b1, type: 3}
-    spriteGoldenDown: {fileID: -1614463722, guid: e4eac33fe53ee7b4d8016c096c4701b1, type: 3}
     goldens:
     - spriteUp: {fileID: 1635069410, guid: c0e56277a1fffa740a8b48d9c75383d1, type: 3}
       spriteDown: {fileID: -1849211797, guid: c0e56277a1fffa740a8b48d9c75383d1, type: 3}
@@ -204,8 +196,6 @@ MonoBehaviour:
   - type: 3
     spriteUp: {fileID: -1538907840, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
     spriteDown: {fileID: 1886923622, guid: 75d5d2db84c4f2843981a1e396c80974, type: 3}
-    spriteGoldenUp: {fileID: -965244425, guid: e4eac33fe53ee7b4d8016c096c4701b1, type: 3}
-    spriteGoldenDown: {fileID: -1614463722, guid: e4eac33fe53ee7b4d8016c096c4701b1, type: 3}
     goldens:
     - spriteUp: {fileID: 1635069410, guid: c0e56277a1fffa740a8b48d9c75383d1, type: 3}
       spriteDown: {fileID: -1849211797, guid: c0e56277a1fffa740a8b48d9c75383d1, type: 3}
@@ -216,8 +206,6 @@ MonoBehaviour:
   - type: 4
     spriteUp: {fileID: 1974764073, guid: d2ebda8c93c29e24fb57937419f30a65, type: 3}
     spriteDown: {fileID: -650114696, guid: d2ebda8c93c29e24fb57937419f30a65, type: 3}
-    spriteGoldenUp: {fileID: -309382583, guid: 9eb3f74bcd69b6649af730847d2d8f4a, type: 3}
-    spriteGoldenDown: {fileID: -1321977442, guid: 9eb3f74bcd69b6649af730847d2d8f4a, type: 3}
     goldens:
     - spriteUp: {fileID: -109081379, guid: 7100dba79b739d44984a8459c8d22e81, type: 3}
       spriteDown: {fileID: -45587014, guid: 7100dba79b739d44984a8459c8d22e81, type: 3}
@@ -228,8 +216,6 @@ MonoBehaviour:
   - type: 5
     spriteUp: {fileID: 1103717823, guid: d4a70d06f41db09408784a8fc1062254, type: 3}
     spriteDown: {fileID: -1170043500, guid: d4a70d06f41db09408784a8fc1062254, type: 3}
-    spriteGoldenUp: {fileID: 926116006, guid: 923e353b26408c746b7837ef46e612fa, type: 3}
-    spriteGoldenDown: {fileID: 1141456224, guid: 923e353b26408c746b7837ef46e612fa, type: 3}
     goldens:
     - spriteUp: {fileID: 1261458727, guid: 915fd0433c8acff498bcb060dc98d7ff, type: 3}
       spriteDown: {fileID: 1733432707, guid: 915fd0433c8acff498bcb060dc98d7ff, type: 3}
@@ -240,8 +226,6 @@ MonoBehaviour:
   - type: 6
     spriteUp: {fileID: -1630162540, guid: bf8f9b251ecde7d4c9f198620a3c9411, type: 3}
     spriteDown: {fileID: -1479819533, guid: bf8f9b251ecde7d4c9f198620a3c9411, type: 3}
-    spriteGoldenUp: {fileID: -439242810, guid: d0449ef46e23b314e8bc53960dd14fde, type: 3}
-    spriteGoldenDown: {fileID: 1526120068, guid: d0449ef46e23b314e8bc53960dd14fde, type: 3}
     goldens:
     - spriteUp: {fileID: 709139703, guid: e8b5eee7e2c1a5247ba113260d84b392, type: 3}
       spriteDown: {fileID: 761884769, guid: e8b5eee7e2c1a5247ba113260d84b392, type: 3}
@@ -252,8 +236,6 @@ MonoBehaviour:
   - type: 7
     spriteUp: {fileID: -1580563647, guid: 9922c2fd42bfed6428f9d33d42a3daaa, type: 3}
     spriteDown: {fileID: 252846808, guid: 9922c2fd42bfed6428f9d33d42a3daaa, type: 3}
-    spriteGoldenUp: {fileID: 65228336, guid: d9cb315b6a65522438df1d4bd9703b8d, type: 3}
-    spriteGoldenDown: {fileID: 694632515, guid: d9cb315b6a65522438df1d4bd9703b8d, type: 3}
     goldens:
     - spriteUp: {fileID: 1261458727, guid: 915fd0433c8acff498bcb060dc98d7ff, type: 3}
       spriteDown: {fileID: 1733432707, guid: 915fd0433c8acff498bcb060dc98d7ff, type: 3}
@@ -264,8 +246,6 @@ MonoBehaviour:
   - type: 8
     spriteUp: {fileID: -1330225529, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
     spriteDown: {fileID: 702283786, guid: 059e83cd0921d9f4db8bab3ff583c269, type: 3}
-    spriteGoldenUp: {fileID: -625173303, guid: 14ee715603a332a4cb4874186dc0c85b, type: 3}
-    spriteGoldenDown: {fileID: 1537985130, guid: 14ee715603a332a4cb4874186dc0c85b, type: 3}
     goldens:
     - spriteUp: {fileID: 1739007474, guid: c7f2dc294ec1a064289076d08fec64c4, type: 3}
       spriteDown: {fileID: 268129151, guid: c7f2dc294ec1a064289076d08fec64c4, type: 3}
@@ -276,8 +256,6 @@ MonoBehaviour:
   - type: 9
     spriteUp: {fileID: -1912506442, guid: f4e5d39df891d2b4bbd45b08c1fa410d, type: 3}
     spriteDown: {fileID: -2029877480, guid: f4e5d39df891d2b4bbd45b08c1fa410d, type: 3}
-    spriteGoldenUp: {fileID: -708582880, guid: c8934bea7d8888c42b9dcd6afdc2acf4, type: 3}
-    spriteGoldenDown: {fileID: -1753081029, guid: c8934bea7d8888c42b9dcd6afdc2acf4, type: 3}
     goldens:
     - spriteUp: {fileID: -1062880968, guid: 7a08d7562a79eb84691d87d64f8f8356, type: 3}
       spriteDown: {fileID: 887368215, guid: 7a08d7562a79eb84691d87d64f8f8356, type: 3}
@@ -288,8 +266,6 @@ MonoBehaviour:
   - type: 10
     spriteUp: {fileID: 798125605, guid: 55a7866b616b4e24595920cac44e15ff, type: 3}
     spriteDown: {fileID: -128138094, guid: 55a7866b616b4e24595920cac44e15ff, type: 3}
-    spriteGoldenUp: {fileID: -670156396, guid: eb04e4796eebbcd48a4dc0c4b13552cf, type: 3}
-    spriteGoldenDown: {fileID: -1775111627, guid: eb04e4796eebbcd48a4dc0c4b13552cf, type: 3}
     goldens:
     - spriteUp: {fileID: -391234023, guid: 011f31ac11a5e3a4a82a2c3d4aca27bd, type: 3}
       spriteDown: {fileID: 2118962606, guid: 011f31ac11a5e3a4a82a2c3d4aca27bd, type: 3}
@@ -300,8 +276,6 @@ MonoBehaviour:
   - type: 11
     spriteUp: {fileID: -1212331587, guid: 2331ec76c866d5544818810cfbf4a2c3, type: 3}
     spriteDown: {fileID: 1044894699, guid: 2331ec76c866d5544818810cfbf4a2c3, type: 3}
-    spriteGoldenUp: {fileID: 583428841, guid: 340390af4c4c41a42928586badcf1682, type: 3}
-    spriteGoldenDown: {fileID: -1197350571, guid: 340390af4c4c41a42928586badcf1682, type: 3}
     goldens:
     - spriteUp: {fileID: -189010323, guid: d68961ffeda1d3c4abd23fde86060c74, type: 3}
       spriteDown: {fileID: 13892682, guid: d68961ffeda1d3c4abd23fde86060c74, type: 3}
@@ -312,8 +286,6 @@ MonoBehaviour:
   - type: 12
     spriteUp: {fileID: 1068268799, guid: 3d286af698a91a44eb866ba7ddda5cb6, type: 3}
     spriteDown: {fileID: -361377343, guid: 3d286af698a91a44eb866ba7ddda5cb6, type: 3}
-    spriteGoldenUp: {fileID: -1342002580, guid: b66516a134918934885d7abe1966e7e4, type: 3}
-    spriteGoldenDown: {fileID: 1394255202, guid: b66516a134918934885d7abe1966e7e4, type: 3}
     goldens:
     - spriteUp: {fileID: -1718338710, guid: 7bee0d7f45415434da4c67455054dd2f, type: 3}
       spriteDown: {fileID: -861964736, guid: 7bee0d7f45415434da4c67455054dd2f, type: 3}
@@ -324,8 +296,6 @@ MonoBehaviour:
   - type: 13
     spriteUp: {fileID: 2110158107, guid: df7eec01e943e3b4181cd608472e8764, type: 3}
     spriteDown: {fileID: 1144467745, guid: df7eec01e943e3b4181cd608472e8764, type: 3}
-    spriteGoldenUp: {fileID: -1145341914, guid: 1ba5c5c219975a645adf4867936e201d, type: 3}
-    spriteGoldenDown: {fileID: 1163065954, guid: 1ba5c5c219975a645adf4867936e201d, type: 3}
     goldens:
     - spriteUp: {fileID: 1193495137, guid: e276a5198bb21724187ce15a367a2def, type: 3}
       spriteDown: {fileID: -1744722360, guid: e276a5198bb21724187ce15a367a2def, type: 3}
@@ -336,8 +306,6 @@ MonoBehaviour:
   - type: 14
     spriteUp: {fileID: -74130943, guid: 0d0c5eb1fbb1a7b4fb6ebe3b3b42a3b5, type: 3}
     spriteDown: {fileID: 2005765544, guid: 0d0c5eb1fbb1a7b4fb6ebe3b3b42a3b5, type: 3}
-    spriteGoldenUp: {fileID: -41884265, guid: 1b3391e71e4eaab43b8be8060eba7f63, type: 3}
-    spriteGoldenDown: {fileID: 1008757046, guid: 1b3391e71e4eaab43b8be8060eba7f63, type: 3}
     goldens:
     - spriteUp: {fileID: 1696053363, guid: 8b4ee6416333ccb49bc167fa0996defb, type: 3}
       spriteDown: {fileID: -1180477564, guid: 8b4ee6416333ccb49bc167fa0996defb, type: 3}
@@ -348,8 +316,6 @@ MonoBehaviour:
   - type: 15
     spriteUp: {fileID: 59462682, guid: 7a591c04975b4144986ebe4f9e6c0ea5, type: 3}
     spriteDown: {fileID: -1354691788, guid: 7a591c04975b4144986ebe4f9e6c0ea5, type: 3}
-    spriteGoldenUp: {fileID: -1258942442, guid: 891bc7701573f0b4487e9c50b529d3c7, type: 3}
-    spriteGoldenDown: {fileID: 1028537400, guid: 891bc7701573f0b4487e9c50b529d3c7, type: 3}
     goldens:
     - spriteUp: {fileID: 1883907208, guid: 351e335480eff49408f311b6466daae0, type: 3}
       spriteDown: {fileID: 861194439, guid: 351e335480eff49408f311b6466daae0, type: 3}
@@ -360,8 +326,6 @@ MonoBehaviour:
   - type: 16
     spriteUp: {fileID: 1492239450, guid: c979f737fd5d72c4aa25830a75de4f86, type: 3}
     spriteDown: {fileID: -1525000229, guid: c979f737fd5d72c4aa25830a75de4f86, type: 3}
-    spriteGoldenUp: {fileID: 2010709257, guid: 1daf0e5e1589e4d45853cd4e90f4a8a9, type: 3}
-    spriteGoldenDown: {fileID: 493817007, guid: 1daf0e5e1589e4d45853cd4e90f4a8a9, type: 3}
     goldens:
     - spriteUp: {fileID: -1040958804, guid: 4e349ea8e6af310488eef3479fe2e859, type: 3}
       spriteDown: {fileID: 2049334089, guid: 4e349ea8e6af310488eef3479fe2e859, type: 3}
@@ -372,8 +336,6 @@ MonoBehaviour:
   - type: 17
     spriteUp: {fileID: -527912828, guid: 2a938efa3ece59448b83af3d60e64e7f, type: 3}
     spriteDown: {fileID: 1226443014, guid: 2a938efa3ece59448b83af3d60e64e7f, type: 3}
-    spriteGoldenUp: {fileID: -495315832, guid: 4e81c94273c5a6449b3c1885fd674ff9, type: 3}
-    spriteGoldenDown: {fileID: 1814210245, guid: 4e81c94273c5a6449b3c1885fd674ff9, type: 3}
     goldens:
     - spriteUp: {fileID: 315744083, guid: 751206a5c22f2a34cb2391781b2a6554, type: 3}
       spriteDown: {fileID: 1700190920, guid: 751206a5c22f2a34cb2391781b2a6554, type: 3}
@@ -384,8 +346,6 @@ MonoBehaviour:
   - type: 18
     spriteUp: {fileID: 927745894, guid: 93a54a95a452ceb4d97e7944ec178b45, type: 3}
     spriteDown: {fileID: -1302805916, guid: 93a54a95a452ceb4d97e7944ec178b45, type: 3}
-    spriteGoldenUp: {fileID: -1431433056, guid: c2d2f357d72a12247be6d50996727421, type: 3}
-    spriteGoldenDown: {fileID: -229301372, guid: c2d2f357d72a12247be6d50996727421, type: 3}
     goldens:
     - spriteUp: {fileID: -1799545165, guid: ef9d8a2cf63ebaa4f8e1254b9d938f1f, type: 3}
       spriteDown: {fileID: -1449121450, guid: ef9d8a2cf63ebaa4f8e1254b9d938f1f, type: 3}
@@ -396,8 +356,6 @@ MonoBehaviour:
   - type: 19
     spriteUp: {fileID: -693735180, guid: eec9902a0fd59784bb07f791a8150778, type: 3}
     spriteDown: {fileID: 1536778187, guid: eec9902a0fd59784bb07f791a8150778, type: 3}
-    spriteGoldenUp: {fileID: 571592148, guid: 944aac08cf9d7c0488de53885047d86f, type: 3}
-    spriteGoldenDown: {fileID: 103932194, guid: 944aac08cf9d7c0488de53885047d86f, type: 3}
     goldens:
     - spriteUp: {fileID: 330672029, guid: e9a9797a0e4371740830a7868b45f284, type: 3}
       spriteDown: {fileID: -109893998, guid: e9a9797a0e4371740830a7868b45f284, type: 3}
@@ -408,8 +366,6 @@ MonoBehaviour:
   - type: 20
     spriteUp: {fileID: -1616602849, guid: f8c0e6131003354458ce3f3dfcdc9d5e, type: 3}
     spriteDown: {fileID: 247021327, guid: f8c0e6131003354458ce3f3dfcdc9d5e, type: 3}
-    spriteGoldenUp: {fileID: 1074814296, guid: 559ef5eed5aadb6419240df7c6848e5b, type: 3}
-    spriteGoldenDown: {fileID: -844045598, guid: 559ef5eed5aadb6419240df7c6848e5b, type: 3}
     goldens:
     - spriteUp: {fileID: -1014123418, guid: 2eaecd90e43749d4a9fb052340f6381f, type: 3}
       spriteDown: {fileID: 409898097, guid: 2eaecd90e43749d4a9fb052340f6381f, type: 3}
@@ -420,8 +376,6 @@ MonoBehaviour:
   - type: 21
     spriteUp: {fileID: -1232917651, guid: d7ff755be2376504a8dacc4c1c67cedd, type: 3}
     spriteDown: {fileID: -898072782, guid: d7ff755be2376504a8dacc4c1c67cedd, type: 3}
-    spriteGoldenUp: {fileID: -1766945676, guid: 64ea26e4dbf11674cb8deb1af54a17ba, type: 3}
-    spriteGoldenDown: {fileID: -2135118052, guid: 64ea26e4dbf11674cb8deb1af54a17ba, type: 3}
     goldens:
     - spriteUp: {fileID: 1883339399, guid: 8fa024bdef036f84c8168d9f323120d6, type: 3}
       spriteDown: {fileID: 1784337356, guid: 8fa024bdef036f84c8168d9f323120d6, type: 3}
@@ -432,8 +386,6 @@ MonoBehaviour:
   - type: 22
     spriteUp: {fileID: 1860482313, guid: 06b19840e64efa84ca8793fb9a90c6f8, type: 3}
     spriteDown: {fileID: 1487468861, guid: 06b19840e64efa84ca8793fb9a90c6f8, type: 3}
-    spriteGoldenUp: {fileID: 297366953, guid: b58b482747772ca43a25a5431de72f10, type: 3}
-    spriteGoldenDown: {fileID: 148153953, guid: b58b482747772ca43a25a5431de72f10, type: 3}
     goldens:
     - spriteUp: {fileID: 1004114198, guid: 8192e4083407cb04c9f2a743d636ebf0, type: 3}
       spriteDown: {fileID: 1511997553, guid: 8192e4083407cb04c9f2a743d636ebf0, type: 3}
@@ -444,8 +396,6 @@ MonoBehaviour:
   - type: 23
     spriteUp: {fileID: 1657677270, guid: dca2c18dc4a4915459b7778b4c85ac0b, type: 3}
     spriteDown: {fileID: 1799113976, guid: dca2c18dc4a4915459b7778b4c85ac0b, type: 3}
-    spriteGoldenUp: {fileID: 399085855, guid: d450e1578709b7749a113b1d50b55eca, type: 3}
-    spriteGoldenDown: {fileID: -597444969, guid: d450e1578709b7749a113b1d50b55eca, type: 3}
     goldens:
     - spriteUp: {fileID: 445140392, guid: e502b2b4f6a36b74aab36d5da948cee7, type: 3}
       spriteDown: {fileID: -749633962, guid: e502b2b4f6a36b74aab36d5da948cee7, type: 3}
@@ -456,8 +406,6 @@ MonoBehaviour:
   - type: 24
     spriteUp: {fileID: 1875877601, guid: 48f9443889b9a3042892a333728e181b, type: 3}
     spriteDown: {fileID: 404317050, guid: 48f9443889b9a3042892a333728e181b, type: 3}
-    spriteGoldenUp: {fileID: -891825238, guid: a260d85031699494da604dfc25b24f0c, type: 3}
-    spriteGoldenDown: {fileID: 1445958258, guid: a260d85031699494da604dfc25b24f0c, type: 3}
     goldens:
     - spriteUp: {fileID: -1030498786, guid: 210659edcb97d64408905b2af7c8ada7, type: 3}
       spriteDown: {fileID: 1261597363, guid: 210659edcb97d64408905b2af7c8ada7, type: 3}
@@ -468,8 +416,6 @@ MonoBehaviour:
   - type: 25
     spriteUp: {fileID: 833488137, guid: 1a59bc3ed4832c94b87d58534df39812, type: 3}
     spriteDown: {fileID: 451291827, guid: 1a59bc3ed4832c94b87d58534df39812, type: 3}
-    spriteGoldenUp: {fileID: -1896633057, guid: 0b68b00b3cd03824ea37adcca8fa7ce3, type: 3}
-    spriteGoldenDown: {fileID: 1574042025, guid: 0b68b00b3cd03824ea37adcca8fa7ce3, type: 3}
     goldens:
     - spriteUp: {fileID: 1359268851, guid: 80b4962996089a7498381eece036ba74, type: 3}
       spriteDown: {fileID: -1799839695, guid: 80b4962996089a7498381eece036ba74, type: 3}
@@ -480,8 +426,6 @@ MonoBehaviour:
   - type: 26
     spriteUp: {fileID: 493817845, guid: a7891aa4b1c12c74298843492cbecdba, type: 3}
     spriteDown: {fileID: -1758384906, guid: a7891aa4b1c12c74298843492cbecdba, type: 3}
-    spriteGoldenUp: {fileID: 570261192, guid: e8d07fc1c8091964cbe60f8e60ee2e68, type: 3}
-    spriteGoldenDown: {fileID: 161089627, guid: e8d07fc1c8091964cbe60f8e60ee2e68, type: 3}
     goldens:
     - spriteUp: {fileID: 99270435, guid: 6e8f7c79f68b6e6499c0a794a0488cec, type: 3}
       spriteDown: {fileID: -1516817810, guid: 6e8f7c79f68b6e6499c0a794a0488cec, type: 3}
@@ -492,8 +436,6 @@ MonoBehaviour:
   - type: 27
     spriteUp: {fileID: 1333672758, guid: f107501ceb07e9643a81cb9b00385888, type: 3}
     spriteDown: {fileID: -1116357532, guid: f107501ceb07e9643a81cb9b00385888, type: 3}
-    spriteGoldenUp: {fileID: -174553952, guid: 3260aea3f2da88b4cb150135d1c60f2c, type: 3}
-    spriteGoldenDown: {fileID: 1052919642, guid: 3260aea3f2da88b4cb150135d1c60f2c, type: 3}
     goldens:
     - spriteUp: {fileID: 776546129, guid: c246dfcbaff655b408002297420caabe, type: 3}
       spriteDown: {fileID: 783632416, guid: c246dfcbaff655b408002297420caabe, type: 3}
@@ -504,8 +446,6 @@ MonoBehaviour:
   - type: 28
     spriteUp: {fileID: 1693607049, guid: 0987235399b45074cba3d06eba3ff824, type: 3}
     spriteDown: {fileID: 634646674, guid: 0987235399b45074cba3d06eba3ff824, type: 3}
-    spriteGoldenUp: {fileID: -1586412599, guid: ff5d2b8ce6f32154cab6298da613ef2b, type: 3}
-    spriteGoldenDown: {fileID: -103776984, guid: ff5d2b8ce6f32154cab6298da613ef2b, type: 3}
     goldens:
     - spriteUp: {fileID: -415123414, guid: ed5befdb7e757fb4a948ff3aaa05a4f1, type: 3}
       spriteDown: {fileID: -228218788, guid: ed5befdb7e757fb4a948ff3aaa05a4f1, type: 3}
@@ -516,8 +456,6 @@ MonoBehaviour:
   - type: 29
     spriteUp: {fileID: 506522297, guid: fbca6a641fadafa4dad581c4f46961dc, type: 3}
     spriteDown: {fileID: 100989380, guid: fbca6a641fadafa4dad581c4f46961dc, type: 3}
-    spriteGoldenUp: {fileID: -108442014, guid: 78141c4c77b67c34b91db6b9293e4389, type: 3}
-    spriteGoldenDown: {fileID: -662727202, guid: 78141c4c77b67c34b91db6b9293e4389, type: 3}
     goldens:
     - spriteUp: {fileID: 1697945708, guid: 13f23e5a6a65b2b49bdc80e8981bf9e5, type: 3}
       spriteDown: {fileID: -971360947, guid: 13f23e5a6a65b2b49bdc80e8981bf9e5, type: 3}
@@ -525,6 +463,9 @@ MonoBehaviour:
       spriteDown: {fileID: 423957456, guid: cdd51b09668d3b24cb9bfc6bdf80d20a, type: 3}
     - spriteUp: {fileID: -108442014, guid: 78141c4c77b67c34b91db6b9293e4389, type: 3}
       spriteDown: {fileID: -662727202, guid: 78141c4c77b67c34b91db6b9293e4389, type: 3}
+  unknownTile:
+  - {fileID: 564791752, guid: 0438f5e436c1d9e438aa0e2ebffcf278, type: 3}
+  - {fileID: -1623291229, guid: 0438f5e436c1d9e438aa0e2ebffcf278, type: 3}
 --- !u!111 &3153343701767512400
 Animation:
   m_ObjectHideFlags: 0

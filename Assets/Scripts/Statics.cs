@@ -20,10 +20,14 @@ public static class Statics
     public static int TimeScale = 1;
 
     public const int LevelStartGoldenTiles = 0; // Уровень с которого появляются "Золотые" плитки
+    
+    public const int LevelStartUnknownTiles = 0; // Уровень с которого появляются "Неизвестные" плитки
 
     public const int CountMovesGoldenState = 3;
 
-    public const int MaxGoldenTiles = 3;
+    public const int MaxGoldenTiles = 3; 
+    
+    public const int MaxUnknownTiles = 5;
     
     public static readonly List<Level> AllLevels = new() // Список всех уровней
     {

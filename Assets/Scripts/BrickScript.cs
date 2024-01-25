@@ -14,7 +14,8 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private Animation anim; // Анимация исчезнование
     [SerializeField] private AudioSource soundMoveForFinish; // Звук движения до финиша
     [SerializeField] private List<TileType> types; // Типы
-
+    [SerializeField] private Sprite[] unknownTile; // Спрайты для "неизвестной" плитки
+    
     private Brick _brick;
     private SpriteRenderer _sprite;
     private float _sizeFinishBrick;
@@ -111,6 +112,12 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     {
         TileType type = types.First(type => type.type.Equals(_brick.Type));
 
+        if (_brick.IsUnknownTile)
+        {
+            _sprite.sprite = _brick.IsDown ? unknownTile[1] : unknownTile[0];
+            return;
+        }
+        
         if (_brick.IsGolden())
         {
             TileType.Golden golden = type.goldens[_brick.GoldenStateMoves - 1];
@@ -150,6 +157,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             if (distance <= 0.001f && !_brick.IsFinish)
             {
                 _brick.IsFinish = true;
+                _brick.IsUnknownTile = false;
                 MainUtils.SaveProgress();
             }
             else
