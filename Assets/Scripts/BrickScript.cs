@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Classes;
@@ -15,6 +16,8 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private AudioSource soundMoveForFinish; // Звук движения до финиша
     [SerializeField] private List<TileType> types; // Типы
     [SerializeField] private Sprite[] unknownTile; // Спрайты для "неизвестной" плитки
+    [SerializeField] private GameObject objectForAnimUnknownTile; // Объект для анимации "Неизвестной" плитки
+    [SerializeField] private Animation animUnknownTile; // Анимации "Неизвестной" плитки
     
     private Brick _brick;
     private SpriteRenderer _sprite;
@@ -23,6 +26,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 
     public void SetBrick(Brick brick, float sizeFinishBrick)
     {
+        objectForAnimUnknownTile.SetActive(false);
         _brick = brick;
         _sprite = GetComponent<SpriteRenderer>(); 
         _sizeFinishBrick = sizeFinishBrick;
@@ -157,7 +161,10 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
             if (distance <= 0.001f && !_brick.IsFinish)
             {
                 _brick.IsFinish = true;
-                _brick.IsUnknownTile = false;
+                if (_brick.IsUnknownTile) {
+                    _brick.IsUnknownTile = false;
+                    StartCoroutine(AnimUnknownTile());
+                }
                 MainUtils.SaveProgress();
             }
             else
@@ -218,6 +225,13 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
                 _brick.IsLastMove = false;
             }
         }
+    }
+
+    private IEnumerator AnimUnknownTile()
+    {
+        objectForAnimUnknownTile.SetActive(true);
+        yield return new WaitForSeconds(0.45f);
+        objectForAnimUnknownTile.SetActive(false);
     }
 
     public float LengthClearAnim()
