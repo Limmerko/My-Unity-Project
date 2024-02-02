@@ -224,8 +224,6 @@ public class MainScript : MonoBehaviour
         List<Brick> bricks = new List<Brick>(Statics.AllBricks);
         MainUtils.MixList(bricks);
         bricks.ForEach(brick => brick.GoldenStateMoves = 0);
-        bricks = bricks.OrderByDescending(b => b.Layer)
-            .ToList();
         
         foreach (var brick in bricks)
         {
@@ -258,25 +256,19 @@ public class MainScript : MonoBehaviour
         List<Brick> bricks = new List<Brick>(Statics.AllBricks);
         MainUtils.MixList(bricks);
         bricks.ForEach(brick => brick.IsUnknownTile = false);
-        bricks = bricks.OrderByDescending(b => b.Layer)
-            .ToList();
         
+        int maxUnknown = (int) Math.Round(bricks.Count / 100f * 5); // 5% от общего кол-ва 
+
         foreach (var brick in bricks)
         {
-            if (unknownTypes.Count == Statics.MaxUnknownTiles || 
-                unknownTypes.Contains(brick.Type) ||
-                brick.IsGolden())
-            {
+            if (unknownTypes.Count == maxUnknown)
                 return;
-            }
-            // TODO надо чтобы шанс зависит от кол-ва плиток на уровне и наверно убрать максимум
-            int chance = 5 + unknownTypes.Count * 10; // Шанс уменьшается с кол-вом неизвестных плиток
-            bool isUnknownTile = _random.Next(chance) == 0;
-            if (isUnknownTile)
-            {
-                brick.IsUnknownTile = true;
-                unknownTypes.Add(brick.Type);
-            }
+
+            if (brick.IsGolden())
+                continue;
+
+            brick.IsUnknownTile = true;
+            unknownTypes.Add(brick.Type);
         }
     }
     

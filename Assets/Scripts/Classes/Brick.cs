@@ -71,6 +71,7 @@ namespace Classes
             this.IsToDestroy = savedBrick.IsToDestroy;
             this.IsSwipe = savedBrick.IsSwipe;
             this.GoldenStateMoves = savedBrick.GoldenStateMoves;
+            this.IsUnknownTile = savedBrick.IsUnknownTile;
             if (savedBrick.LastMoveState != null)
             {
                 this.LastMoveState = new Brick(null, savedBrick.LastMoveState);

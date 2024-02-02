@@ -17,8 +17,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private List<TileType> types; // Типы
     [SerializeField] private Sprite[] unknownTile; // Спрайты для "неизвестной" плитки
     [SerializeField] private GameObject objectForAnimUnknownTile; // Объект для анимации "Неизвестной" плитки
-    [SerializeField] private Animation animUnknownTile; // Анимации "Неизвестной" плитки
-    
+
     private Brick _brick;
     private SpriteRenderer _sprite;
     private float _sizeFinishBrick;
