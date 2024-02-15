@@ -30,7 +30,12 @@ namespace Buttons.Hint
                 PlayerPrefs.GetInt(PrefCount) == 0) return;
 
             Debug.Log("Перемешать");
-            
+
+            Refresh();
+        }
+
+        public void Refresh()
+        {
             List<Brick> notTouchBrick = BrickUtils.AllNotTouchBricks();
             notTouchBrick.ForEach(brick => BrickUtils.ChangeClickable(brick, false));
             

@@ -21,7 +21,7 @@ public class MainMenuScript : MonoBehaviour
 
     void Start()
     {
-        Vibration.Init();
+        MainUtils.VibrationInit();
         
         if (!PlayerPrefs.HasKey("Level"))
         {

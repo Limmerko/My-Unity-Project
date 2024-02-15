@@ -19,9 +19,9 @@ public static class Statics
 
     public static int TimeScale = 1;
 
-    public const int LevelStartGoldenTiles = 5; // Уровень с которого появляются "Золотые" плитки
+    public const int LevelStartGoldenTiles = 1; // Уровень с которого появляются "Золотые" плитки
     
-    public const int LevelStartUnknownTiles = 10; // Уровень с которого появляются "Неизвестные" плитки
+    public const int LevelStartUnknownTiles = 1; // Уровень с которого появляются "Неизвестные" плитки
 
     public const int CountMovesGoldenState = 3;
 

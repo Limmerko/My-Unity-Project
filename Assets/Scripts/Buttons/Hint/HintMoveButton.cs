@@ -28,7 +28,12 @@ namespace Buttons.Hint
                 PlayerPrefs.GetInt(PrefCount) == 0) return;
             
             Debug.Log("Подсказка");
-            
+
+            HintMove();
+        }
+
+        public void HintMove()
+        {
             List<Brick> finishBricks = BrickUtils.AllFinishBricks();
             List<List<Brick>> needBricks = new() { BrickUtils.AllClickableBricks(), 
                 BrickUtils.AllNotTouchBricks().OrderByDescending(brick => brick.Layer).ToList() }; 
@@ -116,7 +121,7 @@ namespace Buttons.Hint
                 MainUtils.PlaySound(soundMoveBricks);
                 return;
         }
-
+        
         private void MoveBrick(Brick brick)
         {
             // Изменение положения

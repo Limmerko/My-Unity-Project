@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Classes;
 using Enums;
 using Newtonsoft.Json;
 using UnityEngine;
+using Random = System.Random;
 
 public class MainUtils
 {
@@ -32,7 +31,7 @@ public class MainUtils
 
     public static void MixList<T>(IList<T> list)
     {
-        System.Random random = new System.Random();
+        Random random = new Random();
         int n = list.Count;
         
         while (n > 1)
@@ -47,9 +46,13 @@ public class MainUtils
     {
         if (SettingIsOn(SettingsType.VibrationSettings))
         {
-            Vibration.VibrateAndroid(1); // TODO хз как на IOS будет (есть метод VibrateIOS)
-            // Vibration.VibrateIOS(ImpactFeedbackStyle.Soft); // TODO не дает установить на IPhone
+            Vibration.VibrateImpact();
         }
+    }
+
+    public static void VibrationInit()
+    {
+        Vibration.Init();
     }
 
     public static void PlaySound(AudioSource audioSource)

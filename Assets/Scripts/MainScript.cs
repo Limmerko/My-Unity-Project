@@ -48,7 +48,7 @@ public class MainScript : MonoBehaviour
 
     private void Awake()
     {
-        Vibration.Init();
+        MainUtils.VibrationInit();
         Statics.TimeScale = 1;
         Statics.AllBricks = new List<Brick>();
         Statics.LastMoves = new List<Brick>();

@@ -11,6 +11,7 @@ namespace Buttons.Hint
         [SerializeField] private GameObject backgroundPanel; // Панель паузы
         [SerializeField] private GameObject losePanel; // Панель проигрыша
         [SerializeField] private CancelLastMoveButton cancelLastMoveScript;
+        [SerializeField] private RefreshButton refreshScript;
         
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _losePanelPanelAnim; // Анимация панели проигрыша
@@ -32,6 +33,7 @@ namespace Buttons.Hint
             _losePanelPanelAnim.Play("PanelDying");
             yield return new WaitForSeconds(_losePanelPanelAnim["PanelDying"].length);
             cancelLastMoveScript.CancelLastMove();
+            refreshScript.Refresh();
             Statics.TimeScale = 1;
             Statics.IsGameOver = false;
             backgroundPanel.SetActive(false); 
