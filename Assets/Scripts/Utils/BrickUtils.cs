@@ -68,12 +68,24 @@ namespace Utils
         }
 
         /**
-         * Список всех "Золотых" и плиточек 
+         * Список всех "Золотых" плиточек 
          */
         public static List<Brick> AllGoldenTiles()
         {
             return Statics.AllBricks
                 .Where(brick => brick.GoldenStateMoves > 0 && 
+                                !brick.IsToDestroy && 
+                                brick.IsClickable)
+                .ToList();
+        }
+        
+        /**
+         * Список всех "Восполнить жизни" плиточек 
+         */
+        public static List<Brick> AllLiveTiles()
+        {
+            return Statics.AllBricks
+                .Where(brick => brick.LiveStateMoves > 0 && 
                                 !brick.IsToDestroy && 
                                 brick.IsClickable)
                 .ToList();

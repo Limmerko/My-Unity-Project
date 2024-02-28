@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 namespace Buttons.Pause
@@ -15,7 +16,6 @@ namespace Buttons.Pause
         [SerializeField] private GameObject nextLevelPanel; // Панель следующего уровня
         [SerializeField] protected GameObject buyHintPanel; // Панель покупки подсказки
         [SerializeField] protected GameObject settingsPanel; // Панель настроек
-        
 
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _forkPausePanelAnim; // Анимация внутренней панели паузы

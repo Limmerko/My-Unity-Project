@@ -99,7 +99,7 @@ namespace Buttons.Hint
         protected void CheckCount()
         {
             int countInt = PlayerPrefs.GetInt(PrefCount) - 1;
-            PlayerPrefs.SetInt(PrefCount, countInt);
+            PlayerPrefs.SetInt(PrefCount, countInt < 0 ? 0 : countInt);
             _countText.text = countInt > 0 ? countInt.ToString() : "+";
             PlayerPrefs.Save();
 

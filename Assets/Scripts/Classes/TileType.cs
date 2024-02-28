@@ -14,10 +14,12 @@ namespace Classes
 
         public Sprite spriteDown;
         
-        public List<Golden> goldens;
+        public List<AnyType> goldens;
+        
+        public List<AnyType> lives;
 
         [Serializable]
-        public class Golden
+        public class AnyType
         {
             public Sprite spriteUp;
 

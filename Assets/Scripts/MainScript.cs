@@ -30,6 +30,9 @@ public class MainScript : MonoBehaviour
     [SerializeField] private AudioSource soundGameOver; // Звук проигрыша
     [SerializeField] private AudioSource soundMoveBricks; // Звук движения плиток до места  
     [SerializeField] private AudioSource musicSound; // Фоновая музыка (звук)
+    [SerializeField] protected TextMeshProUGUI livesText; // Кол-во жизней
+    [SerializeField] private GameObject resumeAfterLoseByLiveButton; // Кнопка "Возобновить" за жизни
+    [SerializeField] private GameObject resumeAfterLoseByAdButton; // Кнопка "Возобновить" за рекламу
     
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -45,6 +48,7 @@ public class MainScript : MonoBehaviour
     private bool _isStartSavedlevel = false;
     private int _finishedLayerOnStart = 0;
     private const String CoinsPref = "Coins";
+    private const String LivesPref = "Lives";
 
     private void Awake()
     {
@@ -78,6 +82,8 @@ public class MainScript : MonoBehaviour
         InitializeBackGround();
 
         StartLevel();
+        
+        // PlayerPrefs.SetInt("Lives", Statics.MaxLives); // TODO УДАЛИТЬ ПОТОМ
     }
     
     private void Update()
@@ -95,6 +101,7 @@ public class MainScript : MonoBehaviour
         }
 
         CheckPlayMusic();
+        CheckLives();
     }
 
     private void FixedUpdate()
@@ -167,6 +174,7 @@ public class MainScript : MonoBehaviour
 
             SetGoldenState();
             SetUnknownState();
+            SetLiveState();
         }
     }
 
@@ -269,6 +277,35 @@ public class MainScript : MonoBehaviour
 
             brick.IsUnknownTile = true;
             unknownTypes.Add(brick.Type);
+        }
+    }
+    
+    /**
+     * Определение "Восполнение жизней" кирпичиков
+     */
+    private void SetLiveState()
+    {
+        if (PlayerPrefs.GetInt(LivesPref) >= Statics.MaxLives)
+        {
+            return;
+        }
+        
+        List<Brick> bricks = new List<Brick>(Statics.AllBricks);
+        MainUtils.MixList(bricks);
+        bricks.ForEach(brick => brick.LiveStateMoves = 0);
+        
+        foreach (var brick in bricks)
+        {
+            if (brick.IsGolden() || brick.IsUnknownTile)
+                continue;
+
+            int chance = 50; 
+            bool isLiveTile = _random.Next(chance) == 0;
+            if (isLiveTile)
+            {
+                brick.LiveStateMoves = Statics.CountMovesLiveState;
+                return;
+            }
         }
     }
     
@@ -383,6 +420,7 @@ public class MainScript : MonoBehaviour
                 MainUtils.PlaySound(soundCollectThreeTiles);
                 finishBricksByType.ForEach(typeBricks => { StartCoroutine(DestroyBricks(typeBricks.Take(3).ToList())); });
                 ReduceGoldenStateMoves();
+                ReduceLiveStateMoves();
             }
             else
             {
@@ -427,8 +465,11 @@ public class MainScript : MonoBehaviour
     {
         bricks.ForEach(brick => brick.IsToDestroy = true);
         bool isAnyGolden = bricks.Any(b => b.IsGolden());
+        bool isAnyLive = bricks.Any(b => b.IsLive());
         int countCoins = isAnyGolden ? 10 : 1;
+        int countLives = isAnyLive ? 1 : 0;
         PlayerPrefs.SetInt(CoinsPref, PlayerPrefs.GetInt(CoinsPref) + countCoins);
+        PlayerPrefs.SetInt(LivesPref, PlayerPrefs.GetInt(LivesPref) + countLives);
         PlayerPrefs.Save();
         yield return new WaitForSeconds(0.1f);
         float timeAnim = 0f;
@@ -468,6 +509,17 @@ public class MainScript : MonoBehaviour
     }
     
     /**
+     * Уменьшение кол-ва ходов "Восполнение жизней" состояния кирпичиков
+     */
+    private void ReduceLiveStateMoves()
+    {
+        BrickUtils.AllLiveTiles().ForEach(brick =>
+        {
+            brick.LiveStateMoves--;
+        });
+    }
+    
+    /**
      *  Конец игры
      */
     private void GameOver()
@@ -483,6 +535,10 @@ public class MainScript : MonoBehaviour
             _losePanelAnim.Play("PanelUprise");
             MainUtils.PlaySound(soundGameOver);
             MainUtils.ClearProgress();
+
+            int lives = PlayerPrefs.GetInt(LivesPref);
+            resumeAfterLoseByLiveButton.SetActive(lives > 0);
+            resumeAfterLoseByAdButton.SetActive(lives <= 0);
         }
     }
 
@@ -624,5 +680,10 @@ public class MainScript : MonoBehaviour
                 musicSound.Play();
             }
         }
+    }
+
+    private void CheckLives()
+    {
+        livesText.text = PlayerPrefs.GetInt(LivesPref).ToString();
     }
 }

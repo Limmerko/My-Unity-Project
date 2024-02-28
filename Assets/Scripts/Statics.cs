@@ -25,7 +25,11 @@ public static class Statics
 
     public const int CountMovesGoldenState = 3;
 
-    public const int MaxGoldenTiles = 3; 
+    public const int MaxGoldenTiles = 3;
+    
+    public const int CountMovesLiveState = 3;
+
+    public const int MaxLives = 3;
     
     public static readonly List<Level> AllLevels = new() // Список всех уровней
     {

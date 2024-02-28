@@ -32,6 +32,8 @@ namespace Buttons.Hint
             Debug.Log("Перемешать");
 
             Refresh();
+            
+            CheckCount();
         }
 
         public void Refresh()
@@ -44,8 +46,6 @@ namespace Buttons.Hint
             {
                 SwipeBricks(notTouchBrick[i], notTouchBrick[i + 1]);
             }
-
-            CheckCount();
         }
         
 

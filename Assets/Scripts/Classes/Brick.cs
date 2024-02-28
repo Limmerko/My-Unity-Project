@@ -35,6 +35,8 @@ namespace Classes
         public bool IsLastMove { get; set; } // Флаг является ли сейчас плитка последним ходом
         
         public int GoldenStateMoves { get; set; } // Шагов до окончания состояния "Золотой"
+        
+        public int LiveStateMoves { get; set; } // Шагов до окончания состояния "Воспалнение жизней"
 
         public bool IsUnknownTile { get; set; } // Флаг является ли плитка "Неизвестной"
         
@@ -51,6 +53,7 @@ namespace Classes
             TargetPosition = targetPosition;
             IsSwipe = false;
             GoldenStateMoves = 0;
+            LiveStateMoves = 0;
         }
 
         public Brick(GameObject gameObject, SavedBrick savedBrick)
@@ -71,6 +74,7 @@ namespace Classes
             this.IsToDestroy = savedBrick.IsToDestroy;
             this.IsSwipe = savedBrick.IsSwipe;
             this.GoldenStateMoves = savedBrick.GoldenStateMoves;
+            this.LiveStateMoves = savedBrick.LiveStateMoves;
             this.IsUnknownTile = savedBrick.IsUnknownTile;
             if (savedBrick.LastMoveState != null)
             {
@@ -83,6 +87,11 @@ namespace Classes
             return GoldenStateMoves > 0;
         }
 
+        public bool IsLive()
+        {
+            return LiveStateMoves > 0;
+        }
+        
         public object Clone()
         {
             return this.MemberwiseClone();

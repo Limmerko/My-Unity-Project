@@ -47,7 +47,12 @@ public class MainMenuScript : MonoBehaviour
         {
             PlayerPrefs.SetInt(SettingsType.VibrationSettings.ToString(), 1);
         }
-        
+
+        if (!PlayerPrefs.HasKey("Lives"))
+        {
+            PlayerPrefs.SetInt("Lives", Statics.MaxLives);
+        }
+
         PlayerPrefs.Save();
     }
 }
