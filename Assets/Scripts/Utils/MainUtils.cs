@@ -96,4 +96,13 @@ public class MainUtils
     {
         PlayerPrefs.DeleteKey("LevelProgress");
     }
+    
+    /**
+     * Получение "Мировых" координат из  RectTransform
+     */
+    public static Rect GetWorldRect(RectTransform rectTransform) {
+        Vector3[] corners = new Vector3[4];
+        rectTransform.GetWorldCorners(corners);
+        return new Rect(corners[0], corners[2] - corners[0]);
+    }
 }

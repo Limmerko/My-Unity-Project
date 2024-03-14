@@ -19,6 +19,9 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject coinPrefab; // Монета
     [SerializeField] private GameObject coinsPlace; // Место расположения всех монет
     [SerializeField] private TextMeshProUGUI coinsText; // Текст с кол-вом монет
+    [SerializeField] private GameObject liveHeartPrefab; // Сердце
+    [SerializeField] private GameObject liveHeartPlace; // Место расположения сердца
+    [SerializeField] private TextMeshProUGUI livesText; // Текст с кол-вом жизней
     [SerializeField] private GameObject backgroundPanel; // Фон на всех панелях
     [SerializeField] private GameObject losePanel; // Внутрення панель окончания игры
     [SerializeField] private GameObject nextLevelPanel; // Панель перехода на следующий уровень
@@ -30,7 +33,6 @@ public class MainScript : MonoBehaviour
     [SerializeField] private AudioSource soundGameOver; // Звук проигрыша
     [SerializeField] private AudioSource soundMoveBricks; // Звук движения плиток до места  
     [SerializeField] private AudioSource musicSound; // Фоновая музыка (звук)
-    [SerializeField] protected TextMeshProUGUI livesText; // Кол-во жизней
     [SerializeField] private GameObject resumeAfterLoseByLiveButton; // Кнопка "Возобновить" за жизни
     [SerializeField] private GameObject resumeAfterLoseByAdButton; // Кнопка "Возобновить" за рекламу
     
@@ -54,6 +56,7 @@ public class MainScript : MonoBehaviour
     {
         MainUtils.VibrationInit();
         Statics.TimeScale = 1;
+        Statics.MaxFinishTiles = 8;
         Statics.AllBricks = new List<Brick>();
         Statics.LastMoves = new List<Brick>();
         backgroundPanel.SetActive(false);
@@ -62,6 +65,7 @@ public class MainScript : MonoBehaviour
         Statics.IsGameOver = false;
         Statics.LevelStart = false;
         coinsText.text = PlayerPrefs.GetInt(CoinsPref).ToString();
+        livesText.text = PlayerPrefs.GetInt(LivesPref).ToString();
 
         _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
         _losePanelAnim = losePanel.GetComponent<Animation>();
@@ -82,8 +86,6 @@ public class MainScript : MonoBehaviour
         InitializeBackGround();
 
         StartLevel();
-        
-        // PlayerPrefs.SetInt("Lives", Statics.MaxLives); // TODO УДАЛИТЬ ПОТОМ
     }
     
     private void Update()
@@ -101,7 +103,6 @@ public class MainScript : MonoBehaviour
         }
 
         CheckPlayMusic();
-        CheckLives();
     }
 
     private void FixedUpdate()
@@ -129,7 +130,7 @@ public class MainScript : MonoBehaviour
         Debug.Log("Всего уровней : " + Statics.AllLevels.Count);
         
         _brickSize = BrickUtils.BrickSize(countBrickWidth);
-        _sizeFinishBrick = BrickUtils.BrickSize(8);
+        _sizeFinishBrick = BrickUtils.BrickSize(9);
     }
 
     private void InitializedTypes()
@@ -353,12 +354,7 @@ public class MainScript : MonoBehaviour
         GameObject finishPlace = Instantiate(finishPlacePrefab, finishPlacePrefab.transform.position, Quaternion.identity);
         finishPlace.transform.localScale = new Vector3(_sizeFinishBrick, _sizeFinishBrick, 1);
         finishPlace.transform.SetParent(canvas.transform);
-        finishPlace.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, y);
-        // TODO КОСТЫЛИЩЕ !!!
-        y = y - Camera.main.ScreenToWorldPoint(waypointPrefab.GetComponent<RectTransform>().transform.position).y -
-            Camera.main.ScreenToWorldPoint(finishPlace.GetComponent<RectTransform>().transform.position).y +
-            _sizeFinishBrick;
-        finishPlace.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, y);
+        finishPlace.GetComponent<RectTransform>().anchoredPosition = new Vector3(-7, y);
     }
 
     /**
@@ -372,10 +368,22 @@ public class MainScript : MonoBehaviour
         {
             GameObject coinGameObject = Instantiate(coinPrefab, initPosition, Quaternion.identity);
             coinGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 3f);
+            Debug.Log("-----------------------------------------");
+            Debug.Log(coinsPlace.GetComponent<RectTransform>().sizeDelta.x);
             coinGameObject.GetComponent<CoinScript>().SetCoin(coinsPlace.transform.position, coinsText);
             coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    private IEnumerator InitializeLiveHeart(Brick brick)
+    {
+        Vector3 initPosition = brick.GameObject.transform.position;
+        GameObject heartGameObject = Instantiate(liveHeartPrefab, initPosition, Quaternion.identity);
+        heartGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 3f);
+        heartGameObject.GetComponent<LiveHeartScript>().SetLiveHeart(liveHeartPlace.transform.position, livesText);
+        heartGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas
+        yield return new WaitForSeconds(0.05f);
     }
 
     /**
@@ -424,7 +432,7 @@ public class MainScript : MonoBehaviour
             }
             else
             {
-                if (allFinishBricks.Count == 7)
+                if (allFinishBricks.Count == Statics.MaxFinishTiles)
                 {
                     GameOver();
                 }
@@ -487,6 +495,10 @@ public class MainScript : MonoBehaviour
         });
         
         StartCoroutine(InitializeCoins(bricks[1], countCoins));
+        if (countLives > 0)
+        {
+            StartCoroutine(InitializeLiveHeart(bricks[1]));
+        }
         
         yield return new WaitForSeconds(timeAnim);
         bricks.ForEach(brick =>
@@ -680,10 +692,5 @@ public class MainScript : MonoBehaviour
                 musicSound.Play();
             }
         }
-    }
-
-    private void CheckLives()
-    {
-        livesText.text = PlayerPrefs.GetInt(LivesPref).ToString();
     }
 }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CoinScript : MonoBehaviour
+public class LiveHeartScript : MonoBehaviour
 {
-    private Vector3 _targetPosition; // Место расположения всех монет
-    private TextMeshProUGUI _text; // Текст с кол-вом монет
+    private Vector3 _targetPosition; // Место расположения сердца
+    private TextMeshProUGUI _text; // Текст с кол-вом жизней
     private Vector3 _startPosition; 
 
-    public void SetCoin(Vector3 target, TextMeshProUGUI text)
+    public void SetLiveHeart(Vector3 target, TextMeshProUGUI text)
     {
         _targetPosition = target;
         _text = text;
@@ -21,18 +21,18 @@ public class CoinScript : MonoBehaviour
         Vector3 position = gameObject.transform.position;
         float distance = Vector3.Distance(_targetPosition, position);
         float distanceFromStart = Vector3.Distance(_startPosition, position); // Растояние от места появления
-        MoveToCoins(position, distance, distanceFromStart);
-        var targetSize = (float)Screen.width / Screen.height * 1.4f; // Просто такой размер подходит и равен монете в приземлении
+        MoveToHeart(position, distance, distanceFromStart);
+        var targetSize = (float) Screen.width / Screen.height * 1.15f;
         ChangeSize(targetSize, distance, distanceFromStart);
     }
 
-    private void MoveToCoins(Vector3 position, float distance, float distanceFromStart)
+    private void MoveToHeart(Vector3 position, float distance, float distanceFromStart)
     {
         _targetPosition.z = position.z;
         // Если закончил движение
         if (distance <= 0.005f)
         {
-            _text.text = PlayerPrefs.GetInt("Coins").ToString();
+            _text.text = PlayerPrefs.GetInt("Lives").ToString();
             Destroy(gameObject);
         }
         else

@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ namespace Buttons.Hint
         [SerializeField] private GameObject losePanel; // Панель проигрыша
         [SerializeField] private CancelLastMoveButton cancelLastMoveScript;
         [SerializeField] private RefreshButton refreshScript;
+        [SerializeField] private TextMeshProUGUI livesText; // Текст с кол-вом жизней
         
         private Animation _backgroundPanelAnim; // Анимация фона паузы
         private Animation _losePanelPanelAnim; // Анимация панели проигрыша
@@ -33,7 +35,10 @@ namespace Buttons.Hint
             int lives = PlayerPrefs.GetInt("Lives");
             if (lives > 0)
             {
-                PlayerPrefs.SetInt("Lives", lives - 1);
+                int newCountLives = lives - 1;
+                PlayerPrefs.SetInt("Lives", newCountLives);
+                PlayerPrefs.Save();
+                livesText.text = newCountLives.ToString();
                 yield return Continue();
             }
             else

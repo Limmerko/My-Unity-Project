@@ -22,7 +22,7 @@ public class CoinScript : MonoBehaviour
         float distance = Vector3.Distance(_targetPosition, position);
         float distanceFromStart = Vector3.Distance(_startPosition, position); // Растояние от места появления
         MoveToCoins(position, distance, distanceFromStart);
-        var targetSize = (float)Screen.width / Screen.height * 1.4f; // Просто такой размер подходит и равен монете в приземлении
+        var targetSize = (float)Screen.width / Screen.height * 1.35f; // Просто такой размер подходит и равен монете в приземлении
         ChangeSize(targetSize, distance, distanceFromStart);
     }
 
