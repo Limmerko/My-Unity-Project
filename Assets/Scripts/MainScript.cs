@@ -56,7 +56,7 @@ public class MainScript : MonoBehaviour
     {
         MainUtils.VibrationInit();
         Statics.TimeScale = 1;
-        Statics.MaxFinishTiles = 8;
+        Statics.MaxFinishTiles = 7; // TODO Реализовать сохранение (возможно просто через PlayerPrefs)
         Statics.AllBricks = new List<Brick>();
         Statics.LastMoves = new List<Brick>();
         backgroundPanel.SetActive(false);

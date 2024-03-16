@@ -48,7 +48,7 @@ namespace Buttons.Hint
                 // Когда есть финишированные плитки
                 if (finishBricksByType.Count != 0)
                 {
-                    if (finishBricks.Count <= 6)
+                    if (finishBricks.Count <= Statics.MaxFinishTiles - 1)
                     {
                         // Когда есть 2 плитки одного типа в финише и есть 1 или больше доступных 
                         List<List<Brick>> twoFinish = finishBricksByType.Where(bricks => bricks.Count() == 2).ToList();
@@ -67,7 +67,7 @@ namespace Buttons.Hint
                         }
                     }
 
-                    if (finishBricks.Count <= 5)
+                    if (finishBricks.Count <= Statics.MaxFinishTiles - 2)
                     {
                         // Когда есть 1 плитка одного типа в финише и есть 2 или больше доступных 
                         List<List<Brick>> oneFinish = finishBricksByType.Where(bricks => bricks.Count() == 1).ToList();
@@ -92,7 +92,7 @@ namespace Buttons.Hint
                     }
                 }
 
-                if (finishBricks.Count <= 4)
+                if (finishBricks.Count <= Statics.MaxFinishTiles - 3)
                 {
                     // Когда для финишированных плиток нет доступных ищется 3 любого типа среди доступных
                     List<Brick> clickableBricksByType = availableBricks

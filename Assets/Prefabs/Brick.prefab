@@ -495,7 +495,7 @@ MonoBehaviour:
       spriteDown: {fileID: 688519213, guid: ddffc77681e03f24b80cdebfb4da0b99, type: 3}
     - spriteUp: {fileID: -977348160, guid: fe9b2186356d7664baa4caf00a5c6357, type: 3}
       spriteDown: {fileID: -1164644895, guid: fe9b2186356d7664baa4caf00a5c6357, type: 3}
-    - spriteUp: {fileID: 532756730, guid: d62b804c5460e1b4cb444a0b1a395e1d, type: 3}
+    - spriteUp: {fileID: 293948941, guid: d62b804c5460e1b4cb444a0b1a395e1d, type: 3}
       spriteDown: {fileID: 532756730, guid: d62b804c5460e1b4cb444a0b1a395e1d, type: 3}
   - type: 14
     spriteUp: {fileID: -74130943, guid: 0d0c5eb1fbb1a7b4fb6ebe3b3b42a3b5, type: 3}
