@@ -42,13 +42,15 @@ namespace Buttons.Hint
                 .GroupBy(brick => brick.Type)
                 .Select(group => group.ToList())
                 .ToList();
+
+            int maxFinishTiles = PlayerPrefs.GetInt("MaxFinishTiles");
             
             foreach (var availableBricks in needBricks)
             {
                 // Когда есть финишированные плитки
                 if (finishBricksByType.Count != 0)
                 {
-                    if (finishBricks.Count <= Statics.MaxFinishTiles - 1)
+                    if (finishBricks.Count <= maxFinishTiles - 1)
                     {
                         // Когда есть 2 плитки одного типа в финише и есть 1 или больше доступных 
                         List<List<Brick>> twoFinish = finishBricksByType.Where(bricks => bricks.Count() == 2).ToList();
@@ -67,7 +69,7 @@ namespace Buttons.Hint
                         }
                     }
 
-                    if (finishBricks.Count <= Statics.MaxFinishTiles - 2)
+                    if (finishBricks.Count <= maxFinishTiles - 2)
                     {
                         // Когда есть 1 плитка одного типа в финише и есть 2 или больше доступных 
                         List<List<Brick>> oneFinish = finishBricksByType.Where(bricks => bricks.Count() == 1).ToList();
@@ -92,7 +94,7 @@ namespace Buttons.Hint
                     }
                 }
 
-                if (finishBricks.Count <= Statics.MaxFinishTiles - 3)
+                if (finishBricks.Count <= maxFinishTiles - 3)
                 {
                     // Когда для финишированных плиток нет доступных ищется 3 любого типа среди доступных
                     List<Brick> clickableBricksByType = availableBricks

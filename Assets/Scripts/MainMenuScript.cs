@@ -53,6 +53,11 @@ public class MainMenuScript : MonoBehaviour
             PlayerPrefs.SetInt("Lives", Statics.MaxLives);
         }
 
+        if (!PlayerPrefs.HasKey("MaxFinishTiles"))
+        {
+            PlayerPrefs.SetInt("MaxFinishTiles", Statics.MaxFinishTiles);
+        }
+
         PlayerPrefs.Save();
     }
 }

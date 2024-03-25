@@ -19,7 +19,7 @@ public static class Statics
 
     public static int TimeScale = 1;
 
-    public static int MaxFinishTiles = 7; // Максимальное кол-во финишировавших плиток
+    public const int MaxFinishTiles = 7; // Максимальное кол-во финишировавших плиток
 
     public const int LevelStartGoldenTiles = 1; // Уровень с которого появляются "Золотые" плитки
     

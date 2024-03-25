@@ -56,7 +56,6 @@ public class MainScript : MonoBehaviour
     {
         MainUtils.VibrationInit();
         Statics.TimeScale = 1;
-        Statics.MaxFinishTiles = 7; // TODO Реализовать сохранение (возможно просто через PlayerPrefs)
         Statics.AllBricks = new List<Brick>();
         Statics.LastMoves = new List<Brick>();
         backgroundPanel.SetActive(false);
@@ -124,7 +123,9 @@ public class MainScript : MonoBehaviour
 
         float maxX = _level.Bricks.Aggregate((max, next) => next.X > max.X ? next : max).X;
         float minX = _level.Bricks.Aggregate((min, next) => next.X < min.X ? next : min).X;
-        int countBrickWidth = (int) (maxX - minX) + 1;
+        float maxY = _level.Bricks.Aggregate((max, next) => next.Y > max.Y ? next : max).Y;
+        float minY = _level.Bricks.Aggregate((min, next) => next.Y < min.Y ? next : min).Y;
+        int countBrickWidth = (int) Math.Max((maxX - minX) + 1, (maxY - minY) + 1);
         Debug.Log("Ширина: " + countBrickWidth);
         
         Debug.Log("Всего уровней : " + Statics.AllLevels.Count);
@@ -167,6 +168,8 @@ public class MainScript : MonoBehaviour
         else
         {
             Debug.Log("Загрузка нового уровня");
+            PlayerPrefs.SetInt("MaxFinishTiles", Statics.MaxFinishTiles);
+            PlayerPrefs.Save();
             List<InitialBrick> bricks = GetBricksNewLevel();
             for (int i = 0; i < bricks.Count; i++)
             {
@@ -432,7 +435,7 @@ public class MainScript : MonoBehaviour
             }
             else
             {
-                if (allFinishBricks.Count == Statics.MaxFinishTiles)
+                if (allFinishBricks.Count == PlayerPrefs.GetInt("MaxFinishTiles"))
                 {
                     GameOver();
                 }

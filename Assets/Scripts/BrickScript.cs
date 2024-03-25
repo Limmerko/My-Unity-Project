@@ -61,10 +61,11 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
      */
     public void OnPointerClick(PointerEventData eventData)
     {
+        
         if (_brick.IsTouch || 
             !_brick.IsClickable || 
             Statics.IsGameOver ||
-            BrickUtils.AllTouchAndIsNotToDestroyBricks().Count >= Statics.MaxFinishTiles) return;
+            BrickUtils.AllTouchAndIsNotToDestroyBricks().Count >= PlayerPrefs.GetInt("MaxFinishTiles")) return;
         
         // Добавление плитки в список последний ходов
         _brick.LastMoveState = (Brick) _brick.Clone();
