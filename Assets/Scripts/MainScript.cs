@@ -118,19 +118,16 @@ public class MainScript : MonoBehaviour
     private void DefineLevel()
     {
         int levelPref = PlayerPrefs.GetInt("Level", 0);
-        Debug.Log("Выбран уровень № " + levelPref);
-        _level = Statics.AllLevels[levelPref];
-
-        float maxX = _level.Bricks.Aggregate((max, next) => next.X > max.X ? next : max).X;
-        float minX = _level.Bricks.Aggregate((min, next) => next.X < min.X ? next : min).X;
-        float maxY = _level.Bricks.Aggregate((max, next) => next.Y > max.Y ? next : max).Y;
-        float minY = _level.Bricks.Aggregate((min, next) => next.Y < min.Y ? next : min).Y;
-        int countBrickWidth = (int) Math.Max((maxX - minX) + 1, (maxY - minY) + 1);
-        Debug.Log("Ширина: " + countBrickWidth);
+        // _level = Statics.AllLevels[levelPref];
+        _level = Statics.AllLevels[24];
+        PlayerPrefs.SetInt("Level", 15);
+        PlayerPrefs.Save();
         
+        Debug.Log("Выбран уровень " + _level.Name);
+        Debug.Log("Ширина: " + _level.Width);
         Debug.Log("Всего уровней : " + Statics.AllLevels.Count);
         
-        _brickSize = BrickUtils.BrickSize(countBrickWidth);
+        _brickSize = BrickUtils.BrickSize(_level.Width);
         _sizeFinishBrick = BrickUtils.BrickSize(9);
     }
 
@@ -371,8 +368,6 @@ public class MainScript : MonoBehaviour
         {
             GameObject coinGameObject = Instantiate(coinPrefab, initPosition, Quaternion.identity);
             coinGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 3f);
-            Debug.Log("-----------------------------------------");
-            Debug.Log(coinsPlace.GetComponent<RectTransform>().sizeDelta.x);
             coinGameObject.GetComponent<CoinScript>().SetCoin(coinsPlace.transform.position, coinsText);
             coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas
             yield return new WaitForSeconds(0.05f);
