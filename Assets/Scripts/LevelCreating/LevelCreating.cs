@@ -157,13 +157,13 @@ namespace LevelCreating
 
         private void LogLevel(GameObject[] bricks)
         {
+            Debug.Log("Всего: " + bricks.Length);
             if (bricks.Length % 3 != 0)
             {
                 throw new ArgumentException("ОШИБКА!!! Кол-во плиток в уровне не кратно 3. " + bricks.Length);
             }
         
             String result = null;
-        
             foreach (var brick in bricks)
             {
                 float x = brick.transform.position.x;
