@@ -119,7 +119,7 @@ public class MainScript : MonoBehaviour
     {
         int levelPref = PlayerPrefs.GetInt("Level", 0);
         // _level = Statics.AllLevels[levelPref];
-        _level = Statics.AllLevels[58];
+        _level = Statics.AllLevels[62];
         PlayerPrefs.SetInt("Level", 15);
         PlayerPrefs.Save();
         

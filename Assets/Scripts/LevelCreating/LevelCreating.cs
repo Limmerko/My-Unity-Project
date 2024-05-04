@@ -64,7 +64,7 @@ namespace LevelCreating
                 Destroy(obj);
             }
 
-            List<InitialBrick> bricks = level == null ? Levels.Level1 : level.Bricks;
+            List<InitialBrick> bricks = level == null ? Levels.Level62 : level.Bricks;
         
             if (bricks.Count % 3 != 0)
             {
