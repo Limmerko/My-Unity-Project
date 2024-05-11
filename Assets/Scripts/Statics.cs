@@ -98,5 +98,15 @@ public static class Statics
         new Level("Level61", Levels.Level61, 11, 0, 8),
         new Level("Level62", Levels.Level62, 16, 0, 9),
         new Level("Level63", Levels.Level63, 12, 0, 8),
+        new Level("Level64", Levels.Level64, 14, 0, 8),
+        new Level("Level65", Levels.Level65, 16, 0, 8),
+        new Level("Level66", Levels.Level66, 20, 0, 8),
+        new Level("Level67", Levels.Level67, 16, 0, 8),
+        new Level("Level68", Levels.Level68, 16, 0, 8),
+        new Level("Level69", Levels.Level69, 20, 0, 9),
+        new Level("Level70", Levels.Level70, 14, 0, 9),
+        new Level("Level71", Levels.Level71, 14, 0, 8),
+        new Level("Level72", Levels.Level72, 14, 0, 8),
+        new Level("Level73", Levels.Level73, 14, 0, 9),
     };
 }
