@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_0"
+      name: "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_2_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5559f4cc4dff1d744a5931ed78b5ed36
-      internalID: -1145341914
+      spriteID: 3aba6f788aa034f4bb4403e93e547686
+      internalID: 18424155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_1"
+      name: "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_2_1"
       rect:
         serializedVersion: 2
         x: 295
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcea00d43e4a70d43b21632355d5656a
-      internalID: 1163065954
+      spriteID: 900ae744273229a469a4b31db91afc89
+      internalID: 1169917810
       vertices: []
       indices: 
       edges: []
@@ -188,8 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_0": -1145341914
-      "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_1": 1163065954
+      "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_2_0": 18424155
+      "\u041A\u0430\u0440\u0442\u043E\u0448\u043A\u0430-\u0444\u0440\u0438_\u0437\u043E\u043B\u043E\u0442\u043E\u0439_2_1": 1169917810
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

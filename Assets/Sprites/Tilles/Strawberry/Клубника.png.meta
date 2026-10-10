@@ -94,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -120,7 +120,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bbff8323d109d346ad7b4741f66b650
-      internalID: -1912506442
+      spriteID: a610e24fcf0fc4a47b86f5654fe3276c
+      internalID: 219613833
       vertices: []
       indices: 
       edges: []
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16af68be54e911a45b93ce3a1010f058
-      internalID: -2029877480
+      spriteID: b1e1afdf92c8b1245b412b5a98883a43
+      internalID: -1282129338
       vertices: []
       indices: 
       edges: []
@@ -188,8 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0430_0": -1912506442
-      "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0430_1": -2029877480
+      "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0430_0": 219613833
+      "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0430_1": -1282129338
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

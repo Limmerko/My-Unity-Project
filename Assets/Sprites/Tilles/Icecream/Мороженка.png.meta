@@ -94,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -120,7 +120,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -144,20 +144,20 @@ TextureImporter:
         width: 285
         height: 285
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9867bb1529cd1c148bb4dfebb209f89b
-      internalID: -1974131188
+      spriteID: f7f4923972ee10842ac30480bcc1ca41
+      internalID: -1832445979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043A\u0430_2"
+      name: "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043A\u0430_1"
       rect:
         serializedVersion: 2
         x: 295
@@ -165,14 +165,14 @@ TextureImporter:
         width: 285
         height: 285
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 076756b2ede2f554e92504300580e923
-      internalID: 602798392
+      spriteID: 601c562f5d04a3044b1c7d46f165a8b7
+      internalID: 1607088496
       vertices: []
       indices: 
       edges: []
@@ -188,11 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043A\u0430_0": -1974131188
-      "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043A\u0430_1": -1889013591
-      "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043A\u0430_2": 602798392
-      "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043A\u0430_3": -1894422042
-      "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043A\u0430_4": -1456902669
+      "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043A\u0430_0": -1832445979
+      "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043A\u0430_1": 1607088496
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -94,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -120,7 +120,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -144,14 +144,14 @@ TextureImporter:
         width: 285
         height: 285
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e7e0d0b401a12b44a64e4aebefbac0f
-      internalID: -1538907840
+      spriteID: 8710e65566a34e7419afca550011c417
+      internalID: -1030374389
       vertices: []
       indices: 
       edges: []
@@ -164,15 +164,15 @@ TextureImporter:
         y: 0
         width: 285
         height: 285
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cde29033b1f556048a01f3ee16e58824
-      internalID: 1886923622
+      spriteID: c3790f3cb49bc374dab0b9169e810f5c
+      internalID: -55385385
       vertices: []
       indices: 
       edges: []
@@ -188,8 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u042D\u0441\u043A\u0438\u043C\u043E_0": -1538907840
-      "\u042D\u0441\u043A\u0438\u043C\u043E_1": 1886923622
+      "\u042D\u0441\u043A\u0438\u043C\u043E_0": -1030374389
+      "\u042D\u0441\u043A\u0438\u043C\u043E_1": -55385385
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

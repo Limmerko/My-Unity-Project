@@ -20,10 +20,10 @@ namespace LevelCreating
         void Start()
         { 
             LogLevelFromScene();
-            CheckAllLevelsForDouble();
+            // CheckAllLevelsForDouble();
             // InitializeField(null);
             // CheckAllLevelsForDouble();
-            // _levels = SortLevelsByComplexity();
+            _levels = SortLevelsByComplexity();
         }
 
         private void Update()
@@ -145,7 +145,7 @@ namespace LevelCreating
             // Вывод результата
             foreach (var level in levels)
             {
-                result += "new Level(" + "\"" + level.Name + "\", "+ "Levels." + level.Name + ", " + level.CountTypes + ", " + level.Complexity + "),\n";
+                result += "new Level(" + "\"" + level.Name + "\", "+ "Levels." + level.Name + ", " + level.CountTypes + ", " + level.Complexity + ", " + level.Width + "),\n";
                 difficultyCurve += level.Complexity + "\n ";
             }
             Debug.Log(result);

@@ -120,8 +120,8 @@ public class MainScript : MonoBehaviour
         int levelPref = PlayerPrefs.GetInt("Level", 0);
         _level = Statics.AllLevels[levelPref];
         // _level = Statics.AllLevels[64];
-        PlayerPrefs.SetInt("Level", 72);
-        PlayerPrefs.Save();
+        // PlayerPrefs.SetInt("Level", 0);
+        // PlayerPrefs.Save();
         
         Debug.Log("Выбран уровень " + _level.Name);
         Debug.Log("Ширина: " + _level.Width);
