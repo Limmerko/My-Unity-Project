@@ -161,7 +161,8 @@ namespace Buttons.Hint
 
             buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < _hintPrice);
             hintMinusButtonIsDisabled.SetActive(true);
-            hintPlusButtonIsDisabled.SetActive(false);
+            bool cannotAffordNext = PlayerPrefs.GetInt("Coins") < _hintPrice * 2;
+            hintPlusButtonIsDisabled.SetActive(cannotAffordNext);
 
             PlayerPrefs.SetString("LastHint", PrefCount);
             PlayerPrefs.SetInt("HintPrice", _hintPrice);

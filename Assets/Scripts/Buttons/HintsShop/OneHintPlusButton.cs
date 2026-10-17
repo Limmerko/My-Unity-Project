@@ -34,6 +34,8 @@ namespace Buttons.HintsShop
                     _prefCount = HintCountType.CountHintMove;
                     break;
             }
+
+            UpdatePlusButtonState();
         }
         
         protected override void Process()
@@ -46,14 +48,32 @@ namespace Buttons.HintsShop
                 return;
             }
 
+            int currentCoinsPrice = Int32.Parse(coinsPrice.text);
+            int newCoinsPrice = currentCoinsPrice + _hintPrice;
+            if (PlayerPrefs.GetInt("Coins") < newCoinsPrice)
+            {
+                UpdatePlusButtonState();
+                return;
+            }
+
             int newHintCount = hintCountInt + 1;
             hintCount.text = newHintCount.ToString();
-            int newCoinsPrice = Int32.Parse(coinsPrice.text) + _hintPrice;
             coinsPrice.text = newCoinsPrice.ToString();
             buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < newCoinsPrice);
             
             hintMinusButtonIsDisabled.SetActive(false);
-            hintPlusButtonIsDisabled.SetActive(newHintCount.Equals(hintCountMax));
+            UpdatePlusButtonState();
+        }
+
+        private void UpdatePlusButtonState()
+        {
+            int hintCountInt = Int32.Parse(hintCount.text);
+            int hintCountNow = PlayerPrefs.GetInt(_prefCount);
+            int hintCountMax = 3 - hintCountNow;
+            bool isAtMax = hintCountInt >= hintCountMax;
+            bool cannotAffordNext = PlayerPrefs.GetInt("Coins") < Int32.Parse(coinsPrice.text) + _hintPrice;
+
+            hintPlusButtonIsDisabled.SetActive(isAtMax || cannotAffordNext);
         }
     }
 }

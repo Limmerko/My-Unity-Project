@@ -36,7 +36,8 @@ namespace Buttons.Hint
             buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < newCoinsPrice);
             
             hintMinusButtonIsDisabled.SetActive(newHintCount.Equals(1));
-            hintPlusButtonIsDisabled.SetActive(false);
+            bool cannotAffordNext = PlayerPrefs.GetInt("Coins") < newCoinsPrice + hintPrice;
+            hintPlusButtonIsDisabled.SetActive(newHintCount >= 3 || cannotAffordNext);
         }
     }
 }

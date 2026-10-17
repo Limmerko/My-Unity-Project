@@ -50,7 +50,26 @@ namespace Buttons.HintsShop
             buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < newCoinsPrice);
             
             hintMinusButtonIsDisabled.SetActive(newHintCount.Equals(0));
-            hintPlusButtonIsDisabled.SetActive(false);
+            int hintCountNow = PlayerPrefs.GetInt(GetHintCountPreference());
+            int hintCountMax = 3 - hintCountNow;
+            bool isAtMax = newHintCount >= hintCountMax;
+            bool cannotAffordNext = PlayerPrefs.GetInt("Coins") < newCoinsPrice + _hintPrice;
+            hintPlusButtonIsDisabled.SetActive(isAtMax || cannotAffordNext);
+        }
+
+        private string GetHintCountPreference()
+        {
+            switch (hintType)
+            {
+                case HintType.CancelLastMove:
+                    return HintCountType.CountCancelLastMove;
+                case HintType.Refresh:
+                    return HintCountType.CountRefresh;
+                case HintType.HintMove:
+                    return HintCountType.CountHintMove;
+                default:
+                    return string.Empty;
+            }
         }
     }
 }

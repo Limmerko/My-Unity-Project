@@ -28,15 +28,23 @@ namespace Buttons.Hint
             {
                 return;
             }
+
+            int currentCoinsPrice = Int32.Parse(coinsPrice.text);
+            int newCoinsPrice = currentCoinsPrice + hintPrice;
+            if (PlayerPrefs.GetInt("Coins") < newCoinsPrice)
+            {
+                hintPlusButtonIsDisabled.SetActive(true);
+                return;
+            }
             
             int newHintCount = hintCountInt + 1;
             hintCount.text = newHintCount.ToString();
-            int newCoinsPrice = Int32.Parse(coinsPrice.text) + hintPrice;
             coinsPrice.text = newCoinsPrice.ToString();
             buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < newCoinsPrice);
             
             hintMinusButtonIsDisabled.SetActive(false);
-            hintPlusButtonIsDisabled.SetActive(newHintCount.Equals(3));
+            bool cannotAffordNext = PlayerPrefs.GetInt("Coins") < newCoinsPrice + hintPrice;
+            hintPlusButtonIsDisabled.SetActive(newHintCount >= 3 || cannotAffordNext);
         }
     }
 }
