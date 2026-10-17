@@ -4,10 +4,9 @@ using UnityEngine.EventSystems;
 
 namespace Buttons
 {
-    /// <summary>
-    /// Closes an active panel when its background is clicked, if that panel
-    /// contains a ContinueButton.
-    /// </summary>
+    /**
+    * Нажатие мимо панели - закрытвает саму панель
+    */
     public class BackgroundPanelClick : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private GameObject[] panels;
@@ -17,6 +16,21 @@ namespace Buttons
             if (panels == null)
             {
                 return;
+            }
+
+            foreach (GameObject panel in panels)
+            {
+                if (panel == null || !panel.activeInHierarchy)
+                {
+                    continue;
+                }
+
+                RectTransform panelRect = panel.GetComponent<RectTransform>();
+                if (panelRect != null && RectTransformUtility.RectangleContainsScreenPoint(
+                        panelRect, eventData.position, eventData.pressEventCamera))
+                {
+                    return;
+                }
             }
 
             foreach (GameObject panel in panels)

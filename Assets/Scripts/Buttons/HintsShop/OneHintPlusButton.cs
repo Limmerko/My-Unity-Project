@@ -52,7 +52,7 @@ namespace Buttons.HintsShop
             int newCoinsPrice = currentCoinsPrice + _hintPrice;
             if (PlayerPrefs.GetInt("Coins") < newCoinsPrice)
             {
-                UpdatePlusButtonState();
+                UpdateAllPlusButtonStates();
                 return;
             }
 
@@ -62,7 +62,7 @@ namespace Buttons.HintsShop
             buyHintForCoinsButtonIsDisabled.SetActive(PlayerPrefs.GetInt("Coins") < newCoinsPrice);
             
             hintMinusButtonIsDisabled.SetActive(false);
-            UpdatePlusButtonState();
+            UpdateAllPlusButtonStates();
         }
 
         private void UpdatePlusButtonState()
@@ -74,6 +74,15 @@ namespace Buttons.HintsShop
             bool cannotAffordNext = PlayerPrefs.GetInt("Coins") < Int32.Parse(coinsPrice.text) + _hintPrice;
 
             hintPlusButtonIsDisabled.SetActive(isAtMax || cannotAffordNext);
+        }
+
+        public static void UpdateAllPlusButtonStates()
+        {
+            OneHintPlusButton[] plusButtons = FindObjectsOfType<OneHintPlusButton>(true);
+            foreach (OneHintPlusButton plusButton in plusButtons)
+            {
+                plusButton.UpdatePlusButtonState();
+            }
         }
     }
 }

@@ -38,6 +38,7 @@ namespace Buttons.HintsShop
             SetAllCountsEqualsZero();
             SetDisabledAllMinusButtons();
             SetDisabledAllPlusButtons();
+            OneHintPlusButton.UpdateAllPlusButtonStates();
             StartAnims();
         }
 

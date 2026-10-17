@@ -55,6 +55,7 @@ namespace Buttons.HintsShop
             bool isAtMax = newHintCount >= hintCountMax;
             bool cannotAffordNext = PlayerPrefs.GetInt("Coins") < newCoinsPrice + _hintPrice;
             hintPlusButtonIsDisabled.SetActive(isAtMax || cannotAffordNext);
+            OneHintPlusButton.UpdateAllPlusButtonStates();
         }
 
         private string GetHintCountPreference()
