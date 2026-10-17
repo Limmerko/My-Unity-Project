@@ -24,6 +24,11 @@ namespace Buttons.Pause
         {
             StartCoroutine(CoroutineProcess());
         }
+
+        public void Continue()
+        {
+            Process();
+        }
         
         private IEnumerator CoroutineProcess()
         {
