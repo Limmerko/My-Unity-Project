@@ -35,7 +35,8 @@ public class MainScript : MonoBehaviour
     [SerializeField] private AudioSource musicSound; // Фоновая музыка (звук)
     [SerializeField] private GameObject resumeAfterLoseByLiveButton; // Кнопка "Возобновить" за жизни
     [SerializeField] private GameObject resumeAfterLoseByAdButton; // Кнопка "Возобновить" за рекламу
-    
+    [SerializeField] private TextMeshProUGUI levelNumberText; // Текст с номером уровня
+
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
     private Animation _nextLevelPanelAnim; // Анимация панели перехода на следующий уровень
@@ -126,7 +127,8 @@ public class MainScript : MonoBehaviour
         Debug.Log("Выбран уровень " + _level.Name);
         Debug.Log("Ширина: " + _level.Width);
         Debug.Log("Всего уровней : " + Statics.AllLevels.Count);
-        
+
+        levelNumberText.text = levelPref.ToString();
         _brickSize = BrickUtils.BrickSize(_level.Width);
         _sizeFinishBrick = BrickUtils.BrickSize(9);
     }
