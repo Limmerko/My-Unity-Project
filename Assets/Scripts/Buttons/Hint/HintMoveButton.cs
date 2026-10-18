@@ -3,6 +3,7 @@ using System.Linq;
 using Classes;
 using Enums;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 namespace Buttons.Hint
@@ -12,12 +13,17 @@ namespace Buttons.Hint
     */
     public class HintMoveButton : CommonHintButton
     {
-        [SerializeField] private AudioSource soundMoveBricks; // Звук движения плиток до места  
-        
+        [SerializeField] private AudioSource soundMoveBricks; // Звук движения плиток до места
+                                                              // 
         protected override void StartProcess()
         {
             PrefCount = HintCountType.CountHintMove;
             base.StartProcess();
+            if (!PlayerPrefs.HasKey("Unlocked_" + PrefCount))
+            {
+                gameObject.GetComponent<Image>().color = Statics.IsNotClickableColor;
+                enabled = false;
+            }
         }
     
         protected override void Process()

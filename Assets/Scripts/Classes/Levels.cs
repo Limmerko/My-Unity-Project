@@ -3,6 +3,16 @@ using Classes;
 
 public static class Levels
 {
+    public static List<InitialBrick> Level0 = new()
+    {
+        new InitialBrick(-1f, 0f, 0),
+        new InitialBrick(0f, 0f, 0),
+        new InitialBrick(1f, 0f, 0),
+        new InitialBrick(0f, 1f, 0),
+        new InitialBrick(-1f, 1f, 0),
+        new InitialBrick(1f, 1f, 0),
+    };
+
     public static List<InitialBrick> Level1 = new()
     {
         new InitialBrick(1f, 1f, 0),

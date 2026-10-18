@@ -20,10 +20,9 @@ namespace LevelCreating
         void Start()
         { 
             LogLevelFromScene();
-            // CheckAllLevelsForDouble();
-            // InitializeField(null);
-            // CheckAllLevelsForDouble();
-            _levels = SortLevelsByComplexity();
+            CheckAllLevelsForDouble();
+            //InitializeField("номер уровня");
+            //_levels = SortLevelsByComplexity();
         }
 
         private void Update()
@@ -46,9 +45,9 @@ namespace LevelCreating
         }
 
         /**
-     * Выводит в консоль созданный уровень.
-     * Весь уровень берет со сцены.
-     */
+        * Выводит в консоль созданный уровень.
+        * Весь уровень берет со сцены.
+        */
         public void LogLevelFromScene()
         {
             GameObject[] bricks = GameObject.FindGameObjectsWithTag("BrickEmpty");
@@ -56,8 +55,8 @@ namespace LevelCreating
         }
 
         /**
-     * Инициализирует уровень на сцене.
-     */
+        * Инициализирует уровень на сцене.
+        */
         private void InitializeField(Level level)
         {
             foreach(GameObject obj in GameObject.FindGameObjectsWithTag("BrickEmpty")) {
@@ -88,8 +87,8 @@ namespace LevelCreating
         }
 
         /**
-     * Проверка уровня на дубликаты
-     */
+        * Проверка уровня на дубликаты
+        */
         private void CheckAllLevelsForDouble()
         {
             int i = 0;

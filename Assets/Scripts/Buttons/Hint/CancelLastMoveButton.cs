@@ -2,6 +2,7 @@
 using Enums;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 namespace Buttons.Hint
@@ -11,12 +12,16 @@ namespace Buttons.Hint
     */
     public class CancelLastMoveButton : CommonHintButton
     {
-        [SerializeField] private AudioSource soundMoveForPlace; // Звук движения до места
-        
+        [SerializeField] private AudioSource soundMoveForPlace; // Звук движения до места        
         protected override void StartProcess()
         {
             PrefCount = HintCountType.CountCancelLastMove;
             base.StartProcess();
+            if (!PlayerPrefs.HasKey("Unlocked_" + PrefCount))
+            {
+                gameObject.GetComponent<Image>().color = Statics.IsNotClickableColor;
+                enabled = false;
+            }
         }
 
         /**

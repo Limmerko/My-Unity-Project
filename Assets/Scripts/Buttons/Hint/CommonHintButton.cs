@@ -44,9 +44,11 @@ namespace Buttons.Hint
         {
             if (!PlayerPrefs.HasKey(PrefCount))
             {
-                PlayerPrefs.SetInt(PrefCount, 3);
-                PlayerPrefs.Save();
+                PlayerPrefs.SetInt(PrefCount, 0);
             }
+
+            InitializeHintUnlock();
+            PlayerPrefs.Save();
 
             _countImage = count.gameObject.GetComponent<Image>();
             _countTransform = count.transform;
@@ -60,6 +62,29 @@ namespace Buttons.Hint
 
             CountSymbol();
             CheckCountSprite();
+        }
+
+        private void InitializeHintUnlock()
+        {
+            int unlockLevel = 0;
+            if (PrefCount == HintCountType.CountCancelLastMove) unlockLevel = 5;
+            else if (PrefCount == HintCountType.CountRefresh) unlockLevel = 10;
+            else if (PrefCount == HintCountType.CountHintMove) unlockLevel = 15;
+
+            string unlockKey = "Unlocked_" + PrefCount;
+            int currentLevel = PlayerPrefs.GetInt("Level", 0) + 1;
+            if (unlockLevel > 0 && !PlayerPrefs.HasKey(unlockKey))
+            {
+                if (currentLevel >= unlockLevel)
+                {
+                    PlayerPrefs.SetInt(PrefCount, 1);
+                    PlayerPrefs.SetInt(unlockKey, 1);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt(PrefCount, 0);
+                }
+            }
         }
 
         public override void OnPointerClick(PointerEventData eventData)

@@ -22,8 +22,10 @@ public static class Statics
     public const int MaxFinishTiles = 7; // Максимальное кол-во финишировавших плиток
 
     public const int LevelStartGoldenTiles = 5; // Уровень с которого появляются "Золотые" плитки
-    
+
     public const int LevelStartUnknownTiles = 10; // Уровень с которого появляются "Неизвестные" плитки
+
+    public const int LevelStartLiveTiles = 15; // Уровень с которого появляются "Восполнение жизней" плитки
 
     public const int CountMovesGoldenState = 3;
 
@@ -35,11 +37,12 @@ public static class Statics
     
     public static readonly List<Level> AllLevels = new() // Список всех уровней
     {
+        new Level("Level0", Levels.Level0, 2, 16, 7),
         new Level("Level11", Levels.Level11, 8, 16, 7),
         new Level("Level28", Levels.Level28, 7, 16, 7),
         new Level("Level44", Levels.Level44, 8, 16, 7),
         new Level("Level27", Levels.Level27, 8, 24, 7),
-        new Level("Level1", Levels.Level1, 6, 24, 8),
+        new Level("Level1", Levels.Level1, 8, 24, 8),
         new Level("Level7", Levels.Level7, 6, 18, 7),
         new Level("Level53", Levels.Level53, 8, 24, 7),
         new Level("Level46", Levels.Level46, 9, 30, 7),

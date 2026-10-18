@@ -4,6 +4,7 @@ using Classes;
 using Enums;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 namespace Buttons.Hint
@@ -17,6 +18,11 @@ namespace Buttons.Hint
         {
             PrefCount = HintCountType.CountRefresh;
             base.StartProcess();
+            if (!PlayerPrefs.HasKey("Unlocked_" + PrefCount))
+            {
+                gameObject.GetComponent<Image>().color = Statics.IsNotClickableColor;
+                enabled = false;
+            }
         }
 
         /**

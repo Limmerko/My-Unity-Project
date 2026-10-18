@@ -1,6 +1,7 @@
 ﻿using Enums;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Buttons.HintsShop
 {
@@ -30,6 +31,16 @@ namespace Buttons.HintsShop
             _backgroundPanelAnim = backgroundPanel.GetComponent<Animation>();
             buyAllHintsPanel.SetActive(false);
             _buyAllHintsPanelAnim = buyAllHintsPanel.GetComponent<Animation>();
+
+            int currentLevel = PlayerPrefs.GetInt("Level", 0) + 1;
+
+            if (!PlayerPrefs.HasKey("Unlocked_" + HintCountType.CountCancelLastMove) ||
+                !PlayerPrefs.HasKey("Unlocked_" + HintCountType.CountRefresh) ||
+                !PlayerPrefs.HasKey("Unlocked_" + HintCountType.CountHintMove))
+            {
+                gameObject.GetComponent<Image>().color = Statics.IsNotClickableColor;
+                enabled = false;
+            }
         }
         
         protected override void Process()

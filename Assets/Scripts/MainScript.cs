@@ -128,7 +128,7 @@ public class MainScript : MonoBehaviour
         Debug.Log("Ширина: " + _level.Width);
         Debug.Log("Всего уровней : " + Statics.AllLevels.Count);
 
-        levelNumberText.text = levelPref.ToString();
+        levelNumberText.text = (levelPref + 1).ToString();
         _brickSize = BrickUtils.BrickSize(_level.Width);
         _sizeFinishBrick = BrickUtils.BrickSize(9);
     }
@@ -288,7 +288,8 @@ public class MainScript : MonoBehaviour
      */
     private void SetLiveState()
     {
-        if (PlayerPrefs.GetInt(LivesPref) >= Statics.MaxLives)
+        if (PlayerPrefs.GetInt("Level") < Statics.LevelStartLiveTiles ||
+            PlayerPrefs.GetInt(LivesPref) >= Statics.MaxLives)
         {
             return;
         }
