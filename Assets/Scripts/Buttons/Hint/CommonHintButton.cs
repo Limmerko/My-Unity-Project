@@ -73,17 +73,16 @@ namespace Buttons.Hint
 
             string unlockKey = "Unlocked_" + PrefCount;
             int currentLevel = PlayerPrefs.GetInt("Level", 0) + 1;
-            if (unlockLevel > 0 && !PlayerPrefs.HasKey(unlockKey))
+            bool isUnlocked = PlayerPrefs.GetInt(unlockKey, 0) == 1;
+            if (!isUnlocked)
             {
-                if (currentLevel >= unlockLevel)
-                {
-                    PlayerPrefs.SetInt(PrefCount, 1);
-                    PlayerPrefs.SetInt(unlockKey, 1);
-                }
-                else
-                {
-                    PlayerPrefs.SetInt(PrefCount, 0);
-                }
+                PlayerPrefs.SetInt(unlockKey, 0);
+            }
+
+            if (unlockLevel > 0 && !isUnlocked && currentLevel >= unlockLevel)
+            {
+                PlayerPrefs.SetInt(PrefCount, 1);
+                PlayerPrefs.SetInt(unlockKey, 1);
             }
         }
 

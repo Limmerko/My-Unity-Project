@@ -19,9 +19,9 @@ namespace LevelCreating
     
         void Start()
         { 
+            //InitializeField(new Level("Level74", Levels.Level74, 16, 156, 9));
             LogLevelFromScene();
             CheckAllLevelsForDouble();
-            //InitializeField("номер уровня");
             //_levels = SortLevelsByComplexity();
         }
 

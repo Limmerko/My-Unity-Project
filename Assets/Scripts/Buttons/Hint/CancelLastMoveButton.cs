@@ -17,7 +17,7 @@ namespace Buttons.Hint
         {
             PrefCount = HintCountType.CountCancelLastMove;
             base.StartProcess();
-            if (!PlayerPrefs.HasKey("Unlocked_" + PrefCount))
+            if (PlayerPrefs.GetInt("Unlocked_" + PrefCount, 0) == 0)
             {
                 gameObject.GetComponent<Image>().color = Statics.IsNotClickableColor;
                 enabled = false;

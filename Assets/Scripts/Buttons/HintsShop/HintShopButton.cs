@@ -16,6 +16,7 @@ namespace Buttons.HintsShop
         [SerializeField] protected TextMeshProUGUI countCancelLastMove; // Текст с кол-вом подсказок отмены хода
         [SerializeField] protected TextMeshProUGUI countRefresh; // Текст с кол-вом подсказок перемешивания
         [SerializeField] protected TextMeshProUGUI countHintMove; // Текст с кол-вом подсказок подсказки хода
+        [SerializeField] private Image coinImage;
         [SerializeField] private GameObject hintCancelLastMoveMinusButtonIsDisabled;
         [SerializeField] private GameObject hintRefreshMinusButtonIsDisabled;
         [SerializeField] private GameObject hintMoveMinusButtonIsDisabled; 
@@ -32,14 +33,15 @@ namespace Buttons.HintsShop
             buyAllHintsPanel.SetActive(false);
             _buyAllHintsPanelAnim = buyAllHintsPanel.GetComponent<Animation>();
 
-            int currentLevel = PlayerPrefs.GetInt("Level", 0) + 1;
+            bool isLocked = PlayerPrefs.GetInt("Unlocked_" + HintCountType.CountCancelLastMove, 0) == 0 ||
+                PlayerPrefs.GetInt("Unlocked_" + HintCountType.CountRefresh, 0) == 0 ||
+                PlayerPrefs.GetInt("Unlocked_" + HintCountType.CountHintMove, 0) == 0;
 
-            if (!PlayerPrefs.HasKey("Unlocked_" + HintCountType.CountCancelLastMove) ||
-                !PlayerPrefs.HasKey("Unlocked_" + HintCountType.CountRefresh) ||
-                !PlayerPrefs.HasKey("Unlocked_" + HintCountType.CountHintMove))
+            if (isLocked)
             {
                 gameObject.GetComponent<Image>().color = Statics.IsNotClickableColor;
                 enabled = false;
+                coinImage.color = Statics.IsNotClickableColor;
             }
         }
         

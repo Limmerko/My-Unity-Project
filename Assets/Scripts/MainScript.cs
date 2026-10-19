@@ -55,6 +55,7 @@ public class MainScript : MonoBehaviour
 
     private void Awake()
     {
+        //InitializePlayerPrefs(); // Выставляет все значения на начальные
         MainUtils.VibrationInit();
         Statics.TimeScale = 1;
         Statics.AllBricks = new List<Brick>();
@@ -120,9 +121,6 @@ public class MainScript : MonoBehaviour
     {
         int levelPref = PlayerPrefs.GetInt("Level", 0);
         _level = Statics.AllLevels[levelPref];
-        // _level = Statics.AllLevels[64];
-        // PlayerPrefs.SetInt("Level", 0);
-        // PlayerPrefs.Save();
         
         Debug.Log("Выбран уровень " + _level.Name);
         Debug.Log("Ширина: " + _level.Width);
@@ -693,5 +691,29 @@ public class MainScript : MonoBehaviour
                 musicSound.Play();
             }
         }
+    }
+
+    /**
+     * Выставляет все значения на начальные
+     */
+    public void InitializePlayerPrefs()
+    {
+        PlayerPrefs.SetInt(LivesPref, 1);
+        PlayerPrefs.SetInt(CoinsPref, 0);
+        PlayerPrefs.SetInt("Level", 0);
+        PlayerPrefs.SetInt(HintCountType.CountCancelLastMove, 0);
+        PlayerPrefs.SetInt(HintCountType.CountRefresh, 0);
+        PlayerPrefs.SetInt(HintCountType.CountHintMove, 0);
+        PlayerPrefs.SetInt("Unlocked_" + HintCountType.CountCancelLastMove, 0);
+        PlayerPrefs.SetInt("Unlocked_" + HintCountType.CountRefresh, 0);
+        PlayerPrefs.SetInt("Unlocked_" + HintCountType.CountHintMove, 0);
+        PlayerPrefs.SetInt(SettingsType.MusicSettings.ToString(), 1);
+        PlayerPrefs.SetInt(SettingsType.SoundsSettings.ToString(), 1);
+        PlayerPrefs.SetInt(SettingsType.VibrationSettings.ToString(), 1);
+        PlayerPrefs.SetInt("MaxFinishTiles", Statics.MaxFinishTiles);
+        PlayerPrefs.SetInt("HintPrice", 0);
+        PlayerPrefs.SetString("LastHint", string.Empty);
+        PlayerPrefs.DeleteKey("LevelProgress");
+        PlayerPrefs.Save();
     }
 }
