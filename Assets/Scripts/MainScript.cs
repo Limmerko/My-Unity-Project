@@ -120,8 +120,9 @@ public class MainScript : MonoBehaviour
     private void DefineLevel()
     {
         int levelPref = PlayerPrefs.GetInt("Level", 0);
-        _level = Statics.AllLevels[levelPref];
-        
+        //_level = Statics.AllLevels[levelPref];
+        _level = Statics.AllLevels[DefineLevelByName("Level87")]; // Только для тестирования
+
         Debug.Log("Выбран уровень " + _level.Name);
         Debug.Log("Ширина: " + _level.Width);
         Debug.Log("Всего уровней : " + Statics.AllLevels.Count);
@@ -129,6 +130,20 @@ public class MainScript : MonoBehaviour
         levelNumberText.text = (levelPref + 1).ToString();
         _brickSize = BrickUtils.BrickSize(_level.Width);
         _sizeFinishBrick = BrickUtils.BrickSize(9);
+    }
+
+    /**
+     * Выбор уровня по имени для тестирования.
+     */
+    private int DefineLevelByName(string levelName)
+    {
+        int levelIndex = Statics.AllLevels.FindIndex(level => level.Name == levelName);
+        if (levelIndex < 0)
+        {
+            throw new ArgumentException("Уровень с именем \"" + levelName + "\" не найден в Statics.AllLevels.", nameof(levelName));
+        }
+
+        return levelIndex;
     }
 
     private void InitializedTypes()

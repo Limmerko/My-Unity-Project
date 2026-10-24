@@ -124,7 +124,7 @@ namespace LevelCreating
             foreach (var level in levels)
             {
                 int layers = level.Bricks.GroupBy(l => l.Layer).Count();
-                int complexity = (level.Bricks.Count / 5) * (level.CountTypes / 3) * layers;
+                int complexity = (level.Bricks.Count / 3) + (level.CountTypes / 3) + layers;
                 level.Complexity = complexity;
             }
         
