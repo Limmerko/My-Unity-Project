@@ -36,6 +36,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject resumeAfterLoseByLiveButton; // Кнопка "Возобновить" за жизни
     [SerializeField] private GameObject resumeAfterLoseByAdButton; // Кнопка "Возобновить" за рекламу
     [SerializeField] private TextMeshProUGUI levelNumberText; // Текст с номером уровня
+    [SerializeField] private GameObject coinOnHintsShop; // Монета на магазине подсказок
 
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -55,7 +56,8 @@ public class MainScript : MonoBehaviour
 
     private void Awake()
     {
-        //InitializePlayerPrefs(); // Выставляет все значения на начальные
+        InitializePlayerPrefs();
+        //ResetPlayerPrefs(); // Сбрасывает все значения на начальные
         MainUtils.VibrationInit();
         Statics.TimeScale = 1;
         Statics.AllBricks = new List<Brick>();
@@ -120,8 +122,9 @@ public class MainScript : MonoBehaviour
     private void DefineLevel()
     {
         int levelPref = PlayerPrefs.GetInt("Level", 0);
-        //_level = Statics.AllLevels[levelPref];
-        _level = Statics.AllLevels[DefineLevelByName("Level89")]; // Только для тестирования
+        _level = Statics.AllLevels[levelPref];
+        //_level = Statics.AllLevels[DefineLevelByName("Level11")]; // Ручная валидация
+        //_level = Statics.AllLevels[DefineLevelByName("Level11")]; // Только для тестирования
 
         Debug.Log("Выбран уровень " + _level.Name);
         Debug.Log("Ширина: " + _level.Width);
@@ -379,15 +382,41 @@ public class MainScript : MonoBehaviour
     private IEnumerator InitializeCoins(Brick brick, int countCoins)
     {
         Vector3 initPosition = brick.GameObject.transform.position;
+        Vector3 targetCoinScale = GetCoinTargetScale();
         
         for (int i = 0; i < countCoins; i++)
         {
             GameObject coinGameObject = Instantiate(coinPrefab, initPosition, Quaternion.identity);
             coinGameObject.transform.localScale = new Vector3(0.01f, 0.01f, 3f);
-            coinGameObject.GetComponent<CoinScript>().SetCoin(coinsPlace.transform.position, coinsText);
+            coinGameObject.GetComponent<CoinScript>().SetCoin(
+                coinsPlace.transform.position,
+                targetCoinScale,
+                coinsText);
             coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    private Vector3 GetCoinTargetScale()
+    {
+        RectTransform coinRect = coinOnHintsShop.GetComponent<RectTransform>();
+        Canvas coinCanvas = coinOnHintsShop.GetComponentInParent<Canvas>();
+        Camera uiCamera = coinCanvas != null && coinCanvas.renderMode != RenderMode.ScreenSpaceOverlay
+            ? coinCanvas.worldCamera
+            : null;
+
+        Vector3[] corners = new Vector3[4];
+        coinRect.GetWorldCorners(corners);
+        Vector2 bottomLeft = RectTransformUtility.WorldToScreenPoint(uiCamera, corners[0]);
+        Vector2 bottomRight = RectTransformUtility.WorldToScreenPoint(uiCamera, corners[3]);
+        float targetWidthPixels = Vector2.Distance(bottomLeft, bottomRight);
+
+        Camera gameCamera = Camera.main;
+        float targetWidthWorld = targetWidthPixels * (gameCamera.orthographicSize * 2f / Screen.height);
+        float sourceSpriteWidth = coinPrefab.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
+        float targetScale = targetWidthWorld / sourceSpriteWidth;
+
+        return new Vector3(targetScale, targetScale, coinPrefab.transform.localScale.z);
     }
 
     private IEnumerator InitializeLiveHeart(Brick brick)
@@ -711,11 +740,11 @@ public class MainScript : MonoBehaviour
     /**
      * Выставляет все значения на начальные
      */
-    public void InitializePlayerPrefs()
+    public void ResetPlayerPrefs()
     {
+        PlayerPrefs.SetInt("Level", 0);
         PlayerPrefs.SetInt(LivesPref, 1);
         PlayerPrefs.SetInt(CoinsPref, 0);
-        PlayerPrefs.SetInt("Level", 0);
         PlayerPrefs.SetInt(HintCountType.CountCancelLastMove, 0);
         PlayerPrefs.SetInt(HintCountType.CountRefresh, 0);
         PlayerPrefs.SetInt(HintCountType.CountHintMove, 0);
@@ -729,6 +758,21 @@ public class MainScript : MonoBehaviour
         PlayerPrefs.SetInt("HintPrice", 0);
         PlayerPrefs.SetString("LastHint", string.Empty);
         PlayerPrefs.DeleteKey("LevelProgress");
+        PlayerPrefs.Save();
+    }
+
+    /**
+     * Выставляет все значения на начальные
+     */
+    public void InitializePlayerPrefs()
+    {
+        MainUtils.VibrationInit();
+
+        if (!PlayerPrefs.HasKey("Level")) // Если нет его значит нет и всех остальных
+        {
+            ResetPlayerPrefs();
+        }
+
         PlayerPrefs.Save();
     }
 }
