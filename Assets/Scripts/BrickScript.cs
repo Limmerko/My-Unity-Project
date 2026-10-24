@@ -14,6 +14,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     [SerializeField] private GameObject waypointPrefab; // Prefab. Центральный waypoint
     [SerializeField] private Animation anim; // Анимация исчезнование
     [SerializeField] private AudioSource soundMoveForFinish; // Звук движения до финиша
+    [SerializeField] private AudioSource soundClick; // Звук нажатия
     [SerializeField] private List<TileType> types; // Типы
     [SerializeField] private Sprite[] unknownTile; // Спрайты для "неизвестной" плитки
     [SerializeField] private GameObject objectForAnimUnknownTile; // Объект для анимации "Неизвестной" плитки
@@ -95,6 +96,7 @@ public class BrickScript : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         if (!_brick.IsTouch && _brick.IsClickable)
         {
             _brick.IsDown = true;
+            MainUtils.PlaySound(soundClick);
         }
     }
     
