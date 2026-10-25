@@ -12,7 +12,7 @@ public class CoinScript : MonoBehaviour
     private Vector3 _startSize;
     private float _totalDistance;
 
-    public void SetCoin(Vector3 targetPosition, Vector3 targetSize, TextMeshProUGUI text)
+    public void SetCoin(Vector3 targetPosition, Vector3 targetSize, TextMeshProUGUI text, AudioSource soundCoinDrop)
     {
         _targetPosition = targetPosition;
         _targetSize = targetSize;
@@ -25,6 +25,7 @@ public class CoinScript : MonoBehaviour
         // Поэтому сразу приводим Z цели к Z монеты, чтобы полная дистанция была рассчитана корректно.
         _targetPosition.z = _startPosition.z;
         _totalDistance = Vector3.Distance(_startPosition, _targetPosition);
+        MainUtils.PlaySoundOneShot(soundCoinDrop);
     }
 
     void Update()
@@ -48,6 +49,7 @@ public class CoinScript : MonoBehaviour
             transform.localScale = _targetSize;
 
             _text.text = PlayerPrefs.GetInt("Coins").ToString();
+
             Destroy(gameObject);
         }
         else

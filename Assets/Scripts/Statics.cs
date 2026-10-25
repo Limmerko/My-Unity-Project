@@ -126,6 +126,12 @@ public static class Statics
         new Level("Level87", Levels.Level87, 13, 0, 7),
         new Level("Level88", Levels.Level88, 13, 0, 9),
         new Level("Level89", Levels.Level89, 12, 34, 9),
+        new Level("Level90", Levels.Level90, 12, 34, 9),
+        new Level("Level91", Levels.Level91, 15, 34, 9),
+        new Level("Level92", Levels.Level92, 17, 34, 9),
+        new Level("Level93", Levels.Level93, 15, 34, 7),
+        new Level("Level94", Levels.Level94, 11, 34, 7),
+        new Level("Level95", Levels.Level95, 11, 34, 7),
     };
     // TODO отсортировать по сложности
 }

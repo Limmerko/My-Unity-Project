@@ -63,6 +63,17 @@ public class MainUtils
         }
     }
 
+    /**
+     * В отличие от {PlaySound} не перезапускает звук, если он уже был вызван ранее
+     */
+    public static void PlaySoundOneShot(AudioSource audioSource)
+    {
+        if (SettingIsOn(SettingsType.SoundsSettings))
+        {
+            audioSource.PlayOneShot(audioSource.clip);
+        }
+    }
+
     public static bool SettingIsOn(SettingsType settingsType)
     {
         return PlayerPrefs.GetInt(settingsType.ToString()).Equals(1);

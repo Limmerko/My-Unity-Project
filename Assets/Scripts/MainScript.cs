@@ -28,7 +28,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject background; // Фон 
     [SerializeField] private List<Sprite> allBackgroundSprites; // Все возможное картинки для фонаПри
-    [SerializeField] private AudioSource soundCollectThreeTiles; // Звук движения до финиша
+    [SerializeField] private AudioSource soundCollectThreeTiles; // Звук сбора трех плиток
     [SerializeField] private AudioSource soundVictory; // Звук прохождения уровня
     [SerializeField] private AudioSource soundGameOver; // Звук проигрыша
     [SerializeField] private AudioSource soundMoveBricks; // Звук движения плиток до места  
@@ -37,6 +37,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject resumeAfterLoseByAdButton; // Кнопка "Возобновить" за рекламу
     [SerializeField] private TextMeshProUGUI levelNumberText; // Текст с номером уровня
     [SerializeField] private GameObject coinOnHintsShop; // Монета на магазине подсказок
+    [SerializeField] private AudioSource soundCoinDrop; // Звук сбора монеты
 
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -124,7 +125,7 @@ public class MainScript : MonoBehaviour
         int levelPref = PlayerPrefs.GetInt("Level", 0);
         _level = Statics.AllLevels[levelPref];
         //_level = Statics.AllLevels[DefineLevelByName("Level11")]; // Ручная валидация
-        //_level = Statics.AllLevels[DefineLevelByName("Level11")]; // Только для тестирования
+        _level = Statics.AllLevels[DefineLevelByName("Level95")]; // Только для тестирования
 
         Debug.Log("Выбран уровень " + _level.Name);
         Debug.Log("Ширина: " + _level.Width);
@@ -391,7 +392,8 @@ public class MainScript : MonoBehaviour
             coinGameObject.GetComponent<CoinScript>().SetCoin(
                 coinsPlace.transform.position,
                 targetCoinScale,
-                coinsText);
+                coinsText,
+                soundCoinDrop);
             coinGameObject.GetComponent<SpriteRenderer>().sortingOrder = 10000; // Чтобы было выше Canvas
             yield return new WaitForSeconds(0.05f);
         }
