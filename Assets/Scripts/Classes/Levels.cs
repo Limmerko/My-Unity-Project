@@ -5604,4 +5604,1164 @@ public static class Levels
         new InitialBrick(2.5f, 2.5f, 4),
         new InitialBrick(-2.5f, 1.5f, 4),
     };
+
+    public static List<InitialBrick> Level96 = new()
+    {
+        // Слой 0: основание в форме подковы (дуга снизу и две опоры)
+        new InitialBrick(-2.5f, 1.5f, 0),
+        new InitialBrick(2.5f, 1.5f, 0),
+        new InitialBrick(-2.5f, 0.5f, 0),
+        new InitialBrick(-1.5f, 0.5f, 0),
+        new InitialBrick(1.5f, 0.5f, 0),
+        new InitialBrick(2.5f, 0.5f, 0),
+        new InitialBrick(-2.5f, -0.5f, 0),
+        new InitialBrick(-1.5f, -0.5f, 0),
+        new InitialBrick(1.5f, -0.5f, 0),
+        new InitialBrick(2.5f, -0.5f, 0),
+        new InitialBrick(-2.5f, -1.5f, 0),
+        new InitialBrick(-1.5f, -1.5f, 0),
+        new InitialBrick(-0.5f, -1.5f, 0),
+        new InitialBrick(0.5f, -1.5f, 0),
+        new InitialBrick(1.5f, -1.5f, 0),
+        new InitialBrick(2.5f, -1.5f, 0),
+
+        // Слой 1 (+0.5): две стойки на опорах
+        new InitialBrick(-2f, 2f, 1),
+        new InitialBrick(2f, 2f, 1),
+        new InitialBrick(-2f, 1f, 1),
+        new InitialBrick(-1f, 1f, 1),
+        new InitialBrick(1f, 1f, 1),
+        new InitialBrick(2f, 1f, 1),
+        new InitialBrick(-2f, 0f, 1),
+        new InitialBrick(2f, 0f, 1),
+        new InitialBrick(-2f, -1f, 1),
+        new InitialBrick(-1f, -1f, 1),
+        new InitialBrick(1f, -1f, 1),
+        new InitialBrick(2f, -1f, 1),
+
+        // Слой 2 (+0.5): стойки сходятся к центру
+        new InitialBrick(-1.5f, 2.5f, 2),
+        new InitialBrick(1.5f, 2.5f, 2),
+        new InitialBrick(-1.5f, 1.5f, 2),
+        new InitialBrick(-0.5f, 1.5f, 2),
+        new InitialBrick(0.5f, 1.5f, 2),
+        new InitialBrick(1.5f, 1.5f, 2),
+        new InitialBrick(-0.5f, 0.5f, 2),
+        new InitialBrick(0.5f, 0.5f, 2),
+        new InitialBrick(-0.5f, -0.5f, 2),
+        new InitialBrick(0.5f, -0.5f, 2),
+
+        // Слой 3 (+0.5): верхняя дуга
+        new InitialBrick(-2f, 3f, 3),
+        new InitialBrick(-1f, 3f, 3),
+        new InitialBrick(1f, 3f, 3),
+        new InitialBrick(2f, 3f, 3),
+        new InitialBrick(-1f, 2f, 3),
+        new InitialBrick(0f, 2f, 3),
+        new InitialBrick(1f, 2f, 3),
+        new InitialBrick(0f, 1f, 3),
+
+        // Слой 4 (+0.5): верхняя перекладина
+        new InitialBrick(-2.5f, 3.5f, 4),
+        new InitialBrick(-1.5f, 3.5f, 4),
+        new InitialBrick(-0.5f, 3.5f, 4),
+        new InitialBrick(0.5f, 3.5f, 4),
+        new InitialBrick(1.5f, 3.5f, 4),
+        new InitialBrick(2.5f, 3.5f, 4),
+        new InitialBrick(-0.5f, 2.5f, 4),
+        new InitialBrick(0.5f, 2.5f, 4),
+    };
+
+    public static List<InitialBrick> Level97 = new()
+    {
+        // Слой 0 — основание 8x8, центр (0, 1). 64 плитки.
+        new InitialBrick(-3.5f, -2.5f, 0),
+        new InitialBrick(-2.5f, -2.5f, 0),
+        new InitialBrick(-1.5f, -2.5f, 0),
+        new InitialBrick(-0.5f, -2.5f, 0),
+        new InitialBrick(0.5f, -2.5f, 0),
+        new InitialBrick(1.5f, -2.5f, 0),
+        new InitialBrick(2.5f, -2.5f, 0),
+        new InitialBrick(3.5f, -2.5f, 0),
+
+        new InitialBrick(-3.5f, -1.5f, 0),
+        new InitialBrick(-2.5f, -1.5f, 0),
+        new InitialBrick(-1.5f, -1.5f, 0),
+        new InitialBrick(-0.5f, -1.5f, 0),
+        new InitialBrick(0.5f, -1.5f, 0),
+        new InitialBrick(1.5f, -1.5f, 0),
+        new InitialBrick(2.5f, -1.5f, 0),
+        new InitialBrick(3.5f, -1.5f, 0),
+
+        new InitialBrick(-3.5f, -0.5f, 0),
+        new InitialBrick(-2.5f, -0.5f, 0),
+        new InitialBrick(-1.5f, -0.5f, 0),
+        new InitialBrick(-0.5f, -0.5f, 0),
+        new InitialBrick(0.5f, -0.5f, 0),
+        new InitialBrick(1.5f, -0.5f, 0),
+        new InitialBrick(2.5f, -0.5f, 0),
+        new InitialBrick(3.5f, -0.5f, 0),
+
+        new InitialBrick(-3.5f, 0.5f, 0),
+        new InitialBrick(-2.5f, 0.5f, 0),
+        new InitialBrick(-1.5f, 0.5f, 0),
+        new InitialBrick(-0.5f, 0.5f, 0),
+        new InitialBrick(0.5f, 0.5f, 0),
+        new InitialBrick(1.5f, 0.5f, 0),
+        new InitialBrick(2.5f, 0.5f, 0),
+        new InitialBrick(3.5f, 0.5f, 0),
+
+        new InitialBrick(-3.5f, 1.5f, 0),
+        new InitialBrick(-2.5f, 1.5f, 0),
+        new InitialBrick(-1.5f, 1.5f, 0),
+        new InitialBrick(-0.5f, 1.5f, 0),
+        new InitialBrick(0.5f, 1.5f, 0),
+        new InitialBrick(1.5f, 1.5f, 0),
+        new InitialBrick(2.5f, 1.5f, 0),
+        new InitialBrick(3.5f, 1.5f, 0),
+
+        new InitialBrick(-3.5f, 2.5f, 0),
+        new InitialBrick(-2.5f, 2.5f, 0),
+        new InitialBrick(-1.5f, 2.5f, 0),
+        new InitialBrick(-0.5f, 2.5f, 0),
+        new InitialBrick(0.5f, 2.5f, 0),
+        new InitialBrick(1.5f, 2.5f, 0),
+        new InitialBrick(2.5f, 2.5f, 0),
+        new InitialBrick(3.5f, 2.5f, 0),
+
+        new InitialBrick(-3.5f, 3.5f, 0),
+        new InitialBrick(-2.5f, 3.5f, 0),
+        new InitialBrick(-1.5f, 3.5f, 0),
+        new InitialBrick(-0.5f, 3.5f, 0),
+        new InitialBrick(0.5f, 3.5f, 0),
+        new InitialBrick(1.5f, 3.5f, 0),
+        new InitialBrick(2.5f, 3.5f, 0),
+        new InitialBrick(3.5f, 3.5f, 0),
+
+        new InitialBrick(-3.5f, 4.5f, 0),
+        new InitialBrick(-2.5f, 4.5f, 0),
+        new InitialBrick(-1.5f, 4.5f, 0),
+        new InitialBrick(-0.5f, 4.5f, 0),
+        new InitialBrick(0.5f, 4.5f, 0),
+        new InitialBrick(1.5f, 4.5f, 0),
+        new InitialBrick(2.5f, 4.5f, 0),
+        new InitialBrick(3.5f, 4.5f, 0),
+
+        // Слой 1 — 7x5. 35 плиток.
+        new InitialBrick(-3f, -1f, 1),
+        new InitialBrick(-2f, -1f, 1),
+        new InitialBrick(-1f, -1f, 1),
+        new InitialBrick(0f, -1f, 1),
+        new InitialBrick(1f, -1f, 1),
+        new InitialBrick(2f, -1f, 1),
+        new InitialBrick(3f, -1f, 1),
+
+        new InitialBrick(-3f, 0f, 1),
+        new InitialBrick(-2f, 0f, 1),
+        new InitialBrick(-1f, 0f, 1),
+        new InitialBrick(0f, 0f, 1),
+        new InitialBrick(1f, 0f, 1),
+        new InitialBrick(2f, 0f, 1),
+        new InitialBrick(3f, 0f, 1),
+
+        new InitialBrick(-3f, 1f, 1),
+        new InitialBrick(-2f, 1f, 1),
+        new InitialBrick(-1f, 1f, 1),
+        new InitialBrick(0f, 1f, 1),
+        new InitialBrick(1f, 1f, 1),
+        new InitialBrick(2f, 1f, 1),
+        new InitialBrick(3f, 1f, 1),
+
+        new InitialBrick(-3f, 2f, 1),
+        new InitialBrick(-2f, 2f, 1),
+        new InitialBrick(-1f, 2f, 1),
+        new InitialBrick(0f, 2f, 1),
+        new InitialBrick(1f, 2f, 1),
+        new InitialBrick(2f, 2f, 1),
+        new InitialBrick(3f, 2f, 1),
+
+        new InitialBrick(-3f, 3f, 1),
+        new InitialBrick(-2f, 3f, 1),
+        new InitialBrick(-1f, 3f, 1),
+        new InitialBrick(0f, 3f, 1),
+        new InitialBrick(1f, 3f, 1),
+        new InitialBrick(2f, 3f, 1),
+        new InitialBrick(3f, 3f, 1),
+
+        // Слой 2 — 6x4. 24 плитки.
+        new InitialBrick(-2.5f, -0.5f, 2),
+        new InitialBrick(-1.5f, -0.5f, 2),
+        new InitialBrick(-0.5f, -0.5f, 2),
+        new InitialBrick(0.5f, -0.5f, 2),
+        new InitialBrick(1.5f, -0.5f, 2),
+        new InitialBrick(2.5f, -0.5f, 2),
+
+        new InitialBrick(-2.5f, 0.5f, 2),
+        new InitialBrick(-1.5f, 0.5f, 2),
+        new InitialBrick(-0.5f, 0.5f, 2),
+        new InitialBrick(0.5f, 0.5f, 2),
+        new InitialBrick(1.5f, 0.5f, 2),
+        new InitialBrick(2.5f, 0.5f, 2),
+
+        new InitialBrick(-2.5f, 1.5f, 2),
+        new InitialBrick(-1.5f, 1.5f, 2),
+        new InitialBrick(-0.5f, 1.5f, 2),
+        new InitialBrick(0.5f, 1.5f, 2),
+        new InitialBrick(1.5f, 1.5f, 2),
+        new InitialBrick(2.5f, 1.5f, 2),
+
+        new InitialBrick(-2.5f, 2.5f, 2),
+        new InitialBrick(-1.5f, 2.5f, 2),
+        new InitialBrick(-0.5f, 2.5f, 2),
+        new InitialBrick(0.5f, 2.5f, 2),
+        new InitialBrick(1.5f, 2.5f, 2),
+        new InitialBrick(2.5f, 2.5f, 2),
+
+        // Слой 3 — 5x3. 15 плиток.
+        new InitialBrick(-2f, 0f, 3),
+        new InitialBrick(-1f, 0f, 3),
+        new InitialBrick(0f, 0f, 3),
+        new InitialBrick(1f, 0f, 3),
+        new InitialBrick(2f, 0f, 3),
+
+        new InitialBrick(-2f, 1f, 3),
+        new InitialBrick(-1f, 1f, 3),
+        new InitialBrick(0f, 1f, 3),
+        new InitialBrick(1f, 1f, 3),
+        new InitialBrick(2f, 1f, 3),
+
+        new InitialBrick(-2f, 2f, 3),
+        new InitialBrick(-1f, 2f, 3),
+        new InitialBrick(0f, 2f, 3),
+        new InitialBrick(1f, 2f, 3),
+        new InitialBrick(2f, 2f, 3),
+
+        // Слой 4 — вершина 3x2. 6 плиток.
+        new InitialBrick(-1.5f, 0.5f, 4),
+        new InitialBrick(-0.5f, 0.5f, 4),
+        new InitialBrick(0.5f, 0.5f, 4),
+        new InitialBrick(1.5f, 0.5f, 4),
+
+        new InitialBrick(-0.5f, 1.5f, 4),
+        new InitialBrick(0.5f, 1.5f, 4),
+    };
+
+    public static List<InitialBrick> Level98 = new()
+    {
+        // =========================================================
+        // СЛОЙ 0
+        // Внешняя рамка 8x8
+        // 28 плиток
+        // Центр фигуры: (0, 1)
+        // =========================================================
+
+        // Верх
+        new InitialBrick(-3.5f, 4.5f, 0),
+        new InitialBrick(-2.5f, 4.5f, 0),
+        new InitialBrick(-1.5f, 4.5f, 0),
+        new InitialBrick(-0.5f, 4.5f, 0),
+        new InitialBrick(0.5f, 4.5f, 0),
+        new InitialBrick(1.5f, 4.5f, 0),
+        new InitialBrick(2.5f, 4.5f, 0),
+        new InitialBrick(3.5f, 4.5f, 0),
+
+        // Низ
+        new InitialBrick(-3.5f, -2.5f, 0),
+        new InitialBrick(-2.5f, -2.5f, 0),
+        new InitialBrick(-1.5f, -2.5f, 0),
+        new InitialBrick(-0.5f, -2.5f, 0),
+        new InitialBrick(0.5f, -2.5f, 0),
+        new InitialBrick(1.5f, -2.5f, 0),
+        new InitialBrick(2.5f, -2.5f, 0),
+        new InitialBrick(3.5f, -2.5f, 0),
+
+        // Левая сторона
+        new InitialBrick(-3.5f, -1.5f, 0),
+        new InitialBrick(-3.5f, -0.5f, 0),
+        new InitialBrick(-3.5f, 0.5f, 0),
+        new InitialBrick(-3.5f, 1.5f, 0),
+        new InitialBrick(-3.5f, 2.5f, 0),
+        new InitialBrick(-3.5f, 3.5f, 0),
+
+        // Правая сторона
+        new InitialBrick(3.5f, -1.5f, 0),
+        new InitialBrick(3.5f, -0.5f, 0),
+        new InitialBrick(3.5f, 0.5f, 0),
+        new InitialBrick(3.5f, 1.5f, 0),
+        new InitialBrick(3.5f, 2.5f, 0),
+        new InitialBrick(3.5f, 3.5f, 0),
+
+
+        // =========================================================
+        // СЛОЙ 1
+        // Рамка 7x7 + две центральные плитки
+        // Смещение сетки на 0.5
+        // 26 плиток
+        // =========================================================
+
+        // Верх
+        new InitialBrick(-3f, 4f, 1),
+        new InitialBrick(-2f, 4f, 1),
+        new InitialBrick(-1f, 4f, 1),
+        new InitialBrick(0f, 4f, 1),
+        new InitialBrick(1f, 4f, 1),
+        new InitialBrick(2f, 4f, 1),
+        new InitialBrick(3f, 4f, 1),
+
+        // Низ
+        new InitialBrick(-3f, -2f, 1),
+        new InitialBrick(-2f, -2f, 1),
+        new InitialBrick(-1f, -2f, 1),
+        new InitialBrick(0f, -2f, 1),
+        new InitialBrick(1f, -2f, 1),
+        new InitialBrick(2f, -2f, 1),
+        new InitialBrick(3f, -2f, 1),
+
+        // Левая сторона
+        new InitialBrick(-3f, -1f, 1),
+        new InitialBrick(-3f, 0f, 1),
+        new InitialBrick(-3f, 1f, 1),
+        new InitialBrick(-3f, 2f, 1),
+        new InitialBrick(-3f, 3f, 1),
+
+        // Правая сторона
+        new InitialBrick(3f, -1f, 1),
+        new InitialBrick(3f, 0f, 1),
+        new InitialBrick(3f, 1f, 1),
+        new InitialBrick(3f, 2f, 1),
+        new InitialBrick(3f, 3f, 1),
+
+        // Центральная перемычка
+        new InitialBrick(-1f, 1f, 1),
+        new InitialBrick(1f, 1f, 1),
+
+
+        // =========================================================
+        // СЛОЙ 2
+        // Рамка 6x6
+        // Снова смещение на 0.5
+        // 20 плиток
+        // =========================================================
+
+        // Верх
+        new InitialBrick(-2.5f, 3.5f, 2),
+        new InitialBrick(-1.5f, 3.5f, 2),
+        new InitialBrick(-0.5f, 3.5f, 2),
+        new InitialBrick(0.5f, 3.5f, 2),
+        new InitialBrick(1.5f, 3.5f, 2),
+        new InitialBrick(2.5f, 3.5f, 2),
+
+        // Низ
+        new InitialBrick(-2.5f, -1.5f, 2),
+        new InitialBrick(-1.5f, -1.5f, 2),
+        new InitialBrick(-0.5f, -1.5f, 2),
+        new InitialBrick(0.5f, -1.5f, 2),
+        new InitialBrick(1.5f, -1.5f, 2),
+        new InitialBrick(2.5f, -1.5f, 2),
+
+        // Левая сторона
+        new InitialBrick(-2.5f, -0.5f, 2),
+        new InitialBrick(-2.5f, 0.5f, 2),
+        new InitialBrick(-2.5f, 1.5f, 2),
+        new InitialBrick(-2.5f, 2.5f, 2),
+
+        // Правая сторона
+        new InitialBrick(2.5f, -0.5f, 2),
+        new InitialBrick(2.5f, 0.5f, 2),
+        new InitialBrick(2.5f, 1.5f, 2),
+        new InitialBrick(2.5f, 2.5f, 2),
+
+
+        // =========================================================
+        // СЛОЙ 3
+        // Рамка 5x5
+        // 16 плиток
+        // =========================================================
+
+        // Верх
+        new InitialBrick(-2f, 3f, 3),
+        new InitialBrick(-1f, 3f, 3),
+        new InitialBrick(0f, 3f, 3),
+        new InitialBrick(1f, 3f, 3),
+        new InitialBrick(2f, 3f, 3),
+
+        // Низ
+        new InitialBrick(-2f, -1f, 3),
+        new InitialBrick(-1f, -1f, 3),
+        new InitialBrick(0f, -1f, 3),
+        new InitialBrick(1f, -1f, 3),
+        new InitialBrick(2f, -1f, 3),
+
+        // Левая сторона
+        new InitialBrick(-2f, 0f, 3),
+        new InitialBrick(-2f, 1f, 3),
+        new InitialBrick(-2f, 2f, 3),
+
+        // Правая сторона
+        new InitialBrick(2f, 0f, 3),
+        new InitialBrick(2f, 1f, 3),
+        new InitialBrick(2f, 2f, 3),
+
+
+        // =========================================================
+        // СЛОЙ 4
+        // Финальная рамка 4x4
+        // 12 плиток
+        // =========================================================
+
+        // Верх
+        new InitialBrick(-1.5f, 2.5f, 4),
+        new InitialBrick(-0.5f, 2.5f, 4),
+        new InitialBrick(0.5f, 2.5f, 4),
+        new InitialBrick(1.5f, 2.5f, 4),
+
+        // Низ
+        new InitialBrick(-1.5f, -0.5f, 4),
+        new InitialBrick(-0.5f, -0.5f, 4),
+        new InitialBrick(0.5f, -0.5f, 4),
+        new InitialBrick(1.5f, -0.5f, 4),
+
+        // Левая сторона
+        new InitialBrick(-1.5f, 0.5f, 4),
+        new InitialBrick(-1.5f, 1.5f, 4),
+
+        // Правая сторона
+        new InitialBrick(1.5f, 0.5f, 4),
+        new InitialBrick(1.5f, 1.5f, 4),
+    };
+
+    public static List<InitialBrick> Level99 = new()
+    {
+        // Слой 0: широкое основание с ножками внизу и поясом посередине
+        new InitialBrick(-1.5f, 2.5f, 0),
+        new InitialBrick(1.5f, 2.5f, 0),
+        new InitialBrick(-1.5f, 1.5f, 0),
+        new InitialBrick(-0.5f, 1.5f, 0),
+        new InitialBrick(0.5f, 1.5f, 0),
+        new InitialBrick(1.5f, 1.5f, 0),
+        new InitialBrick(-1.5f, 0.5f, 0),
+        new InitialBrick(-0.5f, 0.5f, 0),
+        new InitialBrick(0.5f, 0.5f, 0),
+        new InitialBrick(1.5f, 0.5f, 0),
+        new InitialBrick(-2.5f, -0.5f, 0),
+        new InitialBrick(-1.5f, -0.5f, 0),
+        new InitialBrick(-0.5f, -0.5f, 0),
+        new InitialBrick(0.5f, -0.5f, 0),
+        new InitialBrick(1.5f, -0.5f, 0),
+        new InitialBrick(2.5f, -0.5f, 0),
+        new InitialBrick(-1.5f, -1.5f, 0),
+        new InitialBrick(-0.5f, -1.5f, 0),
+        new InitialBrick(0.5f, -1.5f, 0),
+        new InitialBrick(1.5f, -1.5f, 0),
+        new InitialBrick(-2.5f, -2.5f, 0),
+        new InitialBrick(-1.5f, -2.5f, 0),
+        new InitialBrick(1.5f, -2.5f, 0),
+        new InitialBrick(2.5f, -2.5f, 0),
+
+        // Слой 1 (+0.5): колонны и перемычки
+        new InitialBrick(-2f, 3f, 1),
+        new InitialBrick(-1f, 3f, 1),
+        new InitialBrick(1f, 3f, 1),
+        new InitialBrick(2f, 3f, 1),
+        new InitialBrick(-2f, 2f, 1),
+        new InitialBrick(0f, 2f, 1),
+        new InitialBrick(2f, 2f, 1),
+        new InitialBrick(-2f, 1f, 1),
+        new InitialBrick(-1f, 1f, 1),
+        new InitialBrick(0f, 1f, 1),
+        new InitialBrick(1f, 1f, 1),
+        new InitialBrick(2f, 1f, 1),
+        new InitialBrick(-1f, 0f, 1),
+        new InitialBrick(1f, 0f, 1),
+        new InitialBrick(-1f, -1f, 1),
+        new InitialBrick(1f, -1f, 1),
+        new InitialBrick(-1f, -2f, 1),
+        new InitialBrick(1f, -2f, 1),
+
+        // Слой 2 (+0.5): боковые опоры и верхняя перекладина
+        new InitialBrick(-2.5f, 3.5f, 2),
+        new InitialBrick(-1.5f, 3.5f, 2),
+        new InitialBrick(-0.5f, 3.5f, 2),
+        new InitialBrick(0.5f, 3.5f, 2),
+        new InitialBrick(1.5f, 3.5f, 2),
+        new InitialBrick(2.5f, 3.5f, 2),
+        new InitialBrick(-2.5f, 2.5f, 2),
+        new InitialBrick(-0.5f, 2.5f, 2),
+        new InitialBrick(0.5f, 2.5f, 2),
+        new InitialBrick(2.5f, 2.5f, 2),
+        new InitialBrick(-2.5f, 1.5f, 2),
+        new InitialBrick(2.5f, 1.5f, 2),
+        new InitialBrick(-2.5f, 0.5f, 2),
+        new InitialBrick(2.5f, 0.5f, 2),
+
+        // Слой 3 (+0.5): внешние стойки
+        new InitialBrick(-3f, 4f, 3),
+        new InitialBrick(-2f, 4f, 3),
+        new InitialBrick(2f, 4f, 3),
+        new InitialBrick(3f, 4f, 3),
+        new InitialBrick(-3f, 3f, 3),
+        new InitialBrick(3f, 3f, 3),
+        new InitialBrick(-3f, 2f, 3),
+        new InitialBrick(3f, 2f, 3),
+        new InitialBrick(-3f, 1f, 3),
+        new InitialBrick(3f, 1f, 3),
+
+        // Слой 4 (+0.5): верхние «рожки» по краям
+        new InitialBrick(-3.5f, 4.5f, 4),
+        new InitialBrick(-2.5f, 4.5f, 4),
+        new InitialBrick(-1.5f, 4.5f, 4),
+        new InitialBrick(1.5f, 4.5f, 4),
+        new InitialBrick(2.5f, 4.5f, 4),
+        new InitialBrick(3.5f, 4.5f, 4),
+    };
+
+    public static List<InitialBrick> Level100 = new()
+    {
+        // =========================================================
+        // СЛОЙ 0 — 42 плитки
+        // Максимальный размер 8x8
+        // Центр: (0, 1)
+        // =========================================================
+
+        // y = 4.5
+        new InitialBrick(-1.5f, 4.5f, 0),
+        new InitialBrick(-0.5f, 4.5f, 0),
+        new InitialBrick(0.5f, 4.5f, 0),
+        new InitialBrick(1.5f, 4.5f, 0),
+
+        // y = 3.5
+        new InitialBrick(-1.5f, 3.5f, 0),
+        new InitialBrick(-0.5f, 3.5f, 0),
+        new InitialBrick(0.5f, 3.5f, 0),
+        new InitialBrick(1.5f, 3.5f, 0),
+
+        // y = 2.5
+        new InitialBrick(-3.5f, 2.5f, 0),
+        new InitialBrick(-2.5f, 2.5f, 0),
+        new InitialBrick(-1.5f, 2.5f, 0),
+        new InitialBrick(-0.5f, 2.5f, 0),
+        new InitialBrick(0.5f, 2.5f, 0),
+        new InitialBrick(1.5f, 2.5f, 0),
+        new InitialBrick(2.5f, 2.5f, 0),
+        new InitialBrick(3.5f, 2.5f, 0),
+
+        // y = 1.5
+        new InitialBrick(-3.5f, 1.5f, 0),
+        new InitialBrick(-2.5f, 1.5f, 0),
+        new InitialBrick(2.5f, 1.5f, 0),
+        new InitialBrick(3.5f, 1.5f, 0),
+
+        // y = 0.5
+        new InitialBrick(-3.5f, 0.5f, 0),
+        new InitialBrick(-2.5f, 0.5f, 0),
+        new InitialBrick(2.5f, 0.5f, 0),
+        new InitialBrick(3.5f, 0.5f, 0),
+
+        // y = -0.5
+        new InitialBrick(-3.5f, -0.5f, 0),
+        new InitialBrick(-2.5f, -0.5f, 0),
+        new InitialBrick(-1.5f, -0.5f, 0),
+        new InitialBrick(-0.5f, -0.5f, 0),
+        new InitialBrick(0.5f, -0.5f, 0),
+        new InitialBrick(1.5f, -0.5f, 0),
+        new InitialBrick(2.5f, -0.5f, 0),
+        new InitialBrick(3.5f, -0.5f, 0),
+
+        // y = -1.5
+        new InitialBrick(-2.5f, -1.5f, 0),
+        new InitialBrick(-1.5f, -1.5f, 0),
+        new InitialBrick(-0.5f, -1.5f, 0),
+        new InitialBrick(0.5f, -1.5f, 0),
+        new InitialBrick(1.5f, -1.5f, 0),
+        new InitialBrick(2.5f, -1.5f, 0),
+
+        // y = -2.5
+        new InitialBrick(-1.5f, -2.5f, 0),
+        new InitialBrick(-0.5f, -2.5f, 0),
+        new InitialBrick(0.5f, -2.5f, 0),
+        new InitialBrick(1.5f, -2.5f, 0),
+
+
+        // =========================================================
+        // СЛОЙ 1 — 30 плиток
+        // Смещение сетки на 0.5
+        // =========================================================
+
+        // y = 4
+        new InitialBrick(-1f, 4f, 1),
+        new InitialBrick(0f, 4f, 1),
+        new InitialBrick(1f, 4f, 1),
+
+        // y = 3
+        new InitialBrick(-2f, 3f, 1),
+        new InitialBrick(-1f, 3f, 1),
+        new InitialBrick(0f, 3f, 1),
+        new InitialBrick(1f, 3f, 1),
+        new InitialBrick(2f, 3f, 1),
+
+        // y = 2
+        new InitialBrick(-3f, 2f, 1),
+        new InitialBrick(-2f, 2f, 1),
+        new InitialBrick(-1f, 2f, 1),
+        new InitialBrick(0f, 2f, 1),
+        new InitialBrick(1f, 2f, 1),
+        new InitialBrick(2f, 2f, 1),
+        new InitialBrick(3f, 2f, 1),
+
+        // y = 1
+        new InitialBrick(-3f, 1f, 1),
+        new InitialBrick(-2f, 1f, 1),
+        new InitialBrick(2f, 1f, 1),
+        new InitialBrick(3f, 1f, 1),
+
+        // y = 0
+        new InitialBrick(-3f, 0f, 1),
+        new InitialBrick(-2f, 0f, 1),
+        new InitialBrick(2f, 0f, 1),
+        new InitialBrick(3f, 0f, 1),
+
+        // y = -1
+        new InitialBrick(-3f, -1f, 1),
+        new InitialBrick(-2f, -1f, 1),
+        new InitialBrick(-1f, -1f, 1),
+        new InitialBrick(0f, -1f, 1),
+        new InitialBrick(1f, -1f, 1),
+        new InitialBrick(2f, -1f, 1),
+        new InitialBrick(3f, -1f, 1),
+
+
+        // =========================================================
+        // СЛОЙ 2 — 24 плитки
+        // Ещё одно смещение на 0.5
+        // =========================================================
+
+        // y = 3.5
+        new InitialBrick(-0.5f, 3.5f, 2),
+        new InitialBrick(0.5f, 3.5f, 2),
+
+        // y = 2.5
+        new InitialBrick(-2.5f, 2.5f, 2),
+        new InitialBrick(-1.5f, 2.5f, 2),
+        new InitialBrick(-0.5f, 2.5f, 2),
+        new InitialBrick(0.5f, 2.5f, 2),
+        new InitialBrick(1.5f, 2.5f, 2),
+        new InitialBrick(2.5f, 2.5f, 2),
+
+        // y = 1.5
+        new InitialBrick(-2.5f, 1.5f, 2),
+        new InitialBrick(-1.5f, 1.5f, 2),
+        new InitialBrick(-0.5f, 1.5f, 2),
+        new InitialBrick(0.5f, 1.5f, 2),
+        new InitialBrick(1.5f, 1.5f, 2),
+        new InitialBrick(2.5f, 1.5f, 2),
+
+        // y = 0.5
+        new InitialBrick(-2.5f, 0.5f, 2),
+        new InitialBrick(-1.5f, 0.5f, 2),
+        new InitialBrick(-0.5f, 0.5f, 2),
+        new InitialBrick(0.5f, 0.5f, 2),
+        new InitialBrick(1.5f, 0.5f, 2),
+        new InitialBrick(2.5f, 0.5f, 2),
+
+        // y = -0.5
+        new InitialBrick(-1.5f, -0.5f, 2),
+        new InitialBrick(-0.5f, -0.5f, 2),
+        new InitialBrick(0.5f, -0.5f, 2),
+        new InitialBrick(1.5f, -0.5f, 2),
+
+
+        // =========================================================
+        // СЛОЙ 3 — 18 плиток
+        // =========================================================
+
+        // y = 3
+        new InitialBrick(-1f, 3f, 3),
+        new InitialBrick(0f, 3f, 3),
+        new InitialBrick(1f, 3f, 3),
+
+        // y = 2
+        new InitialBrick(-2f, 2f, 3),
+        new InitialBrick(-1f, 2f, 3),
+        new InitialBrick(0f, 2f, 3),
+        new InitialBrick(1f, 2f, 3),
+        new InitialBrick(2f, 2f, 3),
+
+        // y = 1
+        new InitialBrick(-2f, 1f, 3),
+        new InitialBrick(-1f, 1f, 3),
+        new InitialBrick(0f, 1f, 3),
+        new InitialBrick(1f, 1f, 3),
+        new InitialBrick(2f, 1f, 3),
+
+        // y = 0
+        new InitialBrick(-2f, 0f, 3),
+        new InitialBrick(-1f, 0f, 3),
+        new InitialBrick(0f, 0f, 3),
+        new InitialBrick(1f, 0f, 3),
+        new InitialBrick(2f, 0f, 3),
+
+
+        // =========================================================
+        // СЛОЙ 4 — 12 плиток
+        // Симметричная верхушка
+        // =========================================================
+
+        // y = 2.5
+        new InitialBrick(-0.5f, 2.5f, 4),
+        new InitialBrick(0.5f, 2.5f, 4),
+
+        // y = 1.5
+        new InitialBrick(-1.5f, 1.5f, 4),
+        new InitialBrick(-0.5f, 1.5f, 4),
+        new InitialBrick(0.5f, 1.5f, 4),
+        new InitialBrick(1.5f, 1.5f, 4),
+
+        // y = 0.5
+        new InitialBrick(-1.5f, 0.5f, 4),
+        new InitialBrick(-0.5f, 0.5f, 4),
+        new InitialBrick(0.5f, 0.5f, 4),
+        new InitialBrick(1.5f, 0.5f, 4),
+
+        // y = -0.5
+        new InitialBrick(-0.5f, -0.5f, 4),
+        new InitialBrick(0.5f, -0.5f, 4),
+    };
+
+    public static List<InitialBrick> Level101 = new()
+    {
+        // =========================================================
+        // СЛОЙ 0 — 30 плиток
+        // Целая сетка
+        // Максимальный габарит: 9x9
+        // Центр: (0, 1)
+        // =========================================================
+
+        // y = 5
+        new InitialBrick(-1f, 5f, 0),
+        new InitialBrick(0f, 5f, 0),
+        new InitialBrick(1f, 5f, 0),
+
+        // y = 4
+        new InitialBrick(-2f, 4f, 0),
+        new InitialBrick(-1f, 4f, 0),
+        new InitialBrick(0f, 4f, 0),
+        new InitialBrick(1f, 4f, 0),
+        new InitialBrick(2f, 4f, 0),
+
+        // y = 3
+        new InitialBrick(-3f, 3f, 0),
+        new InitialBrick(3f, 3f, 0),
+
+        // y = 2
+        new InitialBrick(-4f, 2f, 0),
+        new InitialBrick(4f, 2f, 0),
+
+        // y = 1
+        new InitialBrick(-3f, 1f, 0),
+        new InitialBrick(-2f, 1f, 0),
+        new InitialBrick(-1f, 1f, 0),
+        new InitialBrick(1f, 1f, 0),
+        new InitialBrick(2f, 1f, 0),
+        new InitialBrick(3f, 1f, 0),
+
+        // y = 0
+        new InitialBrick(-4f, 0f, 0),
+        new InitialBrick(4f, 0f, 0),
+
+        // y = -1
+        new InitialBrick(-3f, -1f, 0),
+        new InitialBrick(3f, -1f, 0),
+
+        // y = -2
+        new InitialBrick(-2f, -2f, 0),
+        new InitialBrick(-1f, -2f, 0),
+        new InitialBrick(0f, -2f, 0),
+        new InitialBrick(1f, -2f, 0),
+        new InitialBrick(2f, -2f, 0),
+
+        // y = -3
+        new InitialBrick(-1f, -3f, 0),
+        new InitialBrick(0f, -3f, 0),
+        new InitialBrick(1f, -3f, 0),
+
+
+        // =========================================================
+        // СЛОЙ 1 — 24 плитки
+        // Полуцелая сетка
+        // Смещение относительно слоя 0 на 0.5
+        // =========================================================
+
+        // y = 4.5
+        new InitialBrick(-0.5f, 4.5f, 1),
+        new InitialBrick(0.5f, 4.5f, 1),
+
+        // y = 3.5
+        new InitialBrick(-1.5f, 3.5f, 1),
+        new InitialBrick(-0.5f, 3.5f, 1),
+        new InitialBrick(0.5f, 3.5f, 1),
+        new InitialBrick(1.5f, 3.5f, 1),
+
+        // y = 2.5
+        new InitialBrick(-2.5f, 2.5f, 1),
+        new InitialBrick(-1.5f, 2.5f, 1),
+        new InitialBrick(-0.5f, 2.5f, 1),
+        new InitialBrick(0.5f, 2.5f, 1),
+        new InitialBrick(1.5f, 2.5f, 1),
+        new InitialBrick(2.5f, 2.5f, 1),
+
+        // y = -0.5
+        new InitialBrick(-2.5f, -0.5f, 1),
+        new InitialBrick(-1.5f, -0.5f, 1),
+        new InitialBrick(-0.5f, -0.5f, 1),
+        new InitialBrick(0.5f, -0.5f, 1),
+        new InitialBrick(1.5f, -0.5f, 1),
+        new InitialBrick(2.5f, -0.5f, 1),
+
+        // y = -1.5
+        new InitialBrick(-1.5f, -1.5f, 1),
+        new InitialBrick(-0.5f, -1.5f, 1),
+        new InitialBrick(0.5f, -1.5f, 1),
+        new InitialBrick(1.5f, -1.5f, 1),
+
+        // y = -2.5
+        new InitialBrick(-0.5f, -2.5f, 1),
+        new InitialBrick(0.5f, -2.5f, 1),
+
+
+        // =========================================================
+        // СЛОЙ 2 — 18 плиток
+        // Целая сетка
+        // =========================================================
+
+        // y = 4
+        new InitialBrick(0f, 4f, 2),
+
+        // y = 3
+        new InitialBrick(-1f, 3f, 2),
+        new InitialBrick(0f, 3f, 2),
+        new InitialBrick(1f, 3f, 2),
+
+        // y = 2
+        new InitialBrick(-2f, 2f, 2),
+        new InitialBrick(2f, 2f, 2),
+
+        // y = 1
+        new InitialBrick(-3f, 1f, 2),
+        new InitialBrick(-2f, 1f, 2),
+        new InitialBrick(-1f, 1f, 2),
+        new InitialBrick(1f, 1f, 2),
+        new InitialBrick(2f, 1f, 2),
+        new InitialBrick(3f, 1f, 2),
+
+        // y = 0
+        new InitialBrick(-2f, 0f, 2),
+        new InitialBrick(2f, 0f, 2),
+
+        // y = -1
+        new InitialBrick(-1f, -1f, 2),
+        new InitialBrick(0f, -1f, 2),
+        new InitialBrick(1f, -1f, 2),
+
+        // y = -2
+        new InitialBrick(0f, -2f, 2),
+
+
+        // =========================================================
+        // СЛОЙ 3 — 16 плиток
+        // Полуцелая сетка
+        // =========================================================
+
+        // y = 3.5
+        new InitialBrick(-0.5f, 3.5f, 3),
+        new InitialBrick(0.5f, 3.5f, 3),
+
+        // y = 2.5
+        new InitialBrick(-1.5f, 2.5f, 3),
+        new InitialBrick(-0.5f, 2.5f, 3),
+        new InitialBrick(0.5f, 2.5f, 3),
+        new InitialBrick(1.5f, 2.5f, 3),
+
+        // y = 1.5
+        new InitialBrick(-1.5f, 1.5f, 3),
+        new InitialBrick(-0.5f, 1.5f, 3),
+        new InitialBrick(0.5f, 1.5f, 3),
+        new InitialBrick(1.5f, 1.5f, 3),
+
+        // y = 0.5
+        new InitialBrick(-1.5f, 0.5f, 3),
+        new InitialBrick(-0.5f, 0.5f, 3),
+        new InitialBrick(0.5f, 0.5f, 3),
+        new InitialBrick(1.5f, 0.5f, 3),
+
+        // y = -0.5
+        new InitialBrick(-0.5f, -0.5f, 3),
+        new InitialBrick(0.5f, -0.5f, 3),
+
+
+        // =========================================================
+        // СЛОЙ 4 — 12 плиток
+        // Целая сетка
+        // =========================================================
+
+        // y = 3
+        new InitialBrick(0f, 3f, 4),
+
+        // y = 2
+        new InitialBrick(-1f, 2f, 4),
+        new InitialBrick(0f, 2f, 4),
+        new InitialBrick(1f, 2f, 4),
+
+        // y = 1
+        new InitialBrick(-2f, 1f, 4),
+        new InitialBrick(-1f, 1f, 4),
+        new InitialBrick(1f, 1f, 4),
+        new InitialBrick(2f, 1f, 4),
+
+        // y = 0
+        new InitialBrick(-1f, 0f, 4),
+        new InitialBrick(0f, 0f, 4),
+        new InitialBrick(1f, 0f, 4),
+
+        // y = -1
+        new InitialBrick(0f, -1f, 4),
+
+
+        // =========================================================
+        // СЛОЙ 5 — 8 плиток
+        // Полуцелая сетка
+        // =========================================================
+
+        // y = 2.5
+        new InitialBrick(-0.5f, 2.5f, 5),
+        new InitialBrick(0.5f, 2.5f, 5),
+
+        // y = 1.5
+        new InitialBrick(-0.5f, 1.5f, 5),
+        new InitialBrick(0.5f, 1.5f, 5),
+
+        // y = 0.5
+        new InitialBrick(-0.5f, 0.5f, 5),
+        new InitialBrick(0.5f, 0.5f, 5),
+
+        // y = -0.5
+        new InitialBrick(-0.5f, -0.5f, 5),
+        new InitialBrick(0.5f, -0.5f, 5),
+
+
+        // =========================================================
+        // СЛОЙ 6 — 6 плиток
+        // Целая сетка
+        // =========================================================
+
+        // y = 2
+        new InitialBrick(-1f, 2f, 6),
+        new InitialBrick(0f, 2f, 6),
+        new InitialBrick(1f, 2f, 6),
+
+        // y = 0
+        new InitialBrick(-1f, 0f, 6),
+        new InitialBrick(0f, 0f, 6),
+        new InitialBrick(1f, 0f, 6),
+    };
+
+    public static List<InitialBrick> Level102 = new()
+    {
+        // =========================================================
+        // СЛОЙ 0 — 24 плитки
+        // Габарит 7x7
+        // Центр: (0, 1)
+        // Внешняя рамка
+        // =========================================================
+
+        // Верх y = 4
+        new InitialBrick(-3f, 4f, 0),
+        new InitialBrick(-2f, 4f, 0),
+        new InitialBrick(-1f, 4f, 0),
+        new InitialBrick(0f, 4f, 0),
+        new InitialBrick(1f, 4f, 0),
+        new InitialBrick(2f, 4f, 0),
+        new InitialBrick(3f, 4f, 0),
+
+        // Низ y = -2
+        new InitialBrick(-3f, -2f, 0),
+        new InitialBrick(-2f, -2f, 0),
+        new InitialBrick(-1f, -2f, 0),
+        new InitialBrick(0f, -2f, 0),
+        new InitialBrick(1f, -2f, 0),
+        new InitialBrick(2f, -2f, 0),
+        new InitialBrick(3f, -2f, 0),
+
+        // Левая сторона
+        new InitialBrick(-3f, -1f, 0),
+        new InitialBrick(-3f, 0f, 0),
+        new InitialBrick(-3f, 1f, 0),
+        new InitialBrick(-3f, 2f, 0),
+        new InitialBrick(-3f, 3f, 0),
+
+        // Правая сторона
+        new InitialBrick(3f, -1f, 0),
+        new InitialBrick(3f, 0f, 0),
+        new InitialBrick(3f, 1f, 0),
+        new InitialBrick(3f, 2f, 0),
+        new InitialBrick(3f, 3f, 0),
+
+
+        // =========================================================
+        // СЛОЙ 1 — 20 плиток
+        // Полуцелая сетка
+        // Смещение на 0.5
+        // Форма — суженная рамка
+        // =========================================================
+
+        // Верх
+        new InitialBrick(-1.5f, 3.5f, 1),
+        new InitialBrick(-0.5f, 3.5f, 1),
+        new InitialBrick(0.5f, 3.5f, 1),
+        new InitialBrick(1.5f, 3.5f, 1),
+
+        // Низ
+        new InitialBrick(-1.5f, -1.5f, 1),
+        new InitialBrick(-0.5f, -1.5f, 1),
+        new InitialBrick(0.5f, -1.5f, 1),
+        new InitialBrick(1.5f, -1.5f, 1),
+
+        // Верхние боковые выступы
+        new InitialBrick(-2.5f, 2.5f, 1),
+        new InitialBrick(-1.5f, 2.5f, 1),
+        new InitialBrick(1.5f, 2.5f, 1),
+        new InitialBrick(2.5f, 2.5f, 1),
+
+        // Средние боковые выступы
+        new InitialBrick(-2.5f, 1.5f, 1),
+        new InitialBrick(2.5f, 1.5f, 1),
+
+        new InitialBrick(-2.5f, 0.5f, 1),
+        new InitialBrick(2.5f, 0.5f, 1),
+
+        // Нижние боковые выступы
+        new InitialBrick(-2.5f, -0.5f, 1),
+        new InitialBrick(-1.5f, -0.5f, 1),
+        new InitialBrick(1.5f, -0.5f, 1),
+        new InitialBrick(2.5f, -0.5f, 1),
+
+
+        // =========================================================
+        // СЛОЙ 2 — 16 плиток
+        // Целая сетка
+        // Симметричный ромб с пустым центром
+        // =========================================================
+
+        // Верх
+        new InitialBrick(-1f, 3f, 2),
+        new InitialBrick(0f, 3f, 2),
+        new InitialBrick(1f, 3f, 2),
+
+        // Верхняя середина
+        new InitialBrick(-2f, 2f, 2),
+        new InitialBrick(-1f, 2f, 2),
+        new InitialBrick(1f, 2f, 2),
+        new InitialBrick(2f, 2f, 2),
+
+        // Центр
+        new InitialBrick(-2f, 1f, 2),
+        new InitialBrick(2f, 1f, 2),
+
+        // Нижняя середина
+        new InitialBrick(-2f, 0f, 2),
+        new InitialBrick(-1f, 0f, 2),
+        new InitialBrick(1f, 0f, 2),
+        new InitialBrick(2f, 0f, 2),
+
+        // Низ
+        new InitialBrick(-1f, -1f, 2),
+        new InitialBrick(0f, -1f, 2),
+        new InitialBrick(1f, -1f, 2),
+
+
+        // =========================================================
+        // СЛОЙ 3 — 12 плиток
+        // Полуцелая сетка
+        // =========================================================
+
+        // Верх
+        new InitialBrick(-0.5f, 2.5f, 3),
+        new InitialBrick(0.5f, 2.5f, 3),
+
+        // Верхняя середина
+        new InitialBrick(-1.5f, 1.5f, 3),
+        new InitialBrick(-0.5f, 1.5f, 3),
+        new InitialBrick(0.5f, 1.5f, 3),
+        new InitialBrick(1.5f, 1.5f, 3),
+
+        // Нижняя середина
+        new InitialBrick(-1.5f, 0.5f, 3),
+        new InitialBrick(-0.5f, 0.5f, 3),
+        new InitialBrick(0.5f, 0.5f, 3),
+        new InitialBrick(1.5f, 0.5f, 3),
+
+        // Низ
+        new InitialBrick(-0.5f, -0.5f, 3),
+        new InitialBrick(0.5f, -0.5f, 3),
+
+
+        // =========================================================
+        // СЛОЙ 4 — 8 плиток
+        // Целая сетка
+        // Небольшой ромб
+        // =========================================================
+
+        // Верх
+        new InitialBrick(0f, 3f, 4),
+
+        // Верхняя часть
+        new InitialBrick(-1f, 2f, 4),
+        new InitialBrick(0f, 2f, 4),
+        new InitialBrick(1f, 2f, 4),
+
+        // Нижняя часть
+        new InitialBrick(-1f, 0f, 4),
+        new InitialBrick(0f, 0f, 4),
+        new InitialBrick(1f, 0f, 4),
+
+        // Низ
+        new InitialBrick(0f, -1f, 4),
+
+
+        // =========================================================
+        // СЛОЙ 5 — 8 плиток
+        // Полуцелая сетка
+        // Количество осталось таким же
+        // =========================================================
+
+        // Верх
+        new InitialBrick(-0.5f, 2.5f, 5),
+        new InitialBrick(0.5f, 2.5f, 5),
+
+        // Центр сверху
+        new InitialBrick(-1.5f, 1.5f, 5),
+        new InitialBrick(1.5f, 1.5f, 5),
+
+        // Центр снизу
+        new InitialBrick(-1.5f, 0.5f, 5),
+        new InitialBrick(1.5f, 0.5f, 5),
+
+        // Низ
+        new InitialBrick(-0.5f, -0.5f, 5),
+        new InitialBrick(0.5f, -0.5f, 5),
+
+
+        // =========================================================
+        // СЛОЙ 6 — 5 плиток
+        // Целая сетка
+        // Финальный крест
+        // =========================================================
+
+        new InitialBrick(0f, 2f, 6),
+
+        new InitialBrick(-1f, 1f, 6),
+        new InitialBrick(0f, 1f, 6),
+        new InitialBrick(1f, 1f, 6),
+
+        new InitialBrick(0f, 0f, 6),
+    };
 }
