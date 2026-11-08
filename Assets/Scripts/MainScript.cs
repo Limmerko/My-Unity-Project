@@ -124,8 +124,7 @@ public class MainScript : MonoBehaviour
     {
         int levelPref = PlayerPrefs.GetInt("Level", 0);
         _level = Statics.AllLevels[levelPref];
-        //_level = Statics.AllLevels[DefineLevelByName("Level11")]; // Ручная валидация
-        _level = Statics.AllLevels[DefineLevelByName("Level102")]; // Только для тестирования
+        //_level = Statics.AllLevels[DefineLevelByName("Level99")]; // Только для тестирования
 
         Debug.Log("Выбран уровень " + _level.Name);
         Debug.Log("Ширина: " + _level.Width);

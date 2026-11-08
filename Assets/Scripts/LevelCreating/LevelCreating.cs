@@ -20,9 +20,9 @@ namespace LevelCreating
         void Start()
         { 
             //InitializeField(new Level("Level74", Levels.Level74, 16, 156, 9));
-            LogLevelFromScene();
+            //LogLevelFromScene();
             CheckAllLevelsForDouble();
-            //_levels = SortLevelsByComplexity();
+            _levels = SortLevelsByComplexity();
         }
 
         private void Update()
@@ -117,6 +117,8 @@ namespace LevelCreating
          */
         private List<Level> SortLevelsByComplexity()
         {
+            Debug.Log("Сортировка уровней по сложности");
+
             _method = "SortLevelsByComplexity";
         
             List<Level> levels = Statics.AllLevels;
