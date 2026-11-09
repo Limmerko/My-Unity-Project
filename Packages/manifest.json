@@ -14,6 +14,7 @@
     "com.unity.ugui": "1.0.0",
     "com.unity.vectorgraphics": "2.0.0-preview.21",
     "com.unity.visualscripting": "1.9.1",
+    "com.yandex.mobileads": "8.6.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -48,10 +49,11 @@
   },
   "scopedRegistries": [
     {
-      "name": "spoiledcat",
-      "url": "https://registry.spoiledcat.com",
+      "name": "YandexAds",
+      "url": "https://package.openupm.com",
       "scopes": [
-        "com.spoiledcat"
+        "com.yandex",
+        "com.google"
       ]
     }
   ]

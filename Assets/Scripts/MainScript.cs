@@ -78,6 +78,7 @@ public class MainScript : MonoBehaviour
             .Where(icon => "Background".Equals(icon.tag))
             .ToList();
         _music = GameObject.FindWithTag("Music");
+        ShowBannerAd();
     }
 
     private void Start()    
@@ -775,5 +776,13 @@ public class MainScript : MonoBehaviour
         }
 
         PlayerPrefs.Save();
+    }
+
+    public void ShowBannerAd()
+    {
+        if (!MainUtils.CheckInternet())
+            return;
+        var bannerScript = FindObjectOfType<YandexMobileAdsBannerDemoScript>();
+        bannerScript?.RequestBanner();
     }
 }

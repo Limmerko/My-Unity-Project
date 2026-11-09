@@ -116,4 +116,12 @@ public class MainUtils
         rectTransform.GetWorldCorners(corners);
         return new Rect(corners[0], corners[2] - corners[0]);
     }
+
+    /**
+     * Проверяет подключение к интернету
+     */
+    public static bool CheckInternet()
+    {
+        return Application.internetReachability != NetworkReachability.NotReachable;
+    }
 }
