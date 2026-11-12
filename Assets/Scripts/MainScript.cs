@@ -38,6 +38,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelNumberText; // Текст с номером уровня
     [SerializeField] private GameObject coinOnHintsShop; // Монета на магазине подсказок
     [SerializeField] private AudioSource soundCoinDrop; // Звук сбора монеты
+    [SerializeField] private YandexMobileAdsBannerDemoScript adBannerScript;
 
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -781,8 +782,12 @@ public class MainScript : MonoBehaviour
     public void ShowBannerAd()
     {
         if (!MainUtils.CheckInternet())
+        {
+            Debug.Log("Интернет отключен. Баннер рекламы не будет запрошен");
             return;
-        var bannerScript = FindObjectOfType<YandexMobileAdsBannerDemoScript>();
-        bannerScript?.RequestBanner();
+        }
+
+        adBannerScript?.RequestBanner();
+        Debug.Log("Баннер рекламы запрошен");
     }
 }

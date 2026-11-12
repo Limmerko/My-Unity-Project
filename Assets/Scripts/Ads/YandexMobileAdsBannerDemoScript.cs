@@ -20,7 +20,7 @@ public class YandexMobileAdsBannerDemoScript : MonoBehaviour
 
     private Banner banner;
 
-    public void OnGUI()
+    /*public void OnGUI()
     {
         var fontSize = (int) (0.05f * Math.Min(Screen.width, Screen.height));
 
@@ -45,7 +45,7 @@ public class YandexMobileAdsBannerDemoScript : MonoBehaviour
         #endif
 
         GUILayout.Label(this.message, labelStyle);
-    }
+    }*/
 
     public void RequestBanner()
     {
@@ -58,12 +58,13 @@ public class YandexMobileAdsBannerDemoScript : MonoBehaviour
 
         if (this.banner != null)
         {
+            Debug.Log("Баннер рекламы не загружен");
             this.banner.Destroy();
         }
         // Set sticky banner width
-        BannerAdSize bannerSize = BannerAdSize.Sticky(GetScreenWidthDp());
+        //BannerAdSize bannerSize = BannerAdSize.Sticky(GetScreenWidthDp());
         // Or set inline banner maximum width and height
-        // BannerAdSize bannerSize = BannerAdSize.Inline(GetScreenWidthDp(), 300);
+        BannerAdSize bannerSize = BannerAdSize.Inline(GetScreenWidthDp(), 300);
         this.banner = new Banner(bannerSize, AdPosition.BottomCenter);
 
         this.banner.OnAdLoaded += this.HandleAdLoaded;
@@ -73,6 +74,7 @@ public class YandexMobileAdsBannerDemoScript : MonoBehaviour
 
         this.banner.LoadAd(this.CreateAdRequest(adUnitId));
         this.DisplayMessage("Banner is requested");
+        Debug.Log("Баннер рекламы должен отобразиться");
     }
 
     // Example how to get screen width for request. The larger horizontal safe-area inset is
