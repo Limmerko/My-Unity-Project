@@ -38,7 +38,9 @@ public class MainScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelNumberText; // Текст с номером уровня
     [SerializeField] private GameObject coinOnHintsShop; // Монета на магазине подсказок
     [SerializeField] private AudioSource soundCoinDrop; // Звук сбора монеты
-    [SerializeField] private YandexMobileAdsBannerDemoScript adBannerScript;
+    [SerializeField] private RectTransform hintRefreshButton; // Кнопка с подсказкой "Перемешать" (нужна для положения баннера с рекламой)
+    [SerializeField] private YandexMobileAdsBannerDemoScript adBannerScript; // Скрипт баннера с рекламной
+    [SerializeField] private YandexMobileAdsInterstitialDemoScript addInterstitialScript; // Скрипт полностраничной рекламы
 
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -79,7 +81,6 @@ public class MainScript : MonoBehaviour
             .Where(icon => "Background".Equals(icon.tag))
             .ToList();
         _music = GameObject.FindWithTag("Music");
-        ShowBannerAd();
     }
 
     private void Start()    
@@ -90,6 +91,7 @@ public class MainScript : MonoBehaviour
         InitializedTypes();
         InitializedBricks();
         InitializeBackGround();
+        LoadAdds();
 
         StartLevel();
     }
@@ -761,6 +763,7 @@ public class MainScript : MonoBehaviour
         PlayerPrefs.SetInt("HintPrice", 0);
         PlayerPrefs.SetString("LastHint", string.Empty);
         PlayerPrefs.DeleteKey("LevelProgress");
+        PlayerPrefs.SetInt("CountResetsFromAdd", 0);
         PlayerPrefs.Save();
     }
 
@@ -779,15 +782,15 @@ public class MainScript : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void ShowBannerAd()
+    public void LoadAdds()
     {
         if (!MainUtils.CheckInternet())
         {
-            Debug.Log("Интернет отключен. Баннер рекламы не будет запрошен");
+            Debug.Log("Интернет отключен. Реклама не будет загружена");
             return;
         }
 
-        adBannerScript?.RequestBanner();
-        Debug.Log("Баннер рекламы запрошен");
+        adBannerScript.RequestBanner(hintRefreshButton);
+        addInterstitialScript.RequestInterstitial();
     }
 }

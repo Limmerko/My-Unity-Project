@@ -19,14 +19,16 @@ public class YandexMobileAdsInterstitialDemoScript : MonoBehaviour
     private String message = "";
 
     private InterstitialAdLoader interstitialAdLoader;
-    private Interstitial interstitial;
+
+    private const String CountResetsFromAddPref = "CountResetsFromAdd";
 
     public void Awake()
     {
         this.interstitialAdLoader = new InterstitialAdLoader();
+        // DontDestroyOnLoad(gameObject);
     }
 
-    public void OnGUI()
+    /*public void OnGUI()
     {
         var fontSize = (int)(0.05f * Math.Min(Screen.width, Screen.height));
 
@@ -61,43 +63,61 @@ public class YandexMobileAdsInterstitialDemoScript : MonoBehaviour
 #endif
 
         GUILayout.Label(this.message, labelStyle);
-    }
+    }*/
 
-    private void RequestInterstitial()
+    public void RequestInterstitial()
     {
         //Sets COPPA restriction for user age under 13
         YandexAds.SetAgeRestricted(true);
 
         // Replace demo Unit ID 'demo-interstitial-yandex' with actual Ad Unit ID
-        string adUnitId = "demo-interstitial-yandex";
+        string adUnitId = "demo-interstitial-yandex"; // TODO поменять на реальное значение 
 
-        if (this.interstitial != null)
+
+        int countResetsFromAdd = PlayerPrefs.GetInt(CountResetsFromAddPref);
+        Debug.Log("Показов после рекламы : " + countResetsFromAdd);
+        countResetsFromAdd = countResetsFromAdd + 1;
+        PlayerPrefs.SetInt(CountResetsFromAddPref, countResetsFromAdd);
+
+        /*if (this.interstitial != null)
         {
             this.interstitial.Destroy();
-        }
+        }*/
 
-        this.interstitialAdLoader.LoadAd(
+        if (AddManager.interstitial == null)
+        {
+            this.interstitialAdLoader.LoadAd(
             this.CreateAdRequest(adUnitId),
             onLoaded: this.HandleAdLoaded,
             onFailed: this.HandleAdFailedToLoad);
-        this.DisplayMessage("Interstitial is requested");
+            this.DisplayMessage("Interstitial is requested");
+        }
+
+        if (countResetsFromAdd > 3)
+        {
+            ShowInterstitial();
+            PlayerPrefs.SetInt(CountResetsFromAddPref, 0);
+        }
+        PlayerPrefs.Save();
     }
 
-    private void ShowInterstitial()
+    public void ShowInterstitial()
     {
-        if (this.interstitial == null)
+        if (AddManager.interstitial == null)
         {
             this.DisplayMessage("Interstitial is not ready yet");
             return;
         }
 
-        this.interstitial.OnAdClicked += this.HandleAdClicked;
-        this.interstitial.OnAdShown += this.HandleAdShown;
-        this.interstitial.OnAdFailedToShow += this.HandleAdFailedToShow;
-        this.interstitial.OnAdImpression += this.HandleImpression;
-        this.interstitial.OnAdDismissed += this.HandleAdDismissed;
+        AddManager.interstitial.OnAdClicked += this.HandleAdClicked;
+        AddManager.interstitial.OnAdShown += this.HandleAdShown;
+        AddManager.interstitial.OnAdFailedToShow += this.HandleAdFailedToShow;
+        AddManager.interstitial.OnAdImpression += this.HandleImpression;
+        AddManager.interstitial.OnAdDismissed += this.HandleAdDismissed;
 
-        this.interstitial.Show();
+        AddManager.interstitial.Show();
+        Debug.Log("Реклама показана!");
+        AddManager.interstitial = null;
     }
 
     private AdRequest CreateAdRequest(string adUnitId)
@@ -117,7 +137,7 @@ public class YandexMobileAdsInterstitialDemoScript : MonoBehaviour
     {
         this.DisplayMessage("HandleAdLoaded event received");
 
-        this.interstitial = interstitial;
+        AddManager.interstitial = interstitial;
     }
 
     public void HandleAdFailedToLoad(AdFailedToLoadEventArgs args)
@@ -138,8 +158,8 @@ public class YandexMobileAdsInterstitialDemoScript : MonoBehaviour
     {
         this.DisplayMessage("HandleAdDismissed event received");
 
-        this.interstitial.Destroy();
-        this.interstitial = null;
+        AddManager.interstitial.Destroy();
+        AddManager.interstitial = null;
     }
 
     public void HandleImpression(object sender, ImpressionData impressionData)

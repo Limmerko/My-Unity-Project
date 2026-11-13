@@ -7971,6 +7971,7 @@ GameObject:
   - component: {fileID: 519420040}
   - component: {fileID: 519420041}
   - component: {fileID: 519420042}
+  - component: {fileID: 519420043}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8120,7 +8121,9 @@ MonoBehaviour:
   levelNumberText: {fileID: 1345865441}
   coinOnHintsShop: {fileID: 1183690140}
   soundCoinDrop: {fileID: 519420041}
+  hintRefreshButton: {fileID: 971478432}
   adBannerScript: {fileID: 519420042}
+  addInterstitialScript: {fileID: 519420043}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8627,6 +8630,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bce3ac1dd6d42844d805b865a4a3c400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &519420043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e075a29c1e3bd344b10b9a82f78be39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519895699
@@ -12900,7 +12915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 220}
+  m_AnchoredPosition: {x: 0, y: 240}
   m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971478433
@@ -14906,7 +14921,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: 220}
+  m_AnchoredPosition: {x: -400, y: 240}
   m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1070609955
@@ -21050,7 +21065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: 220}
+  m_AnchoredPosition: {x: 400, y: 240}
   m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &1653064530
@@ -21525,7 +21540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 220}
+  m_AnchoredPosition: {x: 200, y: 240}
   m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687053032
@@ -21877,7 +21892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 220}
+  m_AnchoredPosition: {x: -200, y: 240}
   m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706318181

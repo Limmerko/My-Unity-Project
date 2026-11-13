@@ -47,7 +47,7 @@ public class YandexMobileAdsBannerDemoScript : MonoBehaviour
         GUILayout.Label(this.message, labelStyle);
     }*/
 
-    public void RequestBanner()
+    public void RequestBanner(RectTransform rectTransform)
     {
 
         //Sets COPPA restriction for user age under 13
@@ -58,13 +58,13 @@ public class YandexMobileAdsBannerDemoScript : MonoBehaviour
 
         if (this.banner != null)
         {
-            Debug.Log("Баннер рекламы не загружен");
             this.banner.Destroy();
         }
         // Set sticky banner width
-        //BannerAdSize bannerSize = BannerAdSize.Sticky(GetScreenWidthDp());
+        // BannerAdSize bannerSize = BannerAdSize.Sticky(GetScreenWidthDp());
         // Or set inline banner maximum width and height
-        BannerAdSize bannerSize = BannerAdSize.Inline(GetScreenWidthDp(), 300);
+        //int maxHeight = CalcMaxBannerHeight(rectTransform);
+        BannerAdSize bannerSize = BannerAdSize.Inline(1000, 50); // 50 - минимум
         this.banner = new Banner(bannerSize, AdPosition.BottomCenter);
 
         this.banner.OnAdLoaded += this.HandleAdLoaded;
@@ -74,8 +74,27 @@ public class YandexMobileAdsBannerDemoScript : MonoBehaviour
 
         this.banner.LoadAd(this.CreateAdRequest(adUnitId));
         this.DisplayMessage("Banner is requested");
-        Debug.Log("Баннер рекламы должен отобразиться");
     }
+
+    private int CalcMaxBannerHeight(RectTransform rectTransform)
+    {
+        // Нижний край кнопки в пикселях экрана (работает для Overlay и Camera канвасов)
+        var corners = new Vector3[4];
+        rectTransform.GetWorldCorners(corners);
+        var canvas = rectTransform.GetComponentInParent<Canvas>();
+        Camera cam = (canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay)
+            ? canvas.worldCamera : null;
+        float buttonBottomPx = RectTransformUtility.WorldToScreenPoint(cam, corners[0]).y;
+
+        // Свободное место под кнопкой: от низа экрана до нижнего края кнопки
+        float availablePx = Mathf.Max(0f, buttonBottomPx);
+
+        // SDK не допускает высоту больше 15% экрана
+        availablePx = Mathf.Min(availablePx, Screen.height * 0.15f);
+
+        return Mathf.FloorToInt(availablePx / (Screen.dpi / 160f)); // px -> dp
+    }
+
 
     // Example how to get screen width for request. The larger horizontal safe-area inset is
     // subtracted on both sides, so a centered banner stays centered and clear of the display cutout.
