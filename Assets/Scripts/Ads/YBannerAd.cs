@@ -14,7 +14,7 @@ using UnityEngine;
 using YandexMobileAds;
 using YandexMobileAds.Base;
 
-public class YandexMobileAdsBannerDemoScript : MonoBehaviour
+public class YBannerAd : MonoBehaviour
 {
     private String message = "";
 
@@ -61,10 +61,12 @@ public class YandexMobileAdsBannerDemoScript : MonoBehaviour
             this.banner.Destroy();
         }
         // Set sticky banner width
-        BannerAdSize bannerSize = BannerAdSize.Sticky(GetScreenWidthDp());
+        int width = GetScreenWidthDp() - 100;
+        int height = 50;
+        BannerAdSize bannerSize = BannerAdSize.Sticky(width);
         // Or set inline banner maximum width and height
         //int maxHeight = CalcMaxBannerHeight(rectTransform);
-        //BannerAdSize bannerSize = BannerAdSize.Inline(1000, 50); // 50 - минимум
+        //BannerAdSize bannerSize = BannerAdSize.Inline(width, height); // 50 - минимум
         this.banner = new Banner(bannerSize, AdPosition.BottomCenter);
 
         this.banner.OnAdLoaded += this.HandleAdLoaded;

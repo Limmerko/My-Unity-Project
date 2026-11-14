@@ -39,8 +39,8 @@ public class MainScript : MonoBehaviour
     [SerializeField] private GameObject coinOnHintsShop; // Монета на магазине подсказок
     [SerializeField] private AudioSource soundCoinDrop; // Звук сбора монеты
     [SerializeField] private RectTransform hintRefreshButton; // Кнопка с подсказкой "Перемешать" (нужна для положения баннера с рекламой)
-    [SerializeField] private YandexMobileAdsBannerDemoScript adBannerScript; // Скрипт баннера с рекламной
-    [SerializeField] private YandexMobileAdsInterstitialDemoScript addInterstitialScript; // Скрипт полностраничной рекламы
+    [SerializeField] private YBannerAd adBannerScript; // Скрипт баннера с рекламной
+    [SerializeField] private YInterstitialAd addInterstitialScript; // Скрипт полностраничной рекламы
 
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -128,7 +128,7 @@ public class MainScript : MonoBehaviour
     {
         int levelPref = PlayerPrefs.GetInt("Level", 0);
         _level = Statics.AllLevels[levelPref];
-        //_level = Statics.AllLevels[DefineLevelByName("Level45")]; // Только для тестирования
+        _level = Statics.AllLevels[DefineLevelByName("Level79")]; // Только для тестирования
 
         Debug.Log("Выбран уровень " + _level.Name);
         Debug.Log("Ширина: " + _level.Width);

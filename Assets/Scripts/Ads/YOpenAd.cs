@@ -14,7 +14,7 @@ using UnityEngine;
 using YandexMobileAds;
 using YandexMobileAds.Base;
 
-public class YandexMobileAdsAppOpenAdDemoScript : MonoBehaviour
+public class YOpenAd : MonoBehaviour
 {
     private String message = "";
 

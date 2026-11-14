@@ -14,12 +14,12 @@ using UnityEngine;
 using YandexMobileAds;
 using YandexMobileAds.Base;
 
-public class YandexMobileAdsRewardedAdDemoScript : MonoBehaviour
+public class RewardedAd : MonoBehaviour
 {
     private String message = "";
 
     private RewardedAdLoader rewardedAdLoader;
-    private RewardedAd rewardedAd;
+    private YandexMobileAds.RewardedAd rewardedAd;
 
 
     public void Awake()
@@ -115,7 +115,7 @@ public class YandexMobileAdsRewardedAdDemoScript : MonoBehaviour
 
     #region Rewarded Ad callback handlers
 
-    public void HandleAdLoaded(RewardedAd rewardedAd)
+    public void HandleAdLoaded(YandexMobileAds.RewardedAd rewardedAd)
     {
         this.DisplayMessage("HandleAdLoaded event received");
         this.rewardedAd = rewardedAd;
