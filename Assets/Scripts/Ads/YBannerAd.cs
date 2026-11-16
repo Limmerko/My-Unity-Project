@@ -18,6 +18,8 @@ public class YBannerAd : MonoBehaviour
 {
     private String message = "";
 
+    public const int bannerSize = 50;
+
     private Banner banner;
 
     /*public void OnGUI()
@@ -62,12 +64,11 @@ public class YBannerAd : MonoBehaviour
         }
         // Set sticky banner width
         int width = GetScreenWidthDp();
-        int height = 50;
         //BannerAdSize bannerSize = BannerAdSize.Sticky(width);
         // Or set inline banner maximum width and height
         //int maxHeight = CalcMaxBannerHeight(rectTransform);
-        BannerAdSize bannerSize = BannerAdSize.Inline(width, height); // 50 - минимум
-        this.banner = new Banner(bannerSize, AdPosition.BottomCenter);
+        BannerAdSize bannerAdSize = BannerAdSize.Inline(width, bannerSize); // 50 - минимум
+        this.banner = new Banner(bannerAdSize, AdPosition.BottomCenter);
 
         this.banner.OnAdLoaded += this.HandleAdLoaded;
         this.banner.OnAdFailedToLoad += this.HandleAdFailedToLoad;

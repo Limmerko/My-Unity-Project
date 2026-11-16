@@ -42,6 +42,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] private RectTransform hintRefreshButton; // Кнопка с подсказкой "Перемешать" (нужна для положения баннера с рекламой)
     [SerializeField] private YBannerAd adBannerScript; // Скрипт баннера с рекламной
     [SerializeField] private YInterstitialAd addInterstitialScript; // Скрипт полностраничной рекламы
+    [SerializeField] private GameObject placeForBanner; // Задный фон баннера с рекламой
 
     private Animation _backgroundPanelAnim; // Анимация фона паузы
     private Animation _losePanelAnim; // Анимация панели окончания игры
@@ -392,7 +393,7 @@ public class MainScript : MonoBehaviour
     {
         Rect safeArea = Screen.safeArea;
 
-        float bannerSize = 50 * MainUtils.DpToPixels(); // Размер баннера
+        float bannerSize = YBannerAd.bannerSize * MainUtils.DpToPixels(); // Размер баннера
         float hintsSize = hintRefreshButton.rect.width; // Размер кнопки с подсказкой
         var button = finishPlace.transform.Find("ButtonAd");
         var sprite = button.GetComponent<SpriteRenderer>();
@@ -847,9 +848,18 @@ public class MainScript : MonoBehaviour
         }
 
         if (_isBannerFits) {
+            EnablePlaceForBanner();
             adBannerScript.RequestBanner();
         }
 
         addInterstitialScript.RequestInterstitial();
+    }
+
+    private void EnablePlaceForBanner()
+    {
+        placeForBanner.SetActive(true);
+        RectTransform rectTransform = placeForBanner.GetComponent<RectTransform>();
+        float y = Screen.safeArea.yMin + YBannerAd.bannerSize * MainUtils.DpToPixels();
+        rectTransform.anchoredPosition = new Vector3(0, y);
     }
 }
