@@ -47,7 +47,7 @@ public class YBannerAd : MonoBehaviour
         GUILayout.Label(this.message, labelStyle);
     }*/
 
-    public void RequestBanner(RectTransform rectTransform)
+    public void RequestBanner()
     {
 
         //Sets COPPA restriction for user age under 13
@@ -61,12 +61,12 @@ public class YBannerAd : MonoBehaviour
             this.banner.Destroy();
         }
         // Set sticky banner width
-        int width = GetScreenWidthDp() - 100;
+        int width = GetScreenWidthDp();
         int height = 50;
-        BannerAdSize bannerSize = BannerAdSize.Sticky(width);
+        //BannerAdSize bannerSize = BannerAdSize.Sticky(width);
         // Or set inline banner maximum width and height
         //int maxHeight = CalcMaxBannerHeight(rectTransform);
-        //BannerAdSize bannerSize = BannerAdSize.Inline(width, height); // 50 - минимум
+        BannerAdSize bannerSize = BannerAdSize.Inline(width, height); // 50 - минимум
         this.banner = new Banner(bannerSize, AdPosition.BottomCenter);
 
         this.banner.OnAdLoaded += this.HandleAdLoaded;
@@ -78,31 +78,12 @@ public class YBannerAd : MonoBehaviour
         this.DisplayMessage("Banner is requested");
     }
 
-    private int CalcMaxBannerHeight(RectTransform rectTransform)
-    {
-        // Нижний край кнопки в пикселях экрана (работает для Overlay и Camera канвасов)
-        var corners = new Vector3[4];
-        rectTransform.GetWorldCorners(corners);
-        var canvas = rectTransform.GetComponentInParent<Canvas>();
-        Camera cam = (canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay)
-            ? canvas.worldCamera : null;
-        float buttonBottomPx = RectTransformUtility.WorldToScreenPoint(cam, corners[0]).y;
-
-        // Свободное место под кнопкой: от низа экрана до нижнего края кнопки
-        float availablePx = Mathf.Max(0f, buttonBottomPx);
-
-        // SDK не допускает высоту больше 15% экрана
-        availablePx = Mathf.Min(availablePx, Screen.height * 0.15f);
-
-        return Mathf.FloorToInt(availablePx / (Screen.dpi / 160f)); // px -> dp
-    }
-
-
     // Example how to get screen width for request. The larger horizontal safe-area inset is
     // subtracted on both sides, so a centered banner stays centered and clear of the display cutout.
     private int GetScreenWidthDp()
     {
         Rect safeArea = Screen.safeArea;
+
         float largerInset = Mathf.Max(safeArea.xMin, Screen.width - safeArea.xMax);
         return ScreenUtils.ConvertPixelsToDp((int)(Screen.width - 2 * largerInset));
     }

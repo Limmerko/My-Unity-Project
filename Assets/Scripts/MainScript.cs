@@ -38,6 +38,7 @@ public class MainScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelNumberText; // Текст с номером уровня
     [SerializeField] private GameObject coinOnHintsShop; // Монета на магазине подсказок
     [SerializeField] private AudioSource soundCoinDrop; // Звук сбора монеты
+    [SerializeField] private RectTransform hintsPosition; // Положение подсказок
     [SerializeField] private RectTransform hintRefreshButton; // Кнопка с подсказкой "Перемешать" (нужна для положения баннера с рекламой)
     [SerializeField] private YBannerAd adBannerScript; // Скрипт баннера с рекламной
     [SerializeField] private YInterstitialAd addInterstitialScript; // Скрипт полностраничной рекламы
@@ -55,6 +56,7 @@ public class MainScript : MonoBehaviour
     private List<BrickType> _limitedTypes = new();
     private bool _isStartSavedlevel = false;
     private int _finishedLayerOnStart = 0;
+    private bool _isBannerFits = true; // Помещается ли баннер, не перекрывая плитки
     private const String CoinsPref = "Coins";
     private const String LivesPref = "Lives";
 
@@ -128,7 +130,7 @@ public class MainScript : MonoBehaviour
     {
         int levelPref = PlayerPrefs.GetInt("Level", 0);
         _level = Statics.AllLevels[levelPref];
-        _level = Statics.AllLevels[DefineLevelByName("Level79")]; // Только для тестирования
+        // _level = Statics.AllLevels[DefineLevelByName("Level78")]; // Только для тестирования
 
         Debug.Log("Выбран уровень " + _level.Name);
         Debug.Log("Ширина: " + _level.Width);
@@ -373,11 +375,65 @@ public class MainScript : MonoBehaviour
      */
     private void InitializeFinishPlace()
     {
-        float y = waypointPrefab.transform.position.y;
+        // float y = waypointPrefab.transform.position.y;
+
         GameObject finishPlace = Instantiate(finishPlacePrefab, finishPlacePrefab.transform.position, Quaternion.identity);
         finishPlace.transform.localScale = new Vector3(_sizeFinishBrick, _sizeFinishBrick, 1);
         finishPlace.transform.SetParent(canvas.transform);
-        finishPlace.GetComponent<RectTransform>().anchoredPosition = new Vector3(-7, y);
+        RectTransform finishPlaceRectTransform = finishPlace.GetComponent<RectTransform>();
+
+        float yFinishPlace = calculateYFinishPlace(finishPlace);
+        waypointPrefab.transform.position = new Vector3(waypointPrefab.transform.position.x, yFinishPlace, waypointPrefab.transform.position.z);
+        finishPlaceRectTransform.anchoredPosition = new Vector3(-7, yFinishPlace);
+        setHintsPosition(yFinishPlace);
+    }
+
+    private float calculateYFinishPlace(GameObject finishPlace)
+    {
+        Rect safeArea = Screen.safeArea;
+
+        float bannerSize = 50 * MainUtils.DpToPixels(); // Размер баннера
+        float hintsSize = hintRefreshButton.rect.width; // Размер кнопки с подсказкой
+        var button = finishPlace.transform.Find("ButtonAd");
+        var sprite = button.GetComponent<SpriteRenderer>();
+        Vector3 bottom = Camera.main.WorldToScreenPoint(sprite.bounds.min);
+        Vector3 top = Camera.main.WorldToScreenPoint(sprite.bounds.max);
+        float finishPlaceSize = top.y - bottom.y; // Размер самого места приземления (Считает по кнопке с рекламой на ней)
+        float space = 40; // Отступ
+
+        float yWithoutBanner = safeArea.yMin + (space / 2) + hintsSize + space + (finishPlaceSize / 2);
+        float yWithBanner = yWithoutBanner + bannerSize;
+
+        // Верхний край места приземления, если оставить под него баннер
+        float finishPlaceTop = yWithBanner + finishPlaceSize / 2;
+        _isBannerFits = finishPlaceTop + space <= GetLowestBrickBottomOnScreen();
+
+        float y = _isBannerFits ? yWithBanner : yWithoutBanner;
+        return y;
+    }
+
+    private void setHintsPosition(float finishPlaceY)
+    {
+        finishPlaceY -= hintRefreshButton.rect.height; // Минус размер кнопки подсказки
+        finishPlaceY -= 40f; // Минус отступ
+
+        hintsPosition.anchoredPosition = new Vector3(hintsPosition.position.x, finishPlaceY, hintsPosition.position.z);
+    }
+
+    /**
+     * Y нижнего края самой нижней плитки уровня в пикселях экрана
+     */
+    private float GetLowestBrickBottomOnScreen()
+    {
+        float minY = _level.Bricks.Min(b => (float)b.Y);
+        BoxCollider2D collider = brickPrefab.GetComponent<BoxCollider2D>();
+
+        // Нижняя граница коллайдера относительно центра плитки (в локальных единицах)
+        float colliderBottomLocal = collider.offset.y - collider.size.y / 2;
+
+        float bottomWorldY = minY * (_brickSize / 2) + colliderBottomLocal * _brickSize;
+
+        return Camera.main.WorldToScreenPoint(new Vector3(0, bottomWorldY, 0)).y;
     }
 
     /**
@@ -790,7 +846,10 @@ public class MainScript : MonoBehaviour
             return;
         }
 
-        adBannerScript.RequestBanner(hintRefreshButton);
+        if (_isBannerFits) {
+            adBannerScript.RequestBanner();
+        }
+
         addInterstitialScript.RequestInterstitial();
     }
 }

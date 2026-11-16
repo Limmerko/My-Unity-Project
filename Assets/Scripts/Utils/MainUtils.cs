@@ -1,8 +1,9 @@
-using System.Collections.Generic;
 using Classes;
 using Enums;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using UnityEngine;
+using YandexMobileAds;
 using Random = System.Random;
 
 public class MainUtils
@@ -123,5 +124,11 @@ public class MainUtils
     public static bool CheckInternet()
     {
         return Application.internetReachability != NetworkReachability.NotReachable;
+    }
+
+    public static float DpToPixels()
+    {
+        int widthDp = ScreenUtils.ConvertPixelsToDp(Screen.width);
+        return widthDp > 0 ? Screen.width / (float)widthDp : Screen.dpi / 160f;
     }
 }
