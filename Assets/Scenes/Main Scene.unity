@@ -1604,7 +1604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &158129620
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8200,7 +8200,7 @@ MonoBehaviour:
   hintRefreshButton: {fileID: 971478432}
   adBannerScript: {fileID: 519420042}
   addInterstitialScript: {fileID: 519420043}
-  placeForBanner: {fileID: 158129620}
+  placeForBanner: {fileID: 158129619}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
