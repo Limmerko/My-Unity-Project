@@ -22,33 +22,6 @@ public class YBannerAd : MonoBehaviour
 
     private Banner banner;
 
-    /*public void OnGUI()
-    {
-        var fontSize = (int) (0.05f * Math.Min(Screen.width, Screen.height));
-
-        var labelStyle = GUI.skin.GetStyle("label");
-        labelStyle.fontSize = fontSize;
-
-        var buttonStyle = GUI.skin.GetStyle("button");
-        buttonStyle.fontSize = fontSize;
-
-        #if UNITY_EDITOR
-            this.message = "Mobile ads SDK is not available in editor. Only Android and iOS environments are supported";
-        #else
-            if (GUILayout.Button("Request Banner", buttonStyle, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 8)))
-            {
-                this.RequestBanner();
-            }
-
-            if (GUILayout.Button("Destroy Banner", buttonStyle, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 8)))
-            {
-                this.banner.Destroy();
-            }
-        #endif
-
-        GUILayout.Label(this.message, labelStyle);
-    }*/
-
     public void RequestBanner()
     {
 

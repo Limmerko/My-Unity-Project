@@ -21,49 +21,13 @@ public class YInterstitialAd : MonoBehaviour
     private InterstitialAdLoader interstitialAdLoader;
 
     private const String CountResetsFromAddPref = "CountResetsFromAdd";
+    private const int countBetweenAds = 6;
 
     public void Awake()
     {
         this.interstitialAdLoader = new InterstitialAdLoader();
         // DontDestroyOnLoad(gameObject);
     }
-
-    /*public void OnGUI()
-    {
-        var fontSize = (int)(0.05f * Math.Min(Screen.width, Screen.height));
-
-        var labelStyle = GUI.skin.GetStyle("label");
-        labelStyle.fontSize = fontSize;
-
-        var buttonStyle = GUI.skin.GetStyle("button");
-        buttonStyle.fontSize = fontSize;
-
-#if UNITY_EDITOR
-        this.message = "Mobile ads SDK is not available in editor. Only Android and iOS environments are supported";
-#else
-            if (GUILayout.Button("Request Interstitial", buttonStyle, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 8)))
-            {
-                this.RequestInterstitial();
-            }
-
-            if (this.interstitial != null)
-            {
-                if (GUILayout.Button("Show Interstitial", buttonStyle, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 8)))
-                {
-                    this.ShowInterstitial();
-                }
-            }
-            if(this.interstitial != null)
-            {
-                if (GUILayout.Button("Destroy Interstitial", buttonStyle, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 8)))
-                {
-                    this.interstitial.Destroy();
-                }
-            }
-#endif
-
-        GUILayout.Label(this.message, labelStyle);
-    }*/
 
     public void RequestInterstitial()
     {
@@ -79,11 +43,6 @@ public class YInterstitialAd : MonoBehaviour
         countResetsFromAdd = countResetsFromAdd + 1;
         PlayerPrefs.SetInt(CountResetsFromAddPref, countResetsFromAdd);
 
-        /*if (this.interstitial != null)
-        {
-            this.interstitial.Destroy();
-        }*/
-
         if (AddManager.interstitial == null)
         {
             this.interstitialAdLoader.LoadAd(
@@ -93,7 +52,7 @@ public class YInterstitialAd : MonoBehaviour
             this.DisplayMessage("Interstitial is requested");
         }
 
-        if (countResetsFromAdd > 3)
+        if (countResetsFromAdd >= countBetweenAds)
         {
             ShowInterstitial();
             PlayerPrefs.SetInt(CountResetsFromAddPref, 0);
@@ -115,9 +74,25 @@ public class YInterstitialAd : MonoBehaviour
         AddManager.interstitial.OnAdImpression += this.HandleImpression;
         AddManager.interstitial.OnAdDismissed += this.HandleAdDismissed;
 
+        PauseGame();
         AddManager.interstitial.Show();
         Debug.Log("Реклама показана!");
-        AddManager.interstitial = null;
+    }
+
+    private void PauseGame()
+    {
+        if (Time.timeScale == 0f) return;
+        Time.timeScale = 0f;
+        AudioListener.pause = true;
+        Debug.Log("Игра на паузе");
+    }
+
+    private void ResumeGame()
+    {
+        if (Time.timeScale != 0f) return;
+        Time.timeScale = 1f;
+        AudioListener.pause = false;
+        Debug.Log("Игра возобновлена");
     }
 
     private AdRequest CreateAdRequest(string adUnitId)
@@ -157,9 +132,11 @@ public class YInterstitialAd : MonoBehaviour
     public void HandleAdDismissed(object sender, EventArgs args)
     {
         this.DisplayMessage("HandleAdDismissed event received");
-
+      
         AddManager.interstitial.Destroy();
         AddManager.interstitial = null;
+        
+        ResumeGame();
     }
 
     public void HandleImpression(object sender, ImpressionData impressionData)
@@ -171,6 +148,9 @@ public class YInterstitialAd : MonoBehaviour
     public void HandleAdFailedToShow(object sender, AdFailureEventArgs args)
     {
         this.DisplayMessage($"HandleAdFailedToShow event received with message: {args.Message}");
+        AddManager.interstitial.Destroy();
+        AddManager.interstitial = null;
+        ResumeGame();
     }
 
     #endregion

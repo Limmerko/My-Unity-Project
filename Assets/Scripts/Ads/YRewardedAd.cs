@@ -14,7 +14,7 @@ using UnityEngine;
 using YandexMobileAds;
 using YandexMobileAds.Base;
 
-public class RewardedAd : MonoBehaviour
+public class YRewardedAd : MonoBehaviour
 {
     private String message = "";
 
@@ -25,42 +25,6 @@ public class RewardedAd : MonoBehaviour
     public void Awake()
     {
         this.rewardedAdLoader = new RewardedAdLoader();
-    }
-
-    public void OnGUI()
-    {
-        var fontSize = (int)(0.05f * Math.Min(Screen.width, Screen.height));
-
-        var labelStyle = GUI.skin.GetStyle("label");
-        labelStyle.fontSize = fontSize;
-
-        var buttonStyle = GUI.skin.GetStyle("button");
-        buttonStyle.fontSize = fontSize;
-
-#if UNITY_EDITOR
-        this.message = "Mobile ads SDK is not available in editor. Only Android and iOS environments are supported";
-#else
-            if (GUILayout.Button("Request Rewarded Ad", buttonStyle, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 8)))
-            {
-                this.RequestRewardedAd();
-            }
-
-            if (this.rewardedAd != null) {
-                if (GUILayout.Button("Show Rewarded Ad", buttonStyle, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 8)))
-                {
-                    this.ShowRewardedAd();
-                }
-            }
-            if (this.rewardedAd != null)
-            {
-                if (GUILayout.Button("Destroy Rewarded Ad", buttonStyle, GUILayout.Width(Screen.width), GUILayout.Height(Screen.height / 8)))
-                {
-                    this.rewardedAd.Destroy();
-                }
-            }
-#endif
-
-        GUILayout.Label(this.message, labelStyle);
     }
 
     private void RequestRewardedAd()
